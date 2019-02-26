@@ -1,10 +1,10 @@
-import App from '../components/App'
-import Header from '../components/Header'
-import PagesList from '../components/PagesList'
+import App from "../components/App";
+import Header from "../components/Header";
+import Content from "../components/Content";
 
 export default () => (
   <App>
     <Header />
-    <PagesList />
+    <Content />
   </App>
-)
+);

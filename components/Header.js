@@ -1,17 +1,77 @@
-import Link from 'next/link'
-import { withRouter } from 'next/router'
+import Link from "next/link";
+import { withRouter } from "next/router";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import ErrorMessage from "./ErrorMessage";
 
-const Header = ({ router: { pathname } }) => (
+const menuQuery = gql`
+  query menu {
+    configCollection {
+      items {
+        menuCollection {
+          items {
+            ... on Page {
+              title
+              slug
+              sys {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Header = ({ router: { query } }) => (
   <header>
-    <Link prefetch href='/'>
-      <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
-    </Link>
-    <Link prefetch href='/about'>
-      <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
-    </Link>
+    <Query query={menuQuery}>
+      {({
+        loading,
+        error,
+        data: {
+          configCollection: {
+            items: [
+              {
+                menuCollection: { items: menuItems }
+              }
+            ]
+          }
+        }
+      }) => {
+        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (loading) return <div>Loading</div>;
+
+        return (
+          <ul>
+            <li>
+              <Link href="/">
+                <a className={query.slug === "" ? "is-active" : ""}>Home</a>
+              </Link>
+            </li>
+            {menuItems.map(item => (
+              <li key={item.sys.id}>
+                <Link href={`/${item.slug}` }>
+                  <a
+                    className={query.slug === item.slug ? "is-active" : ""}
+                  >
+                    {item.title}
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        );
+      }}
+    </Query>
     <style jsx>{`
       header {
         margin-bottom: 25px;
+      }
+      li {
+        list-style: none;
+        display: inline;
       }
       a {
         font-size: 14px;
@@ -23,6 +83,6 @@ const Header = ({ router: { pathname } }) => (
       }
     `}</style>
   </header>
-)
+);
 
-export default withRouter(Header)
+export default withRouter(Header);
