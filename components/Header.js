@@ -46,13 +46,13 @@ const Header = ({ router: { query } }) => (
         return (
           <ul>
             <li>
-              <Link href="/">
-                <a className={query.slug === "" ? "is-active" : ""}>Home</a>
+              <Link href="/" as="/">
+                <a className={!query.slug ? "is-active" : ""}>Home</a>
               </Link>
             </li>
             {menuItems.map(item => (
               <li key={item.sys.id}>
-                <Link href={`/${item.slug}` }>
+                <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
                   <a
                     className={query.slug === item.slug ? "is-active" : ""}
                   >
