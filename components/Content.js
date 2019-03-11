@@ -2,6 +2,7 @@ import ErrorMessage from "./ErrorMessage";
 import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Markdown from "markdown-to-jsx";
 
 const currentPageQuery = gql`
   query currentPage($slug: String!) {
@@ -49,7 +50,7 @@ export default withRouter(({ router: { query } }) => (
         <section>
           <h1>{currentPage.title}</h1>
           <p>{currentPage.lead}</p>
-          <div dangerouslySetInnerHTML={{ __html: currentPage.body }} />
+          {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
         </section>
       );
     }}
