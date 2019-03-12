@@ -46,13 +46,13 @@ export default withRouter(({ router: { query } }) => (
 
       const currentPage = data.pageCollection.items[0];
 
-      return (
+      return currentPage ? (
         <section>
           <h1>{currentPage.title}</h1>
           <p>{currentPage.lead}</p>
           {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
         </section>
-      );
+      ) : null;
     }}
   </Query>
 ));
