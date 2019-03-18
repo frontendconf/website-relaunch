@@ -9,9 +9,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get("/:slug", (req, res) =>
-    app.render(req, res, "/index", { slug: req.params.slug })
-  );
+  server.get('/:category(news|speakers|hosts|workshops)?/:slug', (req, res, next) => {
+    app.render(req, res, "/index", { category: req.params.category, slug: req.params.slug })
+  })
 
   server.get("*", (req, res) => handle(req, res));
 
