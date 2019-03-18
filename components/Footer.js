@@ -116,63 +116,63 @@ const FooterMenu = props => (
   </div>
 );
 
-const Footer = ({ router: { query } }) => (
-  <footer>
-    <Query query={footerQuery}>
-      {({
-        loading,
-        error,
-        data: {
-          sponsorCollection: { items: allSponsors },
-          configCollection: {
-            items: [
-              {
-                footerMenuCollection: { items: menuItems },
-                footerMenuMetaCollection: { items: metaMenuItems },
-                footerCtasCollection: { items: ctas },
-                footerSocialMediaCollection: { items: socialMediaItems }
-              }
-            ]
+export default function Footer() {
+  return (
+    <footer>
+      <Query query={footerQuery}>
+        {({
+          loading,
+          error,
+          data: {
+            sponsorCollection: { items: allSponsors },
+            configCollection: {
+              items: [
+                {
+                  footerMenuCollection: { items: menuItems },
+                  footerMenuMetaCollection: { items: metaMenuItems },
+                  footerCtasCollection: { items: ctas },
+                  footerSocialMediaCollection: { items: socialMediaItems }
+                }
+              ]
+            }
           }
+        }) => {
+          if (error) return <ErrorMessage message="Error loading pages." />;
+          if (loading) return <div>Loading</div>;
+
+          const sponsors = allSponsors.filter(
+            item => item.category.title === "CONTRIBUTING"
+          );
+
+          return (
+            <>
+              <div className="sponsors">
+                <h3>Contributing Sponsors</h3>
+
+                <FooterMenu id="sponsors" items={sponsors} />
+              </div>
+
+              <div className="menus">
+                <FooterMenu id="ctas" items={ctas} />
+                <FooterMenu id="main" items={menuItems} />
+                <FooterMenu id="social" items={socialMediaItems} />
+              </div>
+
+              <div className="copyright">
+                <p>2011-2019 Frontend Conference Zürich</p>
+
+                <FooterMenu id="meta" items={metaMenuItems} />
+              </div>
+            </>
+          );
+        }}
+      </Query>
+      <style jsx>{`
+        .menus,
+        .copyright {
+          display: flex;
         }
-      }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
-        if (loading) return <div>Loading</div>;
-
-        const sponsors = allSponsors.filter(
-          item => item.category.title === "CONTRIBUTING"
-        );
-
-        return (
-          <>
-            <div className="sponsors">
-              <h3>Contributing Sponsors</h3>
-
-              <FooterMenu id="sponsors" items={sponsors} />
-            </div>
-
-            <div className="menus">
-              <FooterMenu id="ctas" items={ctas} />
-              <FooterMenu id="main" items={menuItems} />
-              <FooterMenu id="social" items={socialMediaItems} />
-            </div>
-
-            <div className="copyright">
-              <p>2011-2019 Frontend Conference Zürich</p>
-
-              <FooterMenu id="meta" items={metaMenuItems} />
-            </div>
-          </>
-        );
-      }}
-    </Query>
-    <style jsx>{`
-      .menus,
-      .copyright {
-        display: flex;
-      }
-    `}</style>
-  </footer>
-);
-
-export default withRouter(Footer);
+      `}</style>
+    </footer>
+  );
+}
