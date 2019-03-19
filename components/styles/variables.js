@@ -68,6 +68,8 @@ export const spaces = {
 // ) !default;
 
 
+
+
 // Grid containers
 //
 // Define the maximum width of `.container` for different screen sizes.
@@ -80,9 +82,33 @@ export const spaces = {
 // ) !default;
 
 
-// Grid columns
-const gridColumns = 12;
-const gridGutters = 16;
+// Grid
+const columns = 12;
+const gutter = 16;
+
+// Array for easier looping and
+const breakpoints = [{
+  name: 'xs',
+  minWidth: 0,
+}, {
+  name: 'sm',
+  minWidth: 576,
+}, {
+  name: 'md',
+  minWidth: 768,
+}, {
+  name: 'lg',
+  minWidth: 992,
+}, {
+  name: 'xl',
+  minWidth: 1200,
+}]
+
+export const grid = {
+  columns,
+  gutter,
+  breakpoints
+}
 
 
 // Typography

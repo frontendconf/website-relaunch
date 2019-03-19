@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import { colors, mixins } from './styles/variables';
+import { Container, Row, Col } from './shared/Grid';
 
 const menuQuery = gql`
   query menu {
@@ -45,36 +46,46 @@ const Header = ({ router: { query } }) => (
 
       return (
         <header>
-          <Link href="/" as="/">
-            <a className={!query.slug ? "home-link is-active" : "home-link"}>
-              <img className="home-link__image" src="/static/neon.svg" />
-              <div className="home-link__text-wrap">
-                <span className="home-link__slogan">Front Zürich 2019</span>
-                <span className="home-link__date">August 28 29 30</span>
-              </div>
-            </a>
-          </Link>
-          <div className="flex-spacer"></div>
-          <nav>
-            <ul>
-              {menuItems.map(item => (
-                <li key={item.sys.id}>
-                  <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
-                    <a
-                      className={query.slug === item.slug ? "menu-link is-active" : "menu-link"}
-                    >
-                      {item.title}
+          <Container wide={true}>
+            <Row>
+              <Col>
+                <div className="inner">
+                  <Link href="/" as="/">
+                    <a className={!query.slug ? "home-link is-active" : "home-link"}>
+                      <img className="home-link__image" src="/static/neon.svg" />
+                      <div className="home-link__text-wrap">
+                        <span className="home-link__slogan">Front Zürich 2019</span>
+                        <span className="home-link__date">August 28 29 30</span>
+                      </div>
                     </a>
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <a href="" className="ticket-link">Buy Tickets</a>
+                  <div className="flex-spacer"></div>
+                  <nav>
+                    <ul>
+                      {menuItems.map(item => (
+                        <li key={item.sys.id}>
+                          <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
+                            <a
+                              className={query.slug === item.slug ? "menu-link is-active" : "menu-link"}
+                            >
+                              {item.title}
+                            </a>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                  <a href="" className="ticket-link">Buy Tickets</a>
+                </div>
+              </Col>
+            </Row>
+          </Container>
           <style jsx>{`
             header {
-              display: flex;
               padding: 44px 0;
+            }
+            .inner {
+              display: flex;
               align-items: center;
             }
             .home-link {
