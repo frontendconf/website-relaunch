@@ -3,6 +3,7 @@ import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
+import { Container, Row, Col } from './shared/Grid';
 
 const currentPageQuery = gql`
   query currentPage($slug: String!) {
@@ -48,9 +49,15 @@ export default withRouter(({ router: { query } }) => (
 
       return currentPage ? (
         <section>
-          <h1>{currentPage.title}</h1>
-          <p>{currentPage.lead}</p>
-          {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+          <Container>
+            <Row>
+              <Col>
+                <h1>{currentPage.title}</h1>
+                <p>{currentPage.lead}</p>
+                {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+              </Col>
+            </Row>
+          </Container>
         </section>
       ) : null;
     }}

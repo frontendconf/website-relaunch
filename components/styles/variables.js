@@ -19,14 +19,23 @@ export const functions = {
 const white = '#fff';
 const black = '#000';
 
+// Theme
 const primary = '#00fff8';
 const secondary = '#ffda7e';
+
+// Grays
+const grayBombay = '#B3B3BC';
+
+const grays = {
+  bombay: grayBombay
+};
 
 export const colors = {
   white,
   black,
   primary,
   secondary,
+  grays,
 };
 
 
@@ -92,7 +101,7 @@ const breakpoints = [{
   minWidth: 0,
 }, {
   name: 'sm',
-  minWidth: 576,
+  minWidth: 400,
 }, {
   name: 'md',
   minWidth: 768,
@@ -112,7 +121,7 @@ export const grid = {
 
 
 // Typography
-const family = 'Yolo';
+const family = 'Code-Pro-LC';
 
 export const fonts = {
   families: {
@@ -122,20 +131,13 @@ export const fonts = {
 
   },
   weights: {
-
+    normal: 400,
+    bold: 700,
   }
 };
 
 
 // Mixins
-
-const uselessmixin = (weight = 400) => {
-  return `
-    color: red;
-    font-weight: ${weight};
-  `;
-}
-
 const textGradient = () => {
   return `
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), #00fff8);
@@ -146,6 +148,5 @@ const textGradient = () => {
 }
 
 export const mixins = {
-  uselessmixin,
   textGradient
 }

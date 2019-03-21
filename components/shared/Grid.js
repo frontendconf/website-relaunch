@@ -1,18 +1,42 @@
-import css from 'styled-jsx/css';
 import { grid } from '../styles/variables';
 
 export const Container = ({ children, wide = false }) => (
-  <div className={wide ? 'container container--wide' : 'container'}>
+  <div className={`container ${wide ? 'container--wide' : ''}`}>
     {children}
     <style jsx>{`
       .container {
         max-width: 1680px;
-        padding-right: 200px; // TODO: all responsive adjustments
-        padding-left: 200px; // TODO: all responsive adjustments
+        padding-right: 16px;
+        padding-left: 16px;
       }
-      .container--wide {
-        padding-right: 60px; // TODO: all responsive adjustments
-        padding-left: 60px; // TODO: all responsive adjustments
+
+      @media (min-width: 400px) {
+        .container {
+          padding-right: 32px;
+          padding-left: 32px;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding-right: 64px;
+          padding-left: 64px;
+        }
+        .container--wide {
+          padding-right: 32px;
+          padding-left: 32px;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .container {
+          padding-right: 200px;
+          padding-left: 200px;
+        }
+        .container--wide {
+          padding-right: 56px;
+          padding-left: 56px;
+        }
       }
     `}</style>
   </div>
@@ -31,42 +55,29 @@ export const Row = ({ children }) => (
   </div>
 );
 
-const yolo = (bp) => {
-  let result = '';
-  
-  // Add media quiery if necessary
-  if(bp.minWidth !== 0) {
-    result += `
-      @media screen and (min-width: ${bp.minWidth}px) {
-    `;
-  }
-
-  for (let i = 1; i <= 1; i++) {
-    result += `
-      .col-${bp.name}-${i} {
-        flex: 0 0 ${100 / grid.columns * i}%;
-        max-width: ${100 / grid.columns * i}%;
-      }
-    `;
-  }
-
-  // Add ending bracket of media quiery if necessary
-  if(bp.minWidth !== 0) {
-    result += ` } `;
-  }
-
-  return result;
-}
-
-const { className, styles } = css.resolve`${grid.breakpoints.map(yolo).join('')}`;
-
-export const Col = ({ children }) => (
-  <div className={'col col-xs-12 ' + className}>
+export const Col = ({ className, children }) => (
+  <div className={`col ${className ? className : ''}`}>
     {children}
-    {styles}
+    <style jsx>{`
+      .col {
+        min-height: 1px;
+        padding-right: ${grid.gutter / 2}px;
+        padding-left: ${grid.gutter / 2}px;
+      }
+      .xs-1 {
+        flex: 0 0 ${100 / grid.columns * 1}%;
+        max-width: ${100 / grid.columns * 1}%;
+      }
+      .xs-12 {
+        flex: 0 0 ${100 / grid.columns * 12}%;
+        max-width: ${100 / grid.columns * 12}%;
+      }
+    `}</style>
   </div>
 );
 
 export default {
-  Container
+  Container,
+  Row,
+  Col
 }
