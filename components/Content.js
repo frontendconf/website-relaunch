@@ -1,4 +1,5 @@
 import ErrorMessage from "./ErrorMessage";
+import SpeakersList from "./SpeakersList";
 import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -95,6 +96,7 @@ export default withRouter(({ router: { query } }) => {
             <p>{currentPage.lead}</p>
             {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
             {currentPage.showNews ? <NewsSummary /> : null}
+            {currentPage.showSpeakers ? <SpeakersList /> : <SpeakersList speakerLimit={6} />}
           </section>
         );
       }}
