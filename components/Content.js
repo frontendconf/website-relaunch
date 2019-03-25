@@ -1,10 +1,13 @@
 import ErrorMessage from "./ErrorMessage";
+import SpeakersList from "./SpeakersList";
 import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
 import NewsSummary from "./NewsSummary";
 import { Container, Row, Col } from './shared/Grid';
+import VenueTeaser from "./VenueTeaser";
+import Jobs from "./Jobs";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -89,19 +92,29 @@ export default withRouter(({ router: { query } }) => {
           : currentPage.title;
         const subTitle = category ? currentPage.title : null;
 
+        const isHome = slug === "/";
+        const isVenue = slug === "venue";
+
         return (
           <section>
-            <Container>
-              <Row>
-                <Col>
-                  <h1>{title}</h1>
-                  {subTitle ? <h2>{subTitle}</h2> : null}
-                  <p>{currentPage.lead}</p>
-                  {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
-                  {currentPage.showNews ? <NewsSummary /> : null}
-                </Col>
-              </Row>
-            </Container>
+            <h1>{title}</h1>
+            {subTitle ? <h2>{subTitle}</h2> : null}
+            <p>{currentPage.lead}</p>
+            <section>
+              {currentPage.body ? (
+                <Markdown>{currentPage.body}</Markdown>
+              ) : null}
+            </section>
+            <section>{currentPage.showNews ? <NewsSummary /> : null}</section>
+            <section>
+              {currentPage.showSpeakers || isHome ? (
+                <SpeakersList speakerLimit={isHome ? 6 : 0} />
+              ) : null}
+            </section>
+            <section>
+              {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
+            </section>
+            <section>{currentPage.showJobs ? <Jobs /> : null}</section>
           </section>
         );
       }}

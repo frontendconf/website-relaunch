@@ -5,10 +5,12 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "deploy": "npx now"
+    "deploy": "npx now",
+    "alias": "npx now alias"
   },
   "dependencies": {
     "apollo-boost": "^0.1.16",
+    "array-shuffle": "^1.0.1",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "isomorphic-unfetch": "^3.0.0",
@@ -20,5 +22,8 @@
     "react-dom": "^16.8.3"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^1.0.1"
+  }
 }
