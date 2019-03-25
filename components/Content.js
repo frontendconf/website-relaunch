@@ -100,7 +100,9 @@ export default withRouter(({ router: { query } }) => {
             <p>{currentPage.lead}</p>
             {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
             {currentPage.showNews ? <NewsSummary /> : null}
-            {currentPage.showSpeakers ? <SpeakersList /> : <SpeakersList speakerLimit={6} />}
+            {currentPage.showSpeakers || isHome ? (
+              <SpeakersList speakerLimit={isHome ? 6 : 0} />
+            ) : null}
             {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
           </section>
         );
