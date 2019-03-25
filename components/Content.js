@@ -3,11 +3,12 @@ import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
+import NewsSummary from "./NewsSummary";
 import { Container, Row, Col } from './shared/Grid';
 
 const currentPageQuery = gql`
-  query currentPage($slug: String!) {
-    pageCollection(where: { slug: $slug }) {
+  query($slug: String!) {
+    collection: pageCollection(where: { slug: $slug }) {
       items {
         title
         lead
@@ -39,27 +40,71 @@ const currentPageQuery = gql`
   }
 `;
 
-export default withRouter(({ router: { query } }) => (
-  <Query query={currentPageQuery} variables={{ slug: query.slug || "/" }}>
-    {({ loading, error, data }) => {
-      if (error) return <ErrorMessage message="Error loading pages." />;
-      if (loading) return <div>Loading</div>;
+const currentNewsQuery = gql`
+  query($slug: String!) {
+    collection: newsCollection(where: { slug: $slug }) {
+      items {
+        title
+        date
+        body
+        slug
+      }
+    }
+  }
+`;
 
-      const currentPage = data.pageCollection.items[0];
+export default withRouter(({ router: { query } }) => {
+  const slug = query.slug || "/";
+  let category = query.category;
+  let dataQuery;
 
-      return currentPage ? (
-        <section>
-          <Container>
-            <Row>
-              <Col>
-                <h1>{currentPage.title}</h1>
-                <p>{currentPage.lead}</p>
-                {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      ) : null;
-    }}
-  </Query>
-));
+  switch (category) {
+    case "news":
+      dataQuery = currentNewsQuery;
+      break;
+    // case "speakers":
+    // case "hosts":
+    // case "workshops":
+    default:
+      dataQuery = currentPageQuery;
+  }
+
+  return (
+    <Query query={dataQuery} variables={{ slug }}>
+      {({
+        loading,
+        error,
+        data: {
+          collection: {
+            items: [currentPage]
+          }
+        }
+      }) => {
+        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (loading) return <div>Loading</div>;
+        if (!currentPage) return <section>404</section>;
+
+        const title = category
+          ? `${category.charAt(0).toUpperCase()}${category.slice(1)}`
+          : currentPage.title;
+        const subTitle = category ? currentPage.title : null;
+
+        return (
+          <section>
+            <Container>
+              <Row>
+                <Col>
+                  <h1>{title}</h1>
+                  {subTitle ? <h2>{subTitle}</h2> : null}
+                  <p>{currentPage.lead}</p>
+                  {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+                  {currentPage.showNews ? <NewsSummary /> : null}
+                </Col>
+              </Row>
+            </Container>
+          </section>
+        );
+      }}
+    </Query>
+  );
+});

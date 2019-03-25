@@ -50,6 +50,7 @@ export const Row = ({ children }) => (
         display: flex;
         margin-right: -${grid.gutter / 2}px;
         margin-left: -${grid.gutter / 2}px;
+        flex-wrap: wrap;
       }
     `}</style>
   </div>
@@ -72,6 +73,16 @@ export const Col = ({ className, children }) => (
         flex: 0 0 ${100 / grid.columns * 12}%;
         max-width: ${100 / grid.columns * 12}%;
       }
+
+      ${grid.breakpoints.map((breakpoint) => `
+        @media (min-width: ${breakpoint.minWidth}px) {
+          // Test
+          .xs-12 {
+            flex:  0 0 100%;
+          }
+        }
+      `)}
+
     `}</style>
   </div>
 );
