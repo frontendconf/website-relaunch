@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
 import NewsSummary from "./NewsSummary";
 import VenueTeaser from "./VenueTeaser";
+import Jobs from "./Jobs";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -104,6 +105,7 @@ export default withRouter(({ router: { query } }) => {
               <SpeakersList speakerLimit={isHome ? 6 : 0} />
             ) : null}
             {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
+            {currentPage.showJobs ? <Jobs /> : null}
           </section>
         );
       }}
