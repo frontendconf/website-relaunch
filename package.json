@@ -5,7 +5,8 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "deploy": "npx now"
+    "deploy": "npx now",
+    "alias": "npx now alias"
   },
   "dependencies": {
     "apollo-boost": "^0.1.16",
