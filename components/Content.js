@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
 import NewsSummary from "./NewsSummary";
+import VenueTeaser from "./VenueTeaser";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -89,6 +90,9 @@ export default withRouter(({ router: { query } }) => {
           : currentPage.title;
         const subTitle = category ? currentPage.title : null;
 
+        const isHome = slug === "/";
+        const isVenue = slug === "venue";
+
         return (
           <section>
             <h1>{title}</h1>
@@ -97,6 +101,7 @@ export default withRouter(({ router: { query } }) => {
             {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
             {currentPage.showNews ? <NewsSummary /> : null}
             {currentPage.showSpeakers ? <SpeakersList /> : <SpeakersList speakerLimit={6} />}
+            {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
           </section>
         );
       }}
