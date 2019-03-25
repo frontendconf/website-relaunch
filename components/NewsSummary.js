@@ -28,7 +28,7 @@ export default () => (
       const news = data.newsCollection.items;
 
       return (
-        <div>
+        <div className="news-summary">
           <h3>News</h3>
           <ul>
             {news.map(item => (
