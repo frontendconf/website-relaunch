@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import { isTerminating } from "apollo-link/lib/linkUtils";
+import { Container, Row, Col } from "./shared/Grid";
 
 const footerQuery = gql`
   query {
@@ -103,7 +104,7 @@ const FooterMenu = props => (
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <Query query={footerQuery}>
         {({
           loading,
@@ -130,25 +131,46 @@ export default function Footer() {
           );
 
           return (
-            <>
-              <div className="sponsors">
-                <h3>Contributing Sponsors</h3>
+            <Container>
+              <Row>
+                <Col className={"xs-12"}>
+                  <div className="sponsors">
+                    <h3>Contributing Sponsors</h3>
 
-                <FooterMenu id="sponsors" items={sponsors} />
-              </div>
+                    <Row>
+                      {sponsors.map(item => (
+                        <Col className="sponsors__item">
+                          <a
+                            className="sponsors__item-link"
+                            href={item.link}
+                            title={item.title}
+                            target="_blank"
+                          >
+                            {item.logo ? (
+                              <img src={item.logo.url} alt={item.title} />
+                            ) : (
+                              item.title
+                            )}
+                          </a>
+                        </Col>
+                      ))}
+                    </Row>
+                  </div>
 
-              <div className="menus">
-                <FooterMenu id="ctas" items={ctas} />
-                <FooterMenu id="main" items={menuItems} />
-                <FooterMenu id="social" items={socialMediaItems} />
-              </div>
+                  {/* <div className="menus">
+                    <FooterMenu id="ctas" items={ctas} />
+                    <FooterMenu id="main" items={menuItems} />
+                    <FooterMenu id="social" items={socialMediaItems} />
+                  </div>
 
-              <div className="copyright">
-                <p>2011-2019 Frontend Conference Zürich</p>
+                  <div className="copyright">
+                    <p>2011-2019 Frontend Conference Zürich</p>
 
-                <FooterMenu id="meta" items={metaMenuItems} />
-              </div>
-            </>
+                    <FooterMenu id="meta" items={metaMenuItems} />
+                  </div> */}
+                </Col>
+              </Row>
+            </Container>
           );
         }}
       </Query>

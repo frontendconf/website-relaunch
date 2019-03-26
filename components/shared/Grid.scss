@@ -1,0 +1,64 @@
+.container {
+  max-width: 1680px;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+@media (min-width: 400px) {
+  .container {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-right: 64px;
+    padding-left: 64px;
+  }
+  .container--wide {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-right: 200px;
+    padding-left: 200px;
+  }
+  .container--wide {
+    padding-right: 56px;
+    padding-left: 56px;
+  }
+}
+
+.row {
+  display: flex;
+  margin-right: - map-get($grid, gutter) / 2 * 1px;
+  margin-left: - map-get($grid, gutter) / 2 * 1px;
+  flex-wrap: wrap;
+}
+
+.col {
+  min-height: 1px;
+  padding-right: map-get($grid, gutter) / 2 * 1px;
+  padding-left: map-get($grid, gutter) / 2 * 1px;
+}
+.xs-1 {
+  flex: 0 0 (100 / map-get($grid, columns) * 1%);
+  max-width: (100 / map-get($grid, columns) * 1%);
+}
+.xs-12 {
+  flex: 0 0 (100 / map-get($grid, columns) * 12%);
+  max-width: (100 / map-get($grid, columns) * 12%);
+}
+
+@each $breakpoint in map-get($grid, breakpoints) {
+  @media (min-width: map-get($breakpoint, minWidth) * 1px) {
+    // Test
+    .xs-12 {
+      flex: 0 0 100%;
+    }
+  }
+}

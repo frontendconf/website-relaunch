@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
 import NewsSummary from "./NewsSummary";
+import { Container, Row, Col } from './shared/Grid';
 import VenueTeaser from "./VenueTeaser";
 import Jobs from "./Jobs";
 
