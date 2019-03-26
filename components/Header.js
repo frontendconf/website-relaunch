@@ -52,10 +52,11 @@ const Header = ({ router: { query } }) => (
             </li>
             {menuItems.map(item => (
               <li key={item.sys.id}>
-                <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
-                  <a
-                    className={query.slug === item.slug ? "is-active" : ""}
-                  >
+                <Link
+                  href={{ pathname: "/", query: { slug: item.slug } }}
+                  as={`/${item.slug}`}
+                >
+                  <a className={query.slug === item.slug ? "is-active" : ""}>
                     {item.title}
                   </a>
                 </Link>
@@ -65,23 +66,6 @@ const Header = ({ router: { query } }) => (
         );
       }}
     </Query>
-    <style jsx>{`
-      header {
-        margin-bottom: 25px;
-      }
-      li {
-        list-style: none;
-        display: inline;
-      }
-      a {
-        font-size: 14px;
-        margin-right: 15px;
-        text-decoration: none;
-      }
-      .is-active {
-        text-decoration: underline;
-      }
-    `}</style>
   </header>
 );
 

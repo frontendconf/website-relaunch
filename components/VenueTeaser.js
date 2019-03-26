@@ -60,21 +60,6 @@ export default function VenueTeaser({ isVenue = false }) {
                 </>
               )}
             </div>
-
-            <style jsx>{`
-              .venue-teaser {
-                display: flex;
-              }
-              .venue-teaser__content {
-                position: relative;
-                flex: 1;
-              }
-              .venue-teaser__map {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-              }
-            `}</style>
           </div>
         );
       }}

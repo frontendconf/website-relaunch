@@ -98,21 +98,6 @@ const FooterMenu = props => (
         );
       })}
     </ul>
-    <style jsx>{`
-      li {
-        list-style: none;
-      }
-
-      .menu--sponsors li,
-      .menu--sponsors a {
-        display: inline-block;
-      }
-
-      .menu--ctas a {
-        display: block;
-        border: 1px solid;
-      }
-    `}</style>
   </div>
 );
 
@@ -167,12 +152,6 @@ export default function Footer() {
           );
         }}
       </Query>
-      <style jsx>{`
-        .menus,
-        .copyright {
-          display: flex;
-        }
-      `}</style>
     </footer>
   );
 }

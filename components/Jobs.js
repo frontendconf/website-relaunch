@@ -73,18 +73,6 @@ class Jobs extends Component {
             <Logo />
           </a>
         </p>
-
-        <style jsx>{`
-          .jobs__source {
-            display: flex;
-          }
-          .jobs__source-link {
-            flex: 1;
-          }
-          .jobs__source-link :global(svg) {
-            height: 20px;
-          }
-        `}</style>
       </div>
     );
   }

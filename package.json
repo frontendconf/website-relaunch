@@ -9,6 +9,7 @@
     "alias": "npx now alias"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
     "apollo-boost": "^0.1.16",
     "array-shuffle": "^1.0.1",
     "express": "^4.16.4",
@@ -16,6 +17,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "markdown-to-jsx": "^6.9.2",
     "next": "^8.0.3",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.3",
     "react-apollo": "^2.1.11",
