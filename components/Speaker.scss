@@ -1,3 +1,25 @@
 .speaker {
   flex: 1;
 }
+
+.speaker__image-wrapper {
+  background-blend-mode: color;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), #00fff8);
+  width: 294px;
+  height: 395px;
+
+  img {
+    transform: rotate(-5deg);
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: opacity .2s ease, transform .2s ease, filter .2s ease;
+  }
+}
+
+.speaker__image-wrapper:hover {
+  img {
+    transform: rotate(0);
+    filter: grayscale(0);
+    opacity: 1;
+  }
+}

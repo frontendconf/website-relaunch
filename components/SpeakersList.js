@@ -10,7 +10,7 @@ const speakersAllQuery = gql`
         name
         description
         photo {
-          url(transform: { width: 200, height: 200, resizeStrategy: FILL })
+          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
       }
     }
@@ -24,7 +24,7 @@ const speakersLimitedQuery = gql`
         name
         description
         photo {
-          url(transform: { width: 200, height: 200, resizeStrategy: FILL })
+          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
       }
     }
