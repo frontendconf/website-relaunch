@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import { isTerminating } from "apollo-link/lib/linkUtils";
-import { Container, Row, Col } from './shared/Grid';
+import { Container, Row, Col } from "./shared/Grid";
 
 const footerQuery = gql`
   query {
@@ -99,21 +99,6 @@ const FooterMenu = props => (
         );
       })}
     </ul>
-    <style jsx>{`
-      li {
-        list-style: none;
-      }
-
-      .menu--sponsors li,
-      .menu--sponsors a {
-        display: inline-block;
-      }
-
-      .menu--ctas a {
-        display: block;
-        border: 1px solid;
-      }
-    `}</style>
   </div>
 );
 
@@ -148,14 +133,19 @@ export default function Footer() {
           return (
             <Container>
               <Row>
-                <Col className={'xs-12'}>
+                <Col className={"xs-12"}>
                   <div className="sponsors">
                     <h3>Contributing Sponsors</h3>
 
                     <Row>
-                      {sponsors.map((item) => (
-                        <Col className="sponsors__item">
-                          <a className="sponsors__item-link" href={item.link} title={item.title} target="_blank">
+                      {sponsors.map((item, key) => (
+                        <Col className="sponsors__item" key={key}>
+                          <a
+                            className="sponsors__item-link"
+                            href={item.link}
+                            title={item.title}
+                            target="_blank"
+                          >
                             {item.logo ? (
                               <img src={item.logo.url} alt={item.title} />
                             ) : (
@@ -184,29 +174,6 @@ export default function Footer() {
           );
         }}
       </Query>
-      <style jsx>{`
-        .footer {
-          padding: 35px 0;
-          background-color: #1e1732;
-        }
-
-        .sponsors {
-
-        }
-
-        .sponsors__item {
-          
-        }
-
-        .sponsors__item-link {
-          
-        }
-
-        .menus,
-        .copyright {
-          display: flex;
-        }
-      `}</style>
     </footer>
   );
 }

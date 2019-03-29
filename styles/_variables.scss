@@ -1,0 +1,119 @@
+// General styles variables
+
+// Functions
+@function pxToRem($px) {
+  @return ($px / 16) * 1rem;
+}
+
+@function remToPx($rem) {
+  @return ($rem * 16) * 1px;
+}
+
+// Mixins
+@mixin textGradient() {
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.7),
+    #00fff8
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+// Color system
+$colors: (
+  white: #fff,
+  black: #000,
+  primary: #00fff8,
+  secondary: #ffda7e,
+  grays: (
+    bombay: #B3B3BC
+  )
+);
+
+// Spacing
+$spacer: "1rem";
+$spaces: (
+  none: 0,
+  // TODO: Add correct spacing values
+);
+
+// Links
+//
+// Style anchor elements.
+
+// $link-color:                              theme-color("primary") !default;
+// $link-decoration:                         none !default;
+// $link-hover-color:                        darken($link-color, 15%) !default;
+// $link-hover-decoration:                   underline !default;
+
+// Paragraphs
+//
+// Style p element.
+
+// $paragraph-margin-bottom:   1rem !default;
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px
+// ) !default;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+// $container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1140px
+// ) !default;
+
+// Grid
+$grid: (
+  columns: 12,
+  gutter: 16,
+  breakpoints: (
+    (
+      name: "xs",
+      minWidth: 0
+    ),
+    (
+      name: "sm",
+      minWidth: 400
+    ),
+    (
+      name: "md",
+      minWidth: 768
+    ),
+    (
+      name: "lg",
+      minWidth: 992
+    ),
+    (
+      name: "xl",
+      minWidth: 1200
+    )
+  )
+);
+
+// Typography
+$fonts: (
+  families: (
+    default: "Code-Pro-LC"
+  ),
+  sizes: (),
+  weights: (
+    normal: 400,
+    bold: 700
+  )
+);

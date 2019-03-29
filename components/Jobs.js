@@ -48,12 +48,12 @@ class Jobs extends Component {
 
         <ul className="jobs__items">
           {this.state.items.map((item, i) => (
-            <li className="jobs__item">
+            <li className="jobs__item" key={i}>
               <a
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                key={i}
+
               >
                 <span className="jobs__item-title">{item.title}</span>
                 <span className="jobs__item-company">{item.company}</span>
@@ -73,18 +73,6 @@ class Jobs extends Component {
             <Logo />
           </a>
         </p>
-
-        <style jsx>{`
-          .jobs__source {
-            display: flex;
-          }
-          .jobs__source-link {
-            flex: 1;
-          }
-          .jobs__source-link :global(svg) {
-            height: 20px;
-          }
-        `}</style>
       </div>
     );
   }
