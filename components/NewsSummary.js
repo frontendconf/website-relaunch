@@ -34,7 +34,10 @@ export default () => (
             {news.map(item => (
               <li key={item.sys.id}>
                 <Link
-                  href={{ pathname: "/", query: { slug: item.slug, category: 'news' } }}
+                  href={{
+                    pathname: "/",
+                    query: { slug: item.slug, category: "news" }
+                  }}
                   as={`/news/${item.slug}`}
                 >
                   <a>{item.title}</a>

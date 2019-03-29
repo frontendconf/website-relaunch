@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
 import NewsSummary from "./NewsSummary";
+import { Container, Row, Col } from './shared/Grid';
 import VenueTeaser from "./VenueTeaser";
 import Jobs from "./Jobs";
 
@@ -99,21 +100,13 @@ export default withRouter(({ router: { query } }) => {
             <h1>{title}</h1>
             {subTitle ? <h2>{subTitle}</h2> : null}
             <p>{currentPage.lead}</p>
-            <section>
-              {currentPage.body ? (
-                <Markdown>{currentPage.body}</Markdown>
-              ) : null}
-            </section>
-            <section>{currentPage.showNews ? <NewsSummary /> : null}</section>
-            <section>
-              {currentPage.showSpeakers || isHome ? (
-                <SpeakersList speakerLimit={isHome ? 6 : 0} />
-              ) : null}
-            </section>
-            <section>
-              {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
-            </section>
-            <section>{currentPage.showJobs ? <Jobs /> : null}</section>
+            {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+            {currentPage.showNews ? <NewsSummary /> : null}
+            {currentPage.showSpeakers || isHome ? (
+              <SpeakersList speakerLimit={isHome ? 6 : 0} />
+            ) : null}
+            {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
+            {currentPage.showJobs ? <Jobs /> : null}
           </section>
         );
       }}
