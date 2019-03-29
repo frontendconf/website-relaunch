@@ -138,8 +138,8 @@ export default function Footer() {
                     <h3>Contributing Sponsors</h3>
 
                     <Row>
-                      {sponsors.map(item => (
-                        <Col className="sponsors__item">
+                      {sponsors.map((item, key) => (
+                        <Col className="sponsors__item" key={key}>
                           <a
                             className="sponsors__item-link"
                             href={item.link}

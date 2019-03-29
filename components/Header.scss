@@ -139,9 +139,10 @@ li {
   }
   li {
     display: inline-block;
-  }
-  li:not(:last-child)  {
     margin-right: 16px;
+  }
+  li:last-child {
+    margin-right: 0;
   }
   .menu-link {
     font-size: 14px;
@@ -154,7 +155,7 @@ li {
   nav {
     margin-right: 40px;
   }
-  li:not(:last-child)  {
+  li {
     margin-right: 24px;
   }
 }
