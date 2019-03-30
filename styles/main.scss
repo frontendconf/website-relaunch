@@ -1,4 +1,7 @@
+@import "functions";
 @import "variables";
+@import "mixins";
+
 @import "../components/shared/Grid";
 @import "../components/App";
 @import "../components/Content";

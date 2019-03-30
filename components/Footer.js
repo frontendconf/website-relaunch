@@ -137,7 +137,7 @@ export default function Footer() {
                   <div className="sponsors">
                     <h3>Contributing Sponsors</h3>
 
-                    <Row>
+                    <Row hGutter={true}>
                       {sponsors.map((item, key) => (
                         <Col className="sponsors__item" key={key}>
                           <a
@@ -147,7 +147,7 @@ export default function Footer() {
                             target="_blank"
                           >
                             {item.logo ? (
-                              <img src={item.logo.url} alt={item.title} />
+                              <img className="sponsors__item-img" src={item.logo.url} alt={item.title} />
                             ) : (
                               item.title
                             )}
@@ -157,17 +157,48 @@ export default function Footer() {
                     </Row>
                   </div>
 
-                  {/* <div className="menus">
-                    <FooterMenu id="ctas" items={ctas} />
-                    <FooterMenu id="main" items={menuItems} />
-                    <FooterMenu id="social" items={socialMediaItems} />
-                  </div>
+                  <Row>
+                    <Col className="xs-12 md-3">
+                      <div className="newsletter">
+                        <h3>Sign up for the newsletter</h3>
+
+                        {/* TODO. make accessible */}
+                        <form className="newsletter__form">
+                          <input className="newsletter__input" name="" placeholder="Email" />
+                          <button className="newsletter__submit">Go</button>
+                        </form>
+                      </div>
+                    </Col>
+                    <Col className="xs-12 md-3">
+                      <div className="ctas">
+                        <Row>
+                          {ctas.map((item) => (
+                            <Col className="xs-6" key={item.link}>
+                              <a className="ctas__link" href={item.link}>{item.title}</a>
+                            </Col>
+                          ))}
+                        </Row>
+                      </div>
+                    </Col>
+                    <Col className="xs-12 md-6">
+                      <div className="menus">
+                        <Row>
+                          <Col className="xs-6">
+                            <FooterMenu id="main" items={menuItems} />
+                          </Col>
+                          <Col className="xs-6">
+                          <FooterMenu id="social" items={socialMediaItems} />
+                          </Col>
+                        </Row>
+                      </div>
+                    </Col>
+                  </Row>
 
                   <div className="copyright">
-                    <p>2011-2019 Frontend Conference Zürich</p>
+                    <p className="copyright__text">2011-2019 Frontend Conference Zürich</p>
 
                     <FooterMenu id="meta" items={metaMenuItems} />
-                  </div> */}
+                  </div>
                 </Col>
               </Row>
             </Container>

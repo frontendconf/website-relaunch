@@ -2,63 +2,98 @@
   max-width: 1680px;
   padding-right: 16px;
   padding-left: 16px;
-}
 
-@media (min-width: 400px) {
-  .container {
+  @media (min-width: #{map-get($grid-breakpoints, sm)}) {
     padding-right: 32px;
     padding-left: 32px;
   }
-}
 
-@media (min-width: 768px) {
-  .container {
+  @media (min-width: #{map-get($grid-breakpoints, md)}) {
     padding-right: 64px;
     padding-left: 64px;
+    
+    &--wide {
+      padding-right: 32px;
+      padding-left: 32px;
+    }
   }
-  .container--wide {
-    padding-right: 32px;
-    padding-left: 32px;
-  }
-}
 
-@media (min-width: 1280px) {
-  .container {
+  @media (min-width: #{map-get($grid-breakpoints, xl)}) {
     padding-right: 200px;
     padding-left: 200px;
-  }
-  .container--wide {
-    padding-right: 56px;
-    padding-left: 56px;
+
+    &--wide {
+      padding-right: 56px;
+      padding-left: 56px;
+    }
   }
 }
 
 .row {
   display: flex;
-  margin-right: - map-get($grid, gutter) / 2 * 1px;
-  margin-left: - map-get($grid, gutter) / 2 * 1px;
   flex-wrap: wrap;
+
+  @each $bp, $gutter in $grid-gutters {
+    @if bp == "xs" {
+      margin-right: - $gutter / 2;
+      margin-left: - $gutter / 2;
+    } @else {
+      @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+        margin-right: - $gutter / 2;
+        margin-left: - $gutter / 2;
+      }
+    }
+  }
+
+  &--horizontal-gutters {
+    .col {
+      @each $bp, $gutter in $grid-gutters {
+        @if bp == "xs" {
+          padding-bottom: $gutter;
+        } @else {
+          @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+            padding-bottom: $gutter;
+          }
+        }
+      }
+    }
+  }
 }
 
 .col {
+  display: block;
+  position: relative;
   min-height: 1px;
-  padding-right: map-get($grid, gutter) / 2 * 1px;
-  padding-left: map-get($grid, gutter) / 2 * 1px;
-}
-.xs-1 {
-  flex: 0 0 (100 / map-get($grid, columns) * 1%);
-  max-width: (100 / map-get($grid, columns) * 1%);
-}
-.xs-12 {
-  flex: 0 0 (100 / map-get($grid, columns) * 12%);
-  max-width: (100 / map-get($grid, columns) * 12%);
+
+  @each $bp, $gutter in $grid-gutters {
+    @if bp == "xs" {
+      padding-right: $gutter / 2;
+      padding-left: $gutter / 2;
+    } @else {
+      @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+        padding-right: $gutter / 2;
+        padding-left: $gutter / 2;
+      }
+    }
+  }
 }
 
-@each $breakpoint in map-get($grid, breakpoints) {
-  @media (min-width: map-get($breakpoint, minWidth) * 1px) {
-    // Test
-    .xs-12 {
-      flex: 0 0 100%;
+@each $key, $width in $grid-breakpoints {
+  @if $width == 0 {
+    @for $i from 1 through $grid-columns {
+      .#{$key}-#{$i} {
+        flex: 0 0 (100% / $grid-columns * $i);
+        max-width: (100% / $grid-columns * $i);
+      }
     }
+  } @else {
+      @media (min-width: #{$width}) {
+        @for $i from 1 through $grid-columns {
+          .#{$key}-#{$i} {
+            flex: 0 0 (100% / $grid-columns * $i);
+            max-width: (100% / $grid-columns * $i);
+          }
+        }
+      }
   }
 }

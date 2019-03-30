@@ -1,25 +1,3 @@
-// General styles variables
-
-// Functions
-@function pxToRem($px) {
-  @return ($px / 16) * 1rem;
-}
-
-@function remToPx($rem) {
-  @return ($rem * 16) * 1px;
-}
-
-// Mixins
-@mixin textGradient() {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.7),
-    #00fff8
-  );
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
 
 // Color system
 $colors: (
@@ -59,13 +37,6 @@ $spaces: (
 // Define the minimum dimensions at which your layout will change,
 // adapting to different screen sizes, for use in media queries.
 
-// $grid-breakpoints: (
-//   xs: 0,
-//   sm: 576px,
-//   md: 768px,
-//   lg: 992px,
-//   xl: 1200px
-// ) !default;
 
 // Grid containers
 //
@@ -79,31 +50,20 @@ $spaces: (
 // ) !default;
 
 // Grid
-$grid: (
-  columns: 12,
-  gutter: 16,
-  breakpoints: (
-    (
-      name: "xs",
-      minWidth: 0
-    ),
-    (
-      name: "sm",
-      minWidth: 400
-    ),
-    (
-      name: "md",
-      minWidth: 768
-    ),
-    (
-      name: "lg",
-      minWidth: 992
-    ),
-    (
-      name: "xl",
-      minWidth: 1200
-    )
-  )
+$grid-columns: 12;
+
+$grid-gutters: (
+  xs: 10px,
+  rg: 16px
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 400px,
+  rg: 500px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
 );
 
 // Typography

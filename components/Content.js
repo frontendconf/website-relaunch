@@ -96,18 +96,24 @@ export default withRouter(({ router: { query } }) => {
         const isVenue = slug === "venue";
 
         return (
-          <section>
-            <h1>{title}</h1>
-            {subTitle ? <h2>{subTitle}</h2> : null}
-            <p>{currentPage.lead}</p>
-            {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
-            {currentPage.showNews ? <NewsSummary /> : null}
-            {currentPage.showSpeakers || isHome ? (
-              <SpeakersList speakerLimit={isHome ? 6 : 0} />
-            ) : null}
-            {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
-            {currentPage.showJobs ? <Jobs /> : null}
-          </section>
+          <Container>
+            <Row>
+              <Col>
+                <section>
+                  <h1>{title}</h1>
+                  {subTitle ? <h2>{subTitle}</h2> : null}
+                  <p>{currentPage.lead}</p>
+                  {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+                  {currentPage.showNews ? <NewsSummary /> : null}
+                  {currentPage.showSpeakers || isHome ? (
+                    <SpeakersList speakerLimit={isHome ? 6 : 0} />
+                  ) : null}
+                  {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
+                  {currentPage.showJobs ? <Jobs /> : null}
+                </section>
+              </Col>
+            </Row>
+          </Container>
         );
       }}
     </Query>

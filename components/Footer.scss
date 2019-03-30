@@ -3,16 +3,176 @@
   background-color: #1e1732;
 }
 
+// .sponsors {
+// }
+
+// .sponsors__item {
+// }
+
+// .sponsors__item-link {
+// }
+
+// .menus,
+// .copyright {
+//   display: flex;
+// }
+
+
+// TODO: scope to footer menu only
+// TODO: Refactor everything to BEM
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.menu--ctas a {
+  display: block;
+  border: 1px solid;
+}
+
+.menu--meta ul,
+.menu--meta li {
+  display: block;
+}
+
+.menu--meta a {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  text-align: center;
+  color: #b3b3bc;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.menu--main a,
+.menu--social a {
+  display: block;
+  font-size: 14px;
+  line-height: 1.1;
+  letter-spacing: 1px;
+  color: #b3b3bc;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 0;
+}
+
+
+
+
+.footer {
+  padding: 35px 0;
+  background-color: #1e1732;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 54px 0 50px;
+  }
+}
+
 .sponsors {
+  margin: 0 0 35px;
+}
+
+@media (min-width: 768px) {
+  .sponsors {
+    margin: 0 0 90px;
+  }
+}
+
+.sponsors h3,
+.newsletter h3 {
+  @include textGradient();
+  font-weight: 400;
+  margin: 0 0 30px;
+}
+
+.sponsors h3 {
+  font-size: 28px;
+  text-transform: uppercase;
 }
 
 .sponsors__item {
+  display: flex;
+  flex: 0 0 33.3333%;
+}
+
+@media (min-width: 500px) {
+  .sponsors__item {
+    flex: 0 0 124px;
+  }
 }
 
 .sponsors__item-link {
+  display: flex;
+  background-color: #342e46;
+  padding: 10px;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 63px;
+  width: 100%;
 }
 
-.menus,
+.sponsors__item-img {
+  max-width: 100%;
+}
+
+.newsletter,
+.ctas,
+.menus {
+  margin: 0 0 50px;
+}
+
+.newsletter h3 {
+  font-size: 20px;
+}
+
+.newsletter__form {
+  position: relative;
+}
+
+.newsletter__input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  height: 46px;
+  padding: 0 22px;
+  border: 0;
+  width: 100%;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  // TODO: placeholder color
+}
+
+.newsletter__submit {
+  @include button;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.ctas__link {
+  @include button;
+}
+
+.copyright__text {
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  text-align: center;
+  color: #b3b3bc;
+  opacity: 0.5;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
 .copyright {
   display: flex;
+  justify-content: space-between;
 }
