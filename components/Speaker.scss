@@ -1,5 +1,7 @@
+
 .speaker {
   flex: 1;
+  text-decoration: none;
 }
 
 .speaker__image-wrapper {
@@ -16,10 +18,22 @@
   }
 }
 
-.speaker__image-wrapper:hover {
+.speaker:hover {
   img {
     transform: rotate(0);
     filter: grayscale(0);
     opacity: 1;
   }
+}
+
+.speaker__name {
+    margin-top: 45px;
+	font-size: 28px;
+	@include textGradient();
+}
+
+.speaker__position {
+  margin-top: 10px;
+  color: #b3b3bc;
+  font-size: 13px;
 }

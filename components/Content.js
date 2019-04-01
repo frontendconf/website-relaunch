@@ -56,6 +56,22 @@ const currentNewsQuery = gql`
   }
 `;
 
+const currentSpeakerQuery = gql`
+    query($slug: String!) {
+        collection: speakerCollection(where: { slug: $slug }) {
+            items {
+                title: name
+                body: description
+                slug
+                photo {
+                    url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+                }
+            }
+        }
+    }
+`;
+
+
 export default withRouter(({ router: { query } }) => {
   const slug = query.slug || "/";
   let category = query.category;
@@ -65,6 +81,9 @@ export default withRouter(({ router: { query } }) => {
     case "news":
       dataQuery = currentNewsQuery;
       break;
+    case "speakers":
+        dataQuery = currentSpeakerQuery;
+        break;
     // case "speakers":
     // case "hosts":
     // case "workshops":
@@ -77,14 +96,13 @@ export default withRouter(({ router: { query } }) => {
       {({
         loading,
         error,
-        data: {
-          collection: {
-            items: [currentPage]
-          }
-        }
+        data,
       }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
         if (loading) return <div>Loading</div>;
+
+        // Destructuring needs to be done outside the arguments to enable variable queries
+        const { collection: { items: [currentPage] } } = data;
         if (!currentPage) return <section>404</section>;
 
         const title = category
