@@ -1,7 +1,7 @@
-import Speaker from "./Speaker";
-import ErrorMessage from "./ErrorMessage";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Speaker from "./Speaker";
+import ErrorMessage from "./ErrorMessage";
 import { Row, Col } from './shared/Grid';
 
 const speakersAllQuery = gql`
@@ -10,6 +10,7 @@ const speakersAllQuery = gql`
       items {
         name
         description
+        slug
         photo {
           url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
@@ -24,6 +25,7 @@ const speakersLimitedQuery = gql`
       items {
         name
         description
+        slug
         photo {
           url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
@@ -47,6 +49,7 @@ export default ({ speakerLimit = 0 }) => {
           if (error) return <ErrorMessage message="Error loading pages." />;
           if (loading) return <div>Loading</div>;
 
+          // Destructuring needs to be done outside the arguments to enable variable queries
           const {
             collection: { items: speakers }
           } = data;
@@ -55,7 +58,7 @@ export default ({ speakerLimit = 0 }) => {
             <Row className="speakers-list">
               {speakers.map((speaker, key) => {
                 return (
-                  <Col key={key} className="speakers-list__col xs-12 md-4">
+                  <Col key={key} className="speakers-list__col xs-12 rg-6 md-4">
                     <Speaker speaker={speaker} />
                   </Col>
                 );

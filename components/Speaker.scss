@@ -1,14 +1,25 @@
+
 .speaker {
+  display: block;
   padding: 0 55px 0 65px;
+  text-decoration: none;
 
   // TODO: Check responsive behaviour
   &__image-wrapper {
+    @include gradient;
+    background-blend-mode: color;
     margin-bottom: 50px;
   }
 
   &__image {
     display: block;
     max-width: 100%;
+    transform: rotate(-5deg);
+    filter: grayscale(100%);
+    opacity: 0.9;
+    transition: opacity $transition-time-simple $transition-easing-default,
+      transform $transition-time-simple $transition-easing-default,
+      filter $transition-time-simple $transition-easing-default;
   }
 
   &__name {
@@ -21,32 +32,16 @@
   // TODO: Refactor with variables & cleanup
   &__description {
     font-size: 13px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
     color: #b3b3bc;
     text-transform: uppercase;
   }
-}
 
-.speaker__image-wrapper {
-  @include gradient;
-  background-blend-mode: color;
-
-  img {
-    transform: rotate(-5deg);
-    filter: grayscale(100%);
-    opacity: 0.9;
-    transition: opacity .2s ease, transform .2s ease, filter .2s ease;
-  }
-}
-
-.speaker__image-wrapper:hover {
-  img {
-    transform: rotate(0);
-    filter: grayscale(0);
-    opacity: 1;
+  &:hover,
+  &:focus {
+    .speaker__image {
+      transform: rotate(0);
+      filter: grayscale(0);
+      opacity: 1;
+    }
   }
 }
