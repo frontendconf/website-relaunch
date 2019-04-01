@@ -2,6 +2,7 @@ import Speaker from "./Speaker";
 import ErrorMessage from "./ErrorMessage";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { Row, Col } from './shared/Grid';
 
 const speakersAllQuery = gql`
   query speakersAll {
@@ -51,11 +52,15 @@ export default ({ speakerLimit = 0 }) => {
           } = data;
 
           return (
-            <div className="speakers-list">
+            <Row className="speakers-list">
               {speakers.map((speaker, key) => {
-                return <Speaker key={key} speaker={speaker} />;
+                return (
+                  <Col key={key} className="speakers-list__col xs-12 md-4">
+                    <Speaker speaker={speaker} />
+                  </Col>
+                );
               })}
-            </div>
+            </Row>
           );
         }}
       </Query>

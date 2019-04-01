@@ -1,12 +1,39 @@
 .speaker {
-  flex: 1;
+  padding: 0 55px 0 65px;
+
+  // TODO: Check responsive behaviour
+  &__image-wrapper {
+    margin-bottom: 50px;
+  }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+  }
+
+  &__name {
+    @include textGradient;
+    font-size: 28px;
+    line-height: 1;
+    margin: 0 0 15px;
+  }
+
+  // TODO: Refactor with variables & cleanup
+  &__description {
+    font-size: 13px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #b3b3bc;
+    text-transform: uppercase;
+  }
 }
 
 .speaker__image-wrapper {
+  @include gradient;
   background-blend-mode: color;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7), #00fff8);
-  width: 294px;
-  height: 395px;
 
   img {
     transform: rotate(-5deg);

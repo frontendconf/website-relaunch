@@ -1,13 +1,22 @@
 
+$white: #fff;
+$black: #000;
+$offblack: #09001f;
+
+$primary: #00fff8;
+$secondary: #ffda7e;
+
+$bombay: #B3B3BC;
+
 // Color system
 $colors: (
-  white: #fff,
-  black: #000,
-  background: #09001f,
-  primary: #00fff8,
-  secondary: #ffda7e,
+  white: $white,
+  black: $black,
+  background: $offblack,
+  primary: $primary,
+  secondary: $secondary,
   grays: (
-    bombay: #B3B3BC
+    bombay: $bombay
   )
 );
 

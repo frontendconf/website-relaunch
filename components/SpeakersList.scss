@@ -1,5 +1,16 @@
 .speakers-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin: 50px 0;
+
+  &__col {
+    margin-bottom: 40px;
+
+    // TODO: handle responsiveness
+    &:nth-child(3n + 1) {
+      margin-top: 70px;
+    }
+
+    &:nth-child(3n + 2) {
+      margin-top: 150px;
+    }
+  }
 }
