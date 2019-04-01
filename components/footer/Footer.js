@@ -2,9 +2,10 @@ import Link from "next/link";
 import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../ErrorMessage";
 import { isTerminating } from "apollo-link/lib/linkUtils";
-import { Container, Row, Col } from "./shared/Grid";
+import { Container, Row, Col } from "../shared/Grid";
+import FooterMenu from './components/FooterMenu';
 
 const footerQuery = gql`
   query {
@@ -71,37 +72,6 @@ const footerQuery = gql`
   }
 `;
 
-const FooterMenu = props => (
-  <div className={`menu menu--${props.id}`}>
-    <ul>
-      {props.items.map((item, i) => {
-        const id = item.sys ? item.sys.id : i;
-
-        return item.slug ? (
-          <li key={id}>
-            <Link
-              href={{ pathname: "/", query: { slug: item.slug } }}
-              as={`/${item.slug}`}
-            >
-              <a>{item.title}</a>
-            </Link>
-          </li>
-        ) : (
-          <li key={id}>
-            <a href={item.link}>
-              {item.logo ? (
-                <img src={item.logo.url} alt={item.title} />
-              ) : (
-                item.title
-              )}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  </div>
-);
-
 export default function Footer() {
   return (
     <footer className="footer">
@@ -158,7 +128,7 @@ export default function Footer() {
                   </div>
 
                   <Row>
-                    <Col className="xs-12 md-3">
+                    <Col className="footer__newsletter xs-12 md-3">
                       <div className="newsletter">
                         <h3>Sign up for the newsletter</h3>
 
@@ -169,18 +139,23 @@ export default function Footer() {
                         </form>
                       </div>
                     </Col>
-                    <Col className="xs-12 md-3">
+                    <Col className="footer__ctas xs-12 md-3">
                       <div className="ctas">
                         <Row>
                           {ctas.map((item) => (
-                            <Col className="xs-6" key={item.link}>
-                              <a className="ctas__link" href={item.link}>{item.title}</a>
+                            <Col className="xs-6" key={item.slug}>
+                              <Link
+                                href={{ pathname: "/", query: { slug: item.slug } }}
+                                as={`/${item.slug}`}
+                              >
+                                <a className="ctas__link">{item.title}</a>
+                              </Link>
                             </Col>
                           ))}
                         </Row>
                       </div>
                     </Col>
-                    <Col className="xs-12 md-6">
+                    <Col className="footer__menus xs-12 md-6">
                       <div className="menus">
                         <Row>
                           <Col className="xs-6">

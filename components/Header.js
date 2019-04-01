@@ -83,7 +83,7 @@ class Header extends Component {
           if (loading) return <div>Loading</div>;
     
           return (
-            <header>
+            <header className="header">
               <Container wide={true}>
                 <Row>
                   <Col className={'xs-12'}>
@@ -99,12 +99,12 @@ class Header extends Component {
                       </Link>
                       <div className="flex-spacer"></div>
                       <nav className={`nav ${this.state.mobileMenuOpen ? 'is-open' : ''}`}>
-                        <ul>
+                        <ul className="nav__list">
                           {menuItems.map(item => (
-                            <li key={item.sys.id}>
+                            <li className="nav__list-item" key={item.sys.id}>
                               <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
                                 <a
-                                  className={query.slug === item.slug ? "menu-link is-active" : "menu-link"}
+                                  className={query.slug === item.slug ? "nav__link is-active" : "nav__link"}
                                 >
                                   {item.title}
                                 </a>

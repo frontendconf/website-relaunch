@@ -1,0 +1,50 @@
+.menu {
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    &-item {
+      list-style: none;
+    }
+  }
+
+  &__link {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.9px;
+    text-align: center;
+    color: #b3b3bc;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  &--main,
+  &--social {
+    .menu__link {
+      display: block;
+      font-size: 14px;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      color: #b3b3bc;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 6px 0;
+      text-align: left;
+      // TODO: Add transition
+
+      &:hover,
+      &:focus {
+        color: white;
+      }
+    }
+  }
+}
+
+// .menu--meta ul,
+// .menu--meta li {
+//   display: block;
+// }
+
+// .menu--main a,
+// .menu--social a {
+// }

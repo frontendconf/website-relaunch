@@ -1,19 +1,16 @@
-header {
+.header {
   padding: 18px 0;
   position: relative;
-}
 
-@media (min-width: 768px) {
-  header {
+  @media (min-width: 768px) {
     padding: 32px 0;
   }
-}
 
-@media (min-width: 992px) {
-  header {
+  @media (min-width: 992px) {
     padding: 44px 0;
   }
 }
+
 
 .inner {
   display: flex;
@@ -108,24 +105,48 @@ nav.is-open {
   }
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-}
-li {
-  display: block;
-  list-style: none;
-}
-.menu-link {
-  display: block;
-  text-decoration: none;
-  font-size: 20px;
-  line-height: 2;
-  color: map-get(map-get($colors, grays), bombay);
-  text-transform: uppercase;
-}
-.menu-link.is-active {
-  color: white;
+.nav {
+  &__list {
+    padding: 0;
+    margin: 0;
+
+    &-item {
+      display: block;
+      list-style: none;
+
+      @media (min-width: 992px) {
+        display: inline-block;
+        margin-right: 16px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        margin-right: 24px;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 2;
+    color: map-get(map-get($colors, grays), bombay);
+    text-transform: uppercase;
+
+    &.is-active {
+      color: white;
+    }
+
+    @media (min-width: 992px) {
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+  }
 }
 
 @media (min-width: 992px) {
@@ -137,26 +158,11 @@ li {
     background-color: transparent;
     transform: none;
   }
-  li {
-    display: inline-block;
-    margin-right: 16px;
-  }
-  li:last-child {
-    margin-right: 0;
-  }
-  .menu-link {
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: 1px;
-  }
 }
 
 @media (min-width: 1200px) {
   nav {
     margin-right: 40px;
-  }
-  li {
-    margin-right: 24px;
   }
 }
 

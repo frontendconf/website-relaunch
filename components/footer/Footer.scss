@@ -1,3 +1,5 @@
+@import "./components/FooterMenu";
+
 .footer {
   padding: 35px 0;
   background-color: #1e1732;
@@ -17,52 +19,8 @@
 //   display: flex;
 // }
 
-
 // TODO: scope to footer menu only
 // TODO: Refactor everything to BEM
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-}
-
-.menu--ctas a {
-  display: block;
-  border: 1px solid;
-}
-
-.menu--meta ul,
-.menu--meta li {
-  display: block;
-}
-
-.menu--meta a {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #b3b3bc;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.menu--main a,
-.menu--social a {
-  display: block;
-  font-size: 14px;
-  line-height: 1.1;
-  letter-spacing: 1px;
-  color: #b3b3bc;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 6px 0;
-}
-
-
-
 
 .footer {
   padding: 35px 0;
