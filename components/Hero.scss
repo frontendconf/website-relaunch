@@ -1,0 +1,50 @@
+.hero {
+  // TODO: Add responsive background images
+  background: url('/static/images/hero-bg.jpg') no-repeat center center / cover;
+
+  // TODO: spacing should always be the same as header height
+  padding: 150px 0 90px 0; // 150px for header navigation
+  height: calc(100vh - 100px); // TODO: Adapt vor smaller breakpoints
+
+  &__container {
+    height: 100%;;
+  }
+
+  &__row {
+    height: 100%;
+  }
+
+  &__col {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__inner {
+    flex: 0 1 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__title {
+    @include textGradient;
+
+    font-size: 139px;
+    font-weight: normal;
+    line-height: 1;
+    letter-spacing: -5px;
+    margin: 0 0 100px;
+  }
+
+  &__cta {
+    @include buttonBig;
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 25px;
+    }
+  }
+}

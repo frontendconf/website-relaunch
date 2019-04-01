@@ -1,6 +1,9 @@
 .header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   padding: 18px 0;
-  position: relative;
 
   @media (min-width: 768px) {
     padding: 32px 0;
@@ -11,7 +14,7 @@
   }
 }
 
-
+// TODO: Refactor to BEM classes
 .inner {
   display: flex;
   align-items: center;
@@ -136,7 +139,10 @@ nav.is-open {
     line-height: 2;
     color: map-get(map-get($colors, grays), bombay);
     text-transform: uppercase;
+    transition: color $transition-time-simple $transition-easing-default;
 
+    &:hover,
+    &:focus,
     &.is-active {
       color: white;
     }
