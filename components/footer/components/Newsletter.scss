@@ -1,0 +1,35 @@
+
+.newsletter,
+.ctas,
+.menus {
+  margin: 0 0 50px;
+}
+
+.newsletter h3 {
+  font-size: 20px;
+}
+
+.newsletter__form {
+  position: relative;
+}
+
+.newsletter__input {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  height: 46px;
+  padding: 0 22px;
+  border: 0;
+  width: 100%;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  // TODO: placeholder color
+}
+
+.newsletter__submit {
+  @include button;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding-left: 25px;
+  padding-right: 25px;
+}

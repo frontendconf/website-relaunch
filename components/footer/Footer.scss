@@ -1,38 +1,32 @@
 @import "./components/FooterMenu";
+@import "./components/Newsletter";
 
 .footer {
   padding: 35px 0;
   background-color: #1e1732;
-}
 
-// .sponsors {
-// }
+  &__newsletter,
+  &__ctas,
+  &__menus {
+    margin: 0 0 50px;
+  }
 
-// .sponsors__item {
-// }
-
-// .sponsors__item-link {
-// }
-
-// .menus,
-// .copyright {
-//   display: flex;
-// }
-
-// TODO: scope to footer menu only
-// TODO: Refactor everything to BEM
-
-.footer {
-  padding: 35px 0;
-  background-color: #1e1732;
-}
-
-@media (min-width: 768px) {
-  .footer {
+  @include mq-up(md) {
     padding: 54px 0 50px;
+
+    &__ctas-col {
+      order: 1;
+    }
+    &__menus-col {
+      order: 2;
+    }
+    &__newsletter-col {
+      order: 3;
+    }
   }
 }
 
+// TODO: refactor to its own component
 .sponsors {
   margin: 0 0 35px;
 }
@@ -80,57 +74,36 @@
   max-width: 100%;
 }
 
-.newsletter,
-.ctas,
-.menus {
-  margin: 0 0 50px;
-}
-
-.newsletter h3 {
-  font-size: 20px;
-}
-
-.newsletter__form {
-  position: relative;
-}
-
-.newsletter__input {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 25px;
-  height: 46px;
-  padding: 0 22px;
-  border: 0;
-  width: 100%;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.5);
-  // TODO: placeholder color
-}
-
-.newsletter__submit {
-  @include button;
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  padding-left: 25px;
-  padding-right: 25px;
-}
-
+// Refactor to its own component
 .ctas__link {
   @include button;
+  @include mq-up(md) {
+    margin-bottom: 10px;
+  }
 }
 
-.copyright__text {
-  font-size: 12px;
-  letter-spacing: 0.9px;
-  text-align: center;
-  color: #b3b3bc;
-  opacity: 0.5;
-  margin: 0;
-  text-transform: uppercase;
-  line-height: 1.1;
-}
-
+// TODO: Alignment of text and the links is shifting by 1px -> should be corrected to have no shift
+// TODO: Refactor to its own component
 .copyright {
   display: flex;
   justify-content: space-between;
+
+  &__text {
+    font-size: 12px;
+    letter-spacing: 0.9px;
+    text-align: center;
+    color: #b3b3bc;
+    opacity: 0.5;
+    margin: 0;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  @include mq-up(md) {
+    justify-content: center;
+
+    &__text {
+      margin-right: 40px;
+    }
+  }
 }

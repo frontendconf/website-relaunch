@@ -30,7 +30,7 @@
       text-decoration: none;
       padding: 6px 0;
       text-align: left;
-      // TODO: Add transition
+      transition: color $transition-time-simple $transition-easing-default;
 
       &:hover,
       &:focus {
@@ -39,12 +39,3 @@
     }
   }
 }
-
-// .menu--meta ul,
-// .menu--meta li {
-//   display: block;
-// }
-
-// .menu--main a,
-// .menu--social a {
-// }

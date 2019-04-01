@@ -6,6 +6,7 @@ import ErrorMessage from "../ErrorMessage";
 import { isTerminating } from "apollo-link/lib/linkUtils";
 import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from './components/FooterMenu';
+import Newsletter from './components/Newsletter';
 
 const footerQuery = gql`
   query {
@@ -103,7 +104,7 @@ export default function Footer() {
           return (
             <Container>
               <Row>
-                <Col className={"xs-12"}>
+                <Col className="xs-12">
                   <div className="sponsors">
                     <h3>Contributing Sponsors</h3>
 
@@ -128,22 +129,14 @@ export default function Footer() {
                   </div>
 
                   <Row>
-                    <Col className="footer__newsletter xs-12 md-3">
-                      <div className="newsletter">
-                        <h3>Sign up for the newsletter</h3>
-
-                        {/* TODO. make accessible */}
-                        <form className="newsletter__form">
-                          <input className="newsletter__input" name="" placeholder="Email" />
-                          <button className="newsletter__submit">Go</button>
-                        </form>
-                      </div>
+                    <Col className="footer__newsletter-col xs-12 md-3">
+                      <Newsletter className="footer__newsletter"/>
                     </Col>
-                    <Col className="footer__ctas xs-12 md-3">
-                      <div className="ctas">
+                    <Col className="footer__ctas-col xs-12 md-2">
+                      <div className="footer__ctas ctas">
                         <Row>
                           {ctas.map((item) => (
-                            <Col className="xs-6" key={item.slug}>
+                            <Col className="xs-6 md-12" key={item.slug}>
                               <Link
                                 href={{ pathname: "/", query: { slug: item.slug } }}
                                 as={`/${item.slug}`}
@@ -155,8 +148,8 @@ export default function Footer() {
                         </Row>
                       </div>
                     </Col>
-                    <Col className="footer__menus xs-12 md-6">
-                      <div className="menus">
+                    <Col className="footer__menus-col xs-12 md-6 offset-md-1">
+                      <div className="footer__menus">
                         <Row>
                           <Col className="xs-6">
                             <FooterMenu id="main" items={menuItems} />

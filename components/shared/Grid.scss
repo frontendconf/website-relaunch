@@ -2,6 +2,7 @@
   max-width: 1680px;
   padding-right: 16px;
   padding-left: 16px;
+  margin: 0 auto;
 
   @media (min-width: #{map-get($grid-breakpoints, sm)}) {
     padding-right: 32px;
@@ -78,22 +79,26 @@
   }
 }
 
+// Short mixing to creating classes for columns
+@mixin create-cols($key, $grid-columns: $grid-columns) {
+  @for $i from 1 through $grid-columns {
+    .#{$key}-#{$i} {
+      flex: 0 0 (100% / $grid-columns * $i);
+      max-width: (100% / $grid-columns * $i);
+    }
+
+    .offset-#{$key}-#{$i} {
+      margin-left: (100% / $grid-columns * $i);
+    }
+  }
+}
+
 @each $key, $width in $grid-breakpoints {
   @if $width == 0 {
-    @for $i from 1 through $grid-columns {
-      .#{$key}-#{$i} {
-        flex: 0 0 (100% / $grid-columns * $i);
-        max-width: (100% / $grid-columns * $i);
-      }
-    }
+    @include create-cols($key);
   } @else {
       @media (min-width: #{$width}) {
-        @for $i from 1 through $grid-columns {
-          .#{$key}-#{$i} {
-            flex: 0 0 (100% / $grid-columns * $i);
-            max-width: (100% / $grid-columns * $i);
-          }
-        }
+        @include create-cols($key);
       }
   }
 }

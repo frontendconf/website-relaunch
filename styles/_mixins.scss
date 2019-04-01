@@ -29,3 +29,9 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+@mixin mq-up($breakpoint) {
+  @media (min-width: map-get($grid-breakpoints, $breakpoint)) {
+    @content;
+  }
+}
