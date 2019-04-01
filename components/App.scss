@@ -21,9 +21,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: map-get(map-get($fonts, families), default), Helvetica,
-    sans-serif;
-  background-color: map-get($colors, black);
+  font-family: map-get(map-get($fonts, families), default), Helvetica, sans-serif;
+  background-color: map-get($colors, background);
   color: map-get($colors, white);
   font-weight: map-get(map-get($fonts, weights), normal);
 }

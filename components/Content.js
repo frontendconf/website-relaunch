@@ -8,6 +8,7 @@ import NewsSummary from "./NewsSummary";
 import { Container, Row, Col } from './shared/Grid';
 import VenueTeaser from "./VenueTeaser";
 import Jobs from "./Jobs";
+import Hero from "./Hero";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -84,8 +85,8 @@ export default withRouter(({ router: { query } }) => {
         }
       }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
-        if (loading) return <div>Loading</div>;
-        if (!currentPage) return <section>404</section>;
+        if (loading) return <Hero title="Loading..."/>;
+        if (!currentPage) return <Hero title="404 Page not found"/>;
 
         const title = category
           ? `${category.charAt(0).toUpperCase()}${category.slice(1)}`
@@ -96,24 +97,23 @@ export default withRouter(({ router: { query } }) => {
         const isVenue = slug === "venue";
 
         return (
-          <Container>
-            <Row>
-              <Col>
-                <section>
-                  <h1>{title}</h1>
-                  {subTitle ? <h2>{subTitle}</h2> : null}
-                  <p>{currentPage.lead}</p>
-                  {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
-                  {currentPage.showNews ? <NewsSummary /> : null}
-                  {currentPage.showSpeakers || isHome ? (
-                    <SpeakersList speakerLimit={isHome ? 6 : 0} />
-                  ) : null}
-                  {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
-                  {currentPage.showJobs ? <Jobs /> : null}
-                </section>
-              </Col>
-            </Row>
-          </Container>
+          <section>
+            <Hero title={title} subTitle={subTitle}></Hero>
+            <Container>
+              <Row>
+                <Col>
+                    <p>{currentPage.lead}</p>
+                    {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
+                    {currentPage.showNews ? <NewsSummary /> : null}
+                    {currentPage.showSpeakers || isHome ? (
+                      <SpeakersList speakerLimit={isHome ? 6 : 0} />
+                    ) : null}
+                    {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
+                    {currentPage.showJobs ? <Jobs /> : null}
+                </Col>
+              </Row>
+            </Container>
+          </section>
         );
       }}
     </Query>
