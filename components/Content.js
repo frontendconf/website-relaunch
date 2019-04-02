@@ -107,8 +107,7 @@ export default withRouter(({ router: { query } }) => {
       }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
 
-
-        // Destructuring needs to be done outside the arguments to enable variable queries
+        // Destructuring needs to be done outside the arguments to prevent mapping errors
         const { collection: { items: [currentPage] } } = data;
         if (!currentPage) return <Hero title="404 Page not found"/>;
 
@@ -117,25 +116,25 @@ export default withRouter(({ router: { query } }) => {
           : currentPage.title;
         const subTitle = category ? currentPage.title : null;
         const ctas = currentPage.leadCtasCollection.items;
-        if (loading) title="Loading...";
+        // if (loading) title="Loading...";
 
         const isHome = slug === "/";
         const isVenue = slug === "venue";
 
         return (
-          <section>
+          <section className={loading ? "content content--loading" : "content"}>
             <Hero title={title} subTitle={subTitle} ctas={ctas}></Hero>
             <Container>
               <Row>
                 <Col>
                     <p>{currentPage.lead}</p>
-                    {currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}
-                    {currentPage.showNews ? <NewsSummary /> : null}
-                    {currentPage.showSpeakers || isHome ? (
+                    <div>{currentPage.body ? <Markdown>{currentPage.body}</Markdown> : null}</div>
+                    <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
+                    <div>{currentPage.showSpeakers || isHome ? (
                       <SpeakersList speakerLimit={isHome ? 6 : 0} />
-                    ) : null}
-                    {currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}
-                    {currentPage.showJobs ? <Jobs /> : null}
+                    ) : null}</div>
+                    <div>{currentPage.showVenue ? <VenueTeaser isVenue={isVenue} /> : null}</div>
+                    <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                 </Col>
               </Row>
             </Container>

@@ -34,7 +34,7 @@ const speakersLimitedQuery = gql`
   }
 `;
 
-export default ({ speakerLimit = 0 }) => {
+export default function SpeakersList({ speakerLimit = 0 }) {
   const variables = {};
   let query = speakersAllQuery;
   if (speakerLimit) {
@@ -43,13 +43,12 @@ export default ({ speakerLimit = 0 }) => {
   }
 
   return (
-    <>
       <Query query={query} variables={variables}>
         {({ loading, error, data }) => {
           if (error) return <ErrorMessage message="Error loading pages." />;
           if (loading) return <div>Loading</div>;
 
-          // Destructuring needs to be done outside the arguments to enable variable queries
+          // Destructuring needs to be done outside the arguments to prevent mapping errors
           const {
             collection: { items: speakers }
           } = data;
@@ -67,6 +66,5 @@ export default ({ speakerLimit = 0 }) => {
           );
         }}
       </Query>
-    </>
   );
 };

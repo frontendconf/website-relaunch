@@ -69,7 +69,13 @@ class Header extends Component {
         {({
           loading,
           error,
-          data: {
+          data,
+        }) => {
+          if (error) return <ErrorMessage message="Error loading pages." />;
+          if (loading) return <div>Loading</div>;
+
+          // Destructuring needs to be done outside the arguments to prevent mapping errors
+          const {
             configCollection: {
               items: [
                 {
@@ -77,10 +83,7 @@ class Header extends Component {
                 }
               ]
             }
-          }
-        }) => {
-          if (error) return <ErrorMessage message="Error loading pages." />;
-          if (loading) return <div>Loading</div>;
+          } = data;
     
           return (
             <header className="header">

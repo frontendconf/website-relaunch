@@ -27,14 +27,17 @@ export default function VenueTeaser({ isVenue = false }) {
       {({
         loading,
         error,
-        data: {
-          configCollection: {
-            items: [{ venueTeaser: venueTeaser, map: map }]
-          }
-        }
+        data,
       }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
         if (loading) return <div>Loading</div>;
+
+        // Destructuring needs to be done outside the arguments to prevent mapping errors
+        const {
+          configCollection: {
+            items: [{ venueTeaser: venueTeaser, map: map }]
+          }
+        } = data;
 
         return (
           <div className="venue-teaser">

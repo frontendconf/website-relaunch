@@ -18,8 +18,8 @@ const newsQuery = gql`
   }
 `;
 
-export default () => (
-  <Query query={newsQuery} skip={!process.browser}>
+export default function NewsSummary() {
+  return (<Query query={newsQuery} skip={!process.browser}>
     {({ loading, error, data }) => {
       if (error) return <ErrorMessage message="Error loading pages." />;
       if (loading) return <div>Loading</div>;
@@ -49,4 +49,4 @@ export default () => (
       );
     }}
   </Query>
-);
+)};
