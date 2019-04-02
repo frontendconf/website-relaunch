@@ -1,6 +1,4 @@
-import Link from "next/link";
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import shuffle from "array-shuffle";
 import Logo from "../static/freshjobs.svg";
 
@@ -49,12 +47,7 @@ class Jobs extends Component {
         <ul className="jobs__items">
           {this.state.items.map((item, i) => (
             <li className="jobs__item" key={i}>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-
-              >
+              <a href={item.link} target="_blank" rel="noopener noreferrer">
                 <span className="jobs__item-title">{item.title}</span>
                 <span className="jobs__item-company">{item.company}</span>
               </a>
