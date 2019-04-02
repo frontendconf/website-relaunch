@@ -12,11 +12,15 @@ export default function Hero(props) {
               {props.subTitle ? <h2 className="hero__subtitle">{props.subTitle}</h2> : null}
             </div>
 
-            {/* TODO: make not static */}
-            <div className="hero__ctas">
-              <a className="hero__cta" href="#">Call for Speakers</a>
-              <a className="hero__cta" href="#">Become a Sponsor</a>
-            </div>
+            {props.ctas ? <div className="hero__ctas">{props.ctas.map((cta) => {
+                return (
+                    <Link href={{ pathname: "/", query: { slug: cta.slug } }}
+                          as={`/${cta.slug}`}>
+                      <a className="hero__cta">{cta.ctaText}</a>
+                    </Link>
+              )
+                })}</div>
+            : null}
           </Col>
         </Row>
       </Container>

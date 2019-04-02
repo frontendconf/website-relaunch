@@ -39,6 +39,12 @@ const currentPageQuery = gql`
         ctaText
         specialPage
         config
+	      leadCtasCollection {
+	          items {
+	              ctaText
+	              slug
+	          }
+	      }
       }
     }
   }
@@ -100,23 +106,25 @@ export default withRouter(({ router: { query } }) => {
         data,
       }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
-        if (loading) return <Hero title="Loading..."/>;;
+
 
         // Destructuring needs to be done outside the arguments to enable variable queries
         const { collection: { items: [currentPage] } } = data;
-        if (!currentPage) return <Hero title="404 Page not found"/>;;
+        if (!currentPage) return <Hero title="404 Page not found"/>;
 
-        const title = category
+        let title = category
           ? `${category.charAt(0).toUpperCase()}${category.slice(1)}`
           : currentPage.title;
         const subTitle = category ? currentPage.title : null;
+        const ctas = currentPage.leadCtasCollection.items;
+        if (loading) title="Loading...";
 
         const isHome = slug === "/";
         const isVenue = slug === "venue";
 
         return (
           <section>
-            <Hero title={title} subTitle={subTitle}></Hero>
+            <Hero title={title} subTitle={subTitle} ctas={ctas}></Hero>
             <Container>
               <Row>
                 <Col>
