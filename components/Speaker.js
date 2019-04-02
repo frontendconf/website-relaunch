@@ -8,7 +8,7 @@ export default ({ speaker }) => {
 		>
 			<a className="speaker">
 				<div className="speaker__image-wrapper">
-					<img className="speaker__image" src={speaker.photo.url}/>
+					<img className="speaker__image" srcSet={`${speaker.photo.url}&w=295&h=395 1x, ${speaker.photo.url}&w=590&h=890 2x`}/>
 				</div>
 				<p className="speaker__name">{speaker.name}</p>
 				<p className="speaker__description">{speaker.description}</p>

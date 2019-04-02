@@ -12,7 +12,7 @@ const speakersAllQuery = gql`
         description
         slug
         photo {
-          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+          url(transform: { resizeStrategy: FILL })
         }
       }
     }
@@ -27,7 +27,7 @@ const speakersLimitedQuery = gql`
         description
         slug
         photo {
-          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+          url(transform: { resizeStrategy: FILL })
         }
       }
     }
