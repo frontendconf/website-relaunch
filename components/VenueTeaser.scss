@@ -1,12 +1,19 @@
 .venue-teaser {
   display: flex;
+
+  &__content {
+    position: relative;
+    flex: 1;
+  }
+
+  &__map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__image {
+    max-width: 100%;
+  }
 }
-.venue-teaser__content {
-  position: relative;
-  flex: 1;
-}
-.venue-teaser__map {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
+
