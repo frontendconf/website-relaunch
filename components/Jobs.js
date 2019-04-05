@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import shuffle from "array-shuffle";
+import { Row, Col } from "./shared/Grid";
 import Logo from "../static/freshjobs.svg";
 
 class Jobs extends Component {
@@ -42,18 +43,17 @@ class Jobs extends Component {
   render() {
     return (
       <div className="jobs">
-        <h3>Jobs</h3>
-
-        <ul className="jobs__items">
+        <h3 className="jobs__title">Jobs</h3>
+        <Row>
           {this.state.items.map((item, i) => (
-            <li className="jobs__item" key={i}>
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                <span className="jobs__item-title">{item.title}</span>
-                <span className="jobs__item-company">{item.company}</span>
+            <Col className="jobs__col xs-12 rg-6 lg-4" key={i}>
+              <a className="jobs__link" href={item.link} target="_blank" rel="noopener noreferrer">
+                <span className="jobs__link-title">{item.title}</span>
+                <span className="jobs__link-company">{item.company}</span>
               </a>
-            </li>
+            </Col>
           ))}
-        </ul>
+        </Row>
 
         <p className="jobs__source">
           <span>Powered by our friends from </span>

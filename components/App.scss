@@ -1,15 +1,15 @@
 // TODO: preload critical assets like fonts
 @font-face {
-  font-family: map-get(map-get($fonts, families), default);
-  font-weight: map-get(map-get($fonts, weights), normal);
+  font-family: $custom-font-name;
+  font-weight: $font-weight-normal;
   src: url("/static/fonts/38F325_1_unhinted_0.woff2") format("woff2"),
     url("/static/fonts/38F325_1_unhinted_0.woff") format("woff"),
     url("/static/fonts/38F325_1_unhinted_0.ttf") format("truetype");
   font-display: swap;
 }
 @font-face {
-  font-family: map-get(map-get($fonts, families), default);
-  font-weight: map-get(map-get($fonts, weights), bold);
+  font-family: $custom-font-name;
+  font-weight: $font-weight-bold;
   src: url("/static/fonts/38F325_0_unhinted_0.woff2") format("woff2"),
     url("/static/fonts/38F325_0_unhinted_0.woff") format("woff"),
     url("/static/fonts/38F325_0_unhinted_0.ttf") format("truetype");
@@ -21,8 +21,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: map-get(map-get($fonts, families), default), Helvetica, sans-serif;
+  font-family: $font-family;
   background-color: map-get($colors, background);
   color: map-get($colors, white);
-  font-weight: map-get(map-get($fonts, weights), normal);
+  font-weight: $font-weight-normal;
+  overflow-x: hidden;
 }

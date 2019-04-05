@@ -2,6 +2,7 @@ import ErrorMessage from "./ErrorMessage";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Link from "next/link";
+import { Row, Col } from "./shared/Grid";
 
 const newsQuery = gql`
   query {
@@ -29,10 +30,10 @@ export default function NewsSummary() {
 
       return (
         <div className="news-summary">
-          <h3>News</h3>
-          <ul>
+          <h3 className="news-summary__title">News</h3>
+          <Row>
             {news.map(item => (
-              <li key={item.sys.id}>
+              <Col className="news-summary__col xs-12 rg-6 lg-4" key={item.sys.id}>
                 <Link
                   href={{
                     pathname: "/",
@@ -40,11 +41,14 @@ export default function NewsSummary() {
                   }}
                   as={`/news/${item.slug}`}
                 >
-                  <a>{item.title}</a>
+                  <a className="news-summary__link">
+                    <span className="news-summary__link-title">{item.title}</span>
+                    <span className="news-summary__link-date">Date here</span>
+                  </a>
                 </Link>
-              </li>
+              </Col>
             ))}
-          </ul>
+          </Row>
         </div>
       );
     }}

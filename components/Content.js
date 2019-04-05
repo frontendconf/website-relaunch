@@ -159,11 +159,11 @@ export default withRouter(({ router: { query } }) => {
                           <SpeakersList speakerLimit={isHome ? 6 : 0} />
                         ) : null}
                       </div>
-                      <div>
+                      {/* <div>
                         {currentPage.showVenue ? (
                           <VenueTeaser isVenue={isVenue} />
                         ) : null}
-                      </div>
+                      </div> */}
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                     <Col className="xs-12 rg-4">
@@ -195,11 +195,11 @@ export default withRouter(({ router: { query } }) => {
                           <SpeakersList speakerLimit={isHome ? 6 : 0} />
                         ) : null}
                       </div>
-                      <div>
+                      {/* <div>
                         {currentPage.showVenue ? (
                           <VenueTeaser isVenue={isVenue} />
                         ) : null}
-                      </div>
+                      </div> */}
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                   </Row>

@@ -84,13 +84,11 @@ $transition-easing-decelerate: cubic-bezier(.0, .0, .2, 1) !default;
 $transition-easing-accelerate: cubic-bezier(.4, .0, 1, 1) !default;
 
 // Typography
-$fonts: (
-  families: (
-    default: "Code-Pro-LC"
-  ),
-  sizes: (),
-  weights: (
-    normal: 400,
-    bold: 700
-  )
-);
+$custom-font-name: "Code-Pro-LC";
+
+$font-family: $custom-font-name, Helvetica, Arial, sans-serif;
+
+$font-size-xs: 13px;
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;

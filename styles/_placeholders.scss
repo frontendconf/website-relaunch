@@ -1,0 +1,87 @@
+%default-module-spacer {
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  @include mq-up(rg) {
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
+
+  @include mq-up(lg) {
+    margin-top: 200px;
+    margin-bottom: 200px;
+  }
+
+  @include mq-up(xl) {
+    margin-top: 250px;
+    margin-bottom: 250px;
+  }
+}
+
+%summary-title {
+  @include textGradient;
+  display: inline-block; // Necessary for the background-clip
+  font-size: 28px;
+  margin: 0 0 1em;
+  font-weight: normal;
+
+  @include mq-up(rg) {
+    font-size: 33px;
+  }
+
+  @include mq-up(lg) {
+    font-size: 38px;
+  }
+
+  @include mq-up(xl) {
+    font-size: 46px;
+  }
+}
+
+%summary-col {
+  padding-bottom: 20px;
+}
+
+%summary-link {
+  position: relative;
+  display: block;
+  background: #1e1631;
+  min-height: 120px;
+  padding: 18px 18px;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    right: -3px;
+    bottom: 2px;
+    left: 5px;
+    transform: rotate(-2deg);
+    background-color: $primary;
+    z-index: -1;
+    transition: background-color $transition-time-simple $transition-easing-default,
+      transform $transition-time-simple $transition-easing-default;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      background-color: $secondary;
+      transform: rotate(-4deg);
+    }
+  }
+}
+
+%summary-link-title {
+  @include textGradient;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1.1;
+  margin-bottom: 9px;
+}
+
+%summary-link-subtitle {
+  @include textSubline;
+  display: block;
+}

@@ -2,8 +2,8 @@
 @mixin gradient {
   background-image: linear-gradient(
     to right,
-    rgba(255, 255, 255, 0.7),
-    #00fff8
+    rgba($white, 0.7),
+    $primary
   );
 }
 
@@ -14,14 +14,25 @@
   -webkit-background-clip: text;
 }
 
+@mixin textSubline {
+  font-size: 13px; // TODO: Font-size into variable
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #9b9ba3; // TODO: Colors
+  text-transform: uppercase;
+}
+
 // TODO: Refactor with variables
 // TODO: Add hover animation
 @mixin button {
   @include gradient;
   display: block;
-  font-size: 13px;
+  font-size: 13px; // TODO: Font-size into variable
   text-align: center;
-  color: #09001f;
+  color: #09001f; // TODO: Colors
   padding: 13px 15px 11px;
   border-radius: 100px;
   text-transform: uppercase;

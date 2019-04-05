@@ -31,12 +31,16 @@
 
   &__title {
     @include textGradient;
-
-    font-size: 139px;
+    font-size: 50px;
     font-weight: normal;
     line-height: 1;
-    letter-spacing: -5px;
+    letter-spacing: -1.8px;
     margin: 0 0 100px;
+
+    @include mq-up(md) {
+      font-size: 139px;
+      letter-spacing: -5px;
+    }
   }
 
   &__cta {

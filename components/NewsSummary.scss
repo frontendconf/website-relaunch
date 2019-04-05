@@ -1,2 +1,23 @@
 .news-summary {
+  @extend %default-module-spacer;
+
+  &__title {
+    @extend %summary-title;
+  }
+
+  &__col {
+    @extend %summary-col;
+  }
+
+  &__link {
+    @extend %summary-link;
+
+    &-title {
+      @extend %summary-link-title;
+    }
+
+    &-date {
+      @extend %summary-link-subtitle;
+    }
+  }
 }
