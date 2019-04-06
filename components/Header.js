@@ -89,18 +89,18 @@ class Header extends Component {
             <header className="header">
               <Container wide={true}>
                 <Row>
-                  <Col className={'xs-12'}>
-                    <div className="inner">
+                  <Col className={'header__col xs-12'}>
+                    <div className="header__inner">
                       <Link href="/" as="/">
                         <a className={!query.slug ? "home-link is-active" : "home-link"}>
                           <img className="home-link__image" src="/static/neon.svg" />
                           <div className="home-link__text-wrap">
-                            <span className="home-link__slogan">Front Zürich 2019</span>
+                            <span className="home-link__slogan">Frontend Conference 2019</span>
                             <span className="home-link__date">August 28 29 30</span>
                           </div>
                         </a>
                       </Link>
-                      <div className="flex-spacer"></div>
+                      <div className="header__flex-spacer"></div>
                       <nav className={`nav ${this.state.mobileMenuOpen ? 'is-open' : ''}`}>
                         <ul className="nav__list">
                           {menuItems.map(item => (

@@ -6,19 +6,26 @@
   padding: 18px 0;
   z-index: 2;
 
-  @media (min-width: 768px) {
+  &__col {
+    position: static;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+
+  &__flex-spacer {
+    flex: 1 1 auto;
+  }
+
+  @include mq-up(md) {
     padding: 32px 0;
   }
 
-  @media (min-width: 992px) {
+  @include mq-up(lg) {
     padding: 44px 0;
   }
-}
-
-// TODO: Refactor to BEM classes
-.inner {
-  display: flex;
-  align-items: center;
 }
 
 .home-link {
@@ -27,68 +34,58 @@
   text-decoration: none;
   position: relative;
   z-index: 2;
-}
 
-.home-link__image {
-  height: 45px;
-  width: 45px;
-}
+  &__image {
+    height: 45px;
+    width: 45px;
+  }
 
-@media (min-width: 768px) {
-  .home-link__image {
-    height: 63px;
-    width: 63px;
+  &__text-wrap {
+    padding-left: 14px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__slogan {
+    @include textGradient();
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1;
+    width: 105px;
+  }
+
+  &__date {
+    display: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.8px;
+    color: map-get(map-get($colors, grays), bombay);
+  }
+
+  @include mq-up(md) {
+    &__image {
+      height: 63px;
+      width: 63px;
+    }
+  
+    &__text-wrap {
+      padding: 17px 0 13px 23px;
+    }
+
+    &__slogan {
+      font-size: 20px;
+      margin-bottom: 2px;
+      width: auto;
+    }
+
+    &__date {
+      display: block;
+    }
   }
 }
 
-.home-link__text-wrap {
-  padding-left: 14px;
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .home-link__text-wrap {
-    padding: 17px 0 13px 23px;
-  }
-}
-
-.home-link__slogan {
-  @include textGradient();
-  text-transform: uppercase;
-  font-size: 16px;
-  line-height: 1;
-  width: 60px;
-}
-
-@media (min-width: 768px) {
-  .home-link__slogan {
-    font-size: 20px;
-    margin-bottom: 2px;
-    width: auto;
-  }
-}
-
-.home-link__date {
-  display: none;
-  text-transform: uppercase;
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: 0.8px;
-  color: map-get(map-get($colors, grays), bombay);
-}
-
-@media (min-width: 768px) {
-  .home-link__date {
-    display: block;
-  }
-}
-
-.flex-spacer {
-  flex: 1 1 auto;
-}
-
-nav {
+.nav {
   position: absolute;
   top: 0;
   right: 0;
@@ -98,18 +95,11 @@ nav {
   padding: 124px 45px 62px 73px;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
-}
-nav.is-open {
-  transform: translateY(0);
-}
 
-@media (min-width: 400px) {
-  nav {
-    padding-left: 89px;
+  &.is-open {
+    transform: translateY(0);
   }
-}
 
-.nav {
   &__list {
     padding: 0;
     margin: 0;
@@ -117,19 +107,6 @@ nav.is-open {
     &-item {
       display: block;
       list-style: none;
-
-      @media (min-width: 992px) {
-        display: inline-block;
-        margin-right: 16px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-
-      @media (min-width: 1200px) {
-        margin-right: 24px;
-      }
     }
   }
 
@@ -147,29 +124,42 @@ nav.is-open {
     &.is-active {
       color: white;
     }
-
-    @media (min-width: 992px) {
-      font-size: 14px;
-      line-height: 1;
-      letter-spacing: 1px;
-    }
   }
-}
 
-@media (min-width: 992px) {
-  nav {
+  @include mq-up(sm) {
+    padding-left: 89px;
+  }
+
+  @include mq-up(lg) {
     position: static;
     flex: 0 0 auto;
     margin-right: 20px;
     padding: 0;
     background-color: transparent;
     transform: none;
-  }
-}
 
-@media (min-width: 1200px) {
-  nav {
+    &__list-item {
+      display: inline-block;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &__link {
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+  }
+
+  @include mq-up(xl) {
     margin-right: 40px;
+
+    &__list-item {
+      margin-right: 24px;
+    }
   }
 }
 

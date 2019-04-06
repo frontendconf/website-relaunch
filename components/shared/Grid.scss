@@ -4,12 +4,12 @@
   padding-left: 16px;
   margin: 0 auto;
 
-  @media (min-width: #{map-get($grid-breakpoints, sm)}) {
+  @include mq-up(sm) {
     padding-right: 32px;
     padding-left: 32px;
   }
 
-  @media (min-width: #{map-get($grid-breakpoints, md)}) {
+  @include mq-up(md) {
     padding-right: 64px;
     padding-left: 64px;
     
@@ -19,7 +19,17 @@
     }
   }
 
-  @media (min-width: #{map-get($grid-breakpoints, xl)}) {
+  @include mq-up(xl) {
+    padding-right: 120px;
+    padding-left: 120px;
+
+    &--wide {
+      padding-right: 40px;
+      padding-left: 40px;
+    }
+  }
+
+  @include mq-up(xxl) {
     padding-right: 200px;
     padding-left: 200px;
 
@@ -39,7 +49,7 @@
       margin-right: - $gutter / 2;
       margin-left: - $gutter / 2;
     } @else {
-      @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+      @include mq-up($bp) {
         margin-right: - $gutter / 2;
         margin-left: - $gutter / 2;
       }
@@ -52,7 +62,7 @@
         @if bp == "xs" {
           padding-bottom: $gutter;
         } @else {
-          @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+          @include mq-up($bp) {
             padding-bottom: $gutter;
           }
         }
@@ -71,7 +81,7 @@
       padding-right: $gutter / 2;
       padding-left: $gutter / 2;
     } @else {
-      @media (min-width: #{map-get($grid-breakpoints, $bp)}) {
+      @include mq-up($bp) {
         padding-right: $gutter / 2;
         padding-left: $gutter / 2;
       }

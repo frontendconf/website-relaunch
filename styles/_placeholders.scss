@@ -3,16 +3,21 @@
   margin-bottom: 100px;
 
   @include mq-up(rg) {
+    margin-top: 120px;
+    margin-bottom: 120px;
+  }
+
+  @include mq-up(lg) {
     margin-top: 150px;
     margin-bottom: 150px;
   }
 
-  @include mq-up(lg) {
+  @include mq-up(xl) {
     margin-top: 200px;
     margin-bottom: 200px;
   }
 
-  @include mq-up(xl) {
+  @include mq-up(xxl) {
     margin-top: 250px;
     margin-bottom: 250px;
   }
