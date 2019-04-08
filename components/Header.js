@@ -95,7 +95,7 @@ class Header extends Component {
                         <a className={!query.slug ? "home-link is-active" : "home-link"}>
                           <img className="home-link__image" src="/static/neon.svg" />
                           <div className="home-link__text-wrap">
-                            <span className="home-link__slogan">Frontend Conference 2019</span>
+                            <span className="home-link__slogan">Front Conference 2019</span>
                             <span className="home-link__date">August 28 29 30</span>
                           </div>
                         </a>

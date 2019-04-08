@@ -23,6 +23,12 @@
   }
 }
 
+%unstyled-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
 %summary-title {
   @include textGradient;
   display: inline-block; // Necessary for the background-clip

@@ -1,3 +1,6 @@
+$logo-isze-xs: 45px;
+$logo-isze-md: 63px;
+
 .header {
   position: absolute;
   top: 0;
@@ -36,8 +39,8 @@
   z-index: 2;
 
   &__image {
-    height: 45px;
-    width: 45px;
+    height: $logo-isze-xs;
+    width: $logo-isze-xs;
   }
 
   &__text-wrap {
@@ -65,8 +68,8 @@
 
   @include mq-up(md) {
     &__image {
-      height: 63px;
-      width: 63px;
+      height: $logo-isze-md;
+      width: $logo-isze-md;
     }
   
     &__text-wrap {

@@ -59,7 +59,7 @@ export default function VenueTeaser({ isVenue = false }) {
                       <a>{venueTeaser.title}</a>
                     </Link>
                   </h3>
-                  <Markdown>{venueTeaser.body}</Markdown>
+                  <Markdown options={{ forceBlock: true }}>{venueTeaser.body}</Markdown>
                 </>
               )}
             </div>

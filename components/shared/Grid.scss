@@ -91,14 +91,22 @@
 
 // Short mixing to creating classes for columns
 @mixin create-cols($key, $grid-columns: $grid-columns) {
-  @for $i from 1 through $grid-columns {
-    .#{$key}-#{$i} {
-      flex: 0 0 (100% / $grid-columns * $i);
-      max-width: (100% / $grid-columns * $i);
+  @for $i from 0 through $grid-columns {
+    @if $i != 0 {
+      .#{$key}-#{$i} {
+        flex: 0 0 (100% / $grid-columns * $i);
+        width: (100% / $grid-columns * $i);
+        max-width: (100% / $grid-columns * $i);
+      }
     }
 
     .offset-#{$key}-#{$i} {
       margin-left: (100% / $grid-columns * $i);
+    }
+
+    // Only needed when floating the columns
+    .offset-right-#{$key}-#{$i} {
+      margin-right: (100% / $grid-columns * $i);
     }
   }
 }

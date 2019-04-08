@@ -1,8 +1,39 @@
 .content {
   &__white-wrapper {
     background-color: white;
-    color: #08031e;
-    padding-bottom: 200px; // TODO: responsive
+    color: $offblack;
+    padding-bottom: 80px;
+  }
+
+  @include mq-up(rg) {
+    &__white-wrapper {
+      padding-bottom: 120px;
+    }
+  }
+
+  @include mq-up(md) {
+    &__white-wrapper {
+      padding-bottom: 150px;
+    }
+
+    &__floating-row {
+      @include clearfix;
+      display: block;
+    }
+
+    &__left {
+      float: left;
+    }
+  
+    &__right {
+      float: right;
+    }
+  }
+
+  @include mq-up(lg) {
+    &__white-wrapper {
+      padding-bottom: 200px;
+    }
   }
 }
 
@@ -32,18 +63,26 @@
 
 // TODO: Add responsive behaviour
 .content-title {
-  margin: 0 0 55px;
+  margin: 0 0 35px;
 
   &__title {
+    @extend %h1;
     margin: 0;
-    font-size: 42px;
-    font-weight: $font-weight-normal;
   }
 
   &__subtitle {
-    margin: 10px 0 0;
-    font-size: $font-size-regular;
+    margin: 5px 0 0;
+    font-size: $font-size-bigger-small;
     font-weight: $font-weight-normal;
     color: #b3b3bc;
+  }
+
+  @include mq-up(md) {
+    margin: 0 0 55px;
+
+    &__subtitle {
+      margin-top: 10px;
+      font-size: $font-size-regular;
+    }
   }
 }

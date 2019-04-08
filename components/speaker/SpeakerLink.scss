@@ -1,7 +1,20 @@
 
 .speaker {
   display: block;
-  text-decoration: none;
+
+  &__link {
+    display: block;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      .speaker__image {
+        transform: rotate(0);
+        filter: grayscale(0);
+        opacity: 1;
+      }
+    }
+  }
 
   &__image-wrapper {
     @include gradient;
@@ -33,15 +46,6 @@
     color: #b3b3bc;
     text-transform: uppercase;
     margin: 0;
-  }
-
-  &:hover,
-  &:focus {
-    .speaker__image {
-      transform: rotate(0);
-      filter: grayscale(0);
-      opacity: 1;
-    }
   }
 
   @include mq-up(rg) {

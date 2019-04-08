@@ -1,31 +1,117 @@
+// TODO: Rename back to Speaker.js
 import Link from "next/link";
-import Image from '../Image';
 import { withRouter } from "next/router";
+import PropTypes from "prop-types";
+import Image from '../Image';
+import Socials from '../Socials';
 
-export default withRouter(({ speaker, className = '' }) => {
+export const SpeakerImage = ({ speaker }) => (
+  <div className="speaker__image-wrapper">
+    <Image className="speaker__image"
+      src={`${speaker.photo.url}&w=295&h=395`}
+      srcSet={`
+        ${speaker.photo.url}&w=200&h=269 200w,
+        ${speaker.photo.url}&w=300&h=403 300w,
+        ${speaker.photo.url}&w=400&h=538 400w,
+        ${speaker.photo.url}&w=500&h=673 500w,
+        ${speaker.photo.url}&w=600&h=807 600w
+      `}
+      // TODO: Set more acccurate sizes
+      sizes={`(min-width: 600px) 290px, 40vw`}
+    />
+  </div>
+);
+
+export const SpeakerSocials = ({ speaker }) => {
+  const socialItems = [];
+
+  if (speaker.twitter) {
+    socialItems.push({
+      url: `https://twitter.com/${speaker.twitter}`,
+      icon: 'twitter',
+      a11y: speaker.name + ' Twitter profile'
+    });
+  }
+
+  if (speaker.linkedin) {
+    socialItems.push({
+      url: speaker.linkedin,
+      icon: 'linkedin',
+      a11y: speaker.name + ' Linkedin profile'
+    });
+  }
+
+  if (speaker.website) {
+    socialItems.push({
+      url: speaker.website,
+      icon: 'website',
+      a11y: speaker.name + ' Website'
+    });
+  }
   return (
-    <Link
-      href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
-      as={`/speakers/${speaker.slug}`}
-    >
-      <a className={`speaker ${className}`}>
-        <div className="speaker__image-wrapper">
-          <Image className="speaker__image"
-            src={`${speaker.photo.url}&w=295&h=395`}
-            srcSet={`
-              ${speaker.photo.url}&w=200&h=269 200w,
-              ${speaker.photo.url}&w=300&h=403 300w,
-              ${speaker.photo.url}&w=400&h=538 400w,
-              ${speaker.photo.url}&w=500&h=673 500w,
-              ${speaker.photo.url}&w=600&h=807 600w
-            `}
-            // TODO: Set more acccurate sizes
-            sizes={`(min-width: 600px) 290px, 40vw`}
-          />
+    <Socials items={socialItems} mobileVertical={true} />
+  )
+}
+
+const Speaker = ({
+  speaker,
+  linked,
+  withName,
+  withDescription,
+  withSocials,
+  className
+}) => {
+  return (
+    <div className={`speaker ${className}`}>
+      {linked && (
+        <Link
+          href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
+          as={`/speakers/${speaker.slug}`}
+        >
+          <a className="speaker__link">
+            <SpeakerImage speaker={speaker} />
+            {withName && (
+              <p className="speaker__name">{speaker.name}</p>
+            )}
+            {withDescription && (
+              <p className="speaker__description">{speaker.description}</p>
+            )}
+          </a>
+        </Link>
+      ) || (
+        <div>
+          <SpeakerImage speaker={speaker} />
+          {withName && (
+            <p className="speaker__name">{speaker.name}</p>
+          )}
+          {withDescription && (
+            <p className="speaker__description">{speaker.description}</p>
+          )}
         </div>
-        <p className="speaker__name">{speaker.name}</p>
-        <p className="speaker__description">{speaker.description}</p>
-      </a>
-    </Link>
-  );
-});
+      )}
+      {withSocials && (
+        <SpeakerSocials speaker={speaker} />
+      )}
+    </div>
+  )
+};
+
+Speaker.propTypes = {
+  speaker: PropTypes.object,
+  className: PropTypes.string,
+  linked: PropTypes.bool,
+  withName: PropTypes.bool,
+  withDescription: PropTypes.bool,
+  withSocials: PropTypes.bool,
+};
+
+// Same approach for defaultProps too
+Speaker.defaultProps = {
+  className: '',
+  linked: true,
+  withName: true,
+  withDescription: true,
+  withSocials: false,
+};
+
+export default withRouter(Speaker);

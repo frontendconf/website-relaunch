@@ -63,11 +63,19 @@
 
 .hero--content {
   padding: 0;
-  height: 150px; // TODO: Adapt vor smaller breakpoints
+  height: 88px;
 
   & .hero {
     &__inner {
       display: none;
     }
+  }
+
+  @include mq-up(md) {
+    height: 128px;
+  }
+
+  @include mq-up(lg) {
+    height: 150px;
   }
 }

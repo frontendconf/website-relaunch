@@ -1,5 +1,5 @@
 .backlink {
-  padding: 65px 0 70px;
+  padding: 25px 0 30px;
 
   &__link {
     display: inline-flex;
@@ -17,10 +17,10 @@
 
   &__icon-wrapper {
     display: flex;
-    height: 63px;
-    width: 63px;
+    height: $logo-isze-xs;
+    width: $logo-isze-xs;
     border-radius: 100px;
-    margin-right: 22px;
+    margin-right: 14px;
     background-color: $offblack;
     align-items: center;
     justify-content: center;
@@ -35,8 +35,27 @@
   }
 
   &__text-wrapper {
-    font-size: $font-size-regular;
+    font-size: 16px;
     line-height: 1.44;
-    letter-spacing: -0.2px;
+    letter-spacing: -0.1px;
+  }
+
+  @include mq-up(md) {
+    padding: 45px 0 50px;
+
+    &__icon-wrapper {
+      height: $logo-isze-md;
+      width: $logo-isze-md;
+      margin-right: 22px;
+    }
+
+    &__text-wrapper {
+      font-size: $font-size-regular;
+      letter-spacing: -0.2px;
+    }
+  }
+
+  @include mq-up(lg) {
+    padding: 65px 0 70px;
   }
 }

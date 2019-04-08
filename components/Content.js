@@ -11,6 +11,7 @@ import Hero from "./Hero";
 import SpeakersList from "./speaker/SpeakersList";
 import Speaker from "./speaker/SpeakerLink";
 import Backlink from "./Backlink";
+import { SpeakerImage, SpeakerSocials } from './speaker/SpeakerLink';
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -79,6 +80,9 @@ const currentSpeakerQuery = gql`
         photo {
           url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
+        linkedin
+        twitter
+        website
       }
     }
   }
@@ -152,20 +156,30 @@ export default withRouter(({ router: { query } }) => {
                       as: '/speakers'
                     }}/>
                     <Container>
-                      <Row>
-                        <Col className="xs-12 rg-6 offset-rg-1">
+                      <Row className="content__floating-row">
+                        <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
                           <div className="content-title">
                             <h1 className="content-title__title">{currentPage.title}</h1>
-                            <p class="content-title__subtitle">{currentPage.lead}</p>
-                          </div>
-                          <div>
-                            {currentPage.body ? (
-                              <Markdown>{currentPage.body}</Markdown>
-                            ) : null}
+                            <p className="content-title__subtitle">{currentPage.lead}</p>
                           </div>
                         </Col>
-                        <Col className="xs-12 rg-3 offset-rg-1">
-                          <Speaker speaker={currentPage} />
+                        <Col className="content__right xs-12 sm-10 rg-8 md-4 offset-right-lg-1 lg-3">
+                          <Row>
+                            <Col className="xs-7 offset-xs-1 md-12 offset-md-0">
+                              <SpeakerImage speaker={currentPage} />
+                            </Col>
+                            <Col className="xs-3 offset-xs-1 md-12 offset-md-0">
+                              <SpeakerSocials speaker={currentPage} />
+                            </Col>
+                          </Row>
+                        </Col>
+                        <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
+                          <div>
+                            <h2>About</h2>
+                            {currentPage.body ? (
+                              <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
+                            ) : null}
+                          </div>
                         </Col>
                       </Row>
                     </Container>
@@ -178,7 +192,7 @@ export default withRouter(({ router: { query } }) => {
                         <p>{currentPage.lead}</p>
                         <div>
                           {currentPage.body ? (
-                            <Markdown>{currentPage.body}</Markdown>
+                            <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
                           ) : null}
                         </div>
                         <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
@@ -215,7 +229,7 @@ export default withRouter(({ router: { query } }) => {
                       <p>{currentPage.lead}</p>
                       <div>
                         {currentPage.body ? (
-                          <Markdown>{currentPage.body}</Markdown>
+                          <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
                         ) : null}
                       </div>
                       <div>{currentPage.showNews ? <NewsSummary /> : null}</div>

@@ -1,0 +1,43 @@
+.socials {
+  &__list {
+    @extend %unstyled-list;
+    display: flex;
+
+    &-item {
+      &:not(:last-child) {
+        margin-right: 18px;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+    color: $offblack;
+    transition: opacity $transition-time-simple $transition-easing-default;
+
+    svg {
+      display: block;
+      height: 34px;
+      width: 34px;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: .5;
+    }
+  }
+
+  @include mq-down(rg) {
+    &--mobile-vertical {
+      .socials__list {
+        display: block;
+  
+        &-item {
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}
