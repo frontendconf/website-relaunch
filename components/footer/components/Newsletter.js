@@ -19,7 +19,7 @@ class Newsletter extends Component {
 
   render() {
     return (
-      <div className={`newsletter ${this.props.className}`}>
+      <div className={`newsletter ${this.props.className || ''}`}>
         <h3>Sign up for the newsletter</h3>
       
         {/* TODO. make accessible */}

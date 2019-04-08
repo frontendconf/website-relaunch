@@ -1,5 +1,4 @@
 import ErrorMessage from "./ErrorMessage";
-import SpeakersList from "./SpeakersList";
 import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -9,7 +8,9 @@ import { Container, Row, Col } from "./shared/Grid";
 import VenueTeaser from "./VenueTeaser";
 import Jobs from "./Jobs";
 import Hero from "./Hero";
-import Speaker from "./Speaker";
+import SpeakersList from "./speaker/SpeakersList";
+import Speaker from "./speaker/SpeakerLink";
+import Backlink from "./Backlink";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -143,34 +144,62 @@ export default withRouter(({ router: { query } }) => {
                   ctas={ctas}
                   template={template}
                 />
-                <Container>
-                  <Row>
-                    <Col className="xs-12 rg-8">
-                      <h1 className="content__title">{currentPage.title}</h1>
-                      <p>{currentPage.lead}</p>
-                      <div>
-                        {currentPage.body ? (
-                          <Markdown>{currentPage.body}</Markdown>
-                        ) : null}
-                      </div>
-                      <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
-                      <div>
-                        {currentPage.showSpeakers || isHome ? (
-                          <SpeakersList speakerLimit={isHome ? 6 : 0} />
-                        ) : null}
-                      </div>
-                      {/* <div>
-                        {currentPage.showVenue ? (
-                          <VenueTeaser isVenue={isVenue} />
-                        ) : null}
-                      </div> */}
-                      <div>{currentPage.showJobs ? <Jobs /> : null}</div>
-                    </Col>
-                    <Col className="xs-12 rg-4">
-                      {isSpeaker ? <Speaker speaker={currentPage} /> : null}
-                    </Col>
-                  </Row>
-                </Container>
+
+                {isSpeaker && (
+                  <div className="content__white-wrapper">
+                    <Backlink text="Speakers" link={{
+                      href: { pathname: '/', query: { slug: 'speakers' }},
+                      as: '/speakers'
+                    }}/>
+                    <Container>
+                      <Row>
+                        <Col className="xs-12 rg-6 offset-rg-1">
+                          <div className="content-title">
+                            <h1 className="content-title__title">{currentPage.title}</h1>
+                            <p class="content-title__subtitle">{currentPage.lead}</p>
+                          </div>
+                          <div>
+                            {currentPage.body ? (
+                              <Markdown>{currentPage.body}</Markdown>
+                            ) : null}
+                          </div>
+                        </Col>
+                        <Col className="xs-12 rg-3 offset-rg-1">
+                          <Speaker speaker={currentPage} />
+                        </Col>
+                      </Row>
+                    </Container>
+                  </div>
+                ) || (
+                  <Container>
+                    <Row>
+                      <Col className="xs-12 rg-8">
+                        <h1 className="content__title">{currentPage.title}</h1>
+                        <p>{currentPage.lead}</p>
+                        <div>
+                          {currentPage.body ? (
+                            <Markdown>{currentPage.body}</Markdown>
+                          ) : null}
+                        </div>
+                        <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
+                        <div>
+                          {currentPage.showSpeakers || isHome ? (
+                            <SpeakersList speakerLimit={isHome ? 6 : 0} />
+                          ) : null}
+                        </div>
+                        {/* <div>
+                          {currentPage.showVenue ? (
+                            <VenueTeaser isVenue={isVenue} />
+                          ) : null}
+                        </div> */}
+                        <div>{currentPage.showJobs ? <Jobs /> : null}</div>
+                      </Col>
+                      <Col className="xs-12 rg-4">
+                        {isSpeaker ? <Speaker speaker={currentPage} /> : null}
+                      </Col>
+                    </Row>
+                  </Container>
+                )}
               </section>
             );
           case "default":

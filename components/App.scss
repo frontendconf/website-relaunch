@@ -15,9 +15,11 @@
     url("/static/fonts/38F325_0_unhinted_0.ttf") format("truetype");
   font-display: swap;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -26,4 +28,11 @@ body {
   color: map-get($colors, white);
   font-weight: $font-weight-normal;
   overflow-x: hidden;
+}
+
+p {
+  font-size: $font-size-regular;
+  line-height: 1.44;
+  letter-spacing: -0.2px;
+  margin: 0 0 1em;
 }

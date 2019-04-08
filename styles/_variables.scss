@@ -1,7 +1,7 @@
 
 $white: #fff;
 $black: #000;
-$offblack: #09001f;
+$offblack: #08031e;
 
 $primary: #00fff8;
 $secondary: #ffda7e;
@@ -47,7 +47,8 @@ $grid-columns: 12;
 
 $grid-gutters: (
   xs: 10px,
-  rg: 16px
+  rg: 20px,
+  lg: 30px
 );
 
 $grid-breakpoints: (
@@ -89,7 +90,10 @@ $custom-font-name: "Code-Pro-LC";
 
 $font-family: $custom-font-name, Helvetica, Arial, sans-serif;
 
-$font-size-xs: 13px;
+$font-size-tiny: 11px;
+$font-size-small: 13px;
+$font-size-bigger-small: 15px;
+$font-size-regular: 18px;
 
 $font-weight-normal: 400;
 $font-weight-bold: 700;

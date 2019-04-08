@@ -3,11 +3,10 @@
   display: block;
   text-decoration: none;
 
-  // TODO: Check responsive behaviour
   &__image-wrapper {
     @include gradient;
     background-blend-mode: color;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
 
   &__image {
@@ -23,16 +22,17 @@
 
   &__name {
     @include textGradient;
-    font-size: 28px;
+    font-size: 18px;
     line-height: 1;
-    margin: 0 0 15px;
+    margin: 0 0 5px;
   }
 
   // TODO: Refactor with variables & cleanup
   &__description {
-    font-size: 13px;
+    font-size: $font-size-tiny;
     color: #b3b3bc;
     text-transform: uppercase;
+    margin: 0;
   }
 
   &:hover,
@@ -41,6 +41,21 @@
       transform: rotate(0);
       filter: grayscale(0);
       opacity: 1;
+    }
+  }
+
+  @include mq-up(rg) {
+    &__image-wrapper {
+      margin-bottom: 50px;
+    }
+
+    &__name {
+      font-size: 28px;
+      margin: 0 0 15px;
+    }
+  
+    &__description {
+      font-size: $font-size-small;
     }
   }
 }

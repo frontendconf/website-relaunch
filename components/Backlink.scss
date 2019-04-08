@@ -1,0 +1,42 @@
+.backlink {
+  padding: 65px 0 70px;
+
+  &__link {
+    display: inline-flex;
+    color: $offblack;
+    text-decoration: none;
+    align-items: center;
+
+    &:hover,
+    &:focus {
+      .backlink__icon {
+        transform: translateX(-4px);
+      }
+    }
+  }
+
+  &__icon-wrapper {
+    display: flex;
+    height: 63px;
+    width: 63px;
+    border-radius: 100px;
+    margin-right: 22px;
+    background-color: $offblack;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon {
+    flex: 0 0 auto;
+    height: 10px; // TODO: use correct icon
+    width: 10px; // TODO: use correct icon
+    background-color: #fff;
+    transition: transform $transition-time-area-small $transition-easing-default;
+  }
+
+  &__text-wrapper {
+    font-size: $font-size-regular;
+    line-height: 1.44;
+    letter-spacing: -0.2px;
+  }
+}

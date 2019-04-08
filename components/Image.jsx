@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'; // ES6
 
 const emptyGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -42,6 +42,8 @@ class Image extends Component {
   constructor(props) {
     super(props);
 
+    this.image = React.createRef();
+
     this.state = {
       loading: false,
       loaded: false,
@@ -59,7 +61,7 @@ class Image extends Component {
   componentDidMount() {
     // Add custom callback
     ImagesArray.push({
-      node: this.image,
+      node: this.image.current,
       callback: () => {
         this.setState({
           src: this.props.src,
@@ -70,15 +72,15 @@ class Image extends Component {
     });
 
     // Observe image
-    Observer.instance.observe(this.image);
+    Observer.instance.observe(this.image.current);
   }
 
   componentWillUnmount() {
     // Observe image
-    Observer.instance.unobserve(this.image);
+    Observer.instance.unobserve(this.image.current);
 
     // Remove from cached array
-    ImagesArray.splice(ImagesArray.findIndex((foo) => foo.node === this.image), 1);
+    ImagesArray.splice(ImagesArray.findIndex((foo) => foo.node === this.image.current), 1);
   }
 
   onLoad() {
@@ -86,6 +88,9 @@ class Image extends Component {
       loading: false,
       loaded: true,
     })
+
+    // Provides hook for parent component
+    this.props.onLoad();
   }
 
   /**
@@ -94,7 +99,7 @@ class Image extends Component {
    */
   render() {
     return (
-      <span className={`image ${this.props.className}`}>
+      <span className={`image ${this.props.className || ''}`}>
         <span className="image__loader"></span>
         {this.props.picture ? (
           <picture>
@@ -109,7 +114,7 @@ class Image extends Component {
             ))}
             <img
               className={`image__image`}
-              ref={(image) => { this.image = image; }}
+              ref={this.image}
               src={this.props.src}
               alt={this.props.alt}
               onLoad={this.onLoad}
@@ -118,7 +123,7 @@ class Image extends Component {
         ) : (
           <img
             className={`image__image ${this.state.loaded ? 'is-loaded' : ''}`}
-            ref={(image) => { this.image = image; }}
+            ref={this.image}
             src={this.state.src}
             srcSet={this.state.srcSet}
             sizes={this.props.sizes}
@@ -136,13 +141,12 @@ Image.propTypes = {
   srcSet: PropTypes.string,
   sizes: PropTypes.string,
   alt: PropTypes.string,
+  onLoad: PropTypes.func,
 }
 
 Image.defaultProps = {
-  src: '',
-  srcSet: '',
-  sizes: '',
   alt: '',
+  onLoad: function() {}
 }
 
 export default Image;

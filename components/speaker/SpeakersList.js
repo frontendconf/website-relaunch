@@ -1,8 +1,8 @@
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Speaker from "./Speaker";
-import ErrorMessage from "./ErrorMessage";
-import { Row, Col } from './shared/Grid';
+import Speaker from "./SpeakerLink";
+import ErrorMessage from "../ErrorMessage";
+import { Row, Col } from '../shared/Grid';
 
 const speakersAllQuery = gql`
   query speakersAll {

@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Image from './Image';
+import Image from '../Image';
+import { withRouter } from "next/router";
 
-export default ({ speaker, className }) => {
+export default withRouter(({ speaker, className = '' }) => {
   return (
     <Link
       href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
@@ -27,4 +28,4 @@ export default ({ speaker, className }) => {
       </a>
     </Link>
   );
-};
+});
