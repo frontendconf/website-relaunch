@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from './Image';
 
-export default ({ speaker }) => {
+export default ({ speaker, className }) => {
   return (
     <Link
       href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
       as={`/speakers/${speaker.slug}`}
     >
-      <a className="speaker">
+      <a className={`speaker ${className}`}>
         <div className="speaker__image-wrapper">
           <Image className="speaker__image"
             src={`${speaker.photo.url}&w=295&h=395`}
@@ -19,10 +19,7 @@ export default ({ speaker }) => {
               ${speaker.photo.url}&w=600&h=807 600w
             `}
             // TODO: Set more acccurate sizes
-            sizes={`
-              (min-width: 600px) 290px,
-              40vw
-            `}
+            sizes={`(min-width: 600px) 290px, 40vw`}
           />
         </div>
         <p className="speaker__name">{speaker.name}</p>

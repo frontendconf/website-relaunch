@@ -57,8 +57,8 @@ export default function SpeakersList({ speakerLimit = 0 }) {
             <Row className="speakers-list">
               {speakers.map((speaker, key) => {
                 return (
-                  <Col key={key} className="speakers-list__col xs-12 rg-6 md-4">
-                    <Speaker speaker={speaker} />
+                  <Col key={key} className="speakers-list__col xs-6 md-4">
+                    <Speaker className="speakers-list__speaker" speaker={speaker} />
                   </Col>
                 );
               })}

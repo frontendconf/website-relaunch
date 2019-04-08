@@ -44,8 +44,13 @@
 
 @mixin buttonBig {
   @include button;
-  font-size: 15px;
-  padding: 23px 30px 21px;
+  font-size: 13px;
+  padding: 13px 15px 11px;
+
+  @include mq-up(md) {
+    font-size: 15px;
+    padding: 23px 30px 21px;
+  }
 }
 
 @mixin mq-up($breakpoint) {

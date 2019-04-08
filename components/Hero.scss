@@ -48,7 +48,15 @@
     display: inline-block;
 
     &:not(:last-child) {
-      margin-right: 25px;
+      margin-right: 15px;
+    }
+  }
+
+  @include mq-up(md) {
+    &__cta {
+      &:not(:last-child) {
+        margin-right: 25px;
+      }
     }
   }
 }

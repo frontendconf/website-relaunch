@@ -2,7 +2,9 @@
   margin: 50px 0;
 
   &__col {
-    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
 
     // TODO: handle responsiveness
     &:nth-child(3n + 1) {
@@ -13,16 +15,24 @@
       margin-top: 150px;
     }
   }
-}
 
-.speakers-list__item--0 {
-  margin-top: 80px;
-}
+  &__speaker {
+    flex: 0 1 240px;
+    max-width: calc(100% - 40px);
+  }
 
-.speakers-list__item--1 {
-  margin-top: 160px;
-}
-
-.speakers-list__item--2 {
-  margin-top: 0;
+  @include mq-up(md) {
+    &__col {
+      margin-bottom: 40px;
+  
+      // TODO: handle responsiveness
+      &:nth-child(3n + 1) {
+        margin-top: 70px;
+      }
+  
+      &:nth-child(3n + 2) {
+        margin-top: 150px;
+      }
+    }
+  }
 }
