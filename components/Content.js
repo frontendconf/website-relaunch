@@ -198,7 +198,7 @@ export default withRouter(({ router: { query } }) => {
                         <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
                         <div>
                           {currentPage.showSpeakers || isHome ? (
-                            <SpeakersList speakerLimit={isHome ? 6 : 0} />
+                            <SpeakersList limit={isHome ? 6 : 0} />
                           ) : null}
                         </div>
                         {/* <div>
@@ -235,7 +235,7 @@ export default withRouter(({ router: { query } }) => {
                       <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
                       <div>
                         {currentPage.showSpeakers || isHome ? (
-                          <SpeakersList speakerLimit={isHome ? 6 : 0} />
+                          <SpeakersList limit={isHome ? 6 : 0} />
                         ) : null}
                       </div>
                       {/* <div>
