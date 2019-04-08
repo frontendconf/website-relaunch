@@ -25,6 +25,7 @@
     @include textSubline;
     text-align: right;
     margin: 15px 0 0;
+    width: 100%;
 
     @include mq-up(rg) {
       margin-top: 20px;

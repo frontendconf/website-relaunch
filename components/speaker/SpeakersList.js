@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import Speaker from "./SpeakerLink";
 import ErrorMessage from "../ErrorMessage";
 import { Row, Col } from '../shared/Grid';
+import FadeIn from '../FadeIn';
 
 const speakersQuery = gql`
   query speakers($limit: Int) {
@@ -36,7 +37,9 @@ const SpeakersList = ({ limit }) => (
           {speakers.map((speaker) => {
             return (
               <Col key={speaker.slug} className="speakers-list__col xs-6 md-4">
-                <Speaker className="speakers-list__speaker" speaker={speaker} />
+                <FadeIn>
+                  <Speaker className="speakers-list__speaker" speaker={speaker} />
+                </FadeIn>
               </Col>
             );
           })}
@@ -47,7 +50,7 @@ const SpeakersList = ({ limit }) => (
 );
 
 SpeakersList.propTypes = {
-  limit: PropTypes.integer,
+  limit: PropTypes.number,
 }
 
 SpeakersList.defaultProps = {

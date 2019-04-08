@@ -18,3 +18,39 @@
 @import "../components/Image";
 @import "../components/Backlink";
 @import "../components/Socials";
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 70px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  animation-name: fadeInUp;
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+
+  // Temporarily necessary
+  display: flex;
+  flex: 0 0 100%;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+@media (print), (prefers-reduced-motion) {
+  .animated {
+    animation: unset !important;
+    transition: none !important;
+  }
+}

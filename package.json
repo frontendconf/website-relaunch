@@ -25,6 +25,7 @@
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-animate-on-scroll": "^2.1.5",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.8.3"
   },
