@@ -1,0 +1,39 @@
+.hero-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  // TODO: Add responsive background images
+  background: url("/static/images/hero-bg.jpg") no-repeat center center / cover;
+
+  // TODO: spacing should always be the same as header height
+  // padding: 150px 0 90px 0; // 150px for header navigation
+  // height: calc(100vh - 100px); // TODO: Adapt vor smaller breakpoints
+
+  &__overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $offblack;
+    opacity: 0;
+  }
+}
+
+.hero-bg--content {
+  position: absolute;
+  padding: 0;
+  height: 88px;
+
+  @include mq-up(md) {
+    height: 128px;
+  }
+
+  @include mq-up(lg) {
+    height: 150px;
+  }
+}

@@ -8,6 +8,7 @@ import { Container, Row, Col } from "./shared/Grid";
 import VenueTeaser from "./VenueTeaser";
 import Jobs from "./Jobs";
 import Hero from "./Hero";
+import HeroBG from "./HeroBG";
 import SpeakersList from "./speaker/SpeakersList";
 import Speaker from "./speaker/SpeakerLink";
 import Backlink from "./Backlink";
@@ -222,6 +223,7 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
+                <HeroBG />
                 <Hero title={title} subTitle={subTitle} ctas={ctas} />
                 <Container>
                   <Row>

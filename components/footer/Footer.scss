@@ -2,8 +2,10 @@
 @import "./components/Newsletter";
 
 .footer {
+  position: relative;
   padding: 35px 0;
   background-color: #1e1732;
+  z-index: 2;
 
   &__newsletter,
   &__ctas,
