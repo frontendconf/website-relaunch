@@ -72,6 +72,11 @@
   width: 100%;
 }
 
+.sponsors__item-svg {
+  display: inline-flex;
+  flex-direction: column;
+}
+
 .sponsors__item-img {
   max-width: 100%;
 }
