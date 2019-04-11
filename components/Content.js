@@ -12,7 +12,8 @@ import HeroBG from "./HeroBG";
 import SpeakersList from "./speaker/SpeakersList";
 import Speaker from "./speaker/SpeakerLink";
 import Backlink from "./Backlink";
-import { SpeakerImage, SpeakerSocials } from './speaker/SpeakerLink';
+import { SpeakerImage, SpeakerSocials } from "./speaker/SpeakerLink";
+import Sponsors from "./Sponsors";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -150,18 +151,25 @@ export default withRouter(({ router: { query } }) => {
                   template={template}
                 />
 
-                {isSpeaker && (
+                {(isSpeaker && (
                   <div className="content__white-wrapper">
-                    <Backlink text="Speakers" link={{
-                      href: { pathname: '/', query: { slug: 'speakers' }},
-                      as: '/speakers'
-                    }}/>
+                    <Backlink
+                      text="Speakers"
+                      link={{
+                        href: { pathname: "/", query: { slug: "speakers" } },
+                        as: "/speakers"
+                      }}
+                    />
                     <Container>
                       <Row className="content__floating-row">
                         <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
                           <div className="content-title">
-                            <h1 className="content-title__title">{currentPage.title}</h1>
-                            <p className="content-title__subtitle">{currentPage.lead}</p>
+                            <h1 className="content-title__title">
+                              {currentPage.title}
+                            </h1>
+                            <p className="content-title__subtitle">
+                              {currentPage.lead}
+                            </p>
                           </div>
                         </Col>
                         <Col className="content__right xs-12 sm-10 rg-8 md-4 offset-right-lg-1 lg-3">
@@ -178,14 +186,16 @@ export default withRouter(({ router: { query } }) => {
                           <div>
                             <h2>About</h2>
                             {currentPage.body ? (
-                              <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
+                              <Markdown options={{ forceBlock: true }}>
+                                {currentPage.body}
+                              </Markdown>
                             ) : null}
                           </div>
                         </Col>
                       </Row>
                     </Container>
                   </div>
-                ) || (
+                )) || (
                   <Container>
                     <Row>
                       <Col className="xs-12 rg-8">
@@ -193,10 +203,14 @@ export default withRouter(({ router: { query } }) => {
                         <p>{currentPage.lead}</p>
                         <div>
                           {currentPage.body ? (
-                            <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
+                            <Markdown options={{ forceBlock: true }}>
+                              {currentPage.body}
+                            </Markdown>
                           ) : null}
                         </div>
-                        <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
+                        <div>
+                          {currentPage.showNews ? <NewsSummary /> : null}
+                        </div>
                         <div>
                           {currentPage.showSpeakers || isHome ? (
                             <SpeakersList limit={isHome ? 6 : 0} />
@@ -213,6 +227,8 @@ export default withRouter(({ router: { query } }) => {
                         {isSpeaker ? <Speaker speaker={currentPage} /> : null}
                       </Col>
                     </Row>
+
+                    {currentPage.showSponsors ? <Sponsors /> : null}
                   </Container>
                 )}
               </section>
@@ -231,7 +247,9 @@ export default withRouter(({ router: { query } }) => {
                       <p>{currentPage.lead}</p>
                       <div>
                         {currentPage.body ? (
-                          <Markdown options={{ forceBlock: true }}>{currentPage.body}</Markdown>
+                          <Markdown options={{ forceBlock: true }}>
+                            {currentPage.body}
+                          </Markdown>
                         ) : null}
                       </div>
                       <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
@@ -248,6 +266,8 @@ export default withRouter(({ router: { query } }) => {
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                   </Row>
+
+                  {currentPage.showSponsors ? <Sponsors /> : null}
                 </Container>
               </section>
             );

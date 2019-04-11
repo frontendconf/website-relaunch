@@ -1,34 +1,14 @@
 import Link from "next/link";
-import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "../ErrorMessage";
-import { isTerminating } from "apollo-link/lib/linkUtils";
 import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from "./components/FooterMenu";
 import Newsletter from "./components/Newsletter";
+import SponsorCategory from "../SponsorCategory";
 
 const footerQuery = gql`
   query {
-    sponsorCollection {
-      items {
-        title
-        link
-        logo {
-          url(transform: { width: 80, height: 80 })
-        }
-        logoSvg
-        category {
-          title
-          color
-        }
-        tagCollection(limit: 20) {
-          items {
-            title
-          }
-        }
-      }
-    }
     configCollection {
       items {
         footerMenuCollection(limit: 20) {
@@ -88,7 +68,6 @@ export default function Footer() {
           loading,
           error,
           data: {
-            sponsorCollection: { items: allSponsors },
             configCollection: {
               items: [
                 {
@@ -104,7 +83,7 @@ export default function Footer() {
           if (error) return <ErrorMessage message="Error loading pages." />;
           if (loading) return <div>Loading</div>;
 
-          const sponsors = allSponsors.filter(
+          const sponsors = [].filter(
             item =>
               item.category.title === "CONTRIBUTING" &&
               item.tagCollection.items.find(tag => tag.title === "FEC19")
@@ -114,44 +93,7 @@ export default function Footer() {
             <Container>
               <Row>
                 <Col className="xs-12">
-                  <div className="sponsors">
-                    <h3>Contributing Sponsors</h3>
-
-                    <Row hGutter={true}>
-                      {sponsors.map((item, key) => (
-                        <Col className="sponsors__item" key={key}>
-                          <a
-                            className="sponsors__item-link"
-                            href={item.link}
-                            title={item.title}
-                            target="_blank"
-                          >
-                            {item.logoSvg ? (
-                              <span
-                                className="sponsors__item-svg"
-                                dangerouslySetInnerHTML={{
-                                  __html: item.logoSvg
-                                }}
-                                style={
-                                  item.category.color
-                                    ? { fill: item.category.color }
-                                    : {}
-                                }
-                              />
-                            ) : item.logo ? (
-                              <img
-                                className="sponsors__item-img"
-                                src={item.logo.url}
-                                alt={item.title}
-                              />
-                            ) : (
-                              item.title
-                            )}
-                          </a>
-                        </Col>
-                      ))}
-                    </Row>
-                  </div>
+                  <SponsorCategory title="Contributing Sponsors" />
 
                   <Row>
                     <Col className="footer__newsletter-col xs-12 md-3">
