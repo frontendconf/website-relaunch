@@ -5,7 +5,7 @@ export default function Sponsors() {
   return (
     <div className="sponsors">
       <FadeIn>
-        <h3 class="sponsors__title">Sponsors</h3>
+        <h3 className="sponsors__title">Sponsors</h3>
       </FadeIn>
 
       <FadeIn>
