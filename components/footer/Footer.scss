@@ -28,54 +28,6 @@
   }
 }
 
-// TODO: refactor to its own component
-.sponsors {
-  margin: 0 0 35px;
-}
-
-@media (min-width: 768px) {
-  .sponsors {
-    margin: 0 0 90px;
-  }
-}
-
-.sponsors h3,
-.newsletter h3 {
-  @include textGradient();
-  font-weight: 400;
-  margin: 0 0 30px;
-}
-
-.sponsors h3 {
-  font-size: 28px;
-  text-transform: uppercase;
-}
-
-.sponsors__item {
-  display: flex;
-  flex: 0 0 33.3333%;
-}
-
-@media (min-width: 500px) {
-  .sponsors__item {
-    flex: 0 0 124px;
-  }
-}
-
-.sponsors__item-link {
-  display: flex;
-  background-color: #342e46;
-  padding: 10px;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 63px;
-  width: 100%;
-}
-
-.sponsors__item-img {
-  max-width: 100%;
-}
-
 // Refactor to its own component
 .ctas__link {
   @include button;

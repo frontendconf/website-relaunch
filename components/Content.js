@@ -14,6 +14,7 @@ import Speaker from "./speaker/SpeakerLink";
 import Backlink from "./Backlink";
 import { SpeakerImage, SpeakerSocials } from "./speaker/SpeakerLink";
 import NewsList from "./NewsList";
+import Sponsors from "./Sponsors";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -300,6 +301,8 @@ export default withRouter(({ router: { query } }) => {
                           {/* Sidebar content */}
                         </Col>
                       </Row>
+
+                      {currentPage.showSponsors ? <Sponsors /> : null}
                     </Container>
                   )}
               </section>
@@ -337,6 +340,8 @@ export default withRouter(({ router: { query } }) => {
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                   </Row>
+
+                  {currentPage.showSponsors ? <Sponsors /> : null}
                 </Container>
               </section>
             );

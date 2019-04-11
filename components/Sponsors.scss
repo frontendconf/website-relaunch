@@ -1,0 +1,7 @@
+.sponsors {
+  @extend %default-module-spacer;
+
+  &__title {
+    @extend %summary-title;
+  }
+}
