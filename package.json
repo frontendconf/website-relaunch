@@ -19,6 +19,7 @@
     "array-shuffle": "^1.0.1",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
+    "intersection-observer": "^0.5.1",
     "isomorphic-unfetch": "^3.0.0",
     "markdown-to-jsx": "^6.9.2",
     "next": "^8.0.3",
