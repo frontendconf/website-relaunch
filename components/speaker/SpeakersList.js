@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Speaker from "./SpeakerLink";
 import ErrorMessage from "../ErrorMessage";
-import { Row, Col } from '../shared/Grid';
-import FadeIn from '../FadeIn';
+import { Row, Col } from "../shared/Grid";
+import FadeIn from "../FadeIn";
 
 const speakersQuery = gql`
   query speakers($limit: Int) {
@@ -34,11 +34,14 @@ const SpeakersList = ({ limit }) => (
 
       return (
         <Row className="speakers-list">
-          {speakers.map((speaker) => {
+          {speakers.map(speaker => {
             return (
               <Col key={speaker.slug} className="speakers-list__col xs-6 md-4">
-                <FadeIn>
-                  <Speaker className="speakers-list__speaker" speaker={speaker} />
+                <FadeIn style={{ justifyContent: "center" }}>
+                  <Speaker
+                    className="speakers-list__speaker"
+                    speaker={speaker}
+                  />
                 </FadeIn>
               </Col>
             );
@@ -50,11 +53,11 @@ const SpeakersList = ({ limit }) => (
 );
 
 SpeakersList.propTypes = {
-  limit: PropTypes.number,
-}
+  limit: PropTypes.number
+};
 
 SpeakersList.defaultProps = {
-  limit: 100,
-}
+  limit: 100
+};
 
 export default SpeakersList;
