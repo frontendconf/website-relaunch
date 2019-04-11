@@ -7,9 +7,6 @@ Based on https://github.com/zeit/next.js/tree/master/examples/with-apollo
 ### Install and run
 
 ```bash
-npm install
-npm run dev
-# or
 yarn
 yarn dev
 ```
@@ -17,17 +14,17 @@ yarn dev
 ### Deploy to now.sh
 
 ```bash
-npm run deploy
+yarn run deploy
 ```
 
 Set alias from `dev.frontendconf.ch` to latest deployment (you need to be a member of the `frontendconf` organization on https://zeit.co to be able do this):
 
 ```bash
-npm run alias
+yarn run alias
 ```
 
 Set alias from `dev.frontendconf.ch` to specific deployment (replace `efwfjnbisv` with the deployment ID):
 
 ```bash
-npm run alias frontrelaunch-efwfjnbisv.now.sh dev.frontendconf.ch
+yarn run alias frontrelaunch-efwfjnbisv.now.sh dev.frontendconf.ch
 ```
