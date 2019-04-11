@@ -22,6 +22,11 @@ const footerQuery = gql`
           title
           color
         }
+        tagCollection(limit: 20) {
+          items {
+            title
+          }
+        }
       }
     }
     configCollection {
@@ -100,7 +105,9 @@ export default function Footer() {
           if (loading) return <div>Loading</div>;
 
           const sponsors = allSponsors.filter(
-            item => item.category.title === "CONTRIBUTING"
+            item =>
+              item.category.title === "CONTRIBUTING" &&
+              item.tagCollection.items.find(tag => tag.title === "FEC19")
           );
 
           return (
