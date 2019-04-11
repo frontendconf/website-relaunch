@@ -61,6 +61,10 @@
   }
 }
 
+.hero--list {
+  height: calc(100vh - 300px); // TODO: Adapt vor smaller breakpoints
+}
+
 .hero--content {
   padding: 0;
   height: 88px;

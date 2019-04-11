@@ -1,4 +1,3 @@
-
 $white: #fff;
 $black: #000;
 $offblack: #08031e;
@@ -6,13 +5,15 @@ $offblack: #08031e;
 $primary: #00fff8;
 $secondary: #ffda7e;
 
-$bombay: #B3B3BC;
+$bombay: #b3b3bc;
+$windsor: #300888;
 
 // Color system
 $colors: (
   white: $white,
   black: $black,
   background: $offblack,
+  link: $windsor,
   primary: $primary,
   secondary: $secondary,
   grays: (
@@ -81,9 +82,9 @@ $transition-time-area-medium: 350ms !default;
 $transition-time-area-large: 500ms !default;
 
 // Easings
-$transition-easing-default: cubic-bezier(.4, .0, .2, 1) !default;
-$transition-easing-decelerate: cubic-bezier(.0, .0, .2, 1) !default;
-$transition-easing-accelerate: cubic-bezier(.4, .0, 1, 1) !default;
+$transition-easing-default: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1) !default;
+$transition-easing-accelerate: cubic-bezier(0.4, 0, 1, 1) !default;
 
 // Typography
 $custom-font-name: "Code-Pro-LC";

@@ -1,5 +1,6 @@
 .content {
   &__white-wrapper {
+    position: relative;
     background-color: white;
     color: $offblack;
     padding-bottom: 80px;
@@ -24,7 +25,7 @@
     &__left {
       float: left;
     }
-  
+
     &__right {
       float: right;
     }
@@ -38,27 +39,27 @@
 }
 
 .content::before {
-	// TODO: Reuse from Hero
-	// TODO: Add responsive background images
-	background: url('/static/images/hero-bg.jpg') no-repeat center center / cover;
+  // TODO: Reuse from Hero
+  // TODO: Add responsive background images
+  background: url("/static/images/hero-bg.jpg") no-repeat center center / cover;
 
-	// TODO: spacing should always be the same as header height
-	padding: 150px 0 90px 0; // 150px for header navigation
+  // TODO: spacing should always be the same as header height
+  //padding: 150px 0 90px 0; // 150px for header navigation
 
-	content: "";
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-  bottom: 100px;
-	z-index: 1;
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity .5s .2s ease;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s 0.2s ease;
 }
 
 .content--loading::before {
-	opacity: 1;
+  opacity: 1;
 }
 
 // TODO: Add responsive behaviour
