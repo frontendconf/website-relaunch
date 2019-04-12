@@ -19,8 +19,17 @@
     }
   }
 
+  &__title {
+    @extend %summary-title;
+  }
+
   &__speaker {
     flex: 0 1 240px;
+  }
+
+  &__link {
+    @include buttonBig;
+    display: inline-block;
   }
 
   @include mq-up(sm) {
@@ -54,7 +63,7 @@
           margin-right: 20px;
         }
       }
-  
+
       &:nth-child(2n) {
         .speakers-list__speaker {
           margin-left: 20px;
@@ -66,16 +75,16 @@
   @include mq-up(md) {
     &__col {
       margin-bottom: 40px;
-  
+
       // TODO: handle responsiveness
       &:nth-child(3n + 1) {
         margin-top: 70px;
       }
-  
+
       &:nth-child(3n + 2) {
         margin-top: 150px;
       }
-  
+
       &:nth-child(3n) {
         margin-top: 0;
       }

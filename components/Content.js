@@ -340,7 +340,10 @@ export default withRouter(({ router: { query } }) => {
                       <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
                       <div>
                         {currentPage.showSpeakers || isHome ? (
-                          <SpeakersList limit={isHome ? 6 : 0} />
+                          <SpeakersList
+                            limit={isHome ? 6 : 0}
+                            withHeading={isHome ? true : false}
+                          />
                         ) : null}
                       </div>
                       <div>

@@ -5,23 +5,26 @@ import PropTypes from "prop-types";
 import Image from "../Image";
 import Socials from "../Socials";
 
-export const SpeakerImage = ({ speaker }) => (
-  <div className="speaker__image-wrapper">
-    <Image
-      className="speaker__image"
-      src={`${speaker.photo.url}&w=295&h=395`}
-      srcSet={`
+export const SpeakerImage = ({ speaker }) => {
+  // FIXME: find out why sometimes speaker.photo does not exist and the page reloads. Caching?
+  return speaker.photo ? (
+    <div className="speaker__image-wrapper">
+      <Image
+        className="speaker__image"
+        src={`${speaker.photo.url}&w=295&h=395`}
+        srcSet={`
         ${speaker.photo.url}&w=200&h=269 200w,
         ${speaker.photo.url}&w=300&h=403 300w,
         ${speaker.photo.url}&w=400&h=538 400w,
         ${speaker.photo.url}&w=500&h=673 500w,
         ${speaker.photo.url}&w=600&h=807 600w
       `}
-      // TODO: Set more acccurate sizes
-      sizes={`(min-width: 600px) 290px, 40vw`}
-    />
-  </div>
-);
+        // TODO: Set more acccurate sizes
+        sizes={`(min-width: 600px) 290px, 40vw`}
+      />
+    </div>
+  ) : null;
+};
 
 export const SpeakerSocials = ({ speaker }) => {
   const socialItems = [];
@@ -64,7 +67,10 @@ const Speaker = ({
     <div className={`speaker ${className}`}>
       {(linked && (
         <Link
-          href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
+          href={{
+            pathname: "/",
+            query: { slug: speaker.slug, category: "speakers" }
+          }}
           as={`/speakers/${speaker.slug}`}
         >
           <a className="speaker__link">

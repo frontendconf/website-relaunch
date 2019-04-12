@@ -29,6 +29,15 @@
   list-style-type: none;
 }
 
+%screenreader-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 %summary-title {
   @include textGradient;
   display: inline-block; // Necessary for the background-clip
@@ -72,7 +81,8 @@
     transform: rotate(-2deg);
     background-color: $primary;
     z-index: -1;
-    transition: background-color $transition-time-simple $transition-easing-default,
+    transition: background-color $transition-time-simple
+        $transition-easing-default,
       transform $transition-time-simple $transition-easing-default;
   }
 
@@ -96,4 +106,29 @@
 %summary-link-subtitle {
   @include textSubline;
   display: block;
+}
+
+%image-skew {
+  display: block;
+  max-width: 100%;
+  transform: rotate(-5deg);
+}
+
+%image-background {
+  @include gradient;
+  background-blend-mode: color;
+}
+
+%link-image {
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: opacity $transition-time-simple $transition-easing-default,
+    transform $transition-time-simple $transition-easing-default,
+    filter $transition-time-simple $transition-easing-default;
+}
+
+%link-image-hover {
+  transform: rotate(0);
+  filter: grayscale(0);
+  opacity: 1;
 }
