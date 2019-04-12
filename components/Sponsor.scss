@@ -1,0 +1,30 @@
+.sponsor {
+  & + & {
+    border-top: 1px solid #9b9ba3;
+  }
+
+  &--logo {
+    display: flex;
+    background-color: #342e46;
+    padding: 10px;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 63px;
+    width: 100%;
+    border-top: 0;
+  }
+}
+
+.sponsor__logo {
+  display: flex;
+  flex-direction: column;
+}
+
+.sponsor__svg {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.sponsor__img {
+  max-width: 100%;
+}

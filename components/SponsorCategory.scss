@@ -1,5 +1,6 @@
 .sponsor-category {
   margin: 0 0 35px;
+  flex: 1;
 }
 
 @media (min-width: 768px) {
@@ -8,14 +9,10 @@
   }
 }
 
-.sponsor-category h3,
-.newsletter h3 {
+.sponsor-category h3 {
   @include textGradient();
   font-weight: 400;
   margin: 0 0 30px;
-}
-
-.sponsor-category h3 {
   font-size: 28px;
   text-transform: uppercase;
 }
@@ -29,23 +26,4 @@
   .sponsor-category__item {
     flex: 0 0 124px;
   }
-}
-
-.sponsor-category__item-link {
-  display: flex;
-  background-color: #342e46;
-  padding: 10px;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 63px;
-  width: 100%;
-}
-
-.sponsor-category__item-svg {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.sponsor-category__item-img {
-  max-width: 100%;
 }

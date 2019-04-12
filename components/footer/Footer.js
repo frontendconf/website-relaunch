@@ -60,7 +60,7 @@ const footerQuery = gql`
   }
 `;
 
-export default function Footer() {
+export default function Footer({ showContributingSponsors = true }) {
   return (
     <footer className="footer">
       <Query query={footerQuery}>
@@ -93,7 +93,9 @@ export default function Footer() {
             <Container>
               <Row>
                 <Col className="xs-12">
-                  <SponsorCategory title="Contributing Sponsors" />
+                  {showContributingSponsors ? (
+                    <SponsorCategory title="Contributing Sponsors" />
+                  ) : null}
 
                   <Row>
                     <Col className="footer__newsletter-col xs-12 md-3">

@@ -348,6 +348,11 @@ export default withRouter(({ router: { query } }) => {
                           <VenueTeaser isVenue={isVenue} />
                         ) : null}
                       </div>
+                      <div>
+                        {currentPage.showSponsorsDetailed ? (
+                          <Sponsors details="true" />
+                        ) : null}
+                      </div>
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                   </Row>

@@ -2,6 +2,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import { Row, Col } from "./shared/Grid";
+import Sponsor from "./Sponsor";
 
 const sponsorsQuery = gql`
   query {
@@ -13,6 +14,9 @@ const sponsorsQuery = gql`
           url(transform: { width: 80, height: 80 })
         }
         logoSvg
+        body
+        twitter
+        linkedin
         category {
           title
           color
@@ -30,7 +34,8 @@ const sponsorsQuery = gql`
 export default function SponsorCategory({
   category = "CONTRIBUTING",
   title,
-  filterTag = "FEC19"
+  filterTag = "FEC19",
+  details = false
 }) {
   return (
     <Query query={sponsorsQuery}>
@@ -64,40 +69,19 @@ export default function SponsorCategory({
           <div className="sponsor-category">
             <h3>{title}</h3>
 
-            <Row hGutter={true}>
-              {sponsors.map((item, key) => (
-                <Col className="sponsor-category__item" key={key}>
-                  <a
-                    className="sponsor-category__item-link"
-                    href={item.link}
-                    title={item.title}
-                    target="_blank"
-                  >
-                    {item.logoSvg ? (
-                      <span
-                        className="sponsor-category__item-svg"
-                        dangerouslySetInnerHTML={{
-                          __html: item.logoSvg
-                        }}
-                        style={
-                          item.category.color
-                            ? { fill: item.category.color }
-                            : {}
-                        }
-                      />
-                    ) : item.logo ? (
-                      <img
-                        className="sponsor-category__item-img"
-                        src={item.logo.url}
-                        alt={item.title}
-                      />
-                    ) : (
-                      item.title
-                    )}
-                  </a>
-                </Col>
-              ))}
-            </Row>
+            {details ? (
+              sponsors.map((item, key) => (
+                <Sponsor item={item} details={true} key={key} />
+              ))
+            ) : (
+              <Row hGutter={true}>
+                {sponsors.map((item, key) => (
+                  <Col className="sponsor-category__item" key={key}>
+                    <Sponsor item={item} />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </div>
         );
       }}

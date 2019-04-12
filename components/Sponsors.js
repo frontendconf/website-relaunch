@@ -1,25 +1,32 @@
 import FadeIn from "./FadeIn";
 import SponsorCategory from "./SponsorCategory";
 
-export default function Sponsors() {
+export default function Sponsors({ details = false }) {
   return (
     <div className="sponsors">
-      <FadeIn>
-        <h3 className="sponsors__title">Sponsors</h3>
-      </FadeIn>
+      {details ? null : (
+        <FadeIn>
+          <h3 className="sponsors__title">Sponsors</h3>
+        </FadeIn>
+      )}
 
       <FadeIn>
-        <SponsorCategory category="DIAMOND" filterTag="" />
+        <SponsorCategory category="DIAMOND" details={details} />
       </FadeIn>
       <FadeIn>
-        <SponsorCategory category="PLATINUM" filterTag="" />
+        <SponsorCategory category="PLATINUM" details={details} />
       </FadeIn>
       <FadeIn>
-        <SponsorCategory category="GOLD" filterTag="" />
+        <SponsorCategory category="GOLD" details={details} />
       </FadeIn>
       <FadeIn>
-        <SponsorCategory category="SILVER" filterTag="" />
+        <SponsorCategory category="SILVER" details={details} />
       </FadeIn>
+      {details ? (
+        <FadeIn>
+          <SponsorCategory category="CONTRIBUTING" details={details} />
+        </FadeIn>
+      ) : null}
     </div>
   );
 }

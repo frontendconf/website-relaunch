@@ -2,12 +2,13 @@
 import Link from "next/link";
 import { withRouter } from "next/router";
 import PropTypes from "prop-types";
-import Image from '../Image';
-import Socials from '../Socials';
+import Image from "../Image";
+import Socials from "../Socials";
 
 export const SpeakerImage = ({ speaker }) => (
   <div className="speaker__image-wrapper">
-    <Image className="speaker__image"
+    <Image
+      className="speaker__image"
       src={`${speaker.photo.url}&w=295&h=395`}
       srcSet={`
         ${speaker.photo.url}&w=200&h=269 200w,
@@ -28,30 +29,28 @@ export const SpeakerSocials = ({ speaker }) => {
   if (speaker.twitter) {
     socialItems.push({
       url: `https://twitter.com/${speaker.twitter}`,
-      icon: 'twitter',
-      a11y: speaker.name + ' Twitter profile'
+      icon: "twitter",
+      a11y: speaker.name + " Twitter profile"
     });
   }
 
   if (speaker.linkedin) {
     socialItems.push({
-      url: speaker.linkedin,
-      icon: 'linkedin',
-      a11y: speaker.name + ' Linkedin profile'
+      url: `https://linkedin.com/${speaker.linkedin}`,
+      icon: "linkedin",
+      a11y: speaker.name + " Linkedin profile"
     });
   }
 
   if (speaker.website) {
     socialItems.push({
       url: speaker.website,
-      icon: 'website',
-      a11y: speaker.name + ' Website'
+      icon: "website",
+      a11y: speaker.name + " Website"
     });
   }
-  return (
-    <Socials items={socialItems} mobileVertical={true} />
-  )
-}
+  return <Socials items={socialItems} mobileVertical={true} />;
+};
 
 const Speaker = ({
   speaker,
@@ -63,37 +62,31 @@ const Speaker = ({
 }) => {
   return (
     <div className={`speaker ${className}`}>
-      {linked && (
+      {(linked && (
         <Link
           href={{ pathname: "/speakers", query: { slug: speaker.slug } }}
           as={`/speakers/${speaker.slug}`}
         >
           <a className="speaker__link">
             <SpeakerImage speaker={speaker} />
-            {withName && (
-              <p className="speaker__name">{speaker.name}</p>
-            )}
+            {withName && <p className="speaker__name">{speaker.name}</p>}
             {withDescription && (
               <p className="speaker__description">{speaker.description}</p>
             )}
           </a>
         </Link>
-      ) || (
+      )) || (
         <div>
           <SpeakerImage speaker={speaker} />
-          {withName && (
-            <p className="speaker__name">{speaker.name}</p>
-          )}
+          {withName && <p className="speaker__name">{speaker.name}</p>}
           {withDescription && (
             <p className="speaker__description">{speaker.description}</p>
           )}
         </div>
       )}
-      {withSocials && (
-        <SpeakerSocials speaker={speaker} />
-      )}
+      {withSocials && <SpeakerSocials speaker={speaker} />}
     </div>
-  )
+  );
 };
 
 Speaker.propTypes = {
@@ -102,16 +95,16 @@ Speaker.propTypes = {
   linked: PropTypes.bool,
   withName: PropTypes.bool,
   withDescription: PropTypes.bool,
-  withSocials: PropTypes.bool,
+  withSocials: PropTypes.bool
 };
 
 // Same approach for defaultProps too
 Speaker.defaultProps = {
-  className: '',
+  className: "",
   linked: true,
   withName: true,
   withDescription: true,
-  withSocials: false,
+  withSocials: false
 };
 
 export default withRouter(Speaker);
