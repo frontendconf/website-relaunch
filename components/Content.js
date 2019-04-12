@@ -1,5 +1,6 @@
 import ErrorMessage from "./ErrorMessage";
 import { withRouter } from "next/router";
+import Head from "next/head";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Markdown from "markdown-to-jsx";
@@ -156,12 +157,21 @@ export default withRouter(({ router: { query } }) => {
         const isHome = slug === "/";
         const isVenue = slug === "venue";
 
+        const HeadTitle = () => (
+          <Head>
+            <title>
+              {isHome ? "" : `${title} – `}Frontend Conference Zurich
+            </title>
+          </Head>
+        );
+
         switch (template) {
           case "list":
             return (
               <section
                 className={loading ? "content content--loading" : "content"}
               >
+                <HeadTitle />
                 <HeroBG />
                 <Hero
                   title={title}
@@ -185,13 +195,13 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
+                <HeadTitle />
                 <Hero
                   title={title}
                   subTitle={subTitle}
                   ctas={ctas}
                   template={template}
                 />
-
                 {(isSpeaker && (
                   <div className="content__white-wrapper">
                     <Backlink
@@ -313,6 +323,7 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
+                <HeadTitle />
                 <HeroBG />
                 <Hero title={title} subTitle={subTitle} ctas={ctas} />
                 <Container>
