@@ -46,12 +46,11 @@ export default function Sponsor({ details = false, item = {} }) {
               dangerouslySetInnerHTML={{
                 __html: item.logoSvg
               }}
-              style={item.category.color ? { fill: item.category.color } : {}}
             />
           ) : item.logo ? (
             <img
               className="sponsor__img"
-              src={item.logo.url}
+              src={`${item.logo.url}?w=${details ? 333 : 80}`}
               alt={item.title}
             />
           ) : (
@@ -60,9 +59,11 @@ export default function Sponsor({ details = false, item = {} }) {
         </a>
       </Col>
       <Col className="xs-12 rg-6 lg-8">
-        <h4 className="sponsor__details-title">{item.title}</h4>
-        <Markdown className="sponsor__details-text">{item.body}</Markdown>
-        <Links />
+        <h4 className="sponsor__title">{item.title}</h4>
+        <Markdown className="sponsor__desc">{item.body}</Markdown>
+        <div className="sponsor__links">
+          <Links />
+        </div>
       </Col>
     </Row>
   ) : (

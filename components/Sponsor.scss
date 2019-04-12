@@ -1,8 +1,4 @@
 .sponsor {
-  & + & {
-    border-top: 1px solid #9b9ba3;
-  }
-
   &--logo {
     display: flex;
     background-color: #342e46;
@@ -12,6 +8,39 @@
     min-height: 63px;
     width: 100%;
     border-top: 0;
+  }
+
+  &:not(&--logo) {
+    background: #fff; // Temporary since the container should be white instead
+    color: $offblack;
+    border-top: 1px solid #9b9ba3;
+    border-bottom: 1px solid #9b9ba3;
+    margin-bottom: -1px;
+    padding-top: 72px;
+    padding-bottom: 56px;
+
+    .sponsor__logo {
+      max-width: 90%;
+    }
+
+    .sponsor__img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .sponsor__svg {
+      fill: $offblack;
+    }
+
+    @include mq-down(rg) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+
+      .sponsor__logo {
+        margin-bottom: 40px;
+      }
+    }
   }
 }
 
@@ -27,4 +56,15 @@
 
 .sponsor__img {
   max-width: 100%;
+}
+
+.sponsor__title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.sponsor__links {
+  margin-top: 33px;
 }

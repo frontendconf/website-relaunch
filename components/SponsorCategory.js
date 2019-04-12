@@ -11,7 +11,7 @@ const sponsorsQuery = gql`
         title
         link
         logo {
-          url(transform: { width: 80, height: 80 })
+          url
         }
         logoSvg
         body
