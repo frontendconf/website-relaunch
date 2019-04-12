@@ -107,3 +107,28 @@
   @include textSubline;
   display: block;
 }
+
+%image-skew {
+  display: block;
+  max-width: 100%;
+  transform: rotate(-5deg);
+}
+
+%image-background {
+  @include gradient;
+  background-blend-mode: color;
+}
+
+%link-image {
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: opacity $transition-time-simple $transition-easing-default,
+    transform $transition-time-simple $transition-easing-default,
+    filter $transition-time-simple $transition-easing-default;
+}
+
+%link-image-hover {
+  transform: rotate(0);
+  filter: grayscale(0);
+  opacity: 1;
+}

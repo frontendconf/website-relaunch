@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import Link from "next/link";
 import Speaker from "./SpeakerLink";
 import ErrorMessage from "../ErrorMessage";
 import { Row, Col } from "../shared/Grid";
@@ -21,43 +22,63 @@ const speakersQuery = gql`
   }
 `;
 
-const SpeakersList = ({ limit }) => (
-  <Query query={speakersQuery} variables={{ limit }}>
-    {({ loading, error, data }) => {
-      if (error) return <ErrorMessage message="Error loading pages." />;
-      if (loading) return <div>Loading</div>;
+const SpeakersList = ({ limit, withHeading }) => (
+  <div className="speakers-list">
+    {withHeading && (
+      <FadeIn>
+        <h2 className="speakers-list__title">Industry Leading Speakers</h2>
+      </FadeIn>
+    )}
+    <Query query={speakersQuery} variables={{ limit }}>
+      {({ loading, error, data }) => {
+        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (loading) return <div>Loading</div>;
 
-      // Destructuring needs to be done outside the arguments to prevent mapping errors
-      const {
-        collection: { items: speakers }
-      } = data;
+        // Destructuring needs to be done outside the arguments to prevent mapping errors
+        const {
+          collection: { items: speakers }
+        } = data;
 
-      return (
-        <Row className="speakers-list">
-          {speakers.map(speaker => {
-            return (
-              <Col key={speaker.slug} className="speakers-list__col xs-6 md-4">
-                <FadeIn style={{ justifyContent: "center" }}>
-                  <Speaker
-                    className="speakers-list__speaker"
-                    speaker={speaker}
-                  />
-                </FadeIn>
-              </Col>
-            );
-          })}
-        </Row>
-      );
-    }}
-  </Query>
+        return (
+          <Row>
+            {speakers.map(speaker => {
+              return (
+                <Col
+                  key={speaker.slug}
+                  className="speakers-list__col xs-6 md-4"
+                >
+                  <FadeIn style={{ justifyContent: "center" }}>
+                    <Speaker
+                      className="speakers-list__speaker"
+                      speaker={speaker}
+                    />
+                  </FadeIn>
+                </Col>
+              );
+            })}
+          </Row>
+        );
+      }}
+    </Query>
+    <FadeIn>
+      <Link
+        href={{ pathname: "/", query: { slug: "speakers" } }}
+        as={"/speakers"}
+      >
+        <a className="speakers-list__link">Discover more</a>
+      </Link>
+    </FadeIn>
+  </div>
 );
 
 SpeakersList.propTypes = {
-  limit: PropTypes.number
+  limit: PropTypes.number,
+  withHeading: PropTypes.bool
 };
 
 SpeakersList.defaultProps = {
-  limit: 100
+  limit: 100,
+  withHeading: false
 };
 
 export default SpeakersList;

@@ -5,6 +5,7 @@ import ErrorMessage from "./ErrorMessage";
 import Markdown from "markdown-to-jsx";
 import { Row, Col } from "./shared/Grid";
 import FadeIn from "./FadeIn";
+import Image from "./Image";
 
 const teaserQuery = gql`
   query {
@@ -14,7 +15,7 @@ const teaserQuery = gql`
           title
           body
           photo {
-            url(transform: { width: 1000, height: 1000, resizeStrategy: FILL })
+            url(transform: { width: 1200, height: 1200, resizeStrategy: FILL })
           }
         }
         map
@@ -23,7 +24,7 @@ const teaserQuery = gql`
   }
 `;
 
-export default function VenueTeaser({ isVenue = false }) {
+export default function VenueTeaser() {
   return (
     <Query query={teaserQuery}>
       {({ loading, error, data }) => {
@@ -52,14 +53,32 @@ export default function VenueTeaser({ isVenue = false }) {
                     <Row>
                       <Col className="xs-12 rg-6">
                         <FadeIn style={{ display: "block" }}>
-                          <img
-                            src={venueTeaser.photo.url}
-                            className="venue-teaser__image"
-                          />
+                          <div className="venue-teaser__image-wrapper">
+                            <Image
+                              className="venue-teaser__image"
+                              src={`${venueTeaser.photo.url}&w=1000&h=1000`}
+                              srcSet={`
+                                ${venueTeaser.photo.url}&w=300&h=300 300w,
+                                ${venueTeaser.photo.url}&w=400&h=400 400w,
+                                ${venueTeaser.photo.url}&w=600&h=600 600w,
+                                ${venueTeaser.photo.url}&w=800&h=800 800w,
+                                ${venueTeaser.photo.url}&w=1000&h=1000 1000w,
+                                ${venueTeaser.photo.url}&w=1200&h=1200 1200w
+                              `}
+                              sizes={`
+                                (min-width: 1680px) 625px,
+                                (min-width: 600px) 45vw,
+                                95vw
+                              `}
+                            />
+                          </div>
                         </FadeIn>
                       </Col>
                       <Col className="xs-12 rg-5 offset-rg-1">
-                        <FadeIn delay={150} style={{}}>
+                        <FadeIn
+                          delay={150}
+                          style={{ alignItems: "center", height: "100%" }}
+                        >
                           <Markdown options={{ forceBlock: true }}>
                             {venueTeaser.body}
                           </Markdown>
