@@ -332,11 +332,11 @@ export default withRouter(({ router: { query } }) => {
                           <SpeakersList limit={isHome ? 6 : 0} />
                         ) : null}
                       </div>
-                      {/* <div>
+                      <div>
                         {currentPage.showVenue ? (
                           <VenueTeaser isVenue={isVenue} />
                         ) : null}
-                      </div> */}
+                      </div>
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
                     </Col>
                   </Row>

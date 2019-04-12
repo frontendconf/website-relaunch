@@ -1,9 +1,8 @@
 .venue-teaser {
-  display: flex;
+  @extend %default-module-spacer;
 
-  &__content {
-    position: relative;
-    flex: 1;
+  &__title {
+    @extend %summary-title;
   }
 
   &__map {
@@ -16,4 +15,3 @@
     max-width: 100%;
   }
 }
-

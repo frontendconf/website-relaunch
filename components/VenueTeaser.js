@@ -3,6 +3,8 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import Markdown from "markdown-to-jsx";
+import { Row, Col } from "./shared/Grid";
+import FadeIn from "./FadeIn";
 
 const teaserQuery = gql`
   query {
@@ -12,7 +14,7 @@ const teaserQuery = gql`
           title
           body
           photo {
-            url(transform: { width: 1000, height: 500, resizeStrategy: FILL })
+            url(transform: { width: 1000, height: 1000, resizeStrategy: FILL })
           }
         }
         map
@@ -24,11 +26,7 @@ const teaserQuery = gql`
 export default function VenueTeaser({ isVenue = false }) {
   return (
     <Query query={teaserQuery}>
-      {({
-        loading,
-        error,
-        data,
-      }) => {
+      {({ loading, error, data }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
         if (loading) return <div>Loading</div>;
 
@@ -41,28 +39,37 @@ export default function VenueTeaser({ isVenue = false }) {
 
         return (
           <div className="venue-teaser">
-            <img src={venueTeaser.photo.url} className="venue-teaser__image" />
-
-            <div className="venue-teaser__content">
-              {isVenue ? (
-                <div
-                  className="venue-teaser__map"
-                  dangerouslySetInnerHTML={{ __html: map }}
-                />
-              ) : (
-                <>
-                  <h3>
-                    <Link
-                      href={{ pathname: "/", query: { slug: "venue" } }}
-                      as={`/venue`}
-                    >
-                      <a>{venueTeaser.title}</a>
-                    </Link>
-                  </h3>
-                  <Markdown options={{ forceBlock: true }}>{venueTeaser.body}</Markdown>
-                </>
-              )}
-            </div>
+            <Row>
+              <Col className="xs-12">
+                <FadeIn>
+                  <h3 className="venue-teaser__title">{venueTeaser.title}</h3>
+                </FadeIn>
+                <Link
+                  href={{ pathname: "/", query: { slug: "venue" } }}
+                  as={`/venue`}
+                >
+                  <a className="venue-teaser__link">
+                    <Row>
+                      <Col className="xs-12 rg-6">
+                        <FadeIn style={{ display: "block" }}>
+                          <img
+                            src={venueTeaser.photo.url}
+                            className="venue-teaser__image"
+                          />
+                        </FadeIn>
+                      </Col>
+                      <Col className="xs-12 rg-5 offset-rg-1">
+                        <FadeIn delay={150} style={{}}>
+                          <Markdown options={{ forceBlock: true }}>
+                            {venueTeaser.body}
+                          </Markdown>
+                        </FadeIn>
+                      </Col>
+                    </Row>
+                  </a>
+                </Link>
+              </Col>
+            </Row>
           </div>
         );
       }}
