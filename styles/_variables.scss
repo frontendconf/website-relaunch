@@ -32,10 +32,10 @@ $spaces: (
 //
 // Style anchor elements.
 
-// $link-color:                              theme-color("primary") !default;
-// $link-decoration:                         none !default;
-// $link-hover-color:                        darken($link-color, 15%) !default;
-// $link-hover-decoration:                   underline !default;
+$link-color: $windsor !default;
+$link-decoration: none !default;
+$link-hover-color: darken($link-color, 5%) !default;
+$link-hover-decoration: underline !default;
 
 // Paragraphs
 //
@@ -48,8 +48,8 @@ $grid-columns: 12;
 
 $grid-gutters: (
   xs: 10px,
-  rg: 20px,
-  lg: 30px
+  rg: 30px,
+  lg: 40px
 );
 
 $grid-breakpoints: (

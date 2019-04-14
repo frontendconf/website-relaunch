@@ -6,6 +6,13 @@
     padding-bottom: 80px;
   }
 
+  // Remove maring of last item
+  &__inner-wrapper {
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   @include mq-up(rg) {
     &__white-wrapper {
       padding-bottom: 120px;

@@ -28,10 +28,14 @@
 
   &__icon {
     flex: 0 0 auto;
-    height: 10px; // TODO: use correct icon
-    width: 10px; // TODO: use correct icon
-    background-color: #fff;
+    color: #fff;
     transition: transform $transition-time-area-small $transition-easing-default;
+
+    svg,
+    & {
+      height: 14px;
+      width: 10px;
+    }
   }
 
   &__text-wrapper {

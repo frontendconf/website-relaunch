@@ -12,6 +12,7 @@ export default function Hero(props) {
               {props.subTitle ? (
                 <h2 className="hero__subtitle">{props.subTitle}</h2>
               ) : null}
+              {props.lead && <p className="hero__lead">{props.lead}</p>}
             </div>
 
             {props.ctas ? (

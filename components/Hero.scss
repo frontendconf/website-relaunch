@@ -3,23 +3,22 @@
   // background: url("/static/images/hero-bg.jpg") no-repeat center center / cover;
 
   // TODO: spacing should always be the same as header height
-  padding: 150px 0 90px 0; // 150px for header navigation
+  padding: 150px 0 90px 0;
   height: calc(100vh - 100px); // TODO: Adapt vor smaller breakpoints
 
   &__container {
-    height: 100%;
+    // height: 100%;
   }
 
   &__row {
-    height: 100%;
+    // height: 100%;
   }
 
   &__col {
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // height: 100%;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
   }
 
   &__inner {
@@ -43,6 +42,12 @@
     }
   }
 
+  &__lead {
+    opacity: 0.6;
+    font-size: 18px;
+    line-height: 1.67;
+  }
+
   &__cta {
     @include buttonBig;
     display: inline-block;
@@ -52,17 +57,74 @@
     }
   }
 
+  &--list {
+    height: auto;
+    padding: 90px 0 0;
+
+    .hero__inner {
+      display: block;
+      padding-top: 30px;
+      padding-bottom: 100px;
+    }
+
+    .hero__title {
+      margin: 0 0 40px;
+    }
+  }
+
+  @include mq-up(rg) {
+    &__title {
+      font-size: 90px;
+    }
+
+    &--list {
+      height: auto;
+      padding: 130px 0 0;
+    }
+  }
+
   @include mq-up(md) {
     &__cta {
       &:not(:last-child) {
         margin-right: 25px;
       }
     }
-  }
-}
 
-.hero--list {
-  height: calc(100vh - 300px); // TODO: Adapt vor smaller breakpoints
+    &__lead {
+      font-size: 24px;
+    }
+
+    &--list {
+      padding: 150px 0 0;
+      height: calc(100vh - 300px);
+      min-height: 800px;
+
+      .hero__inner {
+        padding-top: 70px;
+      }
+
+      .hero__title {
+        margin: 0 0 76px;
+      }
+    }
+  }
+
+  @include mq-up(lg) {
+    &__title {
+      font-size: 139px;
+      letter-spacing: -5px;
+    }
+
+    &--list {
+      .hero__inner {
+        padding-top: 110px;
+      }
+
+      .hero__title {
+        margin: 0 0 76px;
+      }
+    }
+  }
 }
 
 .hero--content {

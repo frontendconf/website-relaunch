@@ -16,6 +16,8 @@ import Backlink from "./Backlink";
 import { SpeakerImage, SpeakerSocials } from "./speaker/SpeakerLink";
 import NewsList from "./NewsList";
 import Sponsors from "./Sponsors";
+import RestaurantsList from "./RestaurantsList";
+import HotelsList from "./HotelsList";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -104,11 +106,16 @@ export default withRouter(({ router: { query } }) => {
   let dataQuery;
   let isSpeaker = false;
   let isNews = false;
+  let isVenue = false;
 
   switch (slug) {
     case "news":
       template = "list";
       isNews = true;
+      break;
+    case "venue":
+      template = "list";
+      isVenue = true;
       break;
     default:
       break;
@@ -176,6 +183,7 @@ export default withRouter(({ router: { query } }) => {
                 <Hero
                   title={title}
                   subTitle={subTitle}
+                  lead={currentPage.lead}
                   ctas={ctas}
                   template={template}
                 />
@@ -183,7 +191,21 @@ export default withRouter(({ router: { query } }) => {
                   <Container>
                     <Row>
                       <Col className="xs-12">
-                        {isNews ? <NewsList /> : null}
+                        <div className="content__inner-wrapper">
+                          <Row>
+                            <Col className="xs-12 lg-10 offset-lg-1">
+                              {currentPage.body ? (
+                                <Markdown options={{ forceBlock: true }}>
+                                  {currentPage.body}
+                                </Markdown>
+                              ) : null}
+                            </Col>
+                          </Row>
+
+                          {isNews ? <NewsList /> : null}
+                          {currentPage.showHotels && <HotelsList />}
+                          {currentPage.showRestaurants && <RestaurantsList />}
+                        </div>
                       </Col>
                     </Row>
                   </Container>
