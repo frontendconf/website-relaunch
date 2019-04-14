@@ -1,17 +1,13 @@
 .sponsor {
   &--logo {
     display: flex;
-    background-color: #09001f;
+    background-color: rgba($white, 0.05);
     padding: 10px;
     justify-content: center;
     flex-direction: column;
     width: 100%;
     border-top: 0;
     padding: 10%;
-
-    .footer & {
-      background-color: #342e46;
-    }
 
     .sponsor__svg {
       fill: $white;
