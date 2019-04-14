@@ -47,10 +47,16 @@ class Header extends Component {
     this.props.router.events.off("routeChangeStart", this.onRouteChange);
   }
 
-  toggleMobileMenu() {
+  toggleMobileMenu(options = {}) {
+    const newState = options.keepOpen
+      ? true
+      : options.keepClosed
+      ? false
+      : !this.state.mobileMenuOpen;
+
     this.setState({
       ...this.state,
-      mobileMenuOpen: !this.state.mobileMenuOpen
+      mobileMenuOpen: newState
     });
   }
 
@@ -114,6 +120,12 @@ class Header extends Component {
                         className={`nav ${
                           this.state.mobileMenuOpen ? "is-open" : ""
                         }`}
+                        onFocus={() =>
+                          this.toggleMobileMenu({ keepOpen: true })
+                        }
+                        onBlur={() =>
+                          this.toggleMobileMenu({ keepClosed: true })
+                        }
                       >
                         <ul className="nav__list">
                           {menuItems.map(item => (
@@ -145,6 +157,7 @@ class Header extends Component {
                       <button
                         onClick={() => this.toggleMobileMenu()}
                         className="burger"
+                        tabIndex="-1"
                       >
                         <svg
                           className="burger__icon"
