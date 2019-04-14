@@ -1,13 +1,30 @@
 .sponsor {
   &--logo {
     display: flex;
-    background-color: #342e46;
+    background-color: #09001f;
     padding: 10px;
     justify-content: center;
     flex-direction: column;
-    min-height: 63px;
     width: 100%;
     border-top: 0;
+    padding: 10%;
+
+    .footer & {
+      background-color: #342e46;
+    }
+
+    .sponsor__svg {
+      fill: $white;
+      opacity: 0.8;
+      transition: opacity $transition-time-simple $transition-easing-default;
+    }
+
+    &:hover,
+    &:focus {
+      .sponsor__svg {
+        opacity: 1;
+      }
+    }
   }
 
   &:not(&--logo) {
@@ -20,7 +37,7 @@
     padding-bottom: 56px;
 
     .sponsor__logo {
-      max-width: 90%;
+      max-width: 80%;
     }
 
     .sponsor__img {
