@@ -17,6 +17,12 @@
   text-transform: uppercase;
 }
 
+.sponsor-category--detail {
+  h3 {
+    color: $offblack;
+  }
+}
+
 .sponsor-category__item {
   display: flex;
 }

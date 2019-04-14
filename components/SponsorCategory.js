@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 import { Row, Col } from "./shared/Grid";
 import Sponsor from "./Sponsor";
+import FadeIn from "./FadeIn";
 
 const sponsorsQuery = gql`
   query {
@@ -90,12 +91,20 @@ export default function SponsorCategory({
         }
 
         return (
-          <div className="sponsor-category">
-            <h3>{title}</h3>
+          <div
+            className={`sponsor-category ${
+              details ? "sponsor-category--detail" : ""
+            }`}
+          >
+            <FadeIn>
+              <h3>{title}</h3>
+            </FadeIn>
 
             {details ? (
               sponsors.map((item, key) => (
-                <Sponsor item={item} details={true} key={key} />
+                <FadeIn key={key}>
+                  <Sponsor item={item} details={true} />
+                </FadeIn>
               ))
             ) : (
               <Row hGutter={true}>

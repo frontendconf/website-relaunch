@@ -23,9 +23,7 @@ export default function Sponsors({ details = false }) {
         <SponsorCategory category="SILVER" details={details} />
       </FadeIn>
       {details ? (
-        <FadeIn>
-          <SponsorCategory category="CONTRIBUTING" details={details} />
-        </FadeIn>
+        <SponsorCategory category="CONTRIBUTING" details={details} />
       ) : null}
     </div>
   );

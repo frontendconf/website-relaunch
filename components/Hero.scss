@@ -1,31 +1,26 @@
 .hero {
-  // TODO: Add responsive background images
-  // background: url("/static/images/hero-bg.jpg") no-repeat center center / cover;
-
-  // TODO: spacing should always be the same as header height
-  padding: 150px 0 90px 0;
-  height: calc(100vh - 100px); // TODO: Adapt vor smaller breakpoints
+  height: auto;
+  padding: 90px 0 0;
 
   &__container {
-    // height: 100%;
+    height: 100%;
   }
 
   &__row {
-    // height: 100%;
+    height: 100%;
   }
 
   &__col {
-    // height: 100%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__inner {
-    flex: 0 1 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 100px;
   }
 
   &__title {
@@ -34,7 +29,7 @@
     font-weight: normal;
     line-height: 1;
     letter-spacing: -1.8px;
-    margin: 0 0 100px;
+    margin: 0 0 40px;
     hyphens: auto;
 
     @include mq-up(md) {
@@ -49,6 +44,10 @@
     line-height: 1.67;
   }
 
+  &__ctas-wrapper {
+    padding-bottom: 40px;
+  }
+
   &__cta {
     @include buttonBig;
     display: inline-block;
@@ -58,72 +57,56 @@
     }
   }
 
-  &--list {
-    height: auto;
-    padding: 90px 0 0;
-
-    .hero__inner {
-      display: block;
-      padding-top: 30px;
-      padding-bottom: 100px;
-    }
-
-    .hero__title {
-      margin: 0 0 40px;
-    }
-  }
-
   @include mq-up(rg) {
+    height: auto;
+    padding: 130px 0 0;
+
     &__title {
       font-size: 90px;
     }
 
-    &--list {
-      height: auto;
-      padding: 130px 0 0;
+    &__ctas-wrapper {
+      padding-bottom: 65px;
     }
   }
 
   @include mq-up(md) {
-    &__cta {
-      &:not(:last-child) {
-        margin-right: 25px;
-      }
-    }
+    padding: 150px 0 0;
+    height: calc(100vh - 200px);
+    min-height: 1000px;
 
     &__lead {
       font-size: 24px;
     }
 
-    &--list {
-      padding: 150px 0 0;
-      height: calc(100vh - 300px);
-      min-height: 800px;
+    &__inner {
+      padding-top: 70px;
+    }
 
-      .hero__inner {
-        padding-top: 70px;
-      }
+    &__title {
+      margin: 0 0 76px;
+    }
 
-      .hero__title {
-        margin: 0 0 76px;
+    &__ctas-wrapper {
+      padding-bottom: 90px;
+    }
+
+    &__cta {
+      &:not(:last-child) {
+        margin-right: 25px;
       }
     }
   }
 
   @include mq-up(lg) {
+    &__inner {
+      padding-top: 110px;
+    }
+
     &__title {
       font-size: 139px;
       letter-spacing: -5px;
-    }
-
-    &--list {
-      .hero__inner {
-        padding-top: 110px;
-      }
-
-      .hero__title {
-        margin: 0 0 76px;
-      }
+      margin: 0 0 76px;
     }
   }
 }

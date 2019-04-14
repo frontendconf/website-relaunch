@@ -117,6 +117,9 @@ export default withRouter(({ router: { query } }) => {
       template = "list";
       isVenue = true;
       break;
+    case "sponsors":
+      template = "list";
+      break;
     default:
       break;
   }
@@ -205,11 +208,15 @@ export default withRouter(({ router: { query } }) => {
                           {isNews ? <NewsList /> : null}
                           {currentPage.showHotels && <HotelsList />}
                           {currentPage.showRestaurants && <RestaurantsList />}
+                          {currentPage.showSponsorsDetailed && (
+                            <Sponsors details="true" />
+                          )}
                         </div>
                       </Col>
                     </Row>
                   </Container>
                 </div>
+                {currentPage.showSponsors && <Sponsors />}
               </section>
             );
           case "content":
@@ -221,6 +228,7 @@ export default withRouter(({ router: { query } }) => {
                 <Hero
                   title={title}
                   subTitle={subTitle}
+                  lead={currentPage.lead}
                   ctas={ctas}
                   template={template}
                 />
@@ -347,11 +355,15 @@ export default withRouter(({ router: { query } }) => {
               >
                 <HeadTitle />
                 <HeroBG />
-                <Hero title={title} subTitle={subTitle} ctas={ctas} />
+                <Hero
+                  title={title}
+                  subTitle={subTitle}
+                  lead={currentPage.lead}
+                  ctas={ctas}
+                />
                 <Container>
                   <Row>
                     <Col>
-                      <p>{currentPage.lead}</p>
                       <div>
                         {currentPage.body ? (
                           <Markdown options={{ forceBlock: true }}>
