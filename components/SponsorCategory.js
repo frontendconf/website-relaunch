@@ -62,7 +62,9 @@ export default function SponsorCategory({
         }
 
         // Sort by `order` property
-        sponsors = sponsors.sort((a, b) => a.order - b.order);
+        if (sponsors[0].order) {
+          sponsors = sponsors.sort((a, b) => a.order - b.order);
+        }
 
         // Default title
         if (!title && sponsors.length) {
