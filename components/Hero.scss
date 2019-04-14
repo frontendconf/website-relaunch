@@ -36,6 +36,7 @@
     line-height: 1;
     letter-spacing: -1.8px;
     margin: 0 0 100px;
+    hyphens: auto;
 
     @include mq-up(md) {
       font-size: 139px;
