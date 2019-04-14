@@ -4,7 +4,7 @@ import { withRouter } from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
-import { Container, Row, Col } from './shared/Grid';
+import { Container, Row, Col } from "./shared/Grid";
 
 const menuQuery = gql`
   query menu {
@@ -31,46 +31,50 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      mobileMenuOpen: false,
-    }
+      mobileMenuOpen: false
+    };
   }
 
   onRouteChange = () => {
     this.closeMobileMenu();
-  }
+  };
 
   componentWillMount() {
-    this.props.router.events.on('routeChangeStart', this.onRouteChange);
+    this.props.router.events.on("routeChangeStart", this.onRouteChange);
   }
 
   componentWillUnmount() {
-    this.props.router.events.off('routeChangeStart', this.onRouteChange);
+    this.props.router.events.off("routeChangeStart", this.onRouteChange);
   }
 
-  toggleMobileMenu() {
+  toggleMobileMenu(options = {}) {
+    const newState = options.keepOpen
+      ? true
+      : options.keepClosed
+      ? false
+      : !this.state.mobileMenuOpen;
+
     this.setState({
       ...this.state,
-      mobileMenuOpen: !this.state.mobileMenuOpen,
-    })
+      mobileMenuOpen: newState
+    });
   }
 
   closeMobileMenu() {
     this.setState({
       ...this.state,
-      mobileMenuOpen: false,
-    })
+      mobileMenuOpen: false
+    });
   }
 
   render() {
-    const { router: { query } } = this.props;
+    const {
+      router: { query }
+    } = this.props;
 
     return (
       <Query query={menuQuery}>
-        {({
-          loading,
-          error,
-          data,
-        }) => {
+        {({ loading, error, data }) => {
           if (error) return <ErrorMessage message="Error loading pages." />;
           if (loading) return <div>Loading</div>;
 
@@ -84,30 +88,61 @@ class Header extends Component {
               ]
             }
           } = data;
-    
+
           return (
             <header className="header">
               <Container wide={true}>
                 <Row>
-                  <Col className={'header__col xs-12'}>
+                  <Col className={"header__col xs-12"}>
                     <div className="header__inner">
                       <Link href="/" as="/">
-                        <a className={!query.slug ? "home-link is-active" : "home-link"}>
-                          <img className="home-link__image" src="/static/neon.svg" />
+                        <a
+                          className={
+                            !query.slug ? "home-link is-active" : "home-link"
+                          }
+                        >
+                          <img
+                            className="home-link__image"
+                            src="/static/neon.svg"
+                          />
                           <div className="home-link__text-wrap">
-                            <span className="home-link__slogan">Front Conference 2019</span>
-                            <span className="home-link__date">August 28 29 30</span>
+                            <span className="home-link__slogan">
+                              Front Conference 2019
+                            </span>
+                            <span className="home-link__date">
+                              August 28 29 30
+                            </span>
                           </div>
                         </a>
                       </Link>
-                      <div className="header__flex-spacer"></div>
-                      <nav className={`nav ${this.state.mobileMenuOpen ? 'is-open' : ''}`}>
+                      <div className="header__flex-spacer" />
+                      <nav
+                        className={`nav ${
+                          this.state.mobileMenuOpen ? "is-open" : ""
+                        }`}
+                        onFocus={() =>
+                          this.toggleMobileMenu({ keepOpen: true })
+                        }
+                        onBlur={() =>
+                          this.toggleMobileMenu({ keepClosed: true })
+                        }
+                      >
                         <ul className="nav__list">
                           {menuItems.map(item => (
                             <li className="nav__list-item" key={item.sys.id}>
-                              <Link href={{ pathname: '/', query: { slug: item.slug } }} as={`/${item.slug}` }>
+                              <Link
+                                href={{
+                                  pathname: "/",
+                                  query: { slug: item.slug }
+                                }}
+                                as={`/${item.slug}`}
+                              >
                                 <a
-                                  className={query.slug === item.slug ? "nav__link is-active" : "nav__link"}
+                                  className={
+                                    query.slug === item.slug
+                                      ? "nav__link is-active"
+                                      : "nav__link"
+                                  }
                                 >
                                   {item.title}
                                 </a>
@@ -116,10 +151,25 @@ class Header extends Component {
                           ))}
                         </ul>
                       </nav>
-                      <a href="" className="ticket-link">Buy Tickets</a>
-                      <button onClick={() => this.toggleMobileMenu()} className="burger">
-                        <svg className="burger__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14">
-                          <path fill="currentColor" d="M1.217 2.613c-.331 0-.623-.147-.86-.383-.239-.235-.342-.585-.356-.923C-.011.983.147.61.357.384A1.21 1.21 0 0 1 1.217 0h.025c.201-.002.404 0 .607 0H16.783c.329 0 .623.148.86.383.239.235.342.585.356.923.012.324-.146.696-.356.923a1.21 1.21 0 0 1-.86.383h-.025c-.201.002-.404 0-.607 0H1.217zm0 5.692c-.331 0-.623-.148-.86-.383C.118 7.687.015 7.337.001 7c-.012-.324.146-.696.356-.923a1.21 1.21 0 0 1 .86-.383h.02c.466-.007.932 0 1.398 0H12.73c.33 0 .623.148.86.383.24.235.342.585.357.923.012.324-.146.697-.357.923a1.21 1.21 0 0 1-.86.383h-.02c-.466.007-.932 0-1.398 0H1.217zm0 5.693c-.331 0-.623-.148-.86-.383-.239-.235-.342-.585-.356-.923-.012-.324.146-.697.356-.923a1.21 1.21 0 0 1 .86-.383h.012c.303-.004.605 0 .91 0h6.536c.329 0 .623.148.86.383.239.235.342.585.356.923.012.324-.146.697-.356.923a1.21 1.21 0 0 1-.86.383h-.012c-.303.004-.605 0-.91 0H1.218z"/>
+                      <a href="" className="ticket-link">
+                        Buy Tickets
+                      </a>
+                      <button
+                        onClick={() => this.toggleMobileMenu()}
+                        className="burger"
+                        tabIndex="-1"
+                      >
+                        <svg
+                          className="burger__icon"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="14"
+                          viewBox="0 0 18 14"
+                        >
+                          <path
+                            fill="currentColor"
+                            d="M1.217 2.613c-.331 0-.623-.147-.86-.383-.239-.235-.342-.585-.356-.923C-.011.983.147.61.357.384A1.21 1.21 0 0 1 1.217 0h.025c.201-.002.404 0 .607 0H16.783c.329 0 .623.148.86.383.239.235.342.585.356.923.012.324-.146.696-.356.923a1.21 1.21 0 0 1-.86.383h-.025c-.201.002-.404 0-.607 0H1.217zm0 5.692c-.331 0-.623-.148-.86-.383C.118 7.687.015 7.337.001 7c-.012-.324.146-.696.356-.923a1.21 1.21 0 0 1 .86-.383h.02c.466-.007.932 0 1.398 0H12.73c.33 0 .623.148.86.383.24.235.342.585.357.923.012.324-.146.697-.357.923a1.21 1.21 0 0 1-.86.383h-.02c-.466.007-.932 0-1.398 0H1.217zm0 5.693c-.331 0-.623-.148-.86-.383-.239-.235-.342-.585-.356-.923-.012-.324.146-.697.356-.923a1.21 1.21 0 0 1 .86-.383h.012c.303-.004.605 0 .91 0h6.536c.329 0 .623.148.86.383.239.235.342.585.356.923.012.324-.146.697-.356.923a1.21 1.21 0 0 1-.86.383h-.012c-.303.004-.605 0-.91 0H1.218z"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -130,7 +180,7 @@ class Header extends Component {
           );
         }}
       </Query>
-    )
+    );
   }
 }
 

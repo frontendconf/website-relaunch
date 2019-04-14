@@ -17,12 +17,17 @@ const speakersQuery = gql`
         photo {
           url(transform: { resizeStrategy: FILL })
         }
+        tagsCollection(limit: 20) {
+          items {
+            title
+          }
+        }
       }
     }
   }
 `;
 
-const SpeakersList = ({ limit, withHeading }) => (
+const SpeakersList = ({ limit, withHeading, filterTag = "FEC18" }) => (
   <div className="speakers-list">
     {withHeading && (
       <FadeIn>
@@ -35,9 +40,16 @@ const SpeakersList = ({ limit, withHeading }) => (
         if (loading) return <div>Loading</div>;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
-        const {
+        let {
           collection: { items: speakers }
         } = data;
+
+        // Filter by tag
+        if (filterTag) {
+          speakers = speakers.filter(item =>
+            item.tagsCollection.items.find(tag => tag.title === filterTag)
+          );
+        }
 
         return (
           <Row>

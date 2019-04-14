@@ -17,6 +17,7 @@ const sponsorsQuery = gql`
         body
         twitter
         linkedin
+        order
         category {
           title
           color
@@ -60,9 +61,32 @@ export default function SponsorCategory({
           );
         }
 
+        // Sort by `order` property
+        if (sponsors[0].order) {
+          sponsors = sponsors.sort((a, b) => a.order - b.order);
+        }
+
         // Default title
         if (!title && sponsors.length) {
           title = sponsors.find(item => item.category.title).category.title;
+        }
+
+        // Columns
+        let columnClasses = "xs-12 rg-6 lg-4";
+
+        switch (category) {
+          case "PLATINUM":
+            columnClasses = "xs-6 rg-4 lg-3";
+            break;
+          case "GOLD":
+            columnClasses = "xs-4 rg-3 lg-2";
+            break;
+          case "SILVER":
+            columnClasses = "xs-3 rg-2 lg-1";
+            break;
+          case "CONTRIBUTING":
+            columnClasses = "xs-3 rg-2 lg-1";
+            break;
         }
 
         return (
@@ -76,7 +100,10 @@ export default function SponsorCategory({
             ) : (
               <Row hGutter={true}>
                 {sponsors.map((item, key) => (
-                  <Col className="sponsor-category__item" key={key}>
+                  <Col
+                    className={`sponsor-category__item ${columnClasses}`}
+                    key={key}
+                  >
                     <Sponsor item={item} />
                   </Col>
                 ))}
