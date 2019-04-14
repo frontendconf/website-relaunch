@@ -17,6 +17,7 @@ const sponsorsQuery = gql`
         body
         twitter
         linkedin
+        order
         category {
           title
           color
@@ -59,6 +60,9 @@ export default function SponsorCategory({
             item.tagCollection.items.find(tag => tag.title === filterTag)
           );
         }
+
+        // Sort by `order` property
+        sponsors = sponsors.sort((a, b) => a.order - b.order);
 
         // Default title
         if (!title && sponsors.length) {
