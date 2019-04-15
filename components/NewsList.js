@@ -63,7 +63,7 @@ export default function NewsList() {
                       }}
                       as={`/news/${item.slug}`}
                     >
-                      <a className="news-list__more">Read more</a>
+                      <a className="news-list__more">Read&nbsp;more</a>
                     </Link>
                   </div>
 

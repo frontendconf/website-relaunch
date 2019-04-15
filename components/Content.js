@@ -195,16 +195,19 @@ export default withRouter(({ router: { query } }) => {
                     <Row>
                       <Col className="xs-12">
                         <div className="content__inner-wrapper">
-                          <Row>
-                            <Col className="xs-12 lg-10 offset-lg-1">
-                              {currentPage.body ? (
-                                <Markdown options={{ forceBlock: true }}>
-                                  {currentPage.body}
-                                </Markdown>
-                              ) : null}
-                            </Col>
-                          </Row>
+                          {currentPage.body && (
+                            <Row>
+                              <Col className="xs-12 lg-10 offset-lg-1">
+                                <div className="markdown-wrapper">
+                                  <Markdown options={{ forceBlock: true }}>
+                                    {currentPage.body}
+                                  </Markdown>
+                                </div>
+                              </Col>
+                            </Row>
+                          )}
 
+                          {isVenue && <VenueTeaser isVenue={isVenue} />}
                           {isNews ? <NewsList /> : null}
                           {currentPage.showHotels && <HotelsList />}
                           {currentPage.showRestaurants && <RestaurantsList />}

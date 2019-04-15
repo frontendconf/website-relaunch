@@ -72,7 +72,7 @@
 
   @include mq-up(md) {
     padding: 150px 0 0;
-    height: calc(100vh - 200px);
+    height: calc(100vh - 300px);
     min-height: 1000px;
 
     &__lead {
@@ -114,6 +114,7 @@
 .hero--content {
   padding: 0;
   height: 88px;
+  min-height: inherit;
 
   & .hero {
     &__inner {

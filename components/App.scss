@@ -31,7 +31,7 @@ body {
 }
 
 h1,
-%h1  {
+%h1 {
   font-size: 28px;
   font-weight: $font-weight-normal;
   margin: 0 0 35px;
@@ -61,5 +61,15 @@ p {
   @include mq-up(md) {
     font-size: $font-size-regular;
     letter-spacing: -0.2px;
+  }
+}
+
+.markdown-wrapper {
+  h2 {
+    @extend %summary-title;
+
+    .content__white-wrapper & {
+      color: $offblack;
+    }
   }
 }

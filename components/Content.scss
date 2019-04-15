@@ -8,6 +8,12 @@
 
   // Remove maring of last item
   &__inner-wrapper {
+    padding-top: 100px;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
     > *:last-child {
       margin-bottom: 0;
     }
