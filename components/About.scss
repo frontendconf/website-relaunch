@@ -15,4 +15,21 @@
 
 .board {
   display: block !important; // Hidden in contentful in order to prevent duplication on current website
+
+  @include mq-down(md) {
+    td {
+      display: block;
+      padding: 0;
+
+      &:last-child {
+        margin-bottom: 1.4em;
+      }
+    }
+  }
+
+  @include mq-up(md) {
+    td {
+      padding-right: 1.4em;
+    }
+  }
 }
