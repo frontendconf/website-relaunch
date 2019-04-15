@@ -415,10 +415,11 @@ export default withRouter(({ router: { query } }) => {
                         ) : null}
                       </div>
                       <div>{currentPage.showJobs ? <Jobs /> : null}</div>
+                      <div>
+                        {currentPage.showSponsors ? <Sponsors /> : null}
+                      </div>
                     </Col>
                   </Row>
-
-                  {currentPage.showSponsors ? <Sponsors /> : null}
                 </Container>
               </section>
             );

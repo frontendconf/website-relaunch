@@ -25,17 +25,19 @@
 
   &__title {
     @include textGradient;
-    font-size: 50px;
     font-weight: normal;
-    line-height: 1;
-    letter-spacing: -1.8px;
+    letter-spacing: #{- (1em / 20em)}em;
     margin: 0 0 40px;
-    hyphens: auto;
 
-    @include mq-up(md) {
-      font-size: 139px;
-      letter-spacing: -5px;
-    }
+    @include fontSizeAndLineHeight(
+      pxToRem(35),
+      pxToRem(40),
+      pxToRem(55),
+      pxToRem(75),
+      pxToRem(95),
+      pxToRem(120),
+      pxToRem(137)
+    );
   }
 
   &__lead {
@@ -60,10 +62,6 @@
   @include mq-up(rg) {
     height: auto;
     padding: 130px 0 0;
-
-    &__title {
-      font-size: 90px;
-    }
 
     &__ctas-wrapper {
       padding-bottom: 65px;
@@ -104,8 +102,6 @@
     }
 
     &__title {
-      font-size: 139px;
-      letter-spacing: -5px;
       margin: 0 0 76px;
     }
   }

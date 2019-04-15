@@ -10,18 +10,10 @@ export default function Sponsors({ details = false }) {
         </FadeIn>
       )}
 
-      <FadeIn>
-        <SponsorCategory category="DIAMOND" details={details} />
-      </FadeIn>
-      <FadeIn>
-        <SponsorCategory category="PLATINUM" details={details} />
-      </FadeIn>
-      <FadeIn>
-        <SponsorCategory category="GOLD" details={details} />
-      </FadeIn>
-      <FadeIn>
-        <SponsorCategory category="SILVER" details={details} />
-      </FadeIn>
+      <SponsorCategory category="DIAMOND" details={details} />
+      <SponsorCategory category="PLATINUM" details={details} />
+      <SponsorCategory category="GOLD" details={details} />
+      <SponsorCategory category="SILVER" details={details} />
       {details ? (
         <SponsorCategory category="CONTRIBUTING" details={details} />
       ) : null}

@@ -44,9 +44,10 @@ $logo-isze-md: 63px;
   }
 
   &__text-wrap {
-    padding-left: 14px;
+    padding-left: 12px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   &__slogan {
@@ -55,15 +56,17 @@ $logo-isze-md: 63px;
     font-size: 16px;
     line-height: 1;
     width: 105px;
+    position: relative;
+    top: 2px;
   }
 
   &__date {
     display: none;
-    text-transform: uppercase;
-    font-size: 11px;
-    line-height: 1;
-    letter-spacing: 0.8px;
-    color: map-get(map-get($colors, grays), bombay);
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: $white;
+    opacity: 0.8;
   }
 
   @include mq-up(md) {
@@ -71,15 +74,17 @@ $logo-isze-md: 63px;
       height: $logo-isze-md;
       width: $logo-isze-md;
     }
-  
+
     &__text-wrap {
-      padding: 17px 0 13px 23px;
+      padding: 7px 0 0 23px;
+      justify-content: inherit;
     }
 
     &__slogan {
       font-size: 20px;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
       width: auto;
+      top: 0;
     }
 
     &__date {
@@ -199,13 +204,13 @@ $logo-isze-md: 63px;
   margin-left: 16px;
 }
 
-@media (min-width: 400px) {
+@include mq-up(rg) {
   .burger {
     margin-left: 30px;
   }
 }
 
-@media (min-width: 992px) {
+@include mq-up(lg) {
   .burger {
     display: none;
   }

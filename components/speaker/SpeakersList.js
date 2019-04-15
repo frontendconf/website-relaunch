@@ -72,14 +72,17 @@ const SpeakersList = ({ limit, withHeading, filterTag = "FEC18" }) => (
         );
       }}
     </Query>
-    <FadeIn>
-      <Link
-        href={{ pathname: "/", query: { slug: "speakers" } }}
-        as={"/speakers"}
-      >
-        <a className="speakers-list__link">Discover more</a>
-      </Link>
-    </FadeIn>
+
+    {limit !== SpeakersList.defaultProps.limit && (
+      <FadeIn>
+        <Link
+          href={{ pathname: "/", query: { slug: "speakers" } }}
+          as={"/speakers"}
+        >
+          <a className="speakers-list__link">Discover more</a>
+        </Link>
+      </FadeIn>
+    )}
   </div>
 );
 

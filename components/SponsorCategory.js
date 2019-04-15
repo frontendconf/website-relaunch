@@ -102,9 +102,7 @@ export default function SponsorCategory({
 
             {details ? (
               sponsors.map((item, key) => (
-                <FadeIn key={key}>
-                  <Sponsor item={item} details={true} />
-                </FadeIn>
+                <Sponsor key={key} item={item} details={true} />
               ))
             ) : (
               <Row hGutter={true}>
@@ -113,7 +111,9 @@ export default function SponsorCategory({
                     className={`sponsor-category__item ${columnClasses}`}
                     key={key}
                   >
-                    <Sponsor item={item} />
+                    <FadeIn key={key} delay={100 * key}>
+                      <Sponsor item={item} />
+                    </FadeIn>
                   </Col>
                 ))}
               </Row>

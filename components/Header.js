@@ -107,10 +107,12 @@ class Header extends Component {
                           />
                           <div className="home-link__text-wrap">
                             <span className="home-link__slogan">
-                              Front Conference 2019
+                              Front Conference
                             </span>
                             <span className="home-link__date">
-                              August 28 29 30
+                              29–30 August 2019
+                              <br />
+                              Alte Papierfabrik, Zurich
                             </span>
                           </div>
                         </a>
