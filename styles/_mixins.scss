@@ -1,4 +1,3 @@
-
 @mixin clearfix {
   &::after {
     content: "";
@@ -9,11 +8,7 @@
 
 // TODO: Refactor with variables
 @mixin gradient {
-  background-image: linear-gradient(
-    to right,
-    rgba($white, 0.7),
-    $primary
-  );
+  background-image: linear-gradient(to right, rgba($white, 0.7), $primary);
 }
 
 @mixin textGradient {
@@ -38,6 +33,7 @@
 // TODO: Add hover animation
 @mixin button {
   @include gradient;
+  position: relative;
   display: block;
   font-size: 13px; // TODO: Font-size into variable
   text-align: center;
@@ -49,6 +45,30 @@
   border: 0 none;
   text-decoration: none;
   cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $secondary;
+    border-radius: 100px;
+    z-index: -1;
+    transform: rotate(0deg);
+    opacity: 0;
+    transform-origin: right top;
+    transition: transform $transition-time-default $transition-easing-default,
+      opacity $transition-time-default $transition-easing-default;
+  }
+
+  &:hover {
+    &::before {
+      transform: rotate(-2deg);
+      opacity: 1;
+    }
+  }
 }
 
 @mixin buttonBig {
@@ -77,4 +97,207 @@
   } @else {
     @content;
   }
+}
+
+/**
+ * Sets font-size and calculate line-height depending on the font-size
+ *
+ * $argList: ($minValueS, $maxValueS, $minValueM, $maxValueM, $minValueL, $maxValueL);
+ */
+@mixin fontSizeAndLineHeight($argList...) {
+  @include fontSizeCalc($argList...);
+  @include fontLineHeight($argList...);
+}
+
+@mixin font-curve($minFontSize, $maxFontSize, $minScreenSize, $maxScreenSize) {
+  @media screen and (min-width: #{$minScreenSize}) {
+    @if (strip-unit($minFontSize) == strip-unit($maxFontSize)) {
+      font-size: $minFontSize;
+    } @else {
+      font-size: calc(
+        #{$minFontSize} +
+          #{strip-unit($maxFontSize) -
+          strip-unit($minFontSize)} *
+          (
+            (100vw - #{px-to-rem($minScreenSize)}) /
+              #{strip-unit(px-to-rem($maxScreenSize)) -
+              strip-unit(px-to-rem($minScreenSize))}
+          )
+      );
+    }
+  }
+}
+
+@mixin fontSizeCalc($argList...) {
+  // Smallest size with no scaling
+  font-size: nth($argList, 1);
+
+  /* stylelint-disable-next-line order/order */
+  @include font-curve(
+    nth($argList, 1),
+    nth($argList, 2),
+    320px,
+    map-get($grid-breakpoints, sm)
+  );
+
+  @if (length($argList) > 2) {
+    @include font-curve(
+      nth($argList, 2),
+      nth($argList, 3),
+      map-get($grid-breakpoints, sm),
+      map-get($grid-breakpoints, rg)
+    );
+  }
+
+  @if (length($argList) > 3) {
+    @include font-curve(
+      nth($argList, 3),
+      nth($argList, 4),
+      map-get($grid-breakpoints, rg),
+      map-get($grid-breakpoints, md)
+    );
+  }
+
+  @if (length($argList) > 4) {
+    @include font-curve(
+      nth($argList, 4),
+      nth($argList, 5),
+      map-get($grid-breakpoints, md),
+      map-get($grid-breakpoints, lg)
+    );
+  }
+
+  @if (length($argList) > 5) {
+    @include font-curve(
+      nth($argList, 5),
+      nth($argList, 6),
+      map-get($grid-breakpoints, lg),
+      map-get($grid-breakpoints, xl)
+    );
+  }
+
+  @if (length($argList) > 6) {
+    @include font-curve(
+      nth($argList, 6),
+      nth($argList, 7),
+      map-get($grid-breakpoints, xl),
+      map-get($grid-breakpoints, xxl)
+    );
+
+    // Largest size with no scaling
+    @include mq-up(xxl) {
+      font-size: nth($argList, 7);
+    }
+  }
+}
+
+@mixin fontLineHeight($argList...) {
+  $min: (nth($argList, 1) / 1rem);
+  $max: (nth($argList, 2) / 1rem);
+  $line-height: line-height-calc(average($min, $max));
+
+  /* stylelint-disable order/order */
+  line-height: $line-height;
+
+  @if (length($argList) > 2) {
+    $min: (nth($argList, 2) / 1rem);
+    $max: (nth($argList, 3) / 1rem);
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(average($min, $max));
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(sm) {
+        line-height: $line-height;
+      }
+    }
+  }
+
+  @if (length($argList) > 3) {
+    $min: (nth($argList, 3) / 1rem);
+    $max: (nth($argList, 4) / 1rem);
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(average($min, $max));
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(rg) {
+        line-height: $line-height;
+      }
+    }
+  }
+
+  @if (length($argList) > 4) {
+    $min: (nth($argList, 4) / 1rem);
+    $max: (nth($argList, 5) / 1rem);
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(average($min, $max));
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(md) {
+        line-height: $line-height;
+      }
+    }
+  }
+
+  @if (length($argList) > 5) {
+    $min: (nth($argList, 5) / 1rem);
+    $max: (nth($argList, 6) / 1rem);
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(average($min, $max));
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(lg) {
+        line-height: $line-height;
+      }
+    }
+  }
+
+  @if (length($argList) > 6) {
+    $min: (nth($argList, 6) / 1rem);
+    $max: (nth($argList, 7) / 1rem);
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(average($min, $max));
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(xl) {
+        line-height: $line-height;
+      }
+    }
+  }
+
+  @if (length($argList) > 6) {
+    $line-height-old: $line-height;
+    $line-height: line-height-calc(nth($argList, 7) / 1rem);
+
+    // Only render new line-height, if not the same as on last breakpoint
+    @if $line-height != $line-height-old {
+      @include mq-up(xxl) {
+        line-height: $line-height;
+      }
+    }
+  }
+}
+
+/**
+ * Better font rendering (on OS X)
+ * http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+ *
+ * Usage:
+ *
+ * .xy--dark-on-light {
+ * 	@include fontSmoothing;
+ * }
+ * .xy--light-on-dark {
+ * 	@include fontSmoothingReset;
+ * }
+ */
+
+@mixin font-smoothing() {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

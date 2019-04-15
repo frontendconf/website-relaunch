@@ -14,9 +14,17 @@
 //    md
 //    >> breakpoint-next(sm, $breakpoint-names: (xs sm md lg xl))
 //    md
-@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+@function breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
   $n: index($breakpoint-names, $name);
-  @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+  @return if(
+    $n != null and $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+  );
 }
 
 // Minimum breakpoint width. Null for the smallest (first) breakpoint.
@@ -39,5 +47,91 @@
 //    767.98px
 @function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
   $next: breakpoint-next($name, $breakpoints);
-  @return if($next, breakpoint-min($next, $breakpoints) - .02, null);
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+// TODO: Cleanup redundant functions
+@function z-index($key1, $key2: null) {
+  $map: $z-indexes;
+  $found-index: null;
+
+  @if ($key1 == "hidden") {
+    $found-index: -1;
+  }
+
+  @if ($key1 == "deep") {
+    $found-index: -2;
+  }
+
+  @if (map-has-key($map, $key1)) {
+    $found-index: index(map-keys($map), $key1);
+
+    @if ($key2) {
+      $map: map-get($map, $key1);
+      $found-index: index($map, $key2);
+    }
+  }
+
+  @return $found-index;
+}
+
+@function average($argList...) {
+  $sumOfArguments: 0;
+
+  @each $value in $argList {
+    $sumOfArguments: $sumOfArguments + $value;
+  }
+
+  @return $sumOfArguments/length($argList);
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function px-to-em($px, $ref: 16px) {
+  @return to-em(to-px($px) / to-px($ref));
+}
+
+@function px-to-rem($px) {
+  @return to-rem(strip-unit($px) / strip-unit(16px));
+}
+
+@function to-em($val) {
+  @return ($val + 0em);
+}
+
+@function to-rem($val) {
+  @return ($val + 0rem);
+}
+
+@function to-px($val) {
+  @return ($val + 0px);
+}
+
+// Hardcoded numbers come directly from design (new CI/CD)
+// line-height always depends on font-size
+@function line-height-calc($val) {
+  @if $val < px-to-rem(17) {
+    @return 1.5;
+  } @else if $val < px-to-rem(21) {
+    @return 1.4;
+  } @else if $val < px-to-rem(25) {
+    @return 1.3;
+  } @else if $val < px-to-rem(33) {
+    @return 1.2;
+  } @else if $val < px-to-rem(49) {
+    @return 1.1;
+  } @else {
+    @return 1;
+  }
+}
+
+@function calculate-inner-height(
+  $font-size,
+  $line-height,
+  $padding-top,
+  $padding-bottom: $padding-top
+) {
+  @return ($line-height * $font-size) + $padding-top + $padding-bottom;
 }

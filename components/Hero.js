@@ -7,7 +7,7 @@ export default function Hero(props) {
     <div className={props.template ? `hero hero--${props.template}` : "hero"}>
       <Container className="hero__container">
         <Row className="hero__container">
-          <Col className="hero__col xs-12 md-9">
+          <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
             <div className="hero__inner">
               <FadeIn style={{ display: "block" }}>
                 <h1 className="hero__title">{props.title}</h1>
