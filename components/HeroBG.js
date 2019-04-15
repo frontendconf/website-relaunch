@@ -3,6 +3,8 @@ import { Component } from "react";
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
 const TARGET_OPACITY = 0.6;
+const ANIMATION_DISTANCE = 800;
+const TOTAL_FRAMES = 90;
 
 class Hero extends Component {
   constructor(props) {
@@ -11,8 +13,7 @@ class Hero extends Component {
     this.state = {
       opacity: 0,
       step: 1, // visible frame
-      images: [], // stores all of the frames for quick access
-      totalFrames: 90 // the number of images in the sequence of JPEG files (this could be calculated server-side by scanning the frames folder)
+      images: [] // stores all of the frames TOTAL_FRAMES: 90 // the number of images in the sequence of JPEG files (this could be calculated server-side by scanning the frames folder)
     };
 
     this.myRef = React.createRef();
@@ -60,8 +61,9 @@ class Hero extends Component {
 
   animloop() {
     // the smoothest animation loop possible
-    const step = Math.round(
-      (this.getYOffset() / document.body.scrollHeight) * this.state.totalFrames
+    const step = Math.min(
+      Math.round((this.getYOffset() / ANIMATION_DISTANCE) * TOTAL_FRAMES),
+      TOTAL_FRAMES
     );
     if (step !== this.state.step) {
       this.setState({ step });
@@ -95,7 +97,7 @@ class Hero extends Component {
     // First trigger before scroll event happened
     this.scrollHandler();
 
-    for (let i = 0; i < this.state.totalFrames; i++) {
+    for (let i = 0; i < TOTAL_FRAMES; i++) {
       // loop for each image in sequence
       this.state.images[i] = new Image(); // add image object to array
       this.state.images[i].src =
