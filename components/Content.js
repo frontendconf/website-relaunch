@@ -11,7 +11,6 @@ import Jobs from "./Jobs";
 import Hero from "./Hero";
 import HeroBG from "./HeroBG";
 import SpeakersList from "./speaker/SpeakersList";
-import Speaker from "./speaker/SpeakerLink";
 import Backlink from "./Backlink";
 import { SpeakerImage, SpeakerSocials } from "./speaker/SpeakerLink";
 import NewsList from "./NewsList";
@@ -101,14 +100,19 @@ const currentSpeakerQuery = gql`
 
 export default withRouter(({ router: { query } }) => {
   const slug = query.slug || "/";
+  const category = query.category;
   let template = "default";
-  let category = query.category;
   let dataQuery;
-  let isSpeaker = false;
-  let isNews = false;
-  let isVenue = false;
+  let isHome = slug === "/";
+  let isNews = slug === "news";
+  let isVenue = slug === "venue";
 
+  // Root categories
   switch (slug) {
+    case "/":
+      template = "default";
+      isHome = true;
+      break;
     case "news":
       template = "list";
       isNews = true;
@@ -118,12 +122,16 @@ export default withRouter(({ router: { query } }) => {
       isVenue = true;
       break;
     case "sponsors":
+    case "about":
       template = "list";
       break;
     default:
       break;
   }
 
+  let isSpeaker = category === "speakers";
+
+  // Sub Categories
   switch (category) {
     case "speakers":
       template = "content";
@@ -162,10 +170,6 @@ export default withRouter(({ router: { query } }) => {
         const ctas = currentPage.leadCtasCollection
           ? currentPage.leadCtasCollection.items
           : null;
-        // if (loading) title="Loading...";
-
-        const isHome = slug === "/";
-        const isVenue = slug === "venue";
 
         const HeadTitle = () => (
           <Head>
@@ -219,7 +223,16 @@ export default withRouter(({ router: { query } }) => {
                     </Row>
                   </Container>
                 </div>
-                {currentPage.showSponsors && <Sponsors />}
+
+                {currentPage.showSponsors && (
+                  <Container>
+                    <Row>
+                      <Col className="xs-12">
+                        <Sponsors />
+                      </Col>
+                    </Row>
+                  </Container>
+                )}
               </section>
             );
           case "content":
