@@ -63,7 +63,6 @@ class Hero extends Component {
     const step = Math.round(
       (this.getYOffset() / document.body.scrollHeight) * this.state.totalFrames
     );
-    console.log(this.state.step, step);
     if (step !== this.state.step) {
       this.setState({ step });
     }
@@ -119,7 +118,7 @@ class Hero extends Component {
       >
         <img
           className="hero-bg__image"
-          src="/static/images/frames/hero-bg-00001.jpg"
+          src="/static/images/frames/hero-bg-00000.jpg"
           alt=""
           ref={this.myRef}
         />
