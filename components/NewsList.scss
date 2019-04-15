@@ -33,16 +33,19 @@
 
   &__date {
     @include textSubline;
+    margin-right: 25px;
   }
 
   &__tags {
     @include textSubline;
-    display: inline-block;
-    margin-left: 25px;
+    display: inline-flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     color: map_get($colors, "link");
+    max-width: 100%;
   }
 
   &__tag-item {
-    margin-left: 10px;
+    margin-right: 10px;
   }
 }
