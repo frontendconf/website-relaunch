@@ -51,7 +51,9 @@ const ImageTeaser = ({ venueTeaser }) => (
     </Col>
     <Col className="xs-12 rg-5 offset-rg-1">
       <FadeIn delay={150} style={{ alignItems: "center", height: "100%" }}>
-        <Markdown options={{ forceBlock: true }}>{venueTeaser.body}</Markdown>
+        <div className="markdown-wrapper">
+          <Markdown options={{ forceBlock: true }}>{venueTeaser.body}</Markdown>
+        </div>
       </FadeIn>
     </Col>
   </Row>

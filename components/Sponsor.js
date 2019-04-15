@@ -60,7 +60,9 @@ export default function Sponsor({ details = false, item = {} }) {
       </Col>
       <Col className="xs-12 rg-6 lg-8">
         <h4 className="sponsor__title">{item.title}</h4>
-        <Markdown className="sponsor__desc">{item.body}</Markdown>
+        <div className="markdown-wrapper">
+          <Markdown className="sponsor__desc">{item.body}</Markdown>
+        </div>
         <div className="sponsor__links">
           <Links />
         </div>
