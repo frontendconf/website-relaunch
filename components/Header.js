@@ -151,9 +151,15 @@ class Header extends Component {
                           ))}
                         </ul>
                       </nav>
-                      <a href="" className="ticket-link">
-                        Buy Tickets
-                      </a>
+                      <Link
+                        href={{
+                          pathname: "/",
+                          query: { slug: "tickets" }
+                        }}
+                        as="/tickets"
+                      >
+                        <a className="ticket-link">Buy tickets</a>
+                      </Link>
                       <button
                         onClick={() => this.toggleMobileMenu()}
                         className="burger"
