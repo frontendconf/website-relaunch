@@ -202,7 +202,7 @@ export default withRouter(({ router: { query } }) => {
                           {currentPage.body && (
                             <Row>
                               <Col className="xs-12 lg-10 offset-lg-1">
-                                <div className="markdown-wrapper">
+                                <div className="markdown-wrapper markdown-wrapper--list">
                                   <Markdown options={{ forceBlock: true }}>
                                     {currentPage.body}
                                   </Markdown>
@@ -283,9 +283,11 @@ export default withRouter(({ router: { query } }) => {
                           <div>
                             <h2>About</h2>
                             {currentPage.body ? (
-                              <Markdown options={{ forceBlock: true }}>
-                                {currentPage.body}
-                              </Markdown>
+                              <div className="markdown-wrapper">
+                                <Markdown options={{ forceBlock: true }}>
+                                  {currentPage.body}
+                                </Markdown>
+                              </div>
                             ) : null}
                           </div>
                         </Col>
@@ -311,9 +313,11 @@ export default withRouter(({ router: { query } }) => {
                             <p>{currentPage.lead}</p>
                             <div>
                               {currentPage.body ? (
-                                <Markdown options={{ forceBlock: true }}>
-                                  {currentPage.body}
-                                </Markdown>
+                                <div className="markdown-wrapper">
+                                  <Markdown options={{ forceBlock: true }}>
+                                    {currentPage.body}
+                                  </Markdown>
+                                </div>
                               ) : null}
                             </div>
                           </Col>
@@ -333,9 +337,11 @@ export default withRouter(({ router: { query } }) => {
                           <p>{currentPage.lead}</p>
                           <div>
                             {currentPage.body ? (
-                              <Markdown options={{ forceBlock: true }}>
-                                {currentPage.body}
-                              </Markdown>
+                              <div className="markdown-wrapper">
+                                <Markdown options={{ forceBlock: true }}>
+                                  {currentPage.body}
+                                </Markdown>
+                              </div>
                             ) : null}
                           </div>
                           <div>
@@ -382,9 +388,11 @@ export default withRouter(({ router: { query } }) => {
                     <Col>
                       <div>
                         {currentPage.body ? (
-                          <Markdown options={{ forceBlock: true }}>
-                            {currentPage.body}
-                          </Markdown>
+                          <div className="markdown-wrapper">
+                            <Markdown options={{ forceBlock: true }}>
+                              {currentPage.body}
+                            </Markdown>
+                          </div>
                         ) : null}
                       </div>
                       <div>{currentPage.showNews ? <NewsSummary /> : null}</div>

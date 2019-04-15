@@ -54,7 +54,9 @@ export default function NewsList() {
                   </Link>
                   <div className="news-list__body">
                     <Truncate lines={2} ellipsis="...">
-                      <Markdown>{item.body}</Markdown>
+                      <div className="markdown-wrapper">
+                        <Markdown>{item.body}</Markdown>
+                      </div>
                     </Truncate>
                     <Link
                       href={{
