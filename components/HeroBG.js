@@ -1,81 +1,24 @@
-import { Component } from "react";
+import React, { Component } from "react";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
 const TARGET_OPACITY = 0.6;
-const ANIMATION_DISTANCE = 800;
-const TOTAL_FRAMES = 90;
 
 class Hero extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      opacity: 0,
-      step: 1, // visible frame
-      images: [] // stores all of the frames TOTAL_FRAMES: 90 // the number of images in the sequence of JPEG files (this could be calculated server-side by scanning the frames folder)
+      opacity: 0
     };
 
     this.myRef = React.createRef();
-  }
-
-  changeFrame() {
-    const thisStep = this.state.step; // calculate the frame number
-    if (this.state.images.length > 0 && this.state.images[thisStep]) {
-      // if the image exists in the array
-      if (this.state.images[thisStep].complete) {
-        // if the image is downloaded and ready
-        if (
-          this.myRef.current.getAttribute("src") !==
-          this.state.images[thisStep].src
-        ) {
-          // save overhead...?
-          this.myRef.current.setAttribute(
-            "src",
-            this.state.images[thisStep].src
-          ); // change the source of our placeholder image
-        }
-      }
-    }
-  }
-
-  getYOffset() {
-    // get distance scrolled from the top
-    let pageY;
-    if (typeof window.pageYOffset == "number") {
-      pageY = window.pageYOffset;
-    } else {
-      pageY = document.documentElement.scrollTop; // IE
-    }
-    return pageY;
-  }
-
-  pad(number, length) {
-    // pad numbers with leading zeros for JPEG sequence file names
-    let str = "" + number;
-    while (str.length < length) {
-      str = "0" + str;
-    }
-    return str;
-  }
-
-  animloop() {
-    // the smoothest animation loop possible
-    const step = Math.min(
-      Math.round((this.getYOffset() / ANIMATION_DISTANCE) * TOTAL_FRAMES),
-      TOTAL_FRAMES
-    );
-    if (step !== this.state.step) {
-      this.setState({ step });
-    }
-    this.changeFrame();
   }
 
   scrollHandler = () => {
     // Create new callstack to resolve into next frame (better performance)
     setTimeout(() => {
       const scrollTop = document.documentElement.scrollTop;
-      this.animloop();
 
       if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
@@ -96,15 +39,6 @@ class Hero extends Component {
 
     // First trigger before scroll event happened
     this.scrollHandler();
-
-    for (let i = 0; i < TOTAL_FRAMES; i++) {
-      // loop for each image in sequence
-      this.state.images[i] = new Image(); // add image object to array
-      this.state.images[i].src =
-        "/static/images/frames/hero-bg-" + this.pad(i, 5) + ".jpg"; // set the source of the image object
-    }
-
-    this.animloop();
   }
 
   componentWillUnmount() {
@@ -118,12 +52,16 @@ class Hero extends Component {
           this.props.template ? `hero-bg--${this.props.template}` : ""
         }`}
       >
-        <img
+        <video
           className="hero-bg__image"
-          src="/static/images/frames/hero-bg-00000.jpg"
-          alt=""
+          autoPlay
+          muted
+          width="100%"
           ref={this.myRef}
-        />
+        >
+          <source type="video/mp4" src="/static/vortex.mp4" />
+          <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
+        </video>
         <div
           className="hero-bg__overlay"
           style={{ opacity: this.state.opacity }}

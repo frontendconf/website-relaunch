@@ -14,7 +14,7 @@ class MyApp extends App {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <ApolloProvider client={apolloClient}>
-          <IntlProvider locale="de">
+          <IntlProvider locale="en">
             <Component {...pageProps} />
           </IntlProvider>
         </ApolloProvider>
