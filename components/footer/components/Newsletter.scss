@@ -1,5 +1,7 @@
 .newsletter h3 {
+  @include textGradient();
   font-size: 20px;
+  font-weight: normal;
 }
 
 .newsletter__form {
