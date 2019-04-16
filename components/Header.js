@@ -160,7 +160,9 @@ class Header extends Component {
                         }}
                         as="/tickets"
                       >
-                        <a className="ticket-link">Buy tickets</a>
+                        <a className="ticket-link">
+                          <span className="ticket-link__text">Buy tickets</span>
+                        </a>
                       </Link>
                       <button
                         onClick={() => this.toggleMobileMenu()}

@@ -177,7 +177,6 @@ $logo-isze-md: 63px;
   top: -1px;
   display: block;
   text-decoration: none;
-  background-color: map-get($colors, secondary);
   font-size: 13px;
   line-height: 1;
   text-align: center;
@@ -185,6 +184,44 @@ $logo-isze-md: 63px;
   padding: 14px 20px 11px;
   border-radius: 100px;
   text-transform: uppercase;
+
+  &__text {
+    position: relative;
+    z-index: 3;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 100px;
+  }
+
+  &::before {
+    background-color: map-get($colors, secondary);
+    z-index: 2;
+  }
+
+  &::after {
+    background: $primary;
+    z-index: 1;
+    transform: rotate(0deg);
+    opacity: 0;
+    transform-origin: right top;
+    transition: transform $transition-time-default $transition-easing-default,
+      opacity $transition-time-default $transition-easing-default;
+  }
+
+  &:hover {
+    &::after {
+      transform: rotate(-2deg);
+      opacity: 1;
+    }
+  }
 }
 
 @media (min-width: 1200px) {
