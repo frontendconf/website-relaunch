@@ -20,7 +20,9 @@ class Hero extends Component {
   scrollHandler = () => {
     // Create new callstack to resolve into next frame (better performance)
     setTimeout(() => {
-      const scrollTop = document.documentElement.scrollTop;
+      // Cross browser scroll position fetching
+      const el = document.scrollingElement || document.documentElement;
+      const scrollTop = el.scrollTop;
 
       this.setState({
         parallaxTop:
