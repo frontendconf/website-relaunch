@@ -53,6 +53,12 @@ h2,
   }
 }
 
+h3,
+%h3 {
+  font-size: 26px;
+  margin: 0 0 18px 0;
+}
+
 p {
   font-size: $font-size-bigger-small;
   line-height: 1.44;
@@ -72,10 +78,39 @@ p {
     }
   }
 
+  h3 {
+    margin-top: 40px;
+  }
+
+  a {
+    @include link;
+  }
+
+  img,
+  .video {
+    margin: 50px 0;
+  }
+
   img {
     display: inline-block;
     max-width: 100%;
-    margin-bottom: 1em;
+  }
+
+  ul {
+    padding: 0;
+    margin: 34px 0;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    padding-left: 37px;
+
+    &::before {
+      content: "•";
+      position: absolute;
+      left: 13px;
+    }
   }
 
   li,
@@ -84,16 +119,45 @@ p {
     font-size: 18px;
     margin-bottom: 1em;
   }
+
   th,
   td {
     margin-bottom: 0;
     padding-right: 1em;
     padding-bottom: 1em;
   }
-}
 
-.markdown-wrapper--list {
-  h2 {
-    @extend %summary-title;
+  // Ugly, but it works
+  > *:first-child,
+  > div > *:first-child {
+    margin-top: 0 !important;
+  }
+
+  &--list {
+    h2 {
+      @extend %summary-title;
+      margin-top: 70px;
+    }
+  }
+
+  @include mq-up(md) {
+    .staff {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      li {
+        flex: 0 0 50%;
+      }
+    }
+  }
+
+  @include mq-up(xl) {
+    .staff {
+      li {
+        flex: 0 0 33.3333%;
+      }
+    }
   }
 }

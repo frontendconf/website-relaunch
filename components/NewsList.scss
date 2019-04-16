@@ -24,6 +24,7 @@
   }
 
   &__more {
+    @include link;
     padding-left: 15px;
   }
 

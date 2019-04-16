@@ -103,25 +103,21 @@ export default withRouter(({ router: { query } }) => {
   const category = query.category;
   let template = "default";
   let dataQuery;
+
+  let wideContent = false;
   let isHome = slug === "/";
-  let isNews = slug === "news";
   let isVenue = slug === "venue";
 
   // Root categories
   switch (slug) {
-    case "/":
-      template = "default";
-      isHome = true;
-      break;
-    case "news":
-      template = "list";
-      isNews = true;
-      break;
     case "venue":
-      template = "list";
-      isVenue = true;
-      break;
     case "sponsors":
+      wideContent = true;
+    case "terms":
+    case "jobs":
+    case "code-of-conduct":
+    case "privacy-policy":
+    case "news":
     case "about":
       template = "list";
       break;
@@ -129,19 +125,32 @@ export default withRouter(({ router: { query } }) => {
       break;
   }
 
+  let backLink = {};
   let isSpeaker = category === "speakers";
 
   // Sub Categories
   switch (category) {
     case "speakers":
       template = "content";
-      isSpeaker = true;
       dataQuery = currentSpeakerQuery;
+      backLink = {
+        text: "Speakers",
+        link: {
+          href: { pathname: "/", query: { slug: "speakers" } },
+          as: "/speakers"
+        }
+      };
       break;
     case "news":
       template = "content";
-      isNews = true;
       dataQuery = currentNewsQuery;
+      backLink = {
+        text: "News",
+        link: {
+          href: { pathname: "/", query: { slug: "news" } },
+          as: "/news"
+        }
+      };
       break;
     // case "speakers":
     // case "hosts":
@@ -201,7 +210,13 @@ export default withRouter(({ router: { query } }) => {
                         <div className="content__inner-wrapper">
                           {currentPage.body && (
                             <Row>
-                              <Col className="xs-12 lg-10 offset-lg-1">
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
                                 <div className="markdown-wrapper markdown-wrapper--list">
                                   <Markdown options={{ forceBlock: true }}>
                                     {currentPage.body}
@@ -211,12 +226,14 @@ export default withRouter(({ router: { query } }) => {
                             </Row>
                           )}
 
-                          {isVenue && <VenueTeaser isVenue={isVenue} />}
-                          {isNews ? <NewsList /> : null}
+                          {currentPage.showVenue && (
+                            <VenueTeaser isVenue={isVenue} />
+                          )}
+                          {currentPage.showNews && <NewsList />}
                           {currentPage.showHotels && <HotelsList />}
                           {currentPage.showRestaurants && <RestaurantsList />}
                           {currentPage.showSponsorsDetailed && (
-                            <Sponsors details="true" />
+                            <Sponsors details={true} />
                           )}
                         </div>
                       </Col>
@@ -248,15 +265,11 @@ export default withRouter(({ router: { query } }) => {
                   ctas={ctas}
                   template={template}
                 />
-                {(isSpeaker && (
-                  <div className="content__white-wrapper">
-                    <Backlink
-                      text="Speakers"
-                      link={{
-                        href: { pathname: "/", query: { slug: "speakers" } },
-                        as: "/speakers"
-                      }}
-                    />
+
+                <div className="content__white-wrapper">
+                  <Backlink {...backLink} />
+
+                  {(isSpeaker && (
                     <Container>
                       <Row className="content__floating-row">
                         <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
@@ -293,44 +306,10 @@ export default withRouter(({ router: { query } }) => {
                         </Col>
                       </Row>
                     </Container>
-                  </div>
-                )) ||
-                  (isNews && (
-                    <div className="content__white-wrapper">
-                      <Backlink
-                        text="News"
-                        link={{
-                          href: { pathname: "/", query: { slug: "news" } },
-                          as: "/news"
-                        }}
-                      />
-                      <Container>
-                        <Row>
-                          <Col className="xs-12 rg-8">
-                            <h1 className="content__title">
-                              {currentPage.title}
-                            </h1>
-                            <p>{currentPage.lead}</p>
-                            <div>
-                              {currentPage.body ? (
-                                <div className="markdown-wrapper">
-                                  <Markdown options={{ forceBlock: true }}>
-                                    {currentPage.body}
-                                  </Markdown>
-                                </div>
-                              ) : null}
-                            </div>
-                          </Col>
-                          <Col className="xs-12 rg-4">
-                            {/* Sidebar content */}
-                          </Col>
-                        </Row>
-                      </Container>
-                    </div>
                   )) || (
                     <Container>
                       <Row>
-                        <Col className="xs-12 rg-8">
+                        <Col className="xs-12 rg-10 offset-rg-1 lg-8 offset-lg-2">
                           <h1 className="content__title">
                             {currentPage.title}
                           </h1>
@@ -344,29 +323,11 @@ export default withRouter(({ router: { query } }) => {
                               </div>
                             ) : null}
                           </div>
-                          <div>
-                            {currentPage.showNews ? <NewsSummary /> : null}
-                          </div>
-                          <div>
-                            {currentPage.showSpeakers || isHome ? (
-                              <SpeakersList limit={isHome ? 6 : 0} />
-                            ) : null}
-                          </div>
-                          {/* <div>
-                          {currentPage.showVenue ? (
-                            <VenueTeaser isVenue={isVenue} />
-                          ) : null}
-                        </div> */}
-                          <div>{currentPage.showJobs ? <Jobs /> : null}</div>
-                        </Col>
-                        <Col className="xs-12 rg-4">
-                          {/* Sidebar content */}
                         </Col>
                       </Row>
-
-                      {currentPage.showSponsors ? <Sponsors /> : null}
                     </Container>
                   )}
+                </div>
               </section>
             );
           case "default":
@@ -386,38 +347,26 @@ export default withRouter(({ router: { query } }) => {
                 <Container>
                   <Row>
                     <Col>
-                      <div>
-                        {currentPage.body ? (
-                          <div className="markdown-wrapper">
-                            <Markdown options={{ forceBlock: true }}>
-                              {currentPage.body}
-                            </Markdown>
-                          </div>
-                        ) : null}
-                      </div>
-                      <div>{currentPage.showNews ? <NewsSummary /> : null}</div>
-                      <div>
-                        {currentPage.showSpeakers || isHome ? (
-                          <SpeakersList
-                            limit={isHome ? 6 : 0}
-                            withHeading={isHome ? true : false}
-                          />
-                        ) : null}
-                      </div>
-                      <div>
-                        {currentPage.showVenue ? (
-                          <VenueTeaser isVenue={isVenue} />
-                        ) : null}
-                      </div>
-                      <div>
-                        {currentPage.showSponsorsDetailed ? (
-                          <Sponsors details="true" />
-                        ) : null}
-                      </div>
-                      <div>{currentPage.showJobs ? <Jobs /> : null}</div>
-                      <div>
-                        {currentPage.showSponsors ? <Sponsors /> : null}
-                      </div>
+                      {currentPage.body && (
+                        <div className="markdown-wrapper">
+                          <Markdown options={{ forceBlock: true }}>
+                            {currentPage.body}
+                          </Markdown>
+                        </div>
+                      )}
+
+                      {currentPage.showNews && <NewsSummary />}
+                      {(currentPage.showSpeakers || isHome) && (
+                        <SpeakersList
+                          limit={isHome ? 6 : undefined}
+                          withHeading={isHome}
+                        />
+                      )}
+                      {currentPage.showVenue && (
+                        <VenueTeaser isVenue={isVenue} />
+                      )}
+                      {currentPage.showJobs && <Jobs />}
+                      {currentPage.showSponsors && <Sponsors />}
                     </Col>
                   </Row>
                 </Container>

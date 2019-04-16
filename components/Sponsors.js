@@ -3,7 +3,7 @@ import SponsorCategory from "./SponsorCategory";
 
 export default function Sponsors({ details = false }) {
   return (
-    <div className="sponsors">
+    <div className={`sponsors ${details ? "sponsors--detail" : ""}`}>
       {details ? null : (
         <FadeIn>
           <h3 className="sponsors__title">Sponsors</h3>

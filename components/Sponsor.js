@@ -41,6 +41,7 @@ export default function Sponsor({ details = false, item = {} }) {
             href={item.link}
             title={item.title}
             target="_blank"
+            rel="noopener noreferrer"
           >
             {item.logoSvg ? (
               <span
@@ -77,6 +78,7 @@ export default function Sponsor({ details = false, item = {} }) {
       href={item.link}
       title={item.title}
       target="_blank"
+      rel="noopener noreferrer"
     >
       {item.logoSvg ? (
         <span

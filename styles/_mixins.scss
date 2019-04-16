@@ -6,6 +6,16 @@
   }
 }
 
+@mixin link {
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
 // TODO: Refactor with variables
 @mixin gradient {
   background-image: linear-gradient(to right, rgba($white, 0.7), $primary);

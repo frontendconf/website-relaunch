@@ -4,4 +4,8 @@
   &__title {
     @extend %summary-title;
   }
+
+  &--detail {
+    margin-top: 25px;
+  }
 }

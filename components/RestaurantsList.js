@@ -47,6 +47,7 @@ const RestaurantsList = () => (
                         className="restaurants__link"
                         href={restaurant.link}
                         target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <FadeIn style={{ display: "block" }}>
                           <div className="restaurants__image-wrapper">

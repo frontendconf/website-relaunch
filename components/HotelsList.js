@@ -48,6 +48,7 @@ const HotelsList = () => (
                     className="hotels__link"
                     href={hotel.link}
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <Row>
                       <Col className="xs-12 rg-6 md-4 lg-3">

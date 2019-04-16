@@ -71,7 +71,7 @@
   @include mq-up(md) {
     padding: 150px 0 0;
     height: calc(100vh - 300px);
-    min-height: 1000px;
+    min-height: 700px;
 
     &__lead {
       font-size: 24px;
@@ -97,6 +97,8 @@
   }
 
   @include mq-up(lg) {
+    min-height: 1000px;
+
     &__inner {
       padding-top: 110px;
     }
