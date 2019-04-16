@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
+const PARALLAX_DISTANCE = 100;
 const TARGET_OPACITY = 0.6;
 
 class Hero extends Component {
@@ -9,7 +10,8 @@ class Hero extends Component {
     super(props);
 
     this.state = {
-      opacity: 0
+      opacity: 0,
+      parallaxTop: 0
     };
 
     this.myRef = React.createRef();
@@ -19,6 +21,11 @@ class Hero extends Component {
     // Create new callstack to resolve into next frame (better performance)
     setTimeout(() => {
       const scrollTop = document.documentElement.scrollTop;
+
+      this.setState({
+        parallaxTop:
+          (PARALLAX_DISTANCE / document.body.scrollHeight) * scrollTop
+      });
 
       if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
@@ -51,17 +58,11 @@ class Hero extends Component {
         className={`hero-bg ${
           this.props.template ? `hero-bg--${this.props.template}` : ""
         }`}
+        style={{
+          bottom: -PARALLAX_DISTANCE + "px",
+          transform: `translateY(-${this.state.parallaxTop}px)`
+        }}
       >
-        <video
-          className="hero-bg__image"
-          autoPlay
-          muted
-          width="100%"
-          ref={this.myRef}
-        >
-          <source type="video/mp4" src="/static/vortex.mp4" />
-          <p>Sorry, your browser does not support the &lt;video&gt; element.</p>
-        </video>
         <div
           className="hero-bg__overlay"
           style={{ opacity: this.state.opacity }}

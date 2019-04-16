@@ -1,3 +1,12 @@
+%hero-bg {
+  background: url("/static/images/bg_mobile.jpg") no-repeat top center / cover;
+
+  @include mq-up(md) {
+    background: url("/static/images/bg_desktop.jpg") no-repeat top center /
+      cover;
+  }
+}
+
 .hero-bg {
   position: fixed;
   top: 0;
@@ -5,12 +14,7 @@
   bottom: 0;
   left: 0;
   z-index: 0;
-  // TODO: Add responsive background images
-  //background: url("/static/images/hero-bg.jpg") no-repeat center center / cover;
-
-  // TODO: spacing should always be the same as header height
-  // padding: 150px 0 90px 0; // 150px for header navigation
-  // height: calc(100vh - 100px); // TODO: Adapt vor smaller breakpoints
+  @extend %hero-bg;
 
   &__overlay {
     content: "";
