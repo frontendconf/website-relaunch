@@ -92,7 +92,7 @@ SpeakersList.propTypes = {
 };
 
 SpeakersList.defaultProps = {
-  limit: 100,
+  limit: 0,
   withHeading: false
 };
 

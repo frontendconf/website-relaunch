@@ -30,6 +30,7 @@
   &__link {
     @include buttonBig;
     display: inline-block;
+    margin-top: 40px;
   }
 
   @include mq-up(sm) {
@@ -104,6 +105,7 @@
 
     &__speaker {
       max-width: calc(100% - 40px);
+      flex: 0 1 290px;
     }
   }
 }
