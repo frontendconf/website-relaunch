@@ -1,6 +1,7 @@
 import Markdown from "markdown-to-jsx";
 import { Row, Col } from "./shared/Grid";
 import Socials from "./Socials";
+import FadeIn from "./FadeIn";
 
 export default function Sponsor({ details = false, item = {} }) {
   const links = [];
@@ -32,42 +33,44 @@ export default function Sponsor({ details = false, item = {} }) {
   const Links = () => <Socials items={links} />;
 
   return details ? (
-    <Row className="sponsor">
-      <Col className="xs-12 rg-6 lg-4">
-        <a
-          className="sponsor__logo"
-          href={item.link}
-          title={item.title}
-          target="_blank"
-        >
-          {item.logoSvg ? (
-            <span
-              className="sponsor__svg"
-              dangerouslySetInnerHTML={{
-                __html: item.logoSvg
-              }}
-            />
-          ) : item.logo ? (
-            <img
-              className="sponsor__img"
-              src={`${item.logo.url}?w=${details ? 333 : 80}`}
-              alt={item.title}
-            />
-          ) : (
-            item.title
-          )}
-        </a>
-      </Col>
-      <Col className="xs-12 rg-6 lg-8">
-        <h4 className="sponsor__title">{item.title}</h4>
-        <div className="markdown-wrapper">
-          <Markdown className="sponsor__desc">{item.body}</Markdown>
-        </div>
-        <div className="sponsor__links">
-          <Links />
-        </div>
-      </Col>
-    </Row>
+    <FadeIn style={{ display: "block" }}>
+      <Row className="sponsor">
+        <Col className="xs-12 rg-6 lg-4">
+          <a
+            className="sponsor__logo"
+            href={item.link}
+            title={item.title}
+            target="_blank"
+          >
+            {item.logoSvg ? (
+              <span
+                className="sponsor__svg"
+                dangerouslySetInnerHTML={{
+                  __html: item.logoSvg
+                }}
+              />
+            ) : item.logo ? (
+              <img
+                className="sponsor__img"
+                src={`${item.logo.url}?w=${details ? 333 : 80}`}
+                alt={item.title}
+              />
+            ) : (
+              item.title
+            )}
+          </a>
+        </Col>
+        <Col className="xs-12 rg-6 lg-8">
+          <h4 className="sponsor__title">{item.title}</h4>
+          <div className="markdown-wrapper">
+            <Markdown className="sponsor__desc">{item.body}</Markdown>
+          </div>
+          <div className="sponsor__links">
+            <Links />
+          </div>
+        </Col>
+      </Row>
+    </FadeIn>
   ) : (
     <a
       className="sponsor sponsor--logo"
