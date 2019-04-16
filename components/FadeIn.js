@@ -8,6 +8,7 @@ const FadeIn = ({ delay, children, style }) => (
     delay={delay}
     style={style}
     offset={100}
+    animateOnce={true}
   >
     {children}
   </ScrollAnimation>
