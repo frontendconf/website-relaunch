@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
-const PARALLAX_DISTANCE = 100;
+const PARALLAX_DISTANCE = 300;
 const TARGET_OPACITY = 0.6;
 
 class Hero extends Component {
