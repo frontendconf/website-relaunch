@@ -1,3 +1,21 @@
+@keyframes moveIn {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes moveOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100vw);
+  }
+}
+
 .hero {
   height: auto;
   padding: 90px 0 0;
@@ -23,11 +41,16 @@
     padding-bottom: 100px;
   }
 
+  &__title-wrapper {
+    position: relative;
+  }
+
   &__title {
     @include textGradient;
     font-weight: normal;
     letter-spacing: #{- (1em / 20em)}em;
     margin: 0 0 40px;
+    animation: moveIn 1s;
 
     @include fontSizeAndLineHeight(
       pxToRem(35),
@@ -38,6 +61,13 @@
       pxToRem(120),
       pxToRem(137)
     );
+  }
+
+  &__title--out {
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: moveOut 1s;
   }
 
   &__lead {

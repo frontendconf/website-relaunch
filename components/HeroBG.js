@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
-const PARALLAX_DISTANCE = 300;
 const TARGET_OPACITY = 0.6;
 
 class Hero extends Component {
@@ -10,11 +9,8 @@ class Hero extends Component {
     super(props);
 
     this.state = {
-      opacity: 0,
-      parallaxTop: 0
+      opacity: 0
     };
-
-    this.myRef = React.createRef();
   }
 
   scrollHandler = () => {
@@ -23,11 +19,6 @@ class Hero extends Component {
       // Cross browser scroll position fetching
       const el = document.scrollingElement || document.documentElement;
       const scrollTop = el.scrollTop;
-
-      this.setState({
-        parallaxTop:
-          (PARALLAX_DISTANCE / document.body.scrollHeight) * scrollTop
-      });
 
       if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
@@ -60,10 +51,6 @@ class Hero extends Component {
         className={`hero-bg ${
           this.props.template ? `hero-bg--${this.props.template}` : ""
         }`}
-        style={{
-          bottom: -PARALLAX_DISTANCE + "px",
-          transform: `translateY(-${this.state.parallaxTop}px)`
-        }}
       >
         <div
           className="hero-bg__overlay"
