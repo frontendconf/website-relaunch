@@ -43,6 +43,8 @@
 
   &__title-wrapper {
     position: relative;
+    max-width: 100vw;
+    overflow: hidden;
   }
 
   &__title {
@@ -77,12 +79,13 @@
   }
 
   &__ctas-wrapper {
-    padding-bottom: 40px;
+    padding-bottom: 30px;
   }
 
   &__cta {
     @include buttonBig;
     display: inline-block;
+    margin-bottom: 10px;
 
     &:not(:last-child) {
       margin-right: 15px;
@@ -94,7 +97,7 @@
     padding: 130px 0 0;
 
     &__ctas-wrapper {
-      padding-bottom: 65px;
+      padding-bottom: 55px;
     }
   }
 
@@ -116,7 +119,7 @@
     }
 
     &__ctas-wrapper {
-      padding-bottom: 90px;
+      padding-bottom: 80px;
     }
 
     &__cta {
