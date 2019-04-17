@@ -242,13 +242,15 @@ export default withRouter(({ router: { query } }) => {
                 </div>
 
                 {currentPage.showSponsors && (
-                  <Container>
-                    <Row>
-                      <Col className="xs-12">
-                        <Sponsors />
-                      </Col>
-                    </Row>
-                  </Container>
+                  <div className="dark-background">
+                    <Container>
+                      <Row>
+                        <Col className="xs-12">
+                          <Sponsors />
+                        </Col>
+                      </Row>
+                    </Container>
+                  </div>
                 )}
               </section>
             );
@@ -346,7 +348,7 @@ export default withRouter(({ router: { query } }) => {
                 />
                 <Container>
                   <Row>
-                    <Col>
+                    <Col className="xs-12">
                       {currentPage.body && (
                         <div className="markdown-wrapper">
                           <Markdown options={{ forceBlock: true }}>
@@ -366,10 +368,21 @@ export default withRouter(({ router: { query } }) => {
                         <VenueTeaser isVenue={isVenue} />
                       )}
                       {currentPage.showJobs && <Jobs />}
-                      {currentPage.showSponsors && <Sponsors />}
                     </Col>
                   </Row>
                 </Container>
+
+                {currentPage.showSponsors && (
+                  <div className="dark-background">
+                    <Container>
+                      <Row>
+                        <Col className="xs-12">
+                          <Sponsors />
+                        </Col>
+                      </Row>
+                    </Container>
+                  </div>
+                )}
               </section>
             );
         }

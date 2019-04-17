@@ -7,12 +7,14 @@ $secondary: #ffda7e;
 
 $bombay: #b3b3bc;
 $windsor: #300888;
+$dark-blue: #09001f;
 
 // Color system
 $colors: (
   white: $white,
   black: $black,
   background: $offblack,
+  background-dark: $dark-blue,
   link: $windsor,
   primary: $primary,
   secondary: $secondary,

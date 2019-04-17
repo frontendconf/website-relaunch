@@ -14,9 +14,7 @@ export default function Sponsors({ details = false }) {
       <SponsorCategory category="PLATINUM" details={details} />
       <SponsorCategory category="GOLD" details={details} />
       <SponsorCategory category="SILVER" details={details} />
-      {details ? (
-        <SponsorCategory category="CONTRIBUTING" details={details} />
-      ) : null}
+      <SponsorCategory category="CONTRIBUTING" details={details} />
     </div>
   );
 }

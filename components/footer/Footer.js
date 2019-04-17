@@ -5,7 +5,6 @@ import ErrorMessage from "../ErrorMessage";
 import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from "./components/FooterMenu";
 import Newsletter from "./components/Newsletter";
-import SponsorCategory from "../SponsorCategory";
 
 const footerQuery = gql`
   query {
@@ -93,19 +92,15 @@ export default function Footer({ showContributingSponsors = true }) {
             <Container>
               <Row>
                 <Col className="xs-12">
-                  {showContributingSponsors ? (
-                    <SponsorCategory title="Contributing Sponsors" />
-                  ) : null}
-
                   <Row>
-                    <Col className="footer__newsletter-col xs-12 md-3">
+                    <Col className="footer__newsletter-col xs-12 md-5 lg-3">
                       <Newsletter className="footer__newsletter" />
                     </Col>
-                    <Col className="footer__ctas-col xs-12 md-2">
+                    <Col className="footer__ctas-col xs-12 md-12 lg-2">
                       <div className="footer__ctas ctas">
                         <Row>
                           {ctas.map(item => (
-                            <Col className="xs-6 md-12" key={item.slug}>
+                            <Col className="xs-6 md-4 lg-12" key={item.slug}>
                               <Link
                                 href={{
                                   pathname: "/",
@@ -120,7 +115,7 @@ export default function Footer({ showContributingSponsors = true }) {
                         </Row>
                       </div>
                     </Col>
-                    <Col className="footer__menus-col xs-12 md-6 offset-md-1">
+                    <Col className="footer__menus-col xs-12 md-7 lg-6 offset-lg-1">
                       <div className="footer__menus">
                         <Row>
                           <Col className="xs-6">
