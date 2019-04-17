@@ -1,24 +1,62 @@
 @keyframes moveIn {
-  from {
-    transform: translateX(100vw);
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
   }
-  to {
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes moveInReverse {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
     transform: translateX(0px);
   }
 }
 
 @keyframes moveOut {
-  from {
+  0% {
     transform: translateX(0);
+    opacity: 1;
   }
-  to {
-    transform: translateX(-100vw);
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes moveOutReverse {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateX(100px);
+    opacity: 0;
   }
 }
 
 .hero {
   height: auto;
   padding: 90px 0 0;
+  max-width: 100vw;
+  overflow: hidden;
 
   &__container {
     height: 100%;
@@ -43,8 +81,6 @@
 
   &__title-wrapper {
     position: relative;
-    max-width: 100vw;
-    overflow: hidden;
   }
 
   &__title {
@@ -65,11 +101,19 @@
     );
   }
 
+  &__title--in-reverse {
+    animation: moveInReverse 1s;
+  }
+
   &__title--out {
     position: absolute;
     left: 0;
     top: 0;
     animation: moveOut 1s;
+  }
+
+  &__title--out-reverse {
+    animation: moveOutReverse 1s;
   }
 
   &__lead {

@@ -3,6 +3,24 @@ import FadeIn from "./FadeIn";
 import { Container, Row, Col } from "./shared/Grid";
 import React, { Component } from "react";
 
+// Get index of the node within parent
+const getNodeindex = elm => {
+  const c = elm.parentNode.children;
+  for (let i = 0; i < c.length; i++) if (c[i] == elm) return i;
+};
+
+// Check whether the title comes before the old title in the nav
+const isReverseAnimation = (title, oldTitle) => {
+  const navInfo = {};
+  const navElements = document.body.querySelector(".nav__list").childNodes;
+  navElements.forEach(navEl => {
+    navInfo[navEl.childNodes[0].text] = getNodeindex(navEl);
+  });
+  const titleIndex = title in navInfo ? navInfo[title] : 999;
+  const oldTitleIndex = oldTitle in navInfo ? navInfo[oldTitle] : -1;
+  return titleIndex < oldTitleIndex;
+};
+
 class Hero extends Component {
   constructor(props) {
     super(props);
@@ -28,12 +46,17 @@ class Hero extends Component {
   componentWillReceiveProps(nextProps) {
     // You don't have to do this check first, but it can help prevent an unneeded render
     if (nextProps.title !== this.state.title) {
+      const isReverse = isReverseAnimation(nextProps.title, this.state.title);
+
       // Store title for comparison to detect navigation to the current page
       this.setState({ title: nextProps.title });
 
       // Flag old title to move out
       const currentTitle = this.myRef.current.querySelector("h1");
       currentTitle.classList.add("hero__title--out");
+      if (isReverse) {
+        currentTitle.classList.add("hero__title--out-reverse");
+      }
 
       // In some situations an additional element is rendered, remove all but the old one
       this.myRef.current
@@ -45,6 +68,9 @@ class Hero extends Component {
       // Add the new title
       const newEl = document.createElement("h1");
       newEl.className = "hero__title";
+      if (isReverse) {
+        newEl.classList.add("hero__title--in-reverse");
+      }
       newEl.innerHTML = nextProps.title;
       this.myRef.current.appendChild(newEl);
 
