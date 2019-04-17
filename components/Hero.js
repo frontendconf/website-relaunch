@@ -77,7 +77,7 @@ class Hero extends Component {
       // Remove old title
       setTimeout(() => {
         currentTitle.remove();
-      }, 1000);
+      }, 125);
     }
   }
 
@@ -92,8 +92,8 @@ class Hero extends Component {
           <Row className="hero__container">
             <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
               <div className="hero__inner">
+                <div className="hero__title-wrapper" ref={this.myRef} />
                 <FadeIn style={{ display: "block" }}>
-                  <div className="hero__title-wrapper" ref={this.myRef} />
                   {this.props.subTitle ? (
                     <h2 className="hero__subtitle">{this.props.subTitle}</h2>
                   ) : null}

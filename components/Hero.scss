@@ -88,7 +88,7 @@
     font-weight: normal;
     letter-spacing: #{- (1em / 20em)}em;
     margin: 0 0 40px;
-    animation: moveIn 1s;
+    animation: moveIn $transition-time-title-in;
 
     @include fontSizeAndLineHeight(
       pxToRem(35),
@@ -102,18 +102,18 @@
   }
 
   &__title--in-reverse {
-    animation: moveInReverse 1s;
+    animation: moveInReverse $transition-time-title-in;
   }
 
   &__title--out {
     position: absolute;
     left: 0;
     top: 0;
-    animation: moveOut 1s;
+    animation: moveOut $transition-time-title-out;
   }
 
   &__title--out-reverse {
-    animation: moveOutReverse 1s;
+    animation: moveOutReverse $transition-time-title-out;
   }
 
   &__lead {

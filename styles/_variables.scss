@@ -74,6 +74,8 @@ $transition-time-default: 250ms !default;
 $transition-time-morph: 500ms !default; // Original
 $transition-time-fade-in: 200ms !default;
 $transition-time-fade-out: 125ms !default;
+$transition-time-title-out: 500ms !default;
+$transition-time-title-in: 250ms !default;
 
 // Area
 $transition-time-area-small: $transition-time-simple !default;
