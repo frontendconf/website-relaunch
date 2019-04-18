@@ -183,9 +183,7 @@ export default withRouter(({ router: { query } }) => {
 
         const HeadTitle = () => (
           <Head>
-            <title>
-              {isHome ? "" : `${title} – `}Frontend Conference Zurich
-            </title>
+            <title>{isHome ? "" : `${title} – `}Front Conference Zurich</title>
           </Head>
         );
 

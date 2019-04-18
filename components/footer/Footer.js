@@ -131,7 +131,7 @@ export default function Footer({ showContributingSponsors = true }) {
 
                   <div className="copyright">
                     <p className="copyright__text">
-                      2011-2019 Frontend Conference Zürich
+                      2011-2019 Front Conference Zurich
                     </p>
 
                     <FooterMenu id="meta" items={metaMenuItems} />
