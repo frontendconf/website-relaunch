@@ -76,7 +76,7 @@ class Hero extends Component {
 
       // Remove old title
       setTimeout(() => {
-        currentTitle.remove();
+        currentTitle.parentNode.removeChild(currentTitle);
       }, 125);
     }
   }
