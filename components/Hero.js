@@ -93,16 +93,16 @@ class Hero extends Component {
             <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
               <div className="hero__inner">
                 <div className="hero__title-wrapper" ref={this.myRef} />
-                <FadeIn style={{ display: "block" }}>
-                  {this.props.subTitle ? (
+                {this.props.subTitle ? (
+                  <FadeIn style={{ display: "block" }}>
                     <h2 className="hero__subtitle">{this.props.subTitle}</h2>
-                  ) : null}
-                </FadeIn>
-                <FadeIn style={{ display: "block" }} delay={150}>
-                  {this.props.lead && (
+                  </FadeIn>
+                ) : null}
+                {this.props.lead ? (
+                  <FadeIn style={{ display: "block" }} delay={150}>
                     <p className="hero__lead">{this.props.lead}</p>
-                  )}
-                </FadeIn>
+                  </FadeIn>
+                ) : null}
               </div>
 
               {this.props.ctas && (
