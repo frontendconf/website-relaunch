@@ -4,6 +4,12 @@ import React from "react";
 import withApolloClient from "../lib/with-apollo-client";
 import { ApolloProvider } from "react-apollo";
 import { IntlProvider } from "react-intl";
+import { Script, pageview } from "../lib/gtag";
+import Router from "next/router";
+
+import * as gtag from "../lib/gtag";
+
+Router.events.on("routeChangeComplete", url => pageview(url));
 
 class MyApp extends App {
   render() {
@@ -12,6 +18,7 @@ class MyApp extends App {
       <Container>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <Script />
           <link
             rel="apple-touch-icon-precomposed"
             sizes="57x57"
