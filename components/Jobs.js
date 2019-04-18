@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import shuffle from "array-shuffle";
 // import ScrollAnimation from 'react-animate-on-scroll';
 import { Row, Col } from "./shared/Grid";
-import FadeIn from './FadeIn';
+import FadeIn from "./FadeIn";
 import Logo from "../static/freshjobs.svg";
 
 class Jobs extends Component {
@@ -15,9 +15,7 @@ class Jobs extends Component {
   }
 
   getEntries() {
-    return fetch("https://api.frontendconf.ch/freshjobs/entries").then(function(
-      response
-    ) {
+    return fetch("/api/freshjobs").then(function(response) {
       if (response.status >= 400) {
         return response.json().then(function(err) {
           throw new Error(err.message);
@@ -52,7 +50,12 @@ class Jobs extends Component {
           {this.state.items.map((item, i) => (
             <Col className="jobs__col xs-12 rg-6 lg-4" key={item.link}>
               <FadeIn delay={150 * i}>
-                <a className="jobs__link" href={item.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  className="jobs__link"
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span className="jobs__link-title">{item.title}</span>
                   <span className="jobs__link-company">{item.company}</span>
                 </a>
