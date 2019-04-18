@@ -27,7 +27,7 @@ const speakersQuery = gql`
   }
 `;
 
-const SpeakersList = ({ limit, withHeading, filterTag = "FEC18" }) => (
+const SpeakersList = ({ limit, withHeading, filterTag = "FEC19" }) => (
   <div className="speakers-list">
     {withHeading && (
       <FadeIn>
