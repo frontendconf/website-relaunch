@@ -181,9 +181,19 @@ export default withRouter(({ router: { query } }) => {
           ? currentPage.leadCtasCollection.items
           : null;
 
-        const HeadTitle = () => (
+        const CustomHead = () => (
           <Head>
             <title>{isHome ? "" : `${title} – `}Front Conference Zurich</title>
+            {currentPage.config && currentPage.config.scripts
+              ? currentPage.config.scripts.map((src, i) => (
+                  <script src={src} async key={i} />
+                ))
+              : null}
+            {currentPage.config && currentPage.config.styles
+              ? currentPage.config.styles.map((href, i) => (
+                  <link rel="stylesheet" href={href} key={i} />
+                ))
+              : null}
           </Head>
         );
 
@@ -193,7 +203,7 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
-                <HeadTitle />
+                <CustomHead />
                 <HeroBG />
                 <Hero
                   title={title}
@@ -258,7 +268,7 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
-                <HeadTitle />
+                <CustomHead />
                 <Hero
                   title={title}
                   subTitle={subTitle}
@@ -337,7 +347,7 @@ export default withRouter(({ router: { query } }) => {
               <section
                 className={loading ? "content content--loading" : "content"}
               >
-                <HeadTitle />
+                <CustomHead />
                 <HeroBG />
                 <Hero
                   title={title}
