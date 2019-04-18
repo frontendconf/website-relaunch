@@ -1,0 +1,104 @@
+/* cookie banner related styles below */
+
+/***************************************************************************
+// * Iubenda Cookie Solution                                               *
+// *                                                                       *
+// * (c) 2015 Iubenda srl <info@iubenda.com>                               *
+// * All Rights Reserved.                                                  *
+// *                                                                       *
+// *************************************************************************
+//
+// CHANGELOG
+// 0.0.1
+// - first implementation of customizable css
+*/
+
+/*  GENERAL CLASS */
+#iubenda-cs-banner {
+  /* ------ IMPORTANT NOTICE: don't change these values as
+            they may prevent the banner from properly showing. Some of these lines,
+            moreover (like z-index) will overwrite the configuration initialized
+            by the script you paste in your pages. To show the banner at the bottom
+            you can switch to "bottom: 0px !important;". Don't forget to put "slideDown"
+            to "false".
+     */
+  bottom: 0px !important;
+  left: 0px !important;
+  position: fixed !important;
+  width: 100% !important;
+  z-index: 99999998 !important;
+  background-color: black;
+  /* ----------------- */
+}
+
+/*  CONTENT CLASS */
+.iubenda-cs-content {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  width: auto;
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
+  font-size: 14px;
+  background: #000;
+  color: #fff;
+}
+.iubenda-banner-content {
+}
+
+.iubenda-cs-rationale {
+  max-width: 900px;
+  position: relative;
+  margin: 0 auto;
+}
+
+/*   STYLE FOR TEXT INTERNAL BANNER */
+.iubenda-banner-content > p {
+  font-family: Helvetica, Arial, FreeSans, sans-serif;
+  line-height: 1.5;
+}
+
+/*  CLOSE BUTTON. NOTICE: IMAGE FOR BUTTON NOT IMPLEMENTED YET */
+.iubenda-cs-close-btn {
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+}
+
+/*  STYLE FOR TEXT LINK TO PRIVACY POLICY */
+.iubenda-cs-cookie-policy-lnk {
+  text-decoration: underline;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+/* Custom styles */
+
+.iubenda-cs-rationale {
+  max-width: none;
+}
+
+.iubenda-banner-content {
+  margin-right: 2rem;
+}
+
+.iubenda-banner-content p {
+  margin: 0;
+
+  &:first-child {
+    font-weight: bold;
+  }
+}
+
+.iubenda-cs-cookie-policy-lnk {
+  font-size: 1em;
+}
+
+.iubenda-cs-close-btn {
+  line-height: 1;
+}
