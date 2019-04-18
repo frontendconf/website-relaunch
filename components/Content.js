@@ -119,6 +119,7 @@ export default withRouter(({ router: { query } }) => {
     case "privacy-policy":
     case "news":
     case "about":
+    case "sponsorship":
       template = "list";
       break;
     default:
