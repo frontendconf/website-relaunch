@@ -3827,6 +3827,11 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
+mdn-polyfills@^5.16.0:
+  version "5.16.0"
+  resolved "https://registry.yarnpkg.com/mdn-polyfills/-/mdn-polyfills-5.16.0.tgz#f44a0c37a47158e1b1c748ac03d9c1be63ad89f7"
+  integrity sha512-1rMxLgeYCwW4a8sUvoyLY7wCdKgMVQdS6me52D0a5lvuTUEAn3Mhi5gFN+9kI0jfea1TUepq72K1AgmbIt2ffw==
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
