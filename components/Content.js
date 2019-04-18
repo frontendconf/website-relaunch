@@ -120,6 +120,7 @@ export default withRouter(({ router: { query } }) => {
     case "news":
     case "about":
     case "sponsorship":
+    case "tickets":
       template = "list";
       break;
     default:
