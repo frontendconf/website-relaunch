@@ -26,6 +26,12 @@
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+
+  *::-ms-backdrop,
+  & {
+    color: #fff;
+    background: none;
+  }
 }
 
 @mixin textSubline {
