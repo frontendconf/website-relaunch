@@ -41,15 +41,14 @@ export default function SponsorCategory({
 }) {
   return (
     <Query query={sponsorsQuery}>
-      {({
-        loading,
-        error,
-        data: {
-          sponsorCollection: { items: allSponsors }
-        }
-      }) => {
-        if (error) return <ErrorMessage message="Error loading sponsors." />;
+      {({ loading, error, data }) => {
+        if (error) return <ErrorMessage message="Error loading sponsors" />;
         if (loading) return <div>Loading</div>;
+
+        // Destructuring needs to be done outside the arguments to prevent mapping errors
+        const {
+          sponsorCollection: { items: allSponsors }
+        } = data;
 
         let sponsors = allSponsors.filter(
           item => item.category.title === category
