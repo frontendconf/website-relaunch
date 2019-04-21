@@ -117,7 +117,7 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
 
 Workshops.propTypes = {
   filterTag: PropTypes.string,
-  date: PropTypes.date
+  date: PropTypes.instanceOf(Date)
 };
 
 Workshops.defaultProps = {
