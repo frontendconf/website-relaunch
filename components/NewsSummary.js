@@ -7,9 +7,11 @@ import FadeIn from "./FadeIn";
 import { Row, Col } from "./shared/Grid";
 import { FormattedDate } from "react-intl";
 
+const currentDate = new Date().toISOString();
+
 const newsQuery = gql`
-  query {
-    newsCollection(limit: 3, order: date_DESC) {
+  query($date: DateTime) {
+    newsCollection(limit: 3, order: date_DESC, where: { date_lt: $date }) {
       items {
         title
         date
@@ -28,9 +30,13 @@ const NewsSummary = () => (
       <h3 className="news-summary__title">News</h3>
     </FadeIn>
 
-    <Query query={newsQuery} skip={!process.browser}>
+    <Query
+      query={newsQuery}
+      skip={!process.browser}
+      variables={{ date: currentDate }}
+    >
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error) return <ErrorMessage message="Error loading news" />;
         if (loading) return <div>Loading</div>;
         if (!data) return null;
 

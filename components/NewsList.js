@@ -8,10 +8,12 @@ import { Row, Col } from "./shared/Grid";
 import Truncate from "react-truncate";
 import FadeIn from "./FadeIn";
 
+const currentDate = new Date().toISOString();
+
 // TODO add pagination or load more
 const newsQuery = gql`
-  query {
-    newsCollection(limit: 30, order: date_DESC) {
+  query($date: DateTime) {
+    newsCollection(limit: 30, order: date_DESC, where: { date_lt: $date }) {
       items {
         title
         body
@@ -29,9 +31,13 @@ const newsQuery = gql`
 
 export default function NewsList() {
   return (
-    <Query query={newsQuery} skip={!process.browser}>
+    <Query
+      query={newsQuery}
+      skip={!process.browser}
+      variables={{ date: currentDate }}
+    >
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error) return <ErrorMessage message="Error loading news" />;
         if (loading) return <div>Loading</div>;
         if (!data) return null;
 

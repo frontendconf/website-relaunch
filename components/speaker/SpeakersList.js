@@ -7,9 +7,16 @@ import ErrorMessage from "../ErrorMessage";
 import { Row, Col } from "../shared/Grid";
 import FadeIn from "../FadeIn";
 
+const currentDate = new Date().toISOString();
+
+// TODO: Find a way of matching items without `publicationDate`, too
 const speakersQuery = gql`
-  query speakers($limit: Int) {
-    collection: speakerCollection(limit: $limit) {
+  query speakers($limit: Int, $date: DateTime) {
+    collection: speakerCollection(
+      limit: $limit
+      where: { publicationDate_lt: $date }
+      order: order_ASC
+    ) {
       items {
         name
         description
@@ -34,9 +41,9 @@ const SpeakersList = ({ limit, withHeading, filterTag = "FEC19" }) => (
         <h2 className="speakers-list__title">Industry Leading Speakers</h2>
       </FadeIn>
     )}
-    <Query query={speakersQuery} variables={{ limit }}>
+    <Query query={speakersQuery} variables={{ limit, date: currentDate }}>
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error) return <ErrorMessage message="Error loading speakers" />;
         if (loading) return <div>Loading</div>;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
