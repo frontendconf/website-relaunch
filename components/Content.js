@@ -17,6 +17,7 @@ import NewsList from "./NewsList";
 import Sponsors from "./Sponsors";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
+import Workshops from "./Workshops";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -98,6 +99,28 @@ const currentSpeakerQuery = gql`
   }
 `;
 
+const currentWorkshopQuery = gql`
+  query($slug: String!) {
+    collection: workshopCollection(where: { slug: $slug }) {
+      items {
+        title
+        lead
+        body
+        from
+        to
+        photo {
+          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+        }
+        tagsCollection(limit: 20) {
+          items {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 export default withRouter(({ router: { query } }) => {
   const slug = query.slug || "/";
   const category = query.category;
@@ -154,9 +177,18 @@ export default withRouter(({ router: { query } }) => {
         }
       };
       break;
-    // case "speakers":
     // case "hosts":
-    // case "workshops":
+    case "workshops":
+      template = "content";
+      dataQuery = currentWorkshopQuery;
+      backLink = {
+        text: "Workshops",
+        link: {
+          href: { pathname: "/", query: { slug: "workshops" } },
+          as: "/workshops"
+        }
+      };
+      break;
     default:
       dataQuery = currentPageQuery;
   }
@@ -245,6 +277,7 @@ export default withRouter(({ router: { query } }) => {
                           {currentPage.showSponsorsDetailed && (
                             <Sponsors details={true} />
                           )}
+                          {currentPage.showWorkshops && <Workshops />}
                         </div>
                       </Col>
                     </Row>

@@ -1,0 +1,25 @@
+.workshops {
+  @include mq-up(md) {
+    &#{&} {
+      margin-top: -200px;
+    }
+  }
+}
+.workshops__item {
+  display: block;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 100px;
+}
+.workshops__item-image {
+  padding-top: 354/626 * 100%;
+  margin-bottom: 40px;
+}
+.workshops__item-title {
+  margin-bottom: 5px;
+  color: $link-color;
+}
+.workshops__item-details {
+  @include textSubline;
+}
