@@ -92,11 +92,11 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
                             month="long"
                             year="numeric"
                           />{" "}
-                          {workshop.from ? (
+                          {workshop.from && workshop.to ? (
                             <FormattedTime value={workshop.from} />
                           ) : null}
                           {workshop.from && workshop.to ? " - " : null}
-                          {workshop.to ? (
+                          {workshop.from && workshop.to ? (
                             <FormattedTime value={workshop.to} />
                           ) : null}
                         </p>
