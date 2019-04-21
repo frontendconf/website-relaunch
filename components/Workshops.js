@@ -73,19 +73,21 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
                       }}
                       as={`/workshops/${workshop.slug}`}
                     >
-                      <a class="workshops__item">
+                      <a className="workshops__item">
                         {workshop.photo ? (
                           <Image
                             className="workshops__item-image"
                             src={`${workshop.photo.url}&w=626&h=354`}
                           />
                         ) : null}
-                        <h3 class="workshops__item-title">{workshop.title}</h3>
-                        <p class="workshops__item-teacher">
+                        <h3 className="workshops__item-title">
+                          {workshop.title}
+                        </h3>
+                        <p className="workshops__item-teacher">
                           with {workshop.teacher.name}
                         </p>
-                        <p class="workshops__item-lead">{workshop.lead}</p>
-                        <p class="workshops__item-details">
+                        <p className="workshops__item-lead">{workshop.lead}</p>
+                        <p className="workshops__item-details">
                           <FormattedDate
                             value={workshop.from}
                             day="numeric"

@@ -51,9 +51,9 @@ const Talks = ({ filterTag, speakerSlug }) => (
           <>
             {talks.map(talk => {
               return (
-                <div class="talks__item">
-                  <h2 class="talks__item-title">{talk.title}</h2>
-                  <p class="talks__item-abstract">{talk.abstract}</p>
+                <div className="talks__item">
+                  <h2 className="talks__item-title">{talk.title}</h2>
+                  <p className="talks__item-abstract">{talk.abstract}</p>
                 </div>
               );
             })}
