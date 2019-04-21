@@ -145,6 +145,7 @@ export default withRouter(({ router: { query } }) => {
     case "about":
     case "sponsorship":
     case "tickets":
+    case "workshops":
       template = "list";
       break;
     default:
