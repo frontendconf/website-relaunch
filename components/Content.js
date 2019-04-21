@@ -18,6 +18,7 @@ import Sponsors from "./Sponsors";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
 import Workshops from "./Workshops";
+import Talks from "./Talks";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -339,6 +340,8 @@ export default withRouter(({ router: { query } }) => {
                         </Col>
                         <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
                           <div>
+                            <Talks speakerSlug={currentPage.slug} />
+
                             <h2>About</h2>
                             {currentPage.body ? (
                               <div className="markdown-wrapper">
