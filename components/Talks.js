@@ -49,14 +49,12 @@ const Talks = ({ filterTag, speakerSlug }) => (
 
         return (
           <>
-            {talks.map(talk => {
-              return (
-                <div className="talks__item">
-                  <h2 className="talks__item-title">{talk.title}</h2>
-                  <p className="talks__item-abstract">{talk.abstract}</p>
-                </div>
-              );
-            })}
+            {talks.map((talk, i) => (
+              <div className="talks__item" key={i}>
+                <h2 className="talks__item-title">{talk.title}</h2>
+                <p className="talks__item-abstract">{talk.abstract}</p>
+              </div>
+            ))}
           </>
         );
       }}
