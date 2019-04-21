@@ -1,0 +1,8 @@
+.workshop__teacher-name {
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+.workshop__teacher-description {
+  @include textSubline;
+  margin-bottom: 20px;
+}

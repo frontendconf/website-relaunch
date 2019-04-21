@@ -18,6 +18,7 @@ import Sponsors from "./Sponsors";
 import RestaurantsList from "./RestaurantsList";
 import HotelsList from "./HotelsList";
 import Workshops from "./Workshops";
+import Workshop from "./Workshop";
 import Talks from "./Talks";
 
 const currentPageQuery = gql`
@@ -109,6 +110,17 @@ const currentWorkshopQuery = gql`
         body
         from
         to
+        teacher {
+          name
+          description
+          bio
+          website
+          twitter
+          linkedin
+          photo {
+            url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+          }
+        }
         photo {
           url(transform: { width: 294, height: 395, resizeStrategy: FILL })
         }
@@ -154,6 +166,7 @@ export default withRouter(({ router: { query } }) => {
 
   let backLink = {};
   let isSpeaker = category === "speakers";
+  let isWorkshop = category === "workshops";
 
   // Sub Categories
   switch (category) {
@@ -316,7 +329,7 @@ export default withRouter(({ router: { query } }) => {
                 <div className="content__white-wrapper">
                   <Backlink {...backLink} />
 
-                  {(isSpeaker && (
+                  {isSpeaker ? (
                     <Container>
                       <Row className="content__floating-row">
                         <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
@@ -355,7 +368,9 @@ export default withRouter(({ router: { query } }) => {
                         </Col>
                       </Row>
                     </Container>
-                  )) || (
+                  ) : isWorkshop ? (
+                    <Workshop workshop={currentPage} />
+                  ) : (
                     <Container>
                       <Row>
                         <Col className="xs-12 rg-10 offset-rg-1 lg-8 offset-lg-2">
