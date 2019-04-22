@@ -17,6 +17,7 @@ const newsQuery = gql`
       items {
         title
         body
+        summary
         date
         slug
         tagsCollection {
@@ -61,11 +62,13 @@ export default function NewsList() {
                       </a>
                     </Link>
                     <div className="news-list__body">
-                      <Truncate lines={2} ellipsis="...">
-                        <div className="markdown-wrapper">
+                      {item.summary ? (
+                        <Markdown>{item.summary}</Markdown>
+                      ) : (
+                        <Truncate lines={2} ellipsis="...">
                           <Markdown>{item.body}</Markdown>
-                        </div>
-                      </Truncate>
+                        </Truncate>
+                      )}
                       <Link
                         href={{
                           pathname: "/",
