@@ -1,0 +1,12 @@
+.social-menu {
+  margin-top: 35px;
+
+  &__list {
+    @extend %unstyled-list;
+
+    &-item {
+      display: inline-flex;
+      margin-right: 10px;
+    }
+  }
+}

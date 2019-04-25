@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Row, Col } from "../../shared/Grid";
 
 export default function FooterMenu(props) {
   return (
@@ -30,5 +31,5 @@ export default function FooterMenu(props) {
         })}
       </ul>
     </div>
-  )
-};
+  );
+}

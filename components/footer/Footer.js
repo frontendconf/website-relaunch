@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import ErrorMessage from "../ErrorMessage";
 import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from "./components/FooterMenu";
+import SocialIcons from "./components/SocialIcons";
 import Newsletter from "./components/Newsletter";
 
 const footerQuery = gql`
@@ -94,7 +95,10 @@ export default function Footer({ showContributingSponsors = true }) {
                 <Col className="xs-12">
                   <Row>
                     <Col className="footer__newsletter-col xs-12 md-5 lg-3">
-                      <Newsletter className="footer__newsletter" />
+                      <div className="footer__newsletter">
+                        <Newsletter className="" />
+                        <SocialIcons id="social" items={socialMediaItems} />
+                      </div>
                     </Col>
                     <Col className="footer__ctas-col xs-12 md-12 lg-2">
                       <div className="footer__ctas ctas">
@@ -117,14 +121,7 @@ export default function Footer({ showContributingSponsors = true }) {
                     </Col>
                     <Col className="footer__menus-col xs-12 md-7 lg-6 offset-lg-1">
                       <div className="footer__menus">
-                        <Row>
-                          <Col className="xs-6">
-                            <FooterMenu id="main" items={menuItems} />
-                          </Col>
-                          <Col className="xs-6">
-                            <FooterMenu id="social" items={socialMediaItems} />
-                          </Col>
-                        </Row>
+                        <FooterMenu id="main" items={menuItems} />
                       </div>
                     </Col>
                   </Row>

@@ -2,9 +2,12 @@
   &__list {
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
 
     &-item {
       list-style: none;
+      flex: 0 0 50%;
     }
   }
 
