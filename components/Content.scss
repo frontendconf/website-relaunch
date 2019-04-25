@@ -8,7 +8,7 @@
 
   // Remove maring of last item
   &__inner-wrapper {
-    padding-top: 110px;
+    padding-top: 70px;
 
     > *:first-child {
       margin-top: 0;
@@ -20,6 +20,10 @@
   }
 
   @include mq-up(rg) {
+    &__inner-wrapper {
+      padding-top: 110px;
+    }
+
     &__white-wrapper {
       padding-bottom: 120px;
     }

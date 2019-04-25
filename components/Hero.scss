@@ -92,12 +92,12 @@
 
     @include fontSizeAndLineHeight(
       pxToRem(35),
-      pxToRem(40),
-      pxToRem(55),
-      pxToRem(75),
+      pxToRem(45),
+      pxToRem(60),
+      pxToRem(85),
       pxToRem(95),
       pxToRem(120),
-      pxToRem(137)
+      pxToRem(128)
     );
   }
 
@@ -148,7 +148,7 @@
   @include mq-up(md) {
     padding: 150px 0 0;
     height: calc(100vh - 300px);
-    min-height: 700px;
+    min-height: 770px;
 
     &__lead {
       font-size: 24px;

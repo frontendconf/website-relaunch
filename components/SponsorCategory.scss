@@ -13,8 +13,12 @@
   @include textGradient();
   font-weight: 400;
   margin: 0 0 30px;
-  font-size: 28px;
+  font-size: 22px;
   text-transform: uppercase;
+
+  @include mq-up(rg) {
+    font-size: 28px;
+  }
 }
 
 .sponsor-category--detail {
