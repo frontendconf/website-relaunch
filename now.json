@@ -1,12 +1,14 @@
 {
   "version": 2,
   "alias": "dev.frontendconf.ch",
-  "builds": [{ "src": "package.json", "use": "@now/next" }],
+  "builds": [
+    { "src": "/api/freshjobs/index.js", "use": "@now/node" },
+    { "src": "package.json", "use": "@now/next" }
+  ],
   "routes": [
     {
       "src": "/(?<category>(news|speakers|hosts|workshops))/(?<slug>[^/]+)$",
       "dest": "/index?category=$category&slug=$slug"
-    },
-    { "src": "/api/freshjobs", "dest": "/api" }
+    }
   ]
 }
