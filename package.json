@@ -1,5 +1,5 @@
 {
-  "name": "frontrelaunch",
+  "name": "website-relaunch",
   "version": "2.0.0",
   "scripts": {
     "dev": "npx now dev",
