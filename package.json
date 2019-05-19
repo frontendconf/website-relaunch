@@ -2,9 +2,9 @@
   "name": "frontrelaunch",
   "version": "2.0.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "npx now dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "now-build": "next build",
     "deploy": "npx now",
     "alias": "npx now alias"
   },
