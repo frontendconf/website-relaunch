@@ -7,8 +7,22 @@
   ],
   "routes": [
     {
+      "src": "/(?<category>(news|speakers|hosts|workshops))/(?<slug>[^/]+)/$",
+      "status": 301,
+      "headers": { "Location": "/$category/$slug" }
+    },
+    {
       "src": "/(?<category>(news|speakers|hosts|workshops))/(?<slug>[^/]+)$",
       "dest": "/index?category=$category&slug=$slug"
+    },
+    {
+      "src": "/(?<slug>[^/]+)/$",
+      "status": 301,
+      "headers": { "Location": "/$slug" }
+    },
+    {
+      "src": "/(?<slug>[^/]+)$",
+      "dest": "/index?slug=$slug"
     }
   ]
 }
