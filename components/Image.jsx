@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'; // ES6
+import React, { Component } from "react";
+import PropTypes from "prop-types"; // ES6
 
-const emptyGif = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+const emptyGif =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
 const ImagesArray = [];
 
 const observerConfig = {
   rootMargin: `500px 0px 500px`,
-  threshold: 0.01,
+  threshold: 0.01
 };
 
 let instance;
@@ -15,13 +16,15 @@ let instance;
 const Observer = {
   get instance() {
     if (!instance) {
-      instance = new IntersectionObserver(async (entries) => {
-        const elements = entries.filter(entry => entry.intersectionRatio >= 0.01);
-      
+      instance = new IntersectionObserver(async entries => {
+        const elements = entries.filter(
+          entry => entry.intersectionRatio >= 0.01
+        );
+
         if (elements.length) {
-          elements.forEach((entry) => {
+          elements.forEach(entry => {
             // Initiate loading of the image
-            ImagesArray.find((foo) => foo.node === entry.target).callback();
+            ImagesArray.find(foo => foo.node === entry.target).callback();
 
             // Check node inside ImagesArray
             Observer.instance.unobserve(entry.target);
@@ -31,7 +34,7 @@ const Observer = {
     }
     return instance;
   }
-}
+};
 
 class Image extends Component {
   /**
@@ -66,8 +69,8 @@ class Image extends Component {
         this.setState({
           src: this.props.src,
           srcSet: this.props.srcSet,
-          loading: true,
-        })
+          loading: true
+        });
       }
     });
 
@@ -80,14 +83,17 @@ class Image extends Component {
     Observer.instance.unobserve(this.image.current);
 
     // Remove from cached array
-    ImagesArray.splice(ImagesArray.findIndex((foo) => foo.node === this.image.current), 1);
+    ImagesArray.splice(
+      ImagesArray.findIndex(foo => foo.node === this.image.current),
+      1
+    );
   }
 
   onLoad() {
     this.setState({
       loading: false,
-      loaded: true,
-    })
+      loaded: true
+    });
 
     // Provides hook for parent component
     this.props.onLoad();
@@ -99,8 +105,8 @@ class Image extends Component {
    */
   render() {
     return (
-      <span className={`image ${this.props.className || ''}`}>
-        <span className="image__loader"></span>
+      <span className={`image ${this.props.className || ""}`}>
+        <span className="image__loader" />
         {this.props.picture ? (
           <picture>
             {this.props.sources.map(source => (
@@ -122,7 +128,7 @@ class Image extends Component {
           </picture>
         ) : (
           <img
-            className={`image__image ${this.state.loaded ? 'is-loaded' : ''}`}
+            className={`image__image ${this.state.loaded ? "is-loaded" : ""}`}
             ref={this.image}
             src={this.state.src}
             srcSet={this.state.srcSet}
@@ -141,13 +147,12 @@ Image.propTypes = {
   srcSet: PropTypes.string,
   sizes: PropTypes.string,
   alt: PropTypes.string,
-  onLoad: PropTypes.func,
-}
+  onLoad: PropTypes.func
+};
 
 Image.defaultProps = {
-  alt: '',
+  alt: "",
   onLoad: function() {}
-}
+};
 
 export default Image;
-
