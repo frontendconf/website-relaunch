@@ -1,14 +1,21 @@
 // TODO: Rename back to Speaker.js
 import Link from "next/link";
 import { withRouter } from "next/router";
+import Head from "next/head";
 import PropTypes from "prop-types";
 import Image from "../Image";
 import Socials from "../Socials";
 
-export const SpeakerImage = ({ speaker }) => {
+export const SpeakerImage = ({ speaker, isMain }) => {
   // FIXME: find out why sometimes speaker.photo does not exist and the page reloads. Caching?
   return speaker.photo ? (
     <div className="speaker__image-wrapper">
+      {isMain ? (
+        <Head>
+          <meta property="og:image" content={speaker.photo.url} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </Head>
+      ) : null}
       <Image
         className="speaker__image"
         src={`${speaker.photo.url}&w=295&h=395`}

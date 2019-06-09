@@ -92,7 +92,7 @@ const currentSpeakerQuery = gql`
         description
         slug
         photo {
-          url(transform: { width: 294, height: 395, resizeStrategy: FILL })
+          url(transform: { resizeStrategy: FILL })
         }
         linkedin
         twitter
@@ -244,9 +244,18 @@ export default withRouter(({ router: { query } }) => {
           ? currentPage.leadCtasCollection.items
           : null;
 
+        const metaTitle = `${
+          isHome ? "" : `${title} – `
+        }Front Conference Zurich`;
+        const metaDescription = subTitle || currentPage.lead;
+
         const CustomHead = () => (
           <Head>
-            <title>{isHome ? "" : `${title} – `}Front Conference Zurich</title>
+            <title>{metaTitle}</title>
+            <meta name="description" content={metaDescription} />
+            {/* <meta property="og:image" content={metaImage} />
+            <meta name="twitter:card" content="summary_large_image" /> */}
+
             {currentPage.config && currentPage.config.scripts
               ? currentPage.config.scripts.map((src, i) => (
                   <script src={src} async key={i} />
@@ -371,7 +380,10 @@ export default withRouter(({ router: { query } }) => {
                         <Col className="content__right xs-12 sm-10 rg-8 md-4 offset-right-lg-1 lg-3">
                           <Row>
                             <Col className="xs-7 offset-xs-1 md-12 offset-md-0">
-                              <SpeakerImage speaker={currentPage} />
+                              <SpeakerImage
+                                speaker={currentPage}
+                                isMain={true}
+                              />
                             </Col>
                             <Col className="xs-3 offset-xs-1 md-12 offset-md-0">
                               <SpeakerSocials speaker={currentPage} />
