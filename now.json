@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "alias": "dev.frontendconf.ch",
   "builds": [
     { "src": "/api/freshjobs/index.js", "use": "@now/node" },
     { "src": "package.json", "use": "@now/next" }

@@ -20,7 +20,7 @@ yarn run deploy
 Set alias from `dev.frontendconf.ch` to latest deployment (you need to be a member of the `frontendconf` organization on https://zeit.co to be able do this):
 
 ```bash
-yarn run alias
+yarn run alias dev.frontendconf.ch
 ```
 
 Set alias from `dev.frontendconf.ch` to specific deployment (replace `efwfjnbisv` with the deployment ID):
