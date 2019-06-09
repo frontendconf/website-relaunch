@@ -14,6 +14,7 @@
     }
   },
   "dependencies": {
+    "@reach/tabs": "^0.1.6",
     "@zeit/next-sass": "^1.0.1",
     "apollo-boost": "^0.1.16",
     "array-shuffle": "^1.0.1",

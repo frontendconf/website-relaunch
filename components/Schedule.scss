@@ -1,4 +1,68 @@
 .schedule {
+  &#{&} {
+    margin-top: -70px;
+  }
+
+  &__tablist {
+    background: #1e1732;
+    display: flex;
+    margin-bottom: 30px;
+
+    &-item {
+      font-size: 19px;
+      background: none;
+      border: none;
+      color: #9b9ba3;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 30px;
+      text-align: center;
+      flex: 1;
+      cursor: pointer;
+
+      &[aria-selected="true"] {
+        background: #09001f;
+        color: #00fff8;
+      }
+    }
+  }
+
+  &__legend {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    font-size: 13px;
+
+    &-item {
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border-radius: 100%;
+        margin-right: 10px;
+        position: relative;
+        top: 4px;
+      }
+
+      &--Folium::before {
+        background: #00fff8;
+      }
+      &--Papiersaal::before {
+        background: #ffda7e;
+      }
+
+      & + & {
+        margin-left: 33px;
+      }
+    }
+  }
+
+  &__tabpanels {
+    margin-top: 40px;
+  }
+
   &__day {
     & + & {
       margin-top: 80px;
@@ -10,6 +74,9 @@
   }
 
   &__slot {
+    display: flex;
+    flex-wrap: wrap;
+
     & + & {
       border-top: 1px solid #2e2740;
     }
@@ -19,17 +86,24 @@
     color: #9b9ba3;
     font-weight: normal;
     font-size: 16px;
-    padding: 13px 23px 13px 0;
+    padding: 20px 23px 20px 0;
     vertical-align: top;
+    width: 70px;
   }
   &__slot-talk {
     vertical-align: top;
     width: 50%;
     color: #9b9ba3;
     font-size: 14px;
+    flex: 1;
 
     & + & {
-      padding-left: 40px;
+      flex-basis: 100%;
+      padding-left: 70px;
+
+      .schedule__item {
+        padding-top: 0;
+      }
     }
   }
 
@@ -38,7 +112,7 @@
     align-items: flex-start;
     color: inherit;
     text-decoration: none;
-    padding: 13px 0;
+    padding: 20px 0;
   }
   &__item-photo {
     width: 60px;
@@ -82,10 +156,59 @@
     }
   }
 
+  @include mq-up(rg) {
+    &#{&} {
+      margin-top: -110px;
+    }
+  }
+
   @include mq-up(lg) {
+    &__tabs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    &__tablist {
+      &-item {
+        font-size: 24px;
+        padding: 40px;
+        white-space: nowrap;
+      }
+    }
+
+    &__legend {
+      font-size: 16px;
+      text-align: right;
+      justify-content: flex-end;
+      margin-left: auto;
+
+      &-item {
+        &::before {
+          content: "";
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          margin-right: 14px;
+          top: 6px;
+        }
+
+        & + & {
+          margin-left: 40px;
+        }
+      }
+    }
+
+    &__tabpanels {
+      margin-top: 50px;
+    }
+
+    &__slot {
+      display: table-row;
+    }
     &__slot-time {
       padding: 40px 110px 40px 0;
       font-size: 18px;
+      width: auto;
     }
     &__slot-talk {
       padding-right: 55px;
@@ -93,6 +216,10 @@
       & + & {
         padding-left: 55px;
         padding-right: 0;
+
+        .schedule__item {
+          padding-top: 40px;
+        }
       }
 
       &:first-of-type:last-of-type {
