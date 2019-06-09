@@ -1,12 +1,26 @@
-.schedule {
-  &#{&} {
-    margin-top: -70px;
+.content__wrapper--schedule {
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 82px;
+    background: #1e1732;
   }
 
+  .content__inner-wrapper {
+    padding-top: 0;
+  }
+}
+
+.schedule {
   &__tablist {
     background: #1e1732;
     display: flex;
-    margin-bottom: 30px;
+    margin: 0 -21px 30px;
 
     &-item {
       font-size: 19px;
@@ -15,7 +29,7 @@
       color: #9b9ba3;
       -webkit-appearance: none;
       -moz-appearance: none;
-      padding: 30px;
+      padding: 30px 10px;
       text-align: center;
       flex: 1;
       cursor: pointer;
@@ -155,20 +169,42 @@
       display: none;
     }
   }
+}
 
-  @include mq-up(rg) {
-    &#{&} {
-      margin-top: -110px;
+@include mq-up(sm) {
+  .schedule {
+    &__tablist {
+      margin-left: -37px;
+      margin-right: -37px;
+    }
+  }
+}
+
+@include mq-up(md) {
+  .schedule {
+    &__tablist {
+      margin-left: -69px;
+      margin-right: -69px;
+    }
+  }
+}
+
+@include mq-up(lg) {
+  .content__wrapper--schedule {
+    &::before {
+      height: 108px;
     }
   }
 
-  @include mq-up(lg) {
+  .schedule {
     &__tabs {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
     }
     &__tablist {
+      margin: 0;
+
       &-item {
         font-size: 24px;
         padding: 40px;
