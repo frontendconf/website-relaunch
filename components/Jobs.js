@@ -42,7 +42,7 @@ class Jobs extends Component {
 
   render() {
     return (
-      <div className="jobs">
+      <div className={`jobs${this.props.isDetailed ? " jobs--detailed" : ""}`}>
         <FadeIn>
           <h3 className="jobs__title">Jobs</h3>
         </FadeIn>

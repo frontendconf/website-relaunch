@@ -149,6 +149,7 @@ export default withRouter(({ router: { query } }) => {
   // Root categories
   switch (slug) {
     case "schedule":
+    case "jobs":
       darkContent = true;
     case "venue":
     case "sponsors":
@@ -315,6 +316,9 @@ export default withRouter(({ router: { query } }) => {
                           )}
                           {currentPage.showWorkshops && <Workshops />}
                           {currentPage.showSchedule && <Schedule />}
+                          {currentPage.showJobsDetailed && (
+                            <Jobs isDetailed={true} />
+                          )}
                         </div>
                       </Col>
                     </Row>

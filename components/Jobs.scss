@@ -1,6 +1,16 @@
 .jobs {
   @extend %default-module-spacer;
 
+  &--detailed {
+    &#{&} {
+      margin-bottom: 50px;
+
+      @include mq-up(lg) {
+        margin-bottom: 100px;
+      }
+    }
+  }
+
   &__title {
     @extend %summary-title;
   }
@@ -37,14 +47,14 @@
     display: inline-block;
     vertical-align: middle;
     margin-left: 16px;
-    opacity: .4;
+    opacity: 0.4;
     transition: opacity $transition-time-simple $transition-easing-default;
-  
+
     svg {
-      fill: #fff; 
+      fill: #fff;
       height: 24px;
     }
-  
+
     &:hover,
     &:focus {
       opacity: 1;
