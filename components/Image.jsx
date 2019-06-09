@@ -127,15 +127,28 @@ class Image extends Component {
             />
           </picture>
         ) : (
-          <img
-            className={`image__image ${this.state.loaded ? "is-loaded" : ""}`}
-            ref={this.image}
-            src={this.state.src}
-            srcSet={this.state.srcSet}
-            sizes={this.props.sizes}
-            alt={this.props.alt}
-            onLoad={this.onLoad}
-          />
+          <>
+            <img
+              className={`image__image${
+                this.state.loaded ? " is-loaded" : ""
+              } js-only`}
+              ref={this.image}
+              src={this.state.src}
+              srcSet={this.state.srcSet}
+              sizes={this.props.sizes}
+              alt={this.props.alt}
+              onLoad={this.onLoad}
+            />
+            <noscript>
+              <img
+                className="image__image is-loaded"
+                src={this.props.src}
+                srcSet={this.props.srcSet}
+                sizes={this.props.sizes}
+                alt={this.props.alt}
+              />
+            </noscript>
+          </>
         )}
       </span>
     );

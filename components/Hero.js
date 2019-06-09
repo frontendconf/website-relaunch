@@ -92,7 +92,11 @@ class Hero extends Component {
           <Row className="hero__container">
             <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
               <div className="hero__inner">
-                <div className="hero__title-wrapper" ref={this.myRef} />
+                <div className="hero__title-wrapper" ref={this.myRef}>
+                  <noscript>
+                    <h1 className="hero__title">{this.props.title}</h1>
+                  </noscript>
+                </div>
                 {this.props.subTitle ? (
                   <FadeIn style={{ display: "block" }}>
                     <h2 className="hero__subtitle">{this.props.subTitle}</h2>

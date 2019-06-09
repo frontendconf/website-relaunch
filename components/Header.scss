@@ -29,6 +29,30 @@ $logo-isze-md: 63px;
   @include mq-up(lg) {
     padding: 44px 0;
   }
+
+  // Noscript version on mobile
+  @include mq-down(md) {
+    .no-js & {
+      position: relative;
+
+      &__inner {
+        flex-wrap: wrap;
+      }
+
+      .nav {
+        position: static;
+        transform: none;
+        background: transparent;
+        width: 100%;
+        padding: 0;
+        margin: 40px 0;
+      }
+
+      .burger {
+        display: none;
+      }
+    }
+  }
 }
 
 .home-link {

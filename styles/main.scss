@@ -31,6 +31,19 @@
 @import "../components/Workshop";
 @import "../components/Talks";
 
+.js-only {
+  .no-js & {
+    display: none;
+  }
+}
+.no-js-only {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -54,6 +67,11 @@
   // Temporarily necessary
   display: flex;
   flex: 0 0 100%;
+
+  // Don't hide elements when JS is disabled, otherwise they're not visible at all
+  .no-js & {
+    opacity: 1 !important;
+  }
 }
 
 .animated.infinite {
