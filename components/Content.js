@@ -275,9 +275,12 @@ export default withRouter(({ router: { query } }) => {
                   template={template}
                 />
                 <div
-                  className={
-                    darkContent ? "dark-background" : "content__white-wrapper"
-                  }
+                  className={`content__wrapper content__wrapper--${category ||
+                    slug}${
+                    darkContent
+                      ? " content__wrapper--dark"
+                      : " content__wrapper--white"
+                  }`}
                 >
                   <Container>
                     <Row>
@@ -319,7 +322,7 @@ export default withRouter(({ router: { query } }) => {
                 </div>
 
                 {currentPage.showSponsors && (
-                  <div className="dark-background">
+                  <div className="content__wrapper content__wrapper--dark">
                     <Container>
                       <Row>
                         <Col className="xs-12">
@@ -345,7 +348,7 @@ export default withRouter(({ router: { query } }) => {
                   template={template}
                 />
 
-                <div className="content__white-wrapper">
+                <div className="content__wrapper content__wrapper--white">
                   <Backlink {...backLink} />
 
                   {isSpeaker ? (
@@ -454,7 +457,7 @@ export default withRouter(({ router: { query } }) => {
                 </Container>
 
                 {currentPage.showSponsors && (
-                  <div className="dark-background">
+                  <div className="content__wrapper content__wrapper--dark">
                     <Container>
                       <Row>
                         <Col className="xs-12">

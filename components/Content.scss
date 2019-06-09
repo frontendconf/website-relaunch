@@ -1,9 +1,17 @@
 .content {
-  &__white-wrapper {
+  &__wrapper {
     position: relative;
-    background-color: white;
-    color: $offblack;
-    padding-bottom: 80px;
+
+    &--white {
+      padding-bottom: 80px;
+      background-color: white;
+      color: $offblack;
+    }
+
+    &--dark {
+      position: relative;
+      background-color: map-get($colors, background-dark);
+    }
   }
 
   // Remove maring of last item
@@ -20,17 +28,17 @@
   }
 
   @include mq-up(rg) {
-    &__inner-wrapper {
-      padding-top: 110px;
+    &__wrapper--white {
+      padding-bottom: 120px;
     }
 
-    &__white-wrapper {
-      padding-bottom: 120px;
+    &__inner-wrapper {
+      padding-top: 110px;
     }
   }
 
   @include mq-up(md) {
-    &__white-wrapper {
+    &__wrapper--white {
       padding-bottom: 150px;
     }
 

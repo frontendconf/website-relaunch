@@ -31,11 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-.dark-background {
-  position: relative;
-  background-color: map-get($colors, background-dark);
-}
-
 h1,
 %h1 {
   font-size: 28px;
@@ -78,7 +73,7 @@ p {
 
 .markdown-wrapper {
   h2 {
-    .content__white-wrapper & {
+    .content__wrapper--white & {
       color: $offblack;
     }
   }
