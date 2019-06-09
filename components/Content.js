@@ -20,6 +20,7 @@ import HotelsList from "./HotelsList";
 import Workshops from "./Workshops";
 import Workshop from "./Workshop";
 import Talks from "./Talks";
+import Schedule from "./Schedule";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -141,13 +142,17 @@ export default withRouter(({ router: { query } }) => {
   let dataQuery;
 
   let wideContent = false;
+  let darkContent = false;
   let isHome = slug === "/";
   let isVenue = slug === "venue";
 
   // Root categories
   switch (slug) {
+    case "schedule":
+      darkContent = true;
     case "venue":
     case "sponsors":
+    case "schedule":
       wideContent = true;
     case "terms":
     case "jobs":
@@ -260,7 +265,11 @@ export default withRouter(({ router: { query } }) => {
                   ctas={ctas}
                   template={template}
                 />
-                <div className="content__white-wrapper">
+                <div
+                  className={
+                    darkContent ? "dark-background" : "content__white-wrapper"
+                  }
+                >
                   <Container>
                     <Row>
                       <Col className="xs-12">
@@ -293,6 +302,7 @@ export default withRouter(({ router: { query } }) => {
                             <Sponsors details={true} />
                           )}
                           {currentPage.showWorkshops && <Workshops />}
+                          {currentPage.showSchedule && <Schedule />}
                         </div>
                       </Col>
                     </Row>

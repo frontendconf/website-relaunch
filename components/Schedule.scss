@@ -1,0 +1,124 @@
+.schedule {
+  &__day {
+    & + & {
+      margin-top: 80px;
+    }
+  }
+
+  &__slots {
+    border-collapse: collapse;
+  }
+
+  &__slot {
+    & + & {
+      border-top: 1px solid #2e2740;
+    }
+  }
+
+  &__slot-time {
+    color: #9b9ba3;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 13px 23px 13px 0;
+    vertical-align: top;
+  }
+  &__slot-talk {
+    vertical-align: top;
+    width: 50%;
+    color: #9b9ba3;
+    font-size: 14px;
+
+    & + & {
+      padding-left: 40px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    color: inherit;
+    text-decoration: none;
+    padding: 13px 0;
+  }
+  &__item-photo {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    flex-shrink: 0;
+    margin-right: 14px;
+  }
+  &__item-title {
+    display: block;
+    font-size: 16px;
+    color: #fff;
+
+    &--talk {
+      font-weight: $font-weight-bold;
+      margin-bottom: 3px;
+    }
+
+    &--Folium {
+      color: #00fff8;
+    }
+    &--Papiersaal {
+      color: #ffda7e;
+    }
+  }
+  &__item-talk {
+    display: block;
+
+    &--talk {
+      color: #9b9ba3;
+    }
+  }
+  &__item-room {
+    color: #9b9ba3;
+    font-size: 13px;
+    margin-left: auto;
+
+    &--Folium,
+    &--Papiersaal {
+      display: none;
+    }
+  }
+
+  @include mq-up(lg) {
+    &__slot-time {
+      padding: 40px 110px 40px 0;
+      font-size: 18px;
+    }
+    &__slot-talk {
+      padding-right: 55px;
+
+      & + & {
+        padding-left: 55px;
+        padding-right: 0;
+      }
+
+      &:first-of-type:last-of-type {
+        padding-right: 0;
+      }
+    }
+
+    &__item {
+      padding: 40px 0;
+      align-items: center;
+    }
+    &__item-photo {
+      margin-right: 18px;
+    }
+    &__item-title {
+      font-size: 24px;
+
+      &--talk {
+        font-size: 28px;
+      }
+    }
+    &__item-talk {
+      font-size: 16px;
+    }
+    &__item-room {
+      font-size: 18px;
+    }
+  }
+}
