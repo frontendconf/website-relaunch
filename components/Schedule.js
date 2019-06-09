@@ -110,7 +110,8 @@ const Schedule = ({ filterTag }) => (
                                 pathname: "/",
                                 query: {
                                   category: "speakers",
-                                  slug: talk.speaker.slug
+                                  slug: talk.speaker.slug,
+                                  referrer: "schedule"
                                 }
                               }}
                               as={`/speakers/${talk.speaker.slug}`}

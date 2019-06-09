@@ -178,13 +178,22 @@ export default withRouter(({ router: { query } }) => {
     case "speakers":
       template = "content";
       dataQuery = currentSpeakerQuery;
-      backLink = {
-        text: "Speakers",
-        link: {
-          href: { pathname: "/", query: { slug: "speakers" } },
-          as: "/speakers"
-        }
-      };
+      backLink =
+        query.referrer === "schedule"
+          ? {
+              text: "Schedule",
+              link: {
+                href: { pathname: "/", query: { slug: "schedule" } },
+                as: "/schedule"
+              }
+            }
+          : {
+              text: "Speakers",
+              link: {
+                href: { pathname: "/", query: { slug: "speakers" } },
+                as: "/speakers"
+              }
+            };
       break;
     case "news":
       template = "content";
