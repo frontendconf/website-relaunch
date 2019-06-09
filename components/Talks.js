@@ -17,6 +17,7 @@ const talksQuery = gql`
             title
           }
         }
+        duplicate
       }
     }
   }
@@ -34,12 +35,16 @@ const Talks = ({ filterTag, speakerSlug }) => (
           collection: { items: talks }
         } = data;
 
+        // Remove duplicates needed for schedule
+        talks = talks.filter(item => !item.duplicate);
+
         // Filter by speaker
         if (speakerSlug) {
           talks = talks.filter(
             item => item.speaker && item.speaker.slug === speakerSlug
           );
         }
+
         // Filter by tag
         if (filterTag) {
           talks = talks.filter(item =>
