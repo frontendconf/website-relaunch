@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Twitter from "../static/twitter.svg";
 import Linkedin from "../static/linkedin.svg";
 import Website from "../static/website.svg";
+import Facebook from "../static/facebook.svg";
+import Instagram from "../static/instagram.svg";
 
 const Socials = ({ items, mobileVertical, className }) => (
   <div
@@ -22,6 +24,8 @@ const Socials = ({ items, mobileVertical, className }) => (
             {icon === "twitter" && <Twitter />}
             {icon === "linkedin" && <Linkedin />}
             {icon === "website" && <Website />}
+            {icon === "facebook" && <Facebook />}
+            {icon === "instagram" && <Instagram />}
           </a>
         </li>
       ))}

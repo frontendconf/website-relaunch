@@ -10,7 +10,7 @@ export default function Sponsor({ details = false, item = {} }) {
     links.push({
       url: `https://twitter.com/${item.twitter}`,
       icon: "twitter",
-      a11y: item.title + " Twitter profile"
+      a11y: `${item.title} Twitter profile`
     });
   }
 
@@ -18,7 +18,7 @@ export default function Sponsor({ details = false, item = {} }) {
     links.push({
       url: `https://linkedin.com/${item.linkedin}`,
       icon: "linkedin",
-      a11y: item.title + " Linkedin profile"
+      a11y: `${item.title} Linkedin profile`
     });
   }
 
@@ -26,7 +26,23 @@ export default function Sponsor({ details = false, item = {} }) {
     links.push({
       url: item.link,
       icon: "website",
-      a11y: item.title + " Website"
+      a11y: `${item.title} Website`
+    });
+  }
+
+  if (item.facebook) {
+    links.push({
+      url: `https://facebook.com/${item.facebook}`,
+      icon: "facebook",
+      a11y: `${item.title} Facebook profile`
+    });
+  }
+
+  if (item.instagram) {
+    links.push({
+      url: `https://instagram.com/${item.instagram}`,
+      icon: "instagram",
+      a11y: `${item.title} Instagram profile`
     });
   }
 

@@ -18,6 +18,8 @@ const sponsorsQuery = gql`
         body
         twitter
         linkedin
+        facebook
+        instagram
         order
         category {
           title
