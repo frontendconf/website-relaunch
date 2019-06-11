@@ -283,7 +283,7 @@ export default withRouter(({ router: { query } }) => {
           <Head>
             <title>{metaTitle}</title>
             <meta name="description" content={metaDescription} />
-            <meta property="og:image" content="/static/fec19_bg_sm.jpg" />
+            <meta property="og:image" content="/static/sharing.png" />
             <meta name="twitter:card" content="summary_large_image" />
 
             {currentPage.config && currentPage.config.scripts
