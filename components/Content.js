@@ -101,6 +101,24 @@ const currentSpeakerQuery = gql`
     }
   }
 `;
+const currentHostQuery = gql`
+  query($slug: String!) {
+    collection: hostCollection(where: { slug: $slug }) {
+      items {
+        title: name
+        lead: description
+        body: bio
+        name
+        description
+        slug
+        photo {
+          url(transform: { resizeStrategy: FILL })
+        }
+        twitter
+      }
+    }
+  }
+`;
 
 const currentWorkshopQuery = gql`
   query($slug: String!) {
@@ -173,6 +191,7 @@ export default withRouter(({ router: { query } }) => {
   let backLink = {};
   let isSpeaker = category === "speakers";
   let isWorkshop = category === "workshops";
+  let isHost = category === "hosts";
 
   // Sub Categories
   switch (category) {
@@ -195,6 +214,17 @@ export default withRouter(({ router: { query } }) => {
                 as: "/speakers"
               }
             };
+      break;
+    case "hosts":
+      template = "content";
+      dataQuery = currentHostQuery;
+      backLink = {
+        text: "Speakers",
+        link: {
+          href: { pathname: "/", query: { slug: "speakers" } },
+          as: "/speakers"
+        }
+      };
       break;
     case "news":
       template = "content";
@@ -364,13 +394,14 @@ export default withRouter(({ router: { query } }) => {
                 <div className="content__wrapper content__wrapper--white">
                   <Backlink {...backLink} />
 
-                  {isSpeaker ? (
+                  {isSpeaker || isHost ? (
                     <Container>
                       <Row className="content__floating-row">
                         <Col className="content__left xs-12 md-7 lg-6 offset-lg-1">
                           <div className="content-title">
                             <h1 className="content-title__title">
                               {currentPage.title}
+                              {isHost ? " (Host)" : ""}
                             </h1>
                             <p className="content-title__subtitle">
                               {currentPage.lead}

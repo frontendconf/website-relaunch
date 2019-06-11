@@ -68,17 +68,20 @@ const Speaker = ({
   withName,
   withDescription,
   withSocials,
-  className
+  className,
+  isHost
 }) => {
+  const category = isHost ? "hosts" : "speakers";
+
   return (
     <div className={`speaker ${className}`}>
       {(linked && (
         <Link
           href={{
             pathname: "/",
-            query: { slug: speaker.slug, category: "speakers" }
+            query: { slug: speaker.slug, category }
           }}
-          as={`/speakers/${speaker.slug}`}
+          as={`/${category}/${speaker.slug}`}
         >
           <a className="speaker__link">
             <SpeakerImage speaker={speaker} />

@@ -34,6 +34,26 @@ const speakersQuery = gql`
   }
 `;
 
+const hostsQuery = gql`
+  query hosts($limit: Int) {
+    collection: hostCollection(limit: $limit, order: order_ASC) {
+      items {
+        name
+        description
+        slug
+        photo {
+          url(transform: { resizeStrategy: FILL })
+        }
+        tagsCollection(limit: 20) {
+          items {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 const SpeakersList = ({ limit, withHeading, filterTag = "FEC19" }) => (
   <div className="speakers-list">
     {withHeading && (
@@ -80,7 +100,7 @@ const SpeakersList = ({ limit, withHeading, filterTag = "FEC19" }) => (
       }}
     </Query>
 
-    {limit !== SpeakersList.defaultProps.limit && (
+    {limit !== SpeakersList.defaultProps.limit ? (
       <FadeIn>
         <Link
           href={{ pathname: "/", query: { slug: "speakers" } }}
@@ -89,6 +109,53 @@ const SpeakersList = ({ limit, withHeading, filterTag = "FEC19" }) => (
           <a className="speakers-list__link">Discover more</a>
         </Link>
       </FadeIn>
+    ) : (
+      <>
+        <FadeIn>
+          <h2 className="speakers-list__title speakers-list__title--hosts">
+            Hosts
+          </h2>
+        </FadeIn>
+        <Query query={hostsQuery} variables={{ limit, date: currentDate }}>
+          {({ loading, error, data }) => {
+            if (error) return <ErrorMessage message="Error loading hosts" />;
+            if (loading) return <div>Loading</div>;
+
+            // Destructuring needs to be done outside the arguments to prevent mapping errors
+            let {
+              collection: { items: hosts }
+            } = data;
+
+            // Filter by tag
+            if (filterTag) {
+              hosts = hosts.filter(item =>
+                item.tagsCollection.items.find(tag => tag.title === filterTag)
+              );
+            }
+
+            return (
+              <Row>
+                {hosts.map(host => {
+                  return (
+                    <Col
+                      key={host.slug}
+                      className="speakers-list__col xs-6 md-4"
+                    >
+                      <FadeIn style={{ justifyContent: "center" }}>
+                        <Speaker
+                          className="speakers-list__speaker"
+                          speaker={host}
+                          isHost={true}
+                        />
+                      </FadeIn>
+                    </Col>
+                  );
+                })}
+              </Row>
+            );
+          }}
+        </Query>
+      </>
     )}
   </div>
 );

@@ -21,6 +21,10 @@
 
   &__title {
     @extend %summary-title;
+
+    &--hosts {
+      margin-top: 50px;
+    }
   }
 
   &__speaker {
@@ -100,6 +104,12 @@
         .speakers-list__speaker {
           margin-left: 0;
         }
+      }
+    }
+
+    &__title {
+      &--hosts {
+        margin-top: 100px;
       }
     }
 

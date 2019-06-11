@@ -15,6 +15,11 @@
       "dest": "/index?category=$category&slug=$slug"
     },
     {
+      "src": "/hosts",
+      "status": 301,
+      "headers": { "Location": "/speakers" }
+    },
+    {
       "src": "/(?<slug>[^/]+)/$",
       "status": 301,
       "headers": { "Location": "/$slug" }
