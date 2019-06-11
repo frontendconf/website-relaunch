@@ -13,7 +13,6 @@ export const SpeakerImage = ({ speaker, isMain }) => {
       {isMain ? (
         <Head>
           <meta property="og:image" content={speaker.photo.url} />
-          <meta name="twitter:card" content="summary_large_image" />
         </Head>
       ) : null}
       <Image
