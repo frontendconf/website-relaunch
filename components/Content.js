@@ -354,7 +354,7 @@ export default withRouter(({ router: { query } }) => {
                             <Sponsors details={true} />
                           )}
                           {currentPage.showWorkshops && <Workshops />}
-                          {/* {currentPage.showSchedule && <Schedule />} */}
+                          {currentPage.showSchedule && <Schedule />}
                           {currentPage.showJobsDetailed && (
                             <Jobs isDetailed={true} />
                           )}
