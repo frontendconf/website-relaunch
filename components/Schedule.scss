@@ -144,6 +144,10 @@
       font-weight: $font-weight-bold;
       margin-bottom: 3px;
     }
+    &--custom {
+      font-weight: $font-weight-bold;
+      text-decoration: none;
+    }
 
     &--Folium {
       color: #00fff8;

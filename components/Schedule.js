@@ -28,6 +28,9 @@ const scheduleQuery = gql`
             title
           }
         }
+        detailPage {
+          slug
+        }
       }
     }
   }
@@ -168,7 +171,15 @@ const Schedule = ({ filterTag }) => (
                                       talk.room
                                     }`}
                                   >
-                                    {talk.title}
+                                    {talk.detailPage ? (
+                                      <Link href={`/${talk.detailPage.slug}`}>
+                                        <a className="schedule__item-title schedule__item-title--custom">
+                                          {talk.title}
+                                        </a>
+                                      </Link>
+                                    ) : (
+                                      talk.title
+                                    )}
                                   </span>
                                   <span
                                     className={`schedule__item-room schedule__item-room--${
