@@ -172,7 +172,13 @@ const Schedule = ({ filterTag }) => (
                                     }`}
                                   >
                                     {talk.detailPage ? (
-                                      <Link href={`/${talk.detailPage.slug}`}>
+                                      <Link
+                                        href={{
+                                          pathname: "/",
+                                          query: { slug: talk.detailPage.slug }
+                                        }}
+                                        as={`/${talk.detailPage.slug}`}
+                                      >
                                         <a className="schedule__item-title schedule__item-title--custom">
                                           {talk.title}
                                         </a>
