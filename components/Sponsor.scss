@@ -63,6 +63,10 @@
 .sponsor__svg {
   display: inline-flex;
   flex-direction: column;
+
+  svg {
+    width: 100%;
+  }
 }
 
 .sponsor__img {
