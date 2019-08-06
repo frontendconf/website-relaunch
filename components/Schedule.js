@@ -121,85 +121,86 @@ const Schedule = ({ filterTag }) => (
                       {day.title}
                     </h2>
                     <table className="schedule__slots">
-                      {day.slots.map((slot, ii) => (
-                        <tr className="schedule__slot" key={ii} role="row">
-                          <th className="schedule__slot-time" role="rowheader">
-                            {slot.title}
-                          </th>
-                          {slot.talks.map((talk, iii) => (
-                            <td
-                              className="schedule__slot-talk"
-                              key={iii}
-                              colspan={slot.talks.length === 1 ? 2 : null}
-                              role="column"
+                      <tbody>
+                        {day.slots.map((slot, ii) => (
+                          <tr className="schedule__slot" key={ii} role="row">
+                            <th
+                              className="schedule__slot-time"
+                              role="rowheader"
                             >
-                              {talk.speaker ? (
-                                <Link
-                                  href={{
-                                    pathname: "/",
-                                    query: {
-                                      category: "speakers",
-                                      slug: talk.speaker.slug,
-                                      referrer: "schedule"
-                                    }
-                                  }}
-                                  as={`/speakers/${talk.speaker.slug}`}
-                                >
-                                  <a className="schedule__item">
-                                    <Image
-                                      className="schedule__item-photo"
-                                      src={`${talk.speaker.photo.url}`}
-                                    />
-                                    <span className="schedule__item-content">
-                                      <span
-                                        className={`schedule__item-title schedule__item-title--talk schedule__item-title--${
-                                          talk.room
-                                        }`}
-                                      >
-                                        {talk.speaker.name}
-                                      </span>
-                                      <span className="schedule__item-talk">
-                                        {talk.title}
-                                      </span>
-                                    </span>
-                                  </a>
-                                </Link>
-                              ) : (
-                                <span className="schedule__item">
-                                  <span
-                                    className={`schedule__item-title schedule__item-title--${
-                                      talk.room
-                                    }`}
+                              {slot.title}
+                            </th>
+                            {slot.talks.map((talk, iii) => (
+                              <td
+                                className="schedule__slot-talk"
+                                key={iii}
+                                colSpan={slot.talks.length === 1 ? 2 : null}
+                                role="column"
+                              >
+                                {talk.speaker ? (
+                                  <Link
+                                    href={{
+                                      pathname: "/",
+                                      query: {
+                                        category: "speakers",
+                                        slug: talk.speaker.slug,
+                                        referrer: "schedule"
+                                      }
+                                    }}
+                                    as={`/speakers/${talk.speaker.slug}`}
                                   >
-                                    {talk.detailPage ? (
-                                      <Link
-                                        href={{
-                                          pathname: "/",
-                                          query: { slug: talk.detailPage.slug }
-                                        }}
-                                        as={`/${talk.detailPage.slug}`}
-                                      >
-                                        <a className="schedule__item-title schedule__item-title--custom">
+                                    <a className="schedule__item">
+                                      <Image
+                                        className="schedule__item-photo"
+                                        src={`${talk.speaker.photo.url}`}
+                                      />
+                                      <span className="schedule__item-content">
+                                        <span
+                                          className={`schedule__item-title schedule__item-title--talk schedule__item-title--${talk.room}`}
+                                        >
+                                          {talk.speaker.name}
+                                        </span>
+                                        <span className="schedule__item-talk">
                                           {talk.title}
-                                        </a>
-                                      </Link>
-                                    ) : (
-                                      talk.title
-                                    )}
+                                        </span>
+                                      </span>
+                                    </a>
+                                  </Link>
+                                ) : (
+                                  <span className="schedule__item">
+                                    <span
+                                      className={`schedule__item-title schedule__item-title--${talk.room}`}
+                                    >
+                                      {talk.detailPage ? (
+                                        <Link
+                                          href={{
+                                            pathname: "/",
+                                            query: {
+                                              slug: talk.detailPage.slug
+                                            }
+                                          }}
+                                          as={`/${talk.detailPage.slug}`}
+                                        >
+                                          <a className="schedule__item-title schedule__item-title--custom">
+                                            {talk.title}
+                                          </a>
+                                        </Link>
+                                      ) : (
+                                        talk.title
+                                      )}
+                                    </span>
+                                    <span
+                                      className={`schedule__item-room schedule__item-room--${talk.room}`}
+                                    >
+                                      {talk.room}
+                                    </span>
                                   </span>
-                                  <span
-                                    className={`schedule__item-room schedule__item-room--${
-                                      talk.room
-                                    }`}
-                                  >
-                                    {talk.room}
-                                  </span>
-                                </span>
-                              )}
-                            </td>
-                          ))}
-                        </tr>
-                      ))}
+                                )}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
                     </table>
                   </div>
                 </TabPanel>
