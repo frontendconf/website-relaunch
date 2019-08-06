@@ -257,12 +257,7 @@ export default withRouter(({ router: { query } }) => {
     <Query query={dataQuery} variables={{ slug }}>
       {({ loading, error, data }) => {
         if (error) return <ErrorMessage message="Error loading pages." />;
-
-        // `apollo-client` attempts to get data from the cache first
-        // If there is no match, the query is executed a second time
-        // See https://www.apollographql.com/docs/react/api/react-apollo/#optionsfetchpolicy
-        // Between the two query attempts we show an intermediate `Loading...`
-        if (!data.collection) return <Hero title="Loading..." />;
+        if (loading) return <Hero title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
         const {
