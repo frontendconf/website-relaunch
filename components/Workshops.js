@@ -89,17 +89,17 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
                         <p className="workshops__item-lead">{workshop.lead}</p>
                         <p className="workshops__item-details">
                           <FormattedDate
-                            value={workshop.from}
+                            value={new Date(workshop.from)}
                             day="numeric"
                             month="long"
                             year="numeric"
                           />{" "}
                           {workshop.from && workshop.to ? (
-                            <FormattedTime value={workshop.from} />
+                            <FormattedTime value={new Date(workshop.from)} />
                           ) : null}
                           {workshop.from && workshop.to ? " - " : null}
                           {workshop.from && workshop.to ? (
-                            <FormattedTime value={workshop.to} />
+                            <FormattedTime value={new Date(workshop.to)} />
                           ) : null}
                         </p>
                       </a>
