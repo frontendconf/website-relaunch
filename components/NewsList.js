@@ -83,7 +83,7 @@ export default function NewsList() {
                     <div className="news-list__meta">
                       <span className="news-list__date">
                         <FormattedDate
-                          value={item.date}
+                          value={new Date(item.date)}
                           day="numeric"
                           month="long"
                           year="numeric"

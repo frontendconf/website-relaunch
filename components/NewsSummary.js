@@ -63,7 +63,7 @@ const NewsSummary = () => (
                       </span>
                       <span className="news-summary__link-date">
                         <FormattedDate
-                          value={item.date}
+                          value={new Date(item.date)}
                           day="numeric"
                           month="long"
                           year="numeric"
