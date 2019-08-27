@@ -201,7 +201,7 @@ $logo-isze-md: 63px;
   }
 }
 
-.ticket-link {
+.special-link {
   position: relative;
   z-index: 2;
   top: -1px;
@@ -255,7 +255,7 @@ $logo-isze-md: 63px;
 }
 
 @media (min-width: 1200px) {
-  .ticket-link {
+  .special-link {
     padding: 14px 37px 11px;
   }
 }

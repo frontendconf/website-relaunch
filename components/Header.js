@@ -156,12 +156,12 @@ class Header extends Component {
                       <Link
                         href={{
                           pathname: "/",
-                          query: { slug: "tickets" }
+                          query: { slug: "live" }
                         }}
-                        as="/tickets"
+                        as="/live"
                       >
-                        <a className="ticket-link">
-                          <span className="ticket-link__text">Buy tickets</span>
+                        <a className="special-link">
+                          <span className="special-link__text">Live</span>
                         </a>
                       </Link>
                       <button
