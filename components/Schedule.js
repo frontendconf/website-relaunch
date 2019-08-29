@@ -64,13 +64,14 @@ class Schedule extends Component {
   // Persist to both URL and localStorage
   onTabChange(index) {
     const { slug } = this.props.router.query;
+    const day = index + 1;
 
     this.props.router.replace(
       {
         pathname: "/",
-        query: { slug, day: index }
+        query: { slug, day }
       },
-      `/${slug}?day=${index}`,
+      `/${slug}?day=${day}`,
       {
         shallow: true
       }
@@ -151,7 +152,7 @@ class Schedule extends Component {
               .sort((a, b) => a.sort - b.sort);
 
             // Select active tab, either via URL or localStorage or current date
-            const queryTab = parseInt(this.props.router.query.day || 0, 10);
+            const queryTab = parseInt(this.props.router.query.day || 1, 10) - 1;
             const currentDayTab = schedule.findIndex(
               day =>
                 day.title ===
