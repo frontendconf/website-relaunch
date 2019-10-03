@@ -153,7 +153,7 @@ class Header extends Component {
                           ))}
                         </ul>
                       </nav>
-                      <Link
+                      {/* <Link
                         href={{
                           pathname: "/",
                           query: { slug: "live" }
@@ -163,7 +163,7 @@ class Header extends Component {
                         <a className="special-link">
                           <span className="special-link__text">Live</span>
                         </a>
-                      </Link>
+                      </Link> */}
                       <button
                         onClick={() => this.toggleMobileMenu()}
                         className="burger"
