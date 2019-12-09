@@ -110,7 +110,7 @@ class Header extends Component {
                               Front Conference
                             </span>
                             <span className="home-link__date">
-                              29–30 August 2019
+                              27 – 28 August 2020
                               <br />
                               Alte Papierfabrik, Zurich
                             </span>
