@@ -2,6 +2,7 @@
   "version": 2,
   "builds": [
     { "src": "/api/freshjobs/index.js", "use": "@now/node" },
+    { "src": "/api/airtable/index.js", "use": "@now/node" },
     { "src": "package.json", "use": "@now/next" }
   ],
   "routes": [

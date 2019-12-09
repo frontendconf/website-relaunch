@@ -16,6 +16,7 @@
   "dependencies": {
     "@reach/tabs": "^0.1.6",
     "@zeit/next-sass": "^1.0.1",
+    "airtable": "^0.8.1",
     "apollo-boost": "^0.4.3",
     "array-shuffle": "^1.0.1",
     "express": "^4.16.4",
