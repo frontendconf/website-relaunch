@@ -1,0 +1,24 @@
+.form {
+  dd {
+    margin-left: 0;
+    margin-bottom: 1em;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    border: 1px solid rgba(#1e1732, 0.5);
+    padding: 1em;
+    width: 100%;
+  }
+
+  textarea {
+    height: 10em;
+  }
+
+  button {
+    @include buttonBig;
+    display: inline-block;
+    margin-top: 2em;
+  }
+}
