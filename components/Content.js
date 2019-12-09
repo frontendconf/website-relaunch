@@ -257,7 +257,13 @@ export default withRouter(({ router: { query } }) => {
   return (
     <Query query={dataQuery} variables={{ slug }}>
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error)
+          return (
+            <Hero
+              title="Error loading content."
+              lead="It looks like we cannot reach our content management system. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
+            />
+          );
         if (loading) return <Hero title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors

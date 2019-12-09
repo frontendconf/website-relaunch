@@ -64,10 +64,11 @@ export default function Footer({ showContributingSponsors = true }) {
   return (
     <footer className="footer">
       <Query query={footerQuery}>
-        {({
-          loading,
-          error,
-          data: {
+        {({ loading, error, data }) => {
+          if (error) return <ErrorMessage message="Error loading footer." />;
+          if (loading) return <div>Loading</div>;
+
+          const {
             configCollection: {
               items: [
                 {
@@ -78,10 +79,7 @@ export default function Footer({ showContributingSponsors = true }) {
                 }
               ]
             }
-          }
-        }) => {
-          if (error) return <ErrorMessage message="Error loading pages." />;
-          if (loading) return <div>Loading</div>;
+          } = data;
 
           const sponsors = [].filter(
             item =>

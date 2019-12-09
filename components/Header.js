@@ -75,7 +75,7 @@ class Header extends Component {
     return (
       <Query query={menuQuery}>
         {({ loading, error, data }) => {
-          if (error) return <ErrorMessage message="Error loading pages." />;
+          if (error) return <ErrorMessage message="Error loading header." />;
           if (loading) return <div>Loading</div>;
 
           // Destructuring needs to be done outside the arguments to prevent mapping errors

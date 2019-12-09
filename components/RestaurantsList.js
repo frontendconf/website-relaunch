@@ -31,7 +31,8 @@ const RestaurantsList = () => (
 
         <Query query={RestaurantQuery} skip={!process.browser}>
           {({ loading, error, data }) => {
-            if (error) return <ErrorMessage message="Error loading pages." />;
+            if (error)
+              return <ErrorMessage message="Error loading restaurants." />;
             if (loading) return <div>Loading</div>;
             if (!data) return null;
 

@@ -12,7 +12,11 @@ const getNodeindex = elm => {
 // Check whether the title comes before the old title in the nav
 const isReverseAnimation = (title, oldTitle) => {
   const navInfo = {};
-  const navElements = document.body.querySelector(".nav__list").childNodes;
+  const navList = document.body.querySelector(".nav__list");
+  if (!navList) {
+    return false;
+  }
+  const navElements = navList.childNodes;
   navElements.forEach(navEl => {
     navInfo[navEl.childNodes[0].text] = getNodeindex(navEl);
   });
