@@ -10,7 +10,7 @@ const fieldGroups = [
   {
     title: "Talk",
     description:
-      "Please tell us about your presentation. Note: If your talk should be accepted, the provided info will be used to announce you as a speaker on the official FEC channels (including conference website and booklet).",
+      "Please tell us about your presentation. Note: If your talk should be accepted, the provided info will be used to announce you as a speaker on the official Front channels (including conference website and booklet).",
     fields: [
       {
         name: "Title",
@@ -36,11 +36,11 @@ const fieldGroups = [
         name: "Topic",
         type: "select",
         options: [
-          "Tech",
-          "Design and/or UX",
-          "Management and/or strategy",
-          "Cross-disciplinary",
-          "Other"
+          "DESIGN",
+          "TECHNOLOGY",
+          "DESIGN meets TECH",
+          "DESIGN Leadership",
+          "TECH Leadership"
         ],
         label: "Which topic do you think fits best for your talk?",
         description:
@@ -57,7 +57,7 @@ const fieldGroups = [
       { name: "First name", type: "text", required: true },
       { name: "Last name", type: "text", required: true },
       { name: "Job title", type: "text", required: true },
-      { name: "Company", type: "text", required: true },
+      { name: "Company", type: "text" },
       {
         name: "Location",
         type: "text",
@@ -85,14 +85,14 @@ const fieldGroups = [
         label:
           "Have you spoken at any web technology/design conferences before?",
         description:
-          "Please link to any video and/or slide set of a prior talk you’ve given:",
+          "Please link to any video and/or slide set of a prior talk you’ve given",
         required: true
       },
       {
         name: "E-mail",
         type: "email",
         description:
-          "We will not publish your email address. Other info might be used in the the official FEC channels and/or conference materials.",
+          "We will not publish your email address. Other info might be used in the the official Front channels and/or conference materials.",
         required: true
       },
       { name: "Twitter", type: "text" },
