@@ -157,9 +157,9 @@ module.exports = async (req, res) => {
 
       return res.status(201).end(response);
     } catch (err) {
-      const message = `We are very sorry, but something went wrong. Please submit your proposal via e-mail. Clicking <a href="mailto:thomas@frontconference.com?subject=Proposal&body=${encodeURIComponent(
+      const message = `We are very sorry, but something went wrong. Please try again. If it still doesn't work, you can submit your proposal via e-mail. Clicking <a href="mailto:thomas@frontconference.com?subject=Proposal&body=${encodeURIComponent(
         JSON.stringify(req.body)
-      )}">this link</a> will pre-fill all the data you attempted to submit.`;
+      )}">this link</a> will create a message with the data you already entered into the form below.`;
 
       const response = JSON.stringify({ message, body: req.body });
 

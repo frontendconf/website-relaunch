@@ -48,7 +48,9 @@ class Form extends Component {
       <div className="form">
         {this.state.message && (
           <div
-            className="form__message"
+            className={`form__message ${
+              this.state.isSuccess ? "" : "form__message--error"
+            }`}
             dangerouslySetInnerHTML={{
               __html: this.state.message
             }}

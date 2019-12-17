@@ -51,6 +51,20 @@
     height: 10em;
   }
 
+  &__message {
+    font-size: 22px;
+    font-weight: $font-weight-bold;
+    margin-bottom: 2em;
+
+    &--error {
+      color: #c30;
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+
   &__field-description {
     margin-top: 1em;
   }
