@@ -1,5 +1,5 @@
 import { Query } from "react-apollo";
-import { FormattedDate } from "react-intl";
+import { FormattedDate } from "react-intl/dist";
 import Markdown from "markdown-to-jsx";
 import gql from "graphql-tag";
 import Link from "next/link";

@@ -5,7 +5,7 @@ import gql from "graphql-tag";
 import Link from "next/link";
 import FadeIn from "./FadeIn";
 import { Row, Col } from "./shared/Grid";
-import { FormattedDate } from "react-intl";
+import { FormattedDate } from "react-intl/dist";
 
 const currentDate = new Date().toISOString();
 

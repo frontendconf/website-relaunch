@@ -33,7 +33,7 @@
     "react-animate-on-scroll": "^2.1.5",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.8.3",
-    "react-intl": "^3.0.0",
+    "react-intl": "^3.9.2",
     "react-truncate": "^2.4.0",
     "xml2js": "^0.4.19"
   },

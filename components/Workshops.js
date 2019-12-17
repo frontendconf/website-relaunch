@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { FormattedDate, FormattedTime } from "react-intl";
+import { FormattedDate, FormattedTime } from "react-intl/dist";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Link from "next/link";
