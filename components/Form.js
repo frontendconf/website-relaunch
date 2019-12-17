@@ -21,13 +21,18 @@ class Form extends Component {
     });
 
     const formData = new FormData(event.target);
+    const payload = [...formData.entries()].reduce((obj, [key, val]) => {
+      obj[key] = val;
+
+      return obj;
+    }, {});
 
     const response = await fetch(this.props.action, {
       method: this.props.method,
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(Object.fromEntries(formData))
+      body: JSON.stringify(payload)
     });
     const data = await response.json();
 
