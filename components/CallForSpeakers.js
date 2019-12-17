@@ -6,7 +6,7 @@ class CallForSpeaker extends Component {
     super(props);
 
     this.state = {
-      fields: [],
+      fieldGroups: [],
       isLoading: true
     };
   }
@@ -16,7 +16,7 @@ class CallForSpeaker extends Component {
     const config = await configRequest.json();
 
     this.setState({
-      fields: config.fields,
+      fieldGroups: config.fieldGroups,
       isLoading: false
     });
   }
@@ -24,11 +24,11 @@ class CallForSpeaker extends Component {
   render() {
     return (
       <div className="call-for-speakers">
-        <h2 id="form">Form</h2>
+        <h2 id="form">Submit proposal</h2>
         {this.state.isLoading ? (
           <strong>Loading form...</strong>
         ) : (
-          <Form fields={this.state.fields} action={this.props.url} />
+          <Form fieldGroups={this.state.fieldGroups} action={this.props.url} />
         )}
       </div>
     );

@@ -42,7 +42,12 @@ class Form extends Component {
     return (
       <div className="form">
         {this.state.message && (
-          <div className="form__message">{this.state.message}</div>
+          <div
+            className="form__message"
+            dangerouslySetInnerHTML={{
+              __html: this.state.message
+            }}
+          />
         )}
         {this.state.isSuccess ? null : (
           <form
@@ -50,68 +55,87 @@ class Form extends Component {
             method={this.props.method}
             onSubmit={this.handleSubmit}
           >
-            <dl>
-              {this.props.fields.map((field, i) => {
-                let element;
+            {this.props.fieldGroups.map((group, groupIndex) => (
+              <fieldset key={groupIndex} disabled={this.state.isLoading}>
+                <legend>{group.title}</legend>
+                <p>{group.description}</p>
+                <dl>
+                  {group.fields.map((field, fieldIndex) => {
+                    let element;
 
-                switch (field.type) {
-                  case "select":
-                    element = (
-                      <select
-                        name={field.name}
-                        id={field.name}
-                        disabled={this.state.isLoading}
-                        aria-describedby={
-                          field.description ? `${field.name}-desc` : null
-                        }
-                      >
-                        {field.options.map((option, ii) => (
-                          <option key={ii}>{option}</option>
-                        ))}
-                      </select>
+                    switch (field.type) {
+                      case "select":
+                        element = (
+                          <select
+                            name={field.name}
+                            id={field.name}
+                            disabled={this.state.isLoading}
+                            aria-describedby={
+                              field.description ? `${field.name}-desc` : null
+                            }
+                            required={field.required}
+                          >
+                            {field.options.map((option, i) => (
+                              <option key={i}>{option}</option>
+                            ))}
+                          </select>
+                        );
+                        break;
+                      case "textarea":
+                        element = (
+                          <textarea
+                            name={field.name}
+                            id={field.name}
+                            disabled={this.state.isLoading}
+                            aria-describedby={
+                              field.description ? `${field.name}-desc` : null
+                            }
+                            required={field.required}
+                          />
+                        );
+                        break;
+                      default:
+                        element = (
+                          <input
+                            type={field.type === "file" ? "text" : field.type}
+                            name={field.name}
+                            id={field.name}
+                            value={field.value}
+                            disabled={this.state.isLoading}
+                            aria-describedby={
+                              field.description ? `${field.name}-desc` : null
+                            }
+                            required={field.required}
+                          />
+                        );
+                    }
+                    return (
+                      <React.Fragment key={fieldIndex}>
+                        <dt>
+                          <label htmlFor={field.name}>
+                            {field.label || field.name}
+                            {field.required ? (
+                              <span aria-label="required">*</span>
+                            ) : null}
+                          </label>
+                        </dt>
+                        <dd>
+                          {element}
+                          {field.description && (
+                            <div
+                              id={`${field.name}-desc`}
+                              className="form__field-description"
+                            >
+                              {field.description}
+                            </div>
+                          )}
+                        </dd>
+                      </React.Fragment>
                     );
-                    break;
-                  case "textarea":
-                    element = (
-                      <textarea
-                        name={field.name}
-                        id={field.name}
-                        disabled={this.state.isLoading}
-                        aria-describedby={
-                          field.description ? `${field.name}-desc` : null
-                        }
-                      />
-                    );
-                    break;
-                  default:
-                    element = (
-                      <input
-                        type={field.type === "file" ? "text" : field.type}
-                        name={field.name}
-                        id={field.name}
-                        value={field.value}
-                        disabled={this.state.isLoading}
-                        aria-describedby={
-                          field.description ? `${field.name}-desc` : null
-                        }
-                      />
-                    );
-                }
-                return (
-                  <React.Fragment key={i}>
-                    <dt>
-                      <label htmlFor={field.name}>{field.name}</label>
-                    </dt>
-                    <dd>
-                      {element}
-                      {field.description && (
-                        <div id={`${field.name}-desc`}>{field.description}</div>
-                      )}
-                    </dd>
-                  </React.Fragment>
-                );
-              })}
-            </dl>
+                  })}
+                </dl>
+              </fieldset>
+            ))}
             <button type="submit">Submit</button>
           </form>
         )}
@@ -121,7 +145,7 @@ class Form extends Component {
 }
 
 Form.defaultProps = {
-  fields: [],
+  fieldGroups: [],
   action: "",
   method: "POST"
 };
