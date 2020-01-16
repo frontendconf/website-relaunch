@@ -63,7 +63,7 @@ export default function VenueTeaser({ isVenue = false }) {
   return (
     <Query query={teaserQuery}>
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error) return <ErrorMessage message="Error loading venue." />;
         if (loading) return <div>Loading</div>;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors

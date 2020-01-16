@@ -16,10 +16,12 @@
   "dependencies": {
     "@reach/tabs": "^0.1.6",
     "@zeit/next-sass": "^1.0.1",
+    "airtable": "^0.8.1",
     "apollo-boost": "^0.4.3",
     "array-shuffle": "^1.0.1",
     "express": "^4.16.4",
     "fecha": "^3.0.3",
+    "formdata-polyfill": "^3.0.19",
     "graphql": "^14.0.2",
     "intersection-observer": "^0.7.0",
     "isomorphic-unfetch": "^3.0.0",
@@ -32,7 +34,7 @@
     "react-animate-on-scroll": "^2.1.5",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.8.3",
-    "react-intl": "^3.0.0",
+    "react-intl": "^3.9.2",
     "react-truncate": "^2.4.0",
     "xml2js": "^0.4.19"
   },

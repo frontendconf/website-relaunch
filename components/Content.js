@@ -21,6 +21,7 @@ import Workshops from "./Workshops";
 import Workshop from "./Workshop";
 import Talks from "./Talks";
 import Schedule from "./Schedule";
+import CallForSpeakers from "./CallForSpeakers";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -46,6 +47,7 @@ const currentPageQuery = gql`
         showSchedule
         showHotels
         showRestaurants
+        showCallForSpeakers
         bodyClass
         menuClass
         ctaText
@@ -183,6 +185,7 @@ export default withRouter(({ router: { query } }) => {
     case "tickets":
     case "workshops":
     case "live":
+    case "call-for-speakers":
       template = "list";
       break;
     default:
@@ -257,7 +260,13 @@ export default withRouter(({ router: { query } }) => {
   return (
     <Query query={dataQuery} variables={{ slug }}>
       {({ loading, error, data }) => {
-        if (error) return <ErrorMessage message="Error loading pages." />;
+        if (error)
+          return (
+            <Hero
+              title="Error loading content."
+              lead="It looks like we cannot reach our content management system. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
+            />
+          );
         if (loading) return <Hero title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
@@ -345,7 +354,6 @@ export default withRouter(({ router: { query } }) => {
                               </Col>
                             </Row>
                           )}
-
                           {currentPage.showVenue && (
                             <VenueTeaser isVenue={isVenue} />
                           )}
@@ -359,6 +367,19 @@ export default withRouter(({ router: { query } }) => {
                           {currentPage.showSchedule && <Schedule />}
                           {currentPage.showJobsDetailed && (
                             <Jobs isDetailed={true} />
+                          )}
+                          {currentPage.showCallForSpeakers && (
+                            <Row>
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
+                                <CallForSpeakers />
+                              </Col>
+                            </Row>
                           )}
                         </div>
                       </Col>
