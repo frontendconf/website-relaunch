@@ -32,3 +32,9 @@ Set alias from `dev.frontendconf.ch` to specific deployment (replace `efwfjnbisv
 ```bash
 yarn run alias frontrelaunch-efwfjnbisv.now.sh dev.frontendconf.ch
 ```
+
+Live deployment: Set alias from `frontconference.com` to specific deployment (replace `efwfjnbisv` with the deployment ID):
+
+```bash
+yarn run alias frontrelaunch-efwfjnbisv.now.sh frontconference.com
+```
