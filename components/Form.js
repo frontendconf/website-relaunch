@@ -65,7 +65,7 @@ class Form extends Component {
             {this.props.fieldGroups.map((group, groupIndex) => (
               <fieldset key={groupIndex} disabled={this.state.isLoading}>
                 <legend>{group.title}</legend>
-                <p>{group.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: group.description }} />
                 <dl>
                   {group.fields.map((field, fieldIndex) => {
                     let element;

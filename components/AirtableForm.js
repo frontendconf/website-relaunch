@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Form";
 
-class CallForSpeaker extends Component {
+class AirtableForm extends Component {
   constructor(props) {
     super(props);
 
@@ -12,7 +12,8 @@ class CallForSpeaker extends Component {
   }
 
   async componentDidMount() {
-    const configRequest = await fetch(this.props.url);
+    console.log(this.getUrl());
+    const configRequest = await fetch(this.getUrl());
     const config = await configRequest.json();
 
     this.setState({
@@ -21,22 +22,28 @@ class CallForSpeaker extends Component {
     });
   }
 
+  getUrl() {
+    return `${this.props.url}?table=${encodeURIComponent(this.props.table)}`;
+  }
+
   render() {
     return (
-      <div className="call-for-speakers">
-        <h2 id="form">Submit proposal</h2>
+      <div className="">
+        <h2 id="form">{this.props.title}</h2>
         {this.state.isLoading ? (
           <strong>Loading form...</strong>
         ) : (
-          <Form fieldGroups={this.state.fieldGroups} action={this.props.url} />
+          <Form fieldGroups={this.state.fieldGroups} action={this.getUrl()} />
         )}
       </div>
     );
   }
 }
 
-CallForSpeaker.defaultProps = {
-  url: "/api/airtable"
+AirtableForm.defaultProps = {
+  url: "/api/airtable",
+  title: "",
+  table: "Call for Speakers"
 };
 
-export default CallForSpeaker;
+export default AirtableForm;
