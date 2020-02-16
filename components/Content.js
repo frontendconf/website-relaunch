@@ -21,7 +21,7 @@ import Workshops from "./Workshops";
 import Workshop from "./Workshop";
 import Talks from "./Talks";
 import Schedule from "./Schedule";
-import CallForSpeakers from "./CallForSpeakers";
+import AirtableForm from "./AirtableForm";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -48,6 +48,8 @@ const currentPageQuery = gql`
         showHotels
         showRestaurants
         showCallForSpeakers
+        showSpeakersForm
+        showSpeakersFormWorkshop
         bodyClass
         menuClass
         ctaText
@@ -186,6 +188,8 @@ export default withRouter(({ router: { query } }) => {
     case "workshops":
     case "live":
     case "call-for-speakers":
+    case "speakers-form":
+    case "speakers-form-workshop":
       template = "list";
       break;
     default:
@@ -377,7 +381,36 @@ export default withRouter(({ router: { query } }) => {
                                     : ""
                                 }`}
                               >
-                                <CallForSpeakers />
+                                <AirtableForm
+                                  title="Submit proposal"
+                                  table="Call for Speakers"
+                                />
+                              </Col>
+                            </Row>
+                          )}
+                          {currentPage.showSpeakersForm && (
+                            <Row>
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
+                                <AirtableForm table="Invited Speakers" />
+                              </Col>
+                            </Row>
+                          )}
+                          {currentPage.showSpeakersFormWorkshop && (
+                            <Row>
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
+                                <AirtableForm table="Workshops" />
                               </Col>
                             </Row>
                           )}
