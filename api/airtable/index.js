@@ -139,7 +139,7 @@ const fieldGroups = {
         },
         { name: "Longer Description", type: "textarea", required: true },
         { name: "Intended Audience", type: "text", required: true },
-        { name: "Tags", type: "text", required: true }
+        { name: "Tags", type: "text" }
       ]
     },
     {
@@ -200,7 +200,7 @@ Frontend Conference Association, 8000 Zürich
         },
         { name: "Methodology", type: "text", required: true },
         { name: "Intended Audience", type: "text", required: true },
-        { name: "Tags", type: "text", required: true },
+        { name: "Tags", type: "text" },
         {
           name: "Material Attendees",
           type: "textarea",
