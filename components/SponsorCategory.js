@@ -38,7 +38,7 @@ const sponsorsQuery = gql`
 export default function SponsorCategory({
   category = "CONTRIBUTING",
   title,
-  filterTag = "FEC19",
+  filterTag = "FRONT20",
   details = false
 }) {
   return (

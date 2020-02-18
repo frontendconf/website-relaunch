@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Parallax from "parallax-js";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
@@ -37,25 +38,32 @@ class Hero extends Component {
       passive: true
     });
 
+    const scene = document.querySelector(".scene");
+    this.parallaxInstance = new Parallax(scene);
+
     // First trigger before scroll event happened
     this.scrollHandler();
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.scrollHandler);
+    this.parallaxInstance.destroy();
   }
 
   render() {
     return (
-      <div
-        className={`hero-bg ${
-          this.props.template ? `hero-bg--${this.props.template}` : ""
-        }`}
-      >
+      <div className="scene">
         <div
-          className="hero-bg__overlay"
-          style={{ opacity: this.state.opacity }}
-        />
+          data-depth="0.2"
+          className={`hero-bg ${
+            this.props.template ? `hero-bg--${this.props.template}` : ""
+          }`}
+        >
+          <div
+            className="hero-bg__overlay"
+            style={{ opacity: this.state.opacity }}
+          />
+        </div>
       </div>
     );
   }

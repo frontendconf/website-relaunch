@@ -153,6 +153,21 @@ class Header extends Component {
                           ))}
                         </ul>
                       </nav>
+                      {
+                        <Link
+                          href={{
+                            pathname: "/",
+                            query: { slug: "tickets" }
+                          }}
+                          as="/tickets"
+                        >
+                          <a className="special-link">
+                            <span className="special-link__text">
+                              Buy tickets
+                            </span>
+                          </a>
+                        </Link>
+                      }
                       {/* <Link
                         href={{
                           pathname: "/",

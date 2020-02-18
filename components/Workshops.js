@@ -121,7 +121,7 @@ Workshops.propTypes = {
 };
 
 Workshops.defaultProps = {
-  filterTag: "FEC19",
+  filterTag: "FRONT20",
   date: new Date()
 };
 

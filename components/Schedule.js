@@ -296,7 +296,7 @@ Schedule.propTypes = {
 };
 
 Schedule.defaultProps = {
-  filterTag: "FEC19"
+  filterTag: "FRONT20"
 };
 
 export default withRouter(Schedule);
