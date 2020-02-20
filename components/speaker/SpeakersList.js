@@ -15,7 +15,7 @@ const speakersQuery = gql`
   query speakers($limit: Int, $date: DateTime) {
     collection: speakerCollection(
       limit: $limit
-      where: { publicationDate_lt: $date }
+      where: { publicationDate_lte: $date }
       order: order_ASC
     ) {
       items {
