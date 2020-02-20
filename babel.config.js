@@ -7,7 +7,8 @@ module.exports = {
           targets: {
             browsers: ["> 1%"]
           },
-          useBuiltIns: "usage"
+          useBuiltIns: "usage",
+          corejs: "2.0.0"
         }
       }
     ]
