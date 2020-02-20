@@ -3,5 +3,4 @@ node_modules
 .idea/
 package-lock.json
 secrets.json
-
 .now
