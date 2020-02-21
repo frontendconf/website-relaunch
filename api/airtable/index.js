@@ -270,8 +270,6 @@ module.exports = async (req, res) => {
         return acc;
       }, {});
 
-      console.log(fields);
-
       // Save to Airtable
       await base(table).create([
         {
@@ -294,7 +292,6 @@ module.exports = async (req, res) => {
       const response = JSON.stringify({ message, body: req.body });
 
       console.log(err);
-      console.log(req.body);
 
       return res.status(500).end(response);
     }
