@@ -153,7 +153,7 @@ class Header extends Component {
                           ))}
                         </ul>
                       </nav>
-                      {
+                      {/*
                         <Link
                           href={{
                             pathname: "/",
@@ -167,7 +167,7 @@ class Header extends Component {
                             </span>
                           </a>
                         </Link>
-                      }
+                      */}
                       {/* <Link
                         href={{
                           pathname: "/",
