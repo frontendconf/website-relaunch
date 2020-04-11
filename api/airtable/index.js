@@ -69,11 +69,12 @@ const fieldGroups = {
           required: true
         },
         {
-          name: "Photo",
-          type: "file",
-          description: "URL",
+          // name: "Photo",
+          // type: "file",
+          name: "Photo URL",
+          type: "text",
           description:
-            "Please provide a link to a portrait of you. (Photos should be at least 800x800px and color)",
+            "Please provide a link to a portrait of you. Min 512x512 px, color, entire head visible, indoor photo preferred.",
           required: true
         },
         {
@@ -115,9 +116,10 @@ const fieldGroups = {
         { name: "Twitter", type: "text" },
         { name: "LinkedIn", type: "text" },
         {
-          name: "Photo",
-          type: "file",
-          description: "URL",
+          // name: "Photo",
+          // type: "file",
+          name: "Photo URL",
+          type: "text",
           description:
             "Please provide a link to a portrait of you. Min 512x512 px, color, entire head visible, indoor photo preferred.",
           required: true
@@ -170,9 +172,10 @@ Frontend Conference Association, 8000 Zürich
         { name: "Twitter", type: "text" },
         { name: "LinkedIn", type: "text" },
         {
-          name: "Photo",
-          type: "file",
-          description: "URL",
+          // name: "Photo",
+          // type: "file",
+          name: "Photo URL",
+          type: "text",
           description:
             "Please provide a link to a portrait of you. Min 512x512 px, color, entire head visible, indoor photo preferred.",
           required: true
