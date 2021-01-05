@@ -39,7 +39,7 @@ class Header extends Component {
     this.closeMobileMenu();
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.router.events.on("routeChangeStart", this.onRouteChange);
   }
 
