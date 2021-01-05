@@ -10,14 +10,9 @@ import { Component } from "react";
 
 const currentDate = new Date().toISOString();
 
-// TODO: Find a way of matching items without `publicationDate`, too
 const speakersQuery = gql`
-  query speakers($limit: Int, $date: DateTime) {
-    collection: speakerCollection(
-      limit: $limit
-      where: { publicationDate_lte: $date }
-      order: order_ASC
-    ) {
+  query speakers($limit: Int) {
+    collection: speakerCollection(limit: $limit, order: order_ASC) {
       items {
         name
         description
@@ -85,8 +80,8 @@ class SpeakersList extends Component {
             // Filter by tag
             if (this.props.filterTag) {
               speakers = speakers.filter(item =>
-                item.tagsCollection.items.find(
-                  tag => tag.title === this.props.filterTag
+                item.tagsCollection.items.find(tag =>
+                  this.props.filterTags.contains(tag.title)
                 )
               );
             }
@@ -184,13 +179,13 @@ class SpeakersList extends Component {
 SpeakersList.propTypes = {
   limit: PropTypes.number,
   withHeading: PropTypes.bool,
-  filterTag: PropTypes.string
+  filterTags: PropTypes.array
 };
 
 SpeakersList.defaultProps = {
   limit: 0,
   withHeading: false,
-  filterTag: "FRONT20"
+  filterTags: ["FEC17", "FEC18", "FEC19", "FRONT20"]
 };
 
 export default SpeakersList;
