@@ -188,6 +188,7 @@ export default withRouter(({ router: { query } }) => {
     case "workshops":
     case "live":
     case "call-for-speakers":
+    case "call-for-speakers-wip":
     case "speakers-form":
     case "speakers-form-workshop":
       template = "list";
