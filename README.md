@@ -1,4 +1,4 @@
-# frontendconf.ch Relaunch
+# frontconference.com Relaunch
 
 Based on https://github.com/zeit/next.js/tree/master/examples/with-apollo
 
@@ -21,16 +21,16 @@ In order for the Call for Speakers to work, we are authenticating with the Airta
 yarn run deploy
 ```
 
-Set alias from `dev.frontendconf.ch` to latest deployment (you need to be a member of the `frontendconf` organization on https://zeit.co to be able do this):
+Set alias from `dev.frontconference.com` to latest deployment (you need to be a member of the `frontendconf` organization on https://zeit.co to be able do this):
 
 ```bash
-yarn run alias dev.frontendconf.ch
+yarn run alias dev.frontconference.com
 ```
 
-Set alias from `dev.frontendconf.ch` to specific deployment (replace `efwfjnbisv` with the deployment ID):
+Set alias from `dev.frontconference.com` to specific deployment (replace `efwfjnbisv` with the deployment ID):
 
 ```bash
-yarn run alias frontrelaunch-efwfjnbisv.now.sh dev.frontendconf.ch
+yarn run alias frontrelaunch-efwfjnbisv.now.sh dev.frontconference.com
 ```
 
 Live deployment: Set alias from `frontconference.com` to specific deployment (replace `efwfjnbisv` with the deployment ID):
