@@ -12,7 +12,6 @@ class AirtableForm extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.getUrl());
     const configRequest = await fetch(this.getUrl());
     const config = await configRequest.json();
 
