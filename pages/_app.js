@@ -15,8 +15,16 @@ Router.events.on("routeChangeComplete", url => {
 });
 
 class MyApp extends App {
+  static async getInitialProps({ ctx: { req } }) {
+    const host = req ? req.headers["x-forwarded-host"] : window.location.host;
+
+    return {
+      host
+    };
+  }
+
   render() {
-    const { Component, pageProps, apolloClient } = this.props;
+    const { Component, pageProps, apolloClient, host } = this.props;
     return (
       <Container>
         <Head>
@@ -119,7 +127,7 @@ class MyApp extends App {
         </Head>
         <ApolloProvider client={apolloClient}>
           <IntlProvider locale="en">
-            <Component {...pageProps} />
+            <Component {...pageProps} host={host} />
           </IntlProvider>
         </ApolloProvider>
       </Container>

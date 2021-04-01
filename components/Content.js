@@ -157,7 +157,8 @@ const currentWorkshopQuery = gql`
   }
 `;
 
-export default withRouter(({ router: { query } }) => {
+export default withRouter(({ router: { query }, host }) => {
+  console.log({ host });
   const slug = query.slug || "/";
   const category = query.category;
   let template = "default";
