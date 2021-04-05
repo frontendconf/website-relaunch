@@ -157,7 +157,14 @@ const currentWorkshopQuery = gql`
   }
 `;
 
-export default withRouter(({ router: { query } }) => {
+export default withRouter(props => {
+  if (!props.router || !props.router.query) {
+    return null;
+  }
+
+  const {
+    router: { query }
+  } = props;
   const slug = query.slug || "/";
   const category = query.category;
   let template = "default";

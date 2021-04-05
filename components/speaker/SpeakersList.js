@@ -78,10 +78,10 @@ class SpeakersList extends Component {
             } = data;
 
             // Filter by tag
-            if (this.props.filterTag) {
+            if (this.props.filterTags) {
               speakers = speakers.filter(item =>
                 item.tagsCollection.items.find(tag =>
-                  this.props.filterTags.contains(tag.title)
+                  this.props.filterTags.includes(tag.title)
                 )
               );
             }
@@ -139,10 +139,10 @@ class SpeakersList extends Component {
                 } = data;
 
                 // Filter by tag
-                if (this.props.filterTag) {
+                if (this.props.filterTags) {
                   hosts = hosts.filter(item =>
-                    item.tagsCollection.items.find(
-                      tag => tag.title === this.props.filterTag
+                    item.tagsCollection.items.find(tag =>
+                      this.props.filterTags.includes(tag.title)
                     )
                   );
                 }
@@ -185,7 +185,7 @@ SpeakersList.propTypes = {
 SpeakersList.defaultProps = {
   limit: 0,
   withHeading: false,
-  filterTags: ["FEC17", "FEC18", "FEC19", "FRONT20"]
+  filterTags: ["FRONT21"]
 };
 
 export default SpeakersList;
