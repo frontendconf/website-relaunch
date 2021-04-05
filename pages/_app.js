@@ -18,7 +18,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps, apolloClient } = this.props;
     return (
-      <Container>
+      <div>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <GoogleAnalytics.Script />
@@ -122,7 +122,7 @@ class MyApp extends App {
             <Component {...pageProps} />
           </IntlProvider>
         </ApolloProvider>
-      </Container>
+      </div>
     );
   }
 }
