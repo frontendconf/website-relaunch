@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 import ErrorMessage from "./ErrorMessage";
 
 const talksQuery = gql`
-  query talks($limit: Int) {
-    collection: talkCollection(limit: $limit) {
+  query talks {
+    collection: talkCollection(limit: 20) {
       items {
         title
         abstract
@@ -73,7 +73,7 @@ Talks.propTypes = {
 };
 
 Talks.defaultProps = {
-  filterTag: "FRONT20",
+  filterTag: "FRONT21",
   speakerSlug: null
 };
 
