@@ -8,14 +8,9 @@ import { Row, Col } from "./shared/Grid";
 import FadeIn from "./FadeIn";
 import Image from "./Image";
 
-// TODO: Find a way of matching items without `publicationDate`, too
-// (Necessary to display workshops from previous years without having to fill this field in Contentful)
 const workshopsQuery = gql`
-  query workshops($date: DateTime) {
-    collection: workshopCollection(
-      where: { publicationDate_lt: $date }
-      order: order_ASC
-    ) {
+  query workshops {
+    collection: workshopCollection(limit: 20) {
       items {
         title
         lead
@@ -40,10 +35,7 @@ const workshopsQuery = gql`
 
 const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
   <div className="workshops">
-    <Query
-      query={workshopsQuery}
-      variables={{ date: Workshops.defaultProps.date.toISOString() }}
-    >
+    <Query query={workshopsQuery}>
       {({ loading, error, data }) => {
         if (error) return <ErrorMessage message="Error loading workshops" />;
         if (loading) return <div>Loading</div>;
@@ -116,13 +108,11 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
 );
 
 Workshops.propTypes = {
-  filterTag: PropTypes.string,
-  date: PropTypes.instanceOf(Date)
+  filterTag: PropTypes.string
 };
 
 Workshops.defaultProps = {
-  filterTag: "FRONT20",
-  date: new Date()
+  filterTag: "FRONT21"
 };
 
 export default Workshops;
