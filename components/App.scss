@@ -113,6 +113,16 @@ p {
     }
   }
 
+  ol {
+    li {
+      padding-left: 7px;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
   li,
   th,
   td {
