@@ -125,6 +125,14 @@ p {
     }
   }
 
+  .special-link {
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
   @include mq-up(md) {
     .board {
       ul {
