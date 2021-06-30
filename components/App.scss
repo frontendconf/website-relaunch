@@ -73,6 +73,8 @@ p {
 
 .markdown-wrapper {
   h2 {
+    margin-top: 40px;
+
     .content__wrapper--white & {
       color: $offblack;
     }
@@ -94,33 +96,6 @@ p {
   img {
     display: inline-block;
     max-width: 100%;
-  }
-
-  ul {
-    padding: 0;
-    margin: 34px 0;
-    list-style: none;
-  }
-
-  li {
-    position: relative;
-    padding-left: 37px;
-
-    &::before {
-      content: "•";
-      position: absolute;
-      left: 13px;
-    }
-  }
-
-  ol {
-    li {
-      padding-left: 7px;
-
-      &::before {
-        display: none;
-      }
-    }
   }
 
   li,
