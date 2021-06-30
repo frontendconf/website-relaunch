@@ -6,18 +6,22 @@ class AirtableForm extends Component {
     super(props);
 
     this.state = {
-      fieldGroups: [],
-      isLoading: true
+      isLoading: false,
+      isSuccess: false,
+      message: null,
+      fieldGroups: []
     };
   }
 
   async componentDidMount() {
-    const configRequest = await fetch(this.getUrl());
-    const config = await configRequest.json();
+    const response = await fetch(this.getUrl());
+    const data = await response.json();
 
     this.setState({
-      fieldGroups: config.fieldGroups,
-      isLoading: false
+      isLoading: false,
+      isSuccess: response.status < 400,
+      message: data.message,
+      fieldGroups: data.fieldGroups
     });
   }
 
@@ -31,8 +35,10 @@ class AirtableForm extends Component {
         <h2 id="form">{this.props.title}</h2>
         {this.state.isLoading ? (
           <strong>Loading form...</strong>
-        ) : (
+        ) : this.state.isSuccess ? (
           <Form fieldGroups={this.state.fieldGroups} action={this.getUrl()} />
+        ) : (
+          <strong>{this.state.message}</strong>
         )}
       </div>
     );
