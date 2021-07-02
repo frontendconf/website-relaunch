@@ -13,7 +13,7 @@ yarn dev
 
 ### Set up configuration
 
-In order for the Call for Speakers to work, we are authenticating with the Airtable API. Create a `secrets.json` from the `secrets.json.tmpl` template file and insert the relevant data. Ask `thomas@frontconference.com` in case you don't have access to Airtable. Without this file you'll see a `Cannot find module '../../secrets.json'` at some point.
+In order for the Call for Speakers to work, we are authenticating with the Airtable API. Create a `secrets.json` from the `secrets.json.tmpl` template file and insert the relevant data. Ask `thomas@frontconference.com` in case you don't have access to Airtable. Without this file you'll see a `Cannot find module '../../secrets.json'` at some point. The frontend will show `Application error: Could not find Airtable API key.` when attempting to render an Airtable form.
 
 ### Deploy to now.sh
 
