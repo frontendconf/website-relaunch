@@ -20,6 +20,7 @@ const Socials = ({ items, mobileVertical, className }) => (
             href={url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={a11y}
           >
             {icon === "twitter" && <Twitter />}
             {icon === "linkedin" && <Linkedin />}
