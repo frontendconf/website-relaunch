@@ -3,8 +3,9 @@ const Airtable = require("airtable");
 module.exports = async (req, res) => {
   res.setHeader("content-type", "application/json");
 
+  // Handle missing `secrets.json`
   try {
-    const { AIRTABLE_API_KEY, AIRTABLE_BASE } = require("../../secrets.json");
+    var { AIRTABLE_API_KEY, AIRTABLE_BASE } = require("../../secrets.json"); // Hoist variables
   } catch (err) {
     const response = JSON.stringify({
       message: `Application error: Could not find Airtable API key.`
