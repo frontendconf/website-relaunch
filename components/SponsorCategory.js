@@ -63,14 +63,16 @@ export default function SponsorCategory({
           );
         }
 
-        // Sort by `order` property
-        if (sponsors[0].order) {
-          sponsors = sponsors.sort((a, b) => a.order - b.order);
-        }
+        if (sponsors.length) {
+          // Sort by `order` property
+          if (sponsors[0].order) {
+            sponsors = sponsors.sort((a, b) => a.order - b.order);
+          }
 
-        // Default title
-        if (!title && sponsors.length) {
-          title = sponsors.find(item => item.category.title).category.title;
+          // Default title
+          if (!title) {
+            title = sponsors.find(item => item.category.title).category.title;
+          }
         }
 
         // Columns
