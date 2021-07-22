@@ -52,6 +52,17 @@
   }
 }
 
+@keyframes scroll-wheel {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate3d(0, 10px, 0);
+    opacity: 0;
+  }
+}
+
 .hero {
   height: auto;
   padding: 90px 0 0;
@@ -133,6 +144,62 @@
 
     &:not(:last-child) {
       margin-right: 15px;
+    }
+  }
+
+  &__scroll {
+    display: none;
+  }
+
+  @include mq-up(md) {
+    &__scroll {
+      position: absolute;
+      display: block;
+      z-index: 1;
+      width: 30px;
+      height: 50px;
+      top: 95vh;
+      left: 50%;
+      cursor: pointer;
+      margin-top: -25px;
+      margin-left: -15px;
+      opacity: 0.6;
+      transition: opacity $transition-time-default;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      .mouse {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border: 2px solid #ffffff;
+        border-radius: 20px;
+      }
+
+      .wheel {
+        width: 4px;
+        height: 4px;
+        top: 10px;
+        left: 50%;
+        position: absolute;
+        background: #ffffff;
+        display: block;
+        border-radius: 50%;
+        margin-left: -2px;
+        animation-name: scroll-wheel;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    &__scroll--hidden {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 

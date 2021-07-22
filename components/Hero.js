@@ -37,6 +37,29 @@ class Hero extends Component {
     this.myRef = React.createRef();
   }
 
+  scrollDown() {
+    if (process.browser) {
+      window.scrollBy({
+        top: 400,
+        left: 0,
+        behavior: "smooth"
+      });
+    }
+  }
+
+  scrollHandler() {
+    if (!document.querySelector(".hero__scroll")) return;
+    if (window.scrollY > 50) {
+      document
+        .querySelector(".hero__scroll")
+        .classList.add("hero__scroll--hidden");
+    } else {
+      document
+        .querySelector(".hero__scroll")
+        .classList.remove("hero__scroll--hidden");
+    }
+  }
+
   componentDidMount() {
     this.myRef.current.querySelectorAll("h1").forEach(item => {
       item.remove();
@@ -45,6 +68,8 @@ class Hero extends Component {
     newEl.className = "hero__title";
     newEl.innerHTML = this.props.title;
     this.myRef.current.appendChild(newEl);
+
+    window.addEventListener("scroll", this.scrollHandler);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -85,6 +110,10 @@ class Hero extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.scrollHandler);
+  }
+
   render() {
     return (
       <div
@@ -112,7 +141,21 @@ class Hero extends Component {
                   </FadeIn>
                 ) : null}
               </div>
-
+            </Col>
+          </Row>
+        </Container>
+        {(this.props.isSpeakersOverview || this.props.isHome) && (
+          <div className="hero__scroll">
+            <div onClick={this.scrollDown}>
+              <div className="mouse">
+                <div className="wheel"></div>
+              </div>
+            </div>
+          </div>
+        )}
+        <Container className="hero__container">
+          <Row className="hero__container">
+            <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
               {this.props.ctas && (
                 <div className="hero__ctas-wrapper">
                   <FadeIn style={{ display: "block" }} delay={300}>
