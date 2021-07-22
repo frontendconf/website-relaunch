@@ -55,6 +55,12 @@ const currentPageQuery = gql`
         ctaText
         specialPage
         config
+        backgroundImageDesktop {
+          url(transform: { resizeStrategy: FILL })
+        }
+        backgroundImageMobile {
+          url(transform: { resizeStrategy: FILL })
+        }
         leadCtasCollection {
           items {
             ctaText
@@ -173,6 +179,7 @@ export default withRouter(props => {
   let wideContent = false;
   let darkContent = false;
   let isHome = slug === "/";
+  let isSpeakersOverview = slug === "speakers";
   let isVenue = slug === "venue";
 
   // Root categories
@@ -329,7 +336,10 @@ export default withRouter(props => {
                 className={loading ? "content content--loading" : "content"}
               >
                 <CustomHead />
-                <HeroBG />
+                <HeroBG
+                  backgroundImageDesktop={currentPage.backgroundImageDesktop}
+                  backgroundImageMobile={currentPage.backgroundImageMobile}
+                />
                 <Hero
                   title={title}
                   subTitle={subTitle}
@@ -540,6 +550,8 @@ export default withRouter(props => {
                   subTitle={subTitle}
                   lead={currentPage.lead}
                   ctas={ctas}
+                  isHome={isHome}
+                  isSpeakersOverview={isSpeakersOverview}
                 />
                 <Container>
                   <Row>

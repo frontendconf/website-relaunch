@@ -59,6 +59,24 @@ class Hero extends Component {
             this.props.template ? `hero-bg--${this.props.template}` : ""
           }`}
         >
+          <div className="hero-bg__image-wrapper">
+            <img
+              className="hero-bg__image hero-bg__image-desktop"
+              src={
+                this.props.backgroundImageDesktop
+                  ? this.props.backgroundImageDesktop.url
+                  : "/static/images/bg_desktop.jpg"
+              }
+            />
+            <img
+              className="hero-bg__image hero-bg__image-mobile"
+              src={
+                this.props.backgroundImageMobile
+                  ? this.props.backgroundImageMobile.url
+                  : "/static/images/bg_mobile.jpg"
+              }
+            />
+          </div>
           <div
             className="hero-bg__overlay"
             style={{ opacity: this.state.opacity }}
