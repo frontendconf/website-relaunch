@@ -88,6 +88,13 @@ p {
     @include link;
   }
 
+  .content__wrapper--white & a {
+    color: $link-color-on-white;
+    &:hover {
+      color: $link-hover-color-on-white;
+    }
+  }
+
   img,
   .video {
     margin: 50px 0;

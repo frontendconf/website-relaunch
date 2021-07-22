@@ -35,11 +35,12 @@ $spaces: (
 //
 // Style anchor elements.
 
-$link-color: $windsor !default;
-$link-decoration: none !default;
+$link-color: $bombay !default;
+$link-decoration: underline !default;
 $link-hover-color: darken($link-color, 5%) !default;
 $link-hover-decoration: underline !default;
-
+$link-color-on-white: $windsor !default;
+$link-hover-color-on-white: darken($link-color-on-white, 5%) !default;
 // Paragraphs
 //
 // Style p element.
