@@ -158,11 +158,14 @@ class Schedule extends Component {
                 day.title ===
                 dateFormatter.formatDate(new Date(), "dddd, D MMM")
             );
-            const activeTab = this.props.router.query.day
-              ? queryTab
-              : this.state.activeTab > -1
-              ? this.state.activeTab
-              : currentDayTab;
+            const activeTab = Math.max(
+              this.props.router.query.day
+                ? queryTab
+                : this.state.activeTab > -1
+                ? this.state.activeTab
+                : currentDayTab,
+              0
+            );
 
             return (
               <Tabs
