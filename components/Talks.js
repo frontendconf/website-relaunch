@@ -5,8 +5,8 @@ import ErrorMessage from "./ErrorMessage";
 import Markdown from "markdown-to-jsx";
 
 const talksQuery = gql`
-  query talks {
-    collection: talkCollection(limit: 20) {
+  query talks($limit: Int) {
+    collection: talkCollection(limit: $limit) {
       items {
         title
         abstract
