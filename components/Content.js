@@ -22,6 +22,7 @@ import Workshop from "./Workshop";
 import Talks from "./Talks";
 import Schedule from "./Schedule";
 import AirtableForm from "./AirtableForm";
+import Fade from "react-reveal/Fade";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -336,10 +337,17 @@ export default withRouter(props => {
                 className={loading ? "content content--loading" : "content"}
               >
                 <CustomHead />
-                <HeroBG
-                  backgroundImageDesktop={currentPage.backgroundImageDesktop}
-                  backgroundImageMobile={currentPage.backgroundImageMobile}
-                />
+                <Fade
+                  spy={
+                    currentPage.backgroundImageDesktop ||
+                    currentPage.backgroundImageMobile
+                  }
+                >
+                  <HeroBG
+                    backgroundImageDesktop={currentPage.backgroundImageDesktop}
+                    backgroundImageMobile={currentPage.backgroundImageMobile}
+                  />
+                </Fade>
                 <Hero
                   title={title}
                   subTitle={subTitle}
