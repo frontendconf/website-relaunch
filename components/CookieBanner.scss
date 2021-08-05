@@ -22,59 +22,95 @@
             you can switch to "bottom: 0px !important;". Don't forget to put "slideDown"
             to "false".
      */
-  bottom: 0px !important;
-  left: 0px !important;
+  bottom: 10px !important;
+  left: 10px !important;
   position: fixed !important;
-  width: 100% !important;
+  width: 400px;
+
   z-index: 99999998 !important;
-  background-color: black;
-  /* ----------------- */
+  max-width: calc(100% - 20px);
+  background: $revolver;
+  border-radius: 4px;
+
+  transform: translateY(120%);
+  transition: transform 600ms ease-out;
+
+  @include mq-up(md) {
+    width: 70%;
+    bottom: 10px !important;
+    left: 20px !important;
+  }
+
+  @include mq-up(lg) {
+    width: 50%;
+    bottom: 10px !important;
+    left: 20px !important;
+  }
+
+  @include mq-up(xl) {
+    width: 40%;
+    bottom: 10px !important;
+    left: 20px !important;
+  }
+
+  &.iubenda-cs-banner--shown {
+    transform: translateY(0);
+  }
 }
 
 /*  CONTENT CLASS */
 .iubenda-cs-content {
   display: block;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px 20px;
   width: auto;
-  font-family: Helvetica, Arial, FreeSans, sans-serif;
   font-size: 14px;
-  background: #000;
+  background: $revolver;
   color: #fff;
-}
-.iubenda-banner-content {
+
+  @include mq-up(md) {
+    padding: 29px 33px;
+  }
 }
 
 .iubenda-cs-rationale {
-  max-width: 900px;
-  position: relative;
   margin: 0 auto;
 }
 
 /*   STYLE FOR TEXT INTERNAL BANNER */
 .iubenda-banner-content > p {
-  font-family: Helvetica, Arial, FreeSans, sans-serif;
-  line-height: 1.5;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.4px;
 }
 
 /*  CLOSE BUTTON. NOTICE: IMAGE FOR BUTTON NOT IMPLEMENTED YET */
 .iubenda-cs-close-btn {
   margin: 0;
-  color: #fff;
+  color: $grey;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 38px;
   position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  background-color: transparentize($light-grey, 1);
+  border-radius: 50%;
+  font-weight: 200;
+  text-align: center;
+  transition: background-color ease-out 200ms;
+}
+
+#iubenda-cs-banner:hover .iubenda-cs-close-btn {
+  background-color: transparentize($light-grey, 0);
 }
 
 /*  STYLE FOR TEXT LINK TO PRIVACY POLICY */
 .iubenda-cs-cookie-policy-lnk {
-  text-decoration: underline;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 900;
+  @include link;
+  color: $bombay;
 }
 
 /* Custom styles */
@@ -91,14 +127,15 @@
   margin: 0;
 
   &:first-child {
+    color: $white;
     font-weight: bold;
+    font-size: 24px;
+    line-height: 160%;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
   }
 }
 
 .iubenda-cs-cookie-policy-lnk {
   font-size: 1em;
-}
-
-.iubenda-cs-close-btn {
-  line-height: 1;
 }
