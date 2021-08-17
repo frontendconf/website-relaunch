@@ -158,32 +158,30 @@ class Header extends Component {
                             ))}
                           </ul>
                         </nav>
-                        {
-                          <Link
-                            href={{
-                              pathname: "/",
-                              query: { slug: "tickets" }
-                            }}
-                            as="/tickets"
-                          >
-                            <a className="special-link">
-                              <span className="special-link__text">
-                                Buy tickets
-                              </span>
-                            </a>
-                          </Link>
-                        }
-                        {/* <Link
-                        href={{
-                          pathname: "/",
-                          query: { slug: "live" }
-                        }}
-                        as="/live"
-                      >
-                        <a className="special-link">
-                          <span className="special-link__text">Live</span>
-                        </a>
-                      </Link> */}
+                        <Link
+                          href={{
+                            pathname: "/",
+                            query: { slug: "online-community" }
+                          }}
+                          as="/online-community"
+                        >
+                          <a className="special-link">
+                            <span className="special-link__text">Online</span>
+                          </a>
+                        </Link>
+                        <Link
+                          href={{
+                            pathname: "/",
+                            query: { slug: "tickets" }
+                          }}
+                          as="/tickets"
+                        >
+                          <a className="special-link special-link--ticket">
+                            <span className="special-link__text">
+                              Buy tickets
+                            </span>
+                          </a>
+                        </Link>
                         <button
                           onClick={() => this.toggleMobileMenu()}
                           className="burger"

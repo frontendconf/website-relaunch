@@ -253,6 +253,15 @@ $logo-isze-md: 63px;
       opacity: 1;
     }
   }
+
+  & + & {
+    display: none;
+
+    @include mq-up(md) {
+      margin-left: 20px;
+      display: block;
+    }
+  }
 }
 
 @media (min-width: 1200px) {

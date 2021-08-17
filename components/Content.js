@@ -202,6 +202,7 @@ export default withRouter(props => {
     case "tickets":
     case "workshops":
     case "live":
+    case "online-community":
     case "call-for-speakers":
     case "call-for-speakers-wip":
     case "speakers-form":
