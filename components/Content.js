@@ -287,7 +287,6 @@ export default withRouter(props => {
               lead="It looks like we cannot reach our content management system. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
             />
           );
-        if (loading) return <Hero title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
         const {
@@ -552,7 +551,17 @@ export default withRouter(props => {
                 className={loading ? "content content--loading" : "content"}
               >
                 <CustomHead />
-                <HeroBG />
+                <Fade
+                  spy={
+                    currentPage.backgroundImageDesktop ||
+                    currentPage.backgroundImageMobile
+                  }
+                >
+                  <HeroBG
+                    backgroundImageDesktop={currentPage.backgroundImageDesktop}
+                    backgroundImageMobile={currentPage.backgroundImageMobile}
+                  />
+                </Fade>
                 <Hero
                   title={title}
                   subTitle={subTitle}
