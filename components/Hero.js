@@ -40,7 +40,7 @@ class Hero extends Component {
   scrollDown() {
     if (process.browser) {
       window.scrollBy({
-        top: 400,
+        top: 950,
         left: 0,
         behavior: "smooth"
       });

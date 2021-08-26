@@ -288,6 +288,14 @@ export default withRouter(props => {
               lead="It looks like we cannot reach our content management system. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
             />
           );
+
+        const isScheduleTabChange =
+          props.router.query.slug === "schedule" && props.router.query.day;
+        // Scroll top on route change
+        if (typeof window !== "undefined" && !isScheduleTabChange) {
+          window.scrollTo(0, 0);
+        }
+
         if (loading) return <Hero title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
