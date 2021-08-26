@@ -42,6 +42,7 @@ class Schedule extends Component {
   constructor(props) {
     super(props);
 
+    this.scheduleRef = React.createRef();
     this.state = {
       activeTab: -1
     };
@@ -84,11 +85,19 @@ class Schedule extends Component {
     this.setState({
       activeTab: index
     });
+
+    const top =
+      this.scheduleRef.current.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top,
+      left: 0,
+      behavior: "smooth"
+    });
   }
 
   render() {
     return (
-      <div className="schedule">
+      <div className="schedule" ref={this.scheduleRef}>
         <Query query={scheduleQuery}>
           {({ loading, error, data }) => {
             if (error) return <ErrorMessage message="Error loading schedule" />;
