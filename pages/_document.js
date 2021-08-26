@@ -9,10 +9,7 @@ class MyDocument extends Document {
         <body>
           <script
             dangerouslySetInnerHTML={{
-              __html: `
-                document.documentElement.classList.remove("no-js");
-                document.documentElement.classList.add("js");
-              `
+              __html: `document.documentElement.classList.remove("no-js");`
             }}
           />
           <Main />
