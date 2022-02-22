@@ -7,6 +7,7 @@ import { IntlProvider } from "react-intl/dist";
 import * as GoogleAnalytics from "../lib/gtag";
 import * as HubSpot from "../lib/hubspot";
 import * as Iubenda from "../lib/iubenda";
+import * as Gist from "../lib/gist";
 import Router from "next/router";
 
 Router.events.on("routeChangeComplete", url => {
@@ -24,6 +25,7 @@ class MyApp extends App {
           <GoogleAnalytics.Script />
           <HubSpot.Script />
           <Iubenda.Script />
+          <Gist.Script />
           <link
             rel="apple-touch-icon-precomposed"
             sizes="57x57"
