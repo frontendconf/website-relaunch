@@ -169,7 +169,7 @@ class Header extends Component {
                             <span className="special-link__text">Online</span>
                           </a>
                         </Link>
-                        {/*<Link
+                        <Link
                           href={{
                             pathname: "/",
                             query: { slug: "tickets" }
@@ -181,7 +181,7 @@ class Header extends Component {
                               Buy tickets
                             </span>
                           </a>
-                        </Link>*/}
+                        </Link>
                         <button
                           onClick={() => this.toggleMobileMenu()}
                           className="burger"
