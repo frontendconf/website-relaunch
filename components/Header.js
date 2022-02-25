@@ -158,7 +158,7 @@ class Header extends Component {
                             ))}
                           </ul>
                         </nav>
-                        <Link
+                        {/*<Link
                           href={{
                             pathname: "/",
                             query: { slug: "online-community" }
@@ -168,7 +168,7 @@ class Header extends Component {
                           <a className="special-link">
                             <span className="special-link__text">Online</span>
                           </a>
-                        </Link>
+                        </Link>*/}
                         <Link
                           href={{
                             pathname: "/",
