@@ -6,6 +6,7 @@ import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from "./components/FooterMenu";
 import SocialIcons from "./components/SocialIcons";
 import Newsletter from "./components/Newsletter";
+import Vercel from "./../../static/powered-by-vercel.svg";
 
 const footerQuery = gql`
   query {
@@ -130,6 +131,14 @@ export default function Footer({ showContributingSponsors = true }) {
                     </p>
 
                     <FooterMenu id="meta" items={metaMenuItems} />
+                    <a
+                      href="https://vercel.com/?utm_source=frontendconf&utm_campaign=oss"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="vercel-banner"
+                    >
+                      <Vercel />
+                    </a>
                   </div>
                 </Col>
               </Row>
