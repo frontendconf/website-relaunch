@@ -6,7 +6,7 @@ import { Container, Row, Col } from "../shared/Grid";
 import FooterMenu from "./components/FooterMenu";
 import SocialIcons from "./components/SocialIcons";
 import Newsletter from "./components/Newsletter";
-import Vercel from "./../../static/powered-by-vercel.svg";
+import Vercel from "./../../static/vercel.svg";
 
 const footerQuery = gql`
   query {

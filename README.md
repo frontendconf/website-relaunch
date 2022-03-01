@@ -2,7 +2,7 @@
 
 Based on https://github.com/zeit/next.js/tree/master/examples/with-apollo
 
-[![Powered by vercel banner](./static/powered-by-vercel.svg)](https://vercel.com/?utm_source=frontendconf&utm_campaign=oss)
+[![Powered by vercel banner](./static/vercel.svg)](https://vercel.com/?utm_source=frontendconf&utm_campaign=oss)
 
 ## Contribute
 
