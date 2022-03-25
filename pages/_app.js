@@ -6,7 +6,6 @@ import { ApolloProvider } from "react-apollo";
 import { IntlProvider } from "react-intl/dist";
 import * as GoogleAnalytics from "../lib/gtag";
 import * as HubSpot from "../lib/hubspot";
-import * as Iubenda from "../lib/iubenda";
 import * as Gist from "../lib/gist";
 import Router from "next/router";
 
@@ -24,7 +23,6 @@ class MyApp extends App {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <GoogleAnalytics.Script />
           <HubSpot.Script />
-          <Iubenda.Script />
           <Gist.Script />
           <link
             rel="apple-touch-icon-precomposed"
