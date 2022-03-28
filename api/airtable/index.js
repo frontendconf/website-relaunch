@@ -3,10 +3,8 @@ const Airtable = require("airtable");
 module.exports = async (req, res) => {
   res.setHeader("content-type", "application/json");
 
-  // Handle missing `secrets.json`
-  try {
-    var { AIRTABLE_API_KEY, AIRTABLE_BASE } = require("../../secrets.json"); // Hoist variables
-  } catch (err) {
+  // Handle missing airtable env variables
+  if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE) {
     const response = JSON.stringify({
       message: `Application error: Could not find Airtable API key.`
     });
@@ -254,8 +252,8 @@ module.exports = async (req, res) => {
     console.log("Airtable submission", req.body);
 
     try {
-      const base = new Airtable({ apiKey: AIRTABLE_API_KEY }).base(
-        AIRTABLE_BASE
+      const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
+        process.env.AIRTABLE_BASE
       );
 
       const fieldConfig = fieldGroups[table].reduce((acc, group) => {
