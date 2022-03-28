@@ -108,7 +108,7 @@ class Header extends Component {
                           >
                             <img
                               className="home-link__image"
-                              src="/static/frontZRH_10y.svg"
+                              src="/static/neon.svg"
                             />
                             <div className="home-link__text-wrap">
                               <span className="home-link__slogan">
