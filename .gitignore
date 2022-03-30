@@ -5,3 +5,4 @@ package-lock.json
 secrets.json
 .now
 .vercel
+.env.local
