@@ -85,7 +85,7 @@ export default function Footer({ showContributingSponsors = true }) {
           const sponsors = [].filter(
             item =>
               item.category.title === "CONTRIBUTING" &&
-              item.tagCollection.items.find(tag => tag.title === "2022")
+              item.tagCollection.items.find(tag => tag.title === "FRONT22")
           );
 
           return (
