@@ -185,7 +185,7 @@ SpeakersList.propTypes = {
 SpeakersList.defaultProps = {
   limit: 0,
   withHeading: false,
-  filterTags: ["FRONT21"]
+  filterTags: ["2022"]
 };
 
 export default SpeakersList;
