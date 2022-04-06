@@ -112,7 +112,7 @@ Workshops.propTypes = {
 };
 
 Workshops.defaultProps = {
-  filterTag: "FRONT21"
+  filterTag: "FRONT22"
 };
 
 export default Workshops;
