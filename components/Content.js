@@ -425,6 +425,9 @@ export default withRouter(props => {
                           )}
                           {currentPage.showSpeakersForm && (
                             <Row>
+                              <Head>
+                                <meta name="robots" content="noindex" />
+                              </Head>
                               <Col
                                 className={`xs-12 ${
                                   !wideContent
@@ -438,6 +441,9 @@ export default withRouter(props => {
                           )}
                           {currentPage.showSpeakersFormWorkshop && (
                             <Row>
+                              <Head>
+                                <meta name="robots" content="noindex" />
+                              </Head>
                               <Col
                                 className={`xs-12 ${
                                   !wideContent
