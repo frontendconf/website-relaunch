@@ -155,6 +155,66 @@ module.exports = async (req, res) => {
         ]
       },
       {
+        title: "Travel and accomodation",
+        description: `To be able to book travel and hotel, we would need to know some details. We are covering a round trip economy class airline or train ticket and accomodation at a <a href="https://www.motel-one.com/en/hotels/zurich/hotel-zurich/. ">hotel in the heart of Zurich</a>. For speakers from overseas, we are covering up to 5 hotel nights, for speakers from Europe, we are covering up to 3 nights.<br><br>If you are traveling with your partner, e.g., we will organize their airline or train ticket and upgrade the hotel to a double room (for a surcharge of 33 CHF/night during the week and 18 CHF/night during the weekend).`,
+        fields: [
+          {
+            name: "Travel from / Return to",
+            type: "text",
+            description: "City with airport or train station",
+            required: true
+          },
+          {
+            name: "Date of Arrival",
+            type: "date",
+            description:
+              "We recommend to get to Zurich on Wednesday, August 24, latest.",
+            required: true
+          },
+          {
+            name: "Date of Return",
+            type: "date",
+            description: "",
+            required: true
+          },
+          {
+            name: "Full Name",
+            type: "text",
+            description: "",
+            required: true
+          },
+          {
+            name: "Date of Birth",
+            type: "date",
+            description: "",
+            required: true
+          },
+          {
+            name: "Full Name (Partner)",
+            type: "text",
+            description: "In case you are traveling with your partner."
+          },
+          {
+            name: "Date of Birth (Partner)",
+            type: "date",
+            description: "In case you are traveling with your partner."
+          },
+          {
+            name: "Deduct Additional Costs",
+            type: "checkbox",
+            description:
+              "In case you are traveling with your partner and/or want to stay more nights than we cover, we can deduct the additional costs from your speaker's honorarium. We'll give you our bank details otherwise.",
+            value: "true"
+          },
+          {
+            name: "Notes / Requirements",
+            type: "textarea",
+            description:
+              "Anything you would want to let us know regarding travel and accomodation."
+          }
+        ]
+      },
+      {
         title: "Payment Details",
         description: `Please let us know your bank account details - we will use it to transfer your honorarium after the conference. If you prefer to send us an invoice after the event, that's totally fine too, and these would be our details (no worries, we will send it to you again later in an extensive pre-conference briefing):
   
