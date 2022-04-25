@@ -22,7 +22,7 @@ class Form extends Component {
 
     const formData = new FormData(event.target);
     const payload = [...formData.entries()].reduce((obj, [key, val]) => {
-      obj[key] = val;
+      obj[key] = val === "true" ? true : val;
 
       return obj;
     }, {});
