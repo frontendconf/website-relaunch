@@ -156,7 +156,7 @@ module.exports = async (req, res) => {
       },
       {
         title: "Travel and accomodation",
-        description: `To be able to book travel and hotel, we would need to know some details. We are covering a round trip economy class airline or train ticket and accomodation at a <a href="https://www.motel-one.com/en/hotels/zurich/hotel-zurich/. ">hotel in the heart of Zurich</a>. For speakers from overseas, we are covering up to 5 hotel nights, for speakers from Europe, we are covering up to 3 nights.<br><br>If you are traveling with your partner, e.g., we will organize their airline or train ticket and upgrade the hotel to a double room (for a surcharge of 33 CHF/night during the week and 18 CHF/night during the weekend).`,
+        description: `To be able to book travel and hotel, we would need to know some details. We are covering a round trip economy class airline or train ticket and accomodation at a <a href="https://www.motel-one.com/en/hotels/zurich/hotel-zurich/. ">hotel in the heart of Zurich</a>. For speakers from overseas, we are covering up to 5 hotel nights, for speakers from Europe, we are covering up to 3 nights.<br><br>If you are traveling with your partner, e.g., we can organize (and deduct from your honorarium or invoice) their airline or train ticket and upgrade the hotel to a double room (for a surcharge of 33 CHF/night during the week and 18 CHF/night during the weekend).`,
         fields: [
           {
             name: "Travel from / Return to",
