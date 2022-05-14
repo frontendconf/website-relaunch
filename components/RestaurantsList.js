@@ -42,7 +42,7 @@ const RestaurantsList = () => (
               <div className="restaurants__list">
                 <Row>
                   {restaurants.map((restaurant, i) => (
-                    <Col key={i} className="xs-12 rg-6 lg-3">
+                    <Col key={i} className="xs-12 rg-4 offset-rg-1">
                       <a
                         key={i}
                         className="restaurants__link"
