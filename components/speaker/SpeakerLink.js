@@ -75,7 +75,7 @@ const Speaker = ({
 
   return (
     <div className={`speaker ${className}`}>
-      {(linked && (
+      {(linked && speaker.bio && (
         <Link
           href={{
             pathname: "/",

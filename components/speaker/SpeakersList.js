@@ -16,6 +16,7 @@ const speakersQuery = gql`
       items {
         name
         description
+        bio
         slug
         photo {
           url(transform: { resizeStrategy: FILL })
@@ -36,6 +37,7 @@ const hostsQuery = gql`
       items {
         name
         description
+        bio
         slug
         photo {
           url(transform: { resizeStrategy: FILL })
