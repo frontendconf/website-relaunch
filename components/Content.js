@@ -296,7 +296,7 @@ export default withRouter(props => {
           window.scrollTo(0, 0);
         }
 
-        if (loading) return <Hero title="Loading..." />;
+        if (loading) return <Hero template="loading" title="Loading..." />;
 
         // Destructuring needs to be done outside the arguments to prevent mapping errors
         const {
@@ -590,6 +590,7 @@ export default withRouter(props => {
                       {currentPage.showNews && <NewsSummary />}
                       {(currentPage.showSpeakers || isHome) && (
                         <SpeakersList
+                          key={`speakerlist-${isHome}`}
                           limit={isHome ? 6 : undefined}
                           withHeading={isHome}
                         />

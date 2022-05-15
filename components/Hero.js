@@ -131,12 +131,19 @@ class Hero extends Component {
                   </noscript>
                 </div>
                 {this.props.subTitle ? (
-                  <FadeIn style={{ display: "block" }}>
+                  <FadeIn
+                    key={`${this.props.subTitle}-fadein`}
+                    style={{ display: "block" }}
+                  >
                     <h2 className="hero__subtitle">{this.props.subTitle}</h2>
                   </FadeIn>
                 ) : null}
                 {this.props.lead ? (
-                  <FadeIn style={{ display: "block" }} delay={150}>
+                  <FadeIn
+                    key={`${this.props.lead}-fadein`}
+                    style={{ display: "block" }}
+                    delay={this.props.subTitle ? 150 : 0}
+                  >
                     <p className="hero__lead">{this.props.lead}</p>
                   </FadeIn>
                 ) : null}
@@ -144,7 +151,7 @@ class Hero extends Component {
             </Col>
           </Row>
         </Container>
-        {(this.props.isSpeakersOverview || this.props.isHome) && (
+        {/* {(this.props.isSpeakersOverview || this.props.isHome) && (
           <div className="hero__scroll">
             <div onClick={this.scrollDown}>
               <div className="mouse">
@@ -152,13 +159,17 @@ class Hero extends Component {
               </div>
             </div>
           </div>
-        )}
+        )} */}
         <Container className="hero__container">
           <Row className="hero__container">
             <Col className="hero__col xs-12 md-11 lg-10 xxl-9">
               {this.props.ctas && (
                 <div className="hero__ctas-wrapper">
-                  <FadeIn style={{ display: "block" }} delay={300}>
+                  <FadeIn
+                    key={`${this.props.lead}-ctas`}
+                    style={{ display: "block" }}
+                    delay={this.props.subTitle ? 300 : 150}
+                  >
                     <div className="hero__ctas">
                       {this.props.ctas.map((cta, i) => {
                         return (
