@@ -215,6 +215,31 @@ module.exports = async (req, res) => {
         ]
       },
       {
+        title: "Activities",
+        description: `We would love to have you at our speakers dinner on Wednesday evening (24 Aug). In the afternoon before the dinner, we are offering a <a href="https://www.zuerich.com/en/visit/tours-excursions/zurich-old-town-walking-tour#/">walking tour</a> of the Zurich old town.`,
+        fields: [
+          {
+            name: "Speakers Dinner",
+            type: "checkbox",
+            description: "I will join the dinner",
+            value: "true",
+            checked: true
+          },
+          {
+            name: "Dietary Preferences",
+            type: "textarea",
+            description:
+              "Any dietary preferences (vegetarian, vegan, gluten-free etc.)"
+          },
+          {
+            name: "City Tour",
+            type: "checkbox",
+            description: "I will join the walking tour",
+            value: "true"
+          }
+        ]
+      },
+      {
         title: "Payment Details",
         description: `Please let us know your bank account details - we will use it to transfer your honorarium after the conference. If you prefer to send us an invoice after the event, that's totally fine too, and these would be our details (no worries, we will send it to you again later in an extensive pre-conference briefing):
   

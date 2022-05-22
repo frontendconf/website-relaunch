@@ -65,6 +65,17 @@
     }
   }
 
+  &__field-element {
+    &--checkbox {
+      display: flex;
+      gap: 0.5rem;
+
+      .form__field-description {
+        margin-top: 0.125rem;
+      }
+    }
+  }
+
   &__field-description {
     margin-top: 1em;
   }
