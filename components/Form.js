@@ -112,6 +112,7 @@ class Form extends Component {
                             aria-describedby={
                               field.description ? `${field.name}-desc` : null
                             }
+                            checked={field.checked}
                             required={field.required}
                           />
                         );
@@ -126,7 +127,7 @@ class Form extends Component {
                             ) : null}
                           </label>
                         </dt>
-                        <dd>
+                        <dd className={`form__field-element--${field.type}`}>
                           {element}
                           {field.description && (
                             <div
