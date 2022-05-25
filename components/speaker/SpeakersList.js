@@ -8,8 +8,6 @@ import { Row, Col } from "../shared/Grid";
 import FadeIn from "../FadeIn";
 import { Component } from "react";
 
-const currentDate = new Date().toISOString();
-
 const speakersQuery = gql`
   query speakers($limit: Int) {
     collection: speakerCollection(limit: $limit, order: order_ASC) {
@@ -53,11 +51,6 @@ const hostsQuery = gql`
 `;
 
 class SpeakersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
-
   render() {
     return (
       <div className="speakers-list">
@@ -66,10 +59,7 @@ class SpeakersList extends Component {
             <h2 className="speakers-list__title">Industry Leading Speakers</h2>
           </FadeIn>
         )}
-        <Query
-          query={speakersQuery}
-          variables={{ limit: this.props.limit, date: currentDate }}
-        >
+        <Query query={speakersQuery}>
           {({ loading, error, data }) => {
             if (error) return <ErrorMessage message="Error loading speakers" />;
             if (loading) return <div>Loading</div>;
@@ -86,6 +76,11 @@ class SpeakersList extends Component {
                   this.props.filterTags.includes(tag.title)
                 )
               );
+            }
+
+            // Limit number
+            if (this.props.limit) {
+              speakers = speakers.slice(0, this.props.limit);
             }
 
             return (
@@ -126,10 +121,7 @@ class SpeakersList extends Component {
                 Hosts
               </h2>
             </FadeIn>
-            <Query
-              query={hostsQuery}
-              variables={{ limit: this.props.limit, date: currentDate }}
-            >
+            <Query query={hostsQuery}>
               {({ loading, error, data }) => {
                 if (error)
                   return <ErrorMessage message="Error loading hosts" />;
@@ -147,6 +139,11 @@ class SpeakersList extends Component {
                       this.props.filterTags.includes(tag.title)
                     )
                   );
+                }
+
+                // Limit number
+                if (this.props.limit) {
+                  hosts = hosts.slice(0, this.props.limit);
                 }
 
                 return (
