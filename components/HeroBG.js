@@ -4,13 +4,17 @@ import Parallax from "parallax-js";
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
 const TARGET_OPACITY = 0.6;
+const TARGET_BLUR = 15;
 
 class Hero extends Component {
   constructor(props) {
     super(props);
 
+    this.videoRef = React.createRef();
+
     this.state = {
-      opacity: 0
+      opacity: 0,
+      blur: 0
     };
   }
 
@@ -22,12 +26,24 @@ class Hero extends Component {
       const scrollTop = el.scrollTop;
 
       if (scrollTop < TRANSITION_DISTANCE) {
+        this.videoRef.current.play();
+      } else {
+        this.videoRef.current.pause();
+      }
+
+      if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
           opacity: (1 / (TRANSITION_DISTANCE / TARGET_OPACITY)) * scrollTop
+        });
+        this.setState({
+          blur: (1 / (TRANSITION_DISTANCE / TARGET_BLUR)) * scrollTop
         });
       } else if (this.state.opacity < TARGET_OPACITY) {
         this.setState({
           opacity: TARGET_OPACITY
+        });
+        this.setState({
+          blur: TARGET_BLUR
         });
       }
     }, 0);
@@ -59,7 +75,23 @@ class Hero extends Component {
             this.props.template ? `hero-bg--${this.props.template}` : ""
           }`}
         >
-          <div className="hero-bg__image-wrapper">
+          <div className="hero-bg__image-wrapper" style={{ height: "100%" }}>
+            <video
+              ref={this.videoRef}
+              width="100%"
+              height="100%"
+              loop
+              autoPlay
+              muted
+              style={{
+                position: "relative",
+                zIndex: 1,
+                objectFit: "cover",
+                filter: `blur(${this.state.blur}px)`
+              }}
+            >
+              <source src="/static/bg_vid.mp4" type="video/mp4" />
+            </video>
             <img
               className="hero-bg__image hero-bg__image-desktop"
               src={
