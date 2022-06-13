@@ -33,7 +33,8 @@ class Hero extends Component {
 
       if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
-          opacity: (1 / (TRANSITION_DISTANCE / TARGET_OPACITY)) * scrollTop
+          opacity:
+            (1 / (TRANSITION_DISTANCE / TARGET_OPACITY)) * scrollTop + 0.5
         });
         this.setState({
           blur: (1 / (TRANSITION_DISTANCE / TARGET_BLUR)) * scrollTop
