@@ -3,7 +3,7 @@ import Parallax from "parallax-js";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
-const TARGET_OPACITY = 0.6;
+const TARGET_OPACITY = 0.4;
 const TARGET_BLUR = 15;
 
 class Hero extends Component {
@@ -34,7 +34,7 @@ class Hero extends Component {
       if (scrollTop < TRANSITION_DISTANCE) {
         this.setState({
           opacity:
-            (1 / (TRANSITION_DISTANCE / TARGET_OPACITY)) * scrollTop + 0.5
+            (1 / (TRANSITION_DISTANCE / TARGET_OPACITY)) * scrollTop + 0.3
         });
         this.setState({
           blur: (1 / (TRANSITION_DISTANCE / TARGET_BLUR)) * scrollTop
