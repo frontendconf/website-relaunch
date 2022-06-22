@@ -567,7 +567,7 @@ export default withRouter(props => {
                 className={loading ? "content content--loading" : "content"}
               >
                 <CustomHead />
-                <HeroBG />
+                <HeroBG isHome={isHome} />
                 <Hero
                   title={title}
                   subTitle={subTitle}

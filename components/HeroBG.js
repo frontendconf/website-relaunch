@@ -4,7 +4,7 @@ import Parallax from "parallax-js";
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
 const TARGET_OPACITY = 0.4;
-const TARGET_BLUR = 15;
+const TARGET_BLUR = 25;
 
 class Hero extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Hero extends Component {
 
     this.state = {
       opacity: 0,
+      videoOpacity: 0,
       blur: 0
     };
   }
@@ -25,10 +26,12 @@ class Hero extends Component {
       const el = document.scrollingElement || document.documentElement;
       const scrollTop = el.scrollTop;
 
-      if (scrollTop < TRANSITION_DISTANCE) {
-        this.videoRef.current.play();
-      } else {
-        this.videoRef.current.pause();
+      if (this.props.isHome) {
+        if (scrollTop < TRANSITION_DISTANCE) {
+          this.videoRef.current.play();
+        } else {
+          this.videoRef.current.pause();
+        }
       }
 
       if (scrollTop < TRANSITION_DISTANCE) {
@@ -55,6 +58,16 @@ class Hero extends Component {
       passive: true
     });
 
+    if (this.props.isHome) {
+      this.videoRef.current.addEventListener("loadeddata", () => {
+        if (this.videoRef.current.readyState >= 3) {
+          this.setState({
+            videoOpacity: 1
+          });
+        }
+      });
+    }
+
     const scene = document.querySelector(".scene");
     this.parallaxInstance = new Parallax(scene);
 
@@ -77,38 +90,45 @@ class Hero extends Component {
           }`}
         >
           <div className="hero-bg__image-wrapper" style={{ height: "100%" }}>
-            <video
-              ref={this.videoRef}
-              width="100%"
-              height="100%"
-              loop
-              autoPlay
-              muted
-              style={{
-                position: "relative",
-                zIndex: 1,
-                objectFit: "cover",
-                filter: `blur(${this.state.blur}px)`
-              }}
-            >
-              <source src="/static/bg_vid.mp4" type="video/mp4" />
-            </video>
-            <img
-              className="hero-bg__image hero-bg__image-desktop"
-              src={
-                this.props.backgroundImageDesktop
-                  ? this.props.backgroundImageDesktop.url
-                  : "/static/images/bg_desktop.jpg"
-              }
-            />
-            <img
-              className="hero-bg__image hero-bg__image-mobile"
-              src={
-                this.props.backgroundImageMobile
-                  ? this.props.backgroundImageMobile.url
-                  : "/static/images/bg_mobile.jpg"
-              }
-            />
+            {this.props.isHome && (
+              <video
+                ref={this.videoRef}
+                width="100%"
+                height="100%"
+                loop
+                autoPlay
+                muted
+                style={{
+                  position: "relative",
+                  zIndex: 1,
+                  objectFit: "cover",
+                  filter: `blur(${this.state.blur}px)`,
+                  opacity: this.state.videoOpacity
+                }}
+              >
+                <source src="/static/bg_vid.mp4" type="video/mp4" />
+              </video>
+            )}
+            {!this.props.isHome && (
+              <img
+                className="hero-bg__image hero-bg__image-desktop"
+                src={
+                  this.props.backgroundImageDesktop
+                    ? this.props.backgroundImageDesktop.url
+                    : "/static/images/bg_desktop.jpg"
+                }
+              />
+            )}
+            {!this.props.isHome && (
+              <img
+                className="hero-bg__image hero-bg__image-mobile"
+                src={
+                  this.props.backgroundImageMobile
+                    ? this.props.backgroundImageMobile.url
+                    : "/static/images/bg_mobile.jpg"
+                }
+              />
+            )}
           </div>
           <div
             className="hero-bg__overlay"
