@@ -105,6 +105,7 @@ module.exports = async (req, res) => {
           },
           { name: "Twitter", type: "text" },
           { name: "LinkedIn", type: "text" },
+          { name: "Instagram", type: "text" },
           { name: "Website", type: "text" },
           {
             name: "Notes",
@@ -122,9 +123,11 @@ module.exports = async (req, res) => {
         fields: [
           { name: "Name", type: "text", required: true },
           { name: "Title / Role", type: "text", required: true },
+          { name: "Company", type: "text" },
           { name: "Website", type: "text" },
           { name: "Twitter", type: "text" },
           { name: "LinkedIn", type: "text" },
+          { name: "Instagram", type: "text" },
           {
             // name: "Photo",
             // type: "file",
@@ -263,9 +266,11 @@ module.exports = async (req, res) => {
         fields: [
           { name: "Name", type: "text", required: true },
           { name: "Title / Role", type: "text", required: true },
+          { name: "Company", type: "text" },
           { name: "Website", type: "text" },
           { name: "Twitter", type: "text" },
           { name: "LinkedIn", type: "text" },
+          { name: "Instagram", type: "text" },
           {
             // name: "Photo",
             // type: "file",
