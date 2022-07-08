@@ -59,18 +59,11 @@ class Hero extends Component {
     });
 
     if (this.props.isHome) {
-      this.videoRef.current.defaultMuted = true;
-      this.videoRef.current.muted = true;
-      this.videoRef.current.autoplay = true;
-      this.videoRef.current.playsInline = true;
-      console.log("test");
-      this.setState({
-        videoOpacity: 1
-      });
-      this.videoRef.current.play();
       this.videoRef.current.addEventListener("loadeddata", () => {
         if (this.videoRef.current.readyState >= 3) {
-          console.log("test through");
+          this.setState({
+            videoOpacity: 1
+          });
         }
       });
     }
@@ -103,13 +96,14 @@ class Hero extends Component {
                 width="100%"
                 height="100%"
                 loop
-                muted
                 autoPlay
-                playsInline
+                muted
                 style={{
                   position: "relative",
                   zIndex: 1,
-                  objectFit: "cover"
+                  objectFit: "cover",
+                  filter: `blur(${this.state.blur}px)`,
+                  opacity: this.state.videoOpacity
                 }}
               >
                 <source src="/static/bg_vid.mp4" type="video/mp4" />
