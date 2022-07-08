@@ -23,6 +23,7 @@ import Talks from "./Talks";
 import Schedule from "./Schedule";
 import AirtableForm from "./AirtableForm";
 import Fade from "react-reveal/Fade";
+import React from "react";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -577,6 +578,17 @@ export default withRouter(props => {
                   isSpeakersOverview={isSpeakersOverview}
                 />
                 <Container>
+                  <video
+                    width="100%"
+                    height="100%"
+                    loop
+                    muted
+                    autoPlay
+                    playsInline
+                    controls
+                  >
+                    <source src="/static/bg_vid.mp4" type="video/mp4" />
+                  </video>
                   <Row>
                     <Col className="xs-12">
                       {currentPage.body && (
