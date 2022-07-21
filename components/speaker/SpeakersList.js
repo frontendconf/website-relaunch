@@ -10,7 +10,7 @@ import { Component } from "react";
 
 const speakersQuery = gql`
   query speakers($limit: Int) {
-    collection: speakerCollection(limit: $limit, order: order_ASC) {
+    collection: speakerCollection(limit: $limit, order: [order_ASC, name_ASC]) {
       items {
         name
         description
@@ -31,7 +31,7 @@ const speakersQuery = gql`
 
 const hostsQuery = gql`
   query hosts($limit: Int) {
-    collection: hostCollection(limit: $limit, order: order_ASC) {
+    collection: hostCollection(limit: $limit, order: [order_ASC, name_ASC]) {
       items {
         name
         description
@@ -59,7 +59,7 @@ class SpeakersList extends Component {
             <h2 className="speakers-list__title">Industry Leading Speakers</h2>
           </FadeIn>
         )}
-        <Query query={speakersQuery}>
+        <Query query={speakersQuery} variables={{ limit: 200 }}>
           {({ loading, error, data }) => {
             if (error) return <ErrorMessage message="Error loading speakers" />;
             if (loading) return <div>Loading</div>;
