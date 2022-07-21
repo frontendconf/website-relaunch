@@ -107,6 +107,7 @@ class Hero extends Component {
                 }}
               >
                 <source src="/static/bg_vid.mp4" type="video/mp4" />
+                <source src="/static/bg_vid.webm" type="video/webm" />
               </video>
             )}
             {!this.props.isHome && (
