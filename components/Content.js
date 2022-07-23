@@ -20,10 +20,10 @@ import HotelsList from "./HotelsList";
 import Workshops from "./Workshops";
 import Workshop from "./Workshop";
 import Talks from "./Talks";
+import Teasers from "./Teasers";
 import Schedule from "./Schedule";
 import AirtableForm from "./AirtableForm";
 import Fade from "react-reveal/Fade";
-import Teasers from "./Teasers";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -611,9 +611,9 @@ export default withRouter(props => {
                         </div>
                       )}
 
-                      {contentTeasers.length && (
+                      {contentTeasers.length ? (
                         <Teasers teasers={contentTeasers} />
-                      )}
+                      ) : null}
 
                       {currentPage.showNews && <NewsSummary />}
                       {(currentPage.showSpeakers || isLandingPage) && (
