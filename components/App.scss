@@ -90,6 +90,11 @@ p {
 
   .content__wrapper--white & a {
     color: $link-color-on-white;
+
+    &.special-link {
+      color: #09001f;
+    }
+
     &:hover {
       color: $link-hover-color-on-white;
     }
@@ -134,6 +139,8 @@ p {
 
   .special-link {
     display: inline-block;
+    text-decoration: none;
+    color: #09001f;
 
     &:hover {
       text-decoration: none;

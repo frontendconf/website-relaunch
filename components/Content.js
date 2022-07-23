@@ -23,6 +23,7 @@ import Talks from "./Talks";
 import Schedule from "./Schedule";
 import AirtableForm from "./AirtableForm";
 import Fade from "react-reveal/Fade";
+import Teasers from "./Teasers";
 
 const currentPageQuery = gql`
   query($slug: String!) {
@@ -62,10 +63,29 @@ const currentPageQuery = gql`
         backgroundImageMobile {
           url(transform: { resizeStrategy: FILL })
         }
-        leadCtasCollection {
+        leadCtasCollection(limit: 4) {
           items {
             ctaText
             slug
+          }
+        }
+        contentTeasersCollection(limit: 4) {
+          items {
+            body
+            title
+            ctaLabel
+            body
+            photo {
+              url(
+                transform: { width: 1200, height: 1200, resizeStrategy: FILL }
+              )
+            }
+            link {
+              ... on Page {
+                slug
+                title
+              }
+            }
           }
         }
       }
@@ -180,6 +200,7 @@ export default withRouter(props => {
   let wideContent = false;
   let darkContent = false;
   let isHome = slug === "/";
+  let isLandingPage = slug === "live-streaming" || isHome;
   let isSpeakersOverview = slug === "speakers";
   let isVenue = slug === "venue";
 
@@ -313,9 +334,12 @@ export default withRouter(props => {
         const ctas = currentPage.leadCtasCollection
           ? currentPage.leadCtasCollection.items
           : null;
+        const contentTeasers = currentPage.contentTeasersCollection
+          ? currentPage.contentTeasersCollection.items
+          : null;
 
         const metaTitle = `${
-          isHome ? "" : `${title} – `
+          isLandingPage ? "" : `${title} – `
         }Front Conference Zurich`;
         const metaDescription = subTitle || currentPage.lead;
 
@@ -567,13 +591,13 @@ export default withRouter(props => {
                 className={loading ? "content content--loading" : "content"}
               >
                 <CustomHead />
-                <HeroBG isHome={isHome} />
+                <HeroBG isHome={isLandingPage} />
                 <Hero
                   title={title}
                   subTitle={subTitle}
                   lead={currentPage.lead}
                   ctas={ctas}
-                  isHome={isHome}
+                  isHome={isLandingPage}
                   isSpeakersOverview={isSpeakersOverview}
                 />
                 <Container>
@@ -587,12 +611,16 @@ export default withRouter(props => {
                         </div>
                       )}
 
+                      {contentTeasers.length && (
+                        <Teasers teasers={contentTeasers} />
+                      )}
+
                       {currentPage.showNews && <NewsSummary />}
-                      {(currentPage.showSpeakers || isHome) && (
+                      {(currentPage.showSpeakers || isLandingPage) && (
                         <SpeakersList
-                          key={`speakerlist-${isHome}`}
-                          limit={isHome ? 6 : undefined}
-                          withHeading={isHome}
+                          key={`speakerlist-${isLandingPage}`}
+                          limit={isLandingPage ? 6 : undefined}
+                          withHeading={isLandingPage}
                         />
                       )}
                       {currentPage.showVenue && (
