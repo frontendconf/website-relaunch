@@ -28,6 +28,8 @@ class Hero extends Component {
 
       if (this.props.isHome) {
         if (scrollTop < TRANSITION_DISTANCE) {
+          this.videoRef.current.setAttribute("muted", "");
+          this.videoRef.current.playsInline = true;
           this.videoRef.current.play();
         } else {
           this.videoRef.current.pause();
