@@ -43,7 +43,7 @@ const ImageTeaser = ({ teaser }) => (
             >
               <a className="special-link">
                 <span className="special-link__text">
-                  {teaser.link.title || "Read more"}
+                  {teaser.ctaLabel || teaser.link.title || "Read more"}
                 </span>
               </a>
             </Link>

@@ -73,6 +73,7 @@ const currentPageQuery = gql`
           items {
             body
             title
+            ctaLabel
             body
             photo {
               url(

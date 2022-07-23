@@ -14,6 +14,7 @@ const menuQuery = gql`
           items {
             ... on Page {
               title
+              menu
               slug
               sys {
                 id
@@ -151,7 +152,7 @@ class Header extends Component {
                                         : "nav__link"
                                     }
                                   >
-                                    {item.title}
+                                    {item.menu || item.title}
                                   </a>
                                 </Link>
                               </li>
