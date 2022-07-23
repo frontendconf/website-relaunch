@@ -101,8 +101,6 @@ class Hero extends Component {
                 autoPlay
                 muted
                 playsinline
-                src="/static/bg_vid.mp4"
-                type="video/mp4"
                 style={{
                   position: "relative",
                   zIndex: 1,
