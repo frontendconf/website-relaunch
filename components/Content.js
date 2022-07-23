@@ -69,7 +69,7 @@ const currentPageQuery = gql`
             slug
           }
         }
-        contentTeaserCollection(limit: 4) {
+        contentTeasersCollection(limit: 4) {
           items {
             body
             title
@@ -333,8 +333,8 @@ export default withRouter(props => {
         const ctas = currentPage.leadCtasCollection
           ? currentPage.leadCtasCollection.items
           : null;
-        const contentTeasers = currentPage.contentTeaserCollection
-          ? currentPage.contentTeaserCollection.items
+        const contentTeasers = currentPage.contentTeasersCollection
+          ? currentPage.contentTeasersCollection.items
           : null;
 
         const metaTitle = `${
