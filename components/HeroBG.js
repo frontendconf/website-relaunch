@@ -100,7 +100,7 @@ class Hero extends Component {
                 loop
                 autoPlay
                 muted
-                playsinline
+                playsInline
                 style={{
                   position: "relative",
                   zIndex: 1,
