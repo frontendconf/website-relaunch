@@ -30,10 +30,24 @@
     margin: 0 0 5px;
   }
 
-  // TODO: Refactor with variables & cleanup
+  &__company,
+  &__role {
+    font-size: $font-size-tiny;
+    color: $bombay;
+    margin: 0;
+  }
+
+  &__company {
+    text-transform: uppercase;
+  }
+
+  &__role {
+    opacity: 0.6;
+  }
+
   &__description {
     font-size: $font-size-tiny;
-    color: #b3b3bc;
+    color: $bombay;
     text-transform: uppercase;
     margin: 0;
   }
@@ -48,6 +62,8 @@
       margin: 0 0 15px;
     }
 
+    &__company,
+    &__role,
     &__description {
       font-size: $font-size-small;
     }
