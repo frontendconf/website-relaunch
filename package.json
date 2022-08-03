@@ -30,7 +30,7 @@
     "markdown-to-jsx": "^7.1.2",
     "mdn-polyfills": "^5.16.0",
     "next": "9.0.8",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.1",
     "parallax-js": "^3.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
