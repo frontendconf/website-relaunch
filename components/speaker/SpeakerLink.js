@@ -73,8 +73,8 @@ const Speaker = ({
 }) => {
   const category = isHost ? "hosts" : "speakers";
 
-  speaker.role = "Role";
-  speaker.company = "Company";
+  speaker.role = speaker.role || "Role";
+  speaker.company = speaker.company || "Company";
 
   return (
     <div className={`speaker ${className}`}>
