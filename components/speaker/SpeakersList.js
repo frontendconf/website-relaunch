@@ -9,19 +9,21 @@ import FadeIn from "../FadeIn";
 import { Component } from "react";
 
 const speakersQuery = gql`
-  query speakers($limit: Int) {
-    collection: speakerCollection(limit: $limit, order: [order_ASC, name_ASC]) {
+  query speakers($limit: Int = 200) {
+    tags: tagCollection(limit: 1, where: { title: "FRONT22" }) {
       items {
-        name
-        description
-        bio
-        slug
-        photo {
-          url(transform: { resizeStrategy: FILL })
-        }
-        tagsCollection(limit: 20) {
-          items {
-            title
+        linkedFrom {
+          speakers: speakerCollection(limit: $limit) {
+            items {
+              name
+              description
+              bio
+              slug
+              order
+              photo {
+                url(transform: { resizeStrategy: FILL })
+              }
+            }
           }
         }
       }
@@ -30,19 +32,21 @@ const speakersQuery = gql`
 `;
 
 const hostsQuery = gql`
-  query hosts($limit: Int) {
-    collection: hostCollection(limit: $limit, order: [order_ASC, name_ASC]) {
+  query hosts($limit: Int = 200) {
+    tags: tagCollection(limit: 1, where: { title: "FRONT22" }) {
       items {
-        name
-        description
-        bio
-        slug
-        photo {
-          url(transform: { resizeStrategy: FILL })
-        }
-        tagsCollection(limit: 20) {
-          items {
-            title
+        linkedFrom {
+          hosts: hostCollection(limit: $limit) {
+            items {
+              name
+              description
+              bio
+              slug
+              order
+              photo {
+                url(transform: { resizeStrategy: FILL })
+              }
+            }
           }
         }
       }
@@ -64,19 +68,25 @@ class SpeakersList extends Component {
             if (error) return <ErrorMessage message="Error loading speakers" />;
             if (loading) return <div>Loading</div>;
 
-            // Destructuring needs to be done outside the arguments to prevent mapping errors
             let {
-              collection: { items: speakers }
+              tags: {
+                items: [
+                  {
+                    linkedFrom: {
+                      speakers: { items: speakers }
+                    }
+                  }
+                ]
+              }
             } = data;
 
-            // Filter by tag
-            if (this.props.filterTags) {
-              speakers = speakers.filter(item =>
-                item.tagsCollection.items.find(tag =>
-                  this.props.filterTags.includes(tag.title)
-                )
-              );
-            }
+            // Sort by name, since that's not possible in the query
+            speakers.sort((a, b) => {
+              if (a.order > b.order) return 1;
+              else if (a.order < b.order) return -1;
+              if (a.name > b.name) return 1;
+              else return -1;
+            });
 
             // Limit number
             if (this.props.limit) {
@@ -127,19 +137,26 @@ class SpeakersList extends Component {
                   return <ErrorMessage message="Error loading hosts" />;
                 if (loading) return <div>Loading</div>;
 
-                // Destructuring needs to be done outside the arguments to prevent mapping errors
                 let {
-                  collection: { items: hosts }
+                  tags: {
+                    items: [
+                      {
+                        linkedFrom: {
+                          hosts: { items: hosts }
+                        }
+                      }
+                    ]
+                  }
                 } = data;
 
-                // Filter by tag
-                if (this.props.filterTags) {
-                  hosts = hosts.filter(item =>
-                    item.tagsCollection.items.find(tag =>
-                      this.props.filterTags.includes(tag.title)
-                    )
-                  );
-                }
+                // Sort by name, since that's not possible in the query
+                hosts.sort((a, b) => {
+                  if (a.order > b.order) return -1;
+                  else if (a.order < b.order) return 1;
+                  if (a.name > b.name) return 1;
+                  else if (a.name < b.name) return -1;
+                  else return 0;
+                });
 
                 // Limit number
                 if (this.props.limit) {
