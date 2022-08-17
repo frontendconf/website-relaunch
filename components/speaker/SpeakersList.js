@@ -16,6 +16,8 @@ const speakersQuery = gql`
           speakers: speakerCollection(limit: $limit) {
             items {
               name
+              role
+              company
               description
               bio
               slug

@@ -86,18 +86,38 @@ const Speaker = ({
           <a className="speaker__link">
             <SpeakerImage speaker={speaker} />
             {withName && <p className="speaker__name">{speaker.name}</p>}
-            {withDescription && (
+            {withDescription && speaker.description && isHost ? (
               <p className="speaker__description">{speaker.description}</p>
-            )}
+            ) : null}
+            {withDescription && !isHost ? (
+              <>
+                {speaker.company ? (
+                  <p className="speaker__company">{speaker.company}</p>
+                ) : null}
+                {speaker.role ? (
+                  <p className="speaker__role">{speaker.role}</p>
+                ) : null}
+              </>
+            ) : null}
           </a>
         </Link>
       )) || (
         <div>
           <SpeakerImage speaker={speaker} />
           {withName && <p className="speaker__name">{speaker.name}</p>}
-          {withDescription && (
+          {withDescription && speaker.description && isHost ? (
             <p className="speaker__description">{speaker.description}</p>
-          )}
+          ) : null}
+          {withDescription && !isHost ? (
+            <>
+              {speaker.company ? (
+                <p className="speaker__company">{speaker.company}</p>
+              ) : null}
+              {speaker.role ? (
+                <p className="speaker__role">{speaker.role}</p>
+              ) : null}
+            </>
+          ) : null}
         </div>
       )}
       {withSocials && <SpeakerSocials speaker={speaker} />}
