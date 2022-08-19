@@ -20,9 +20,16 @@ const Workshop = ({ workshop }) => {
                 <h3 className="workshop__teacher-name">
                   {workshop.teacher.name}
                 </h3>
-                <p className="workshop__teacher-description">
-                  {workshop.teacher.description}
-                </p>
+                {workshop.teacher.company ? (
+                  <p className="workshop__teacher-company">
+                    {workshop.teacher.company}
+                  </p>
+                ) : null}
+                {workshop.teacher.role ? (
+                  <p className="workshop__teacher-role">
+                    {workshop.teacher.role}
+                  </p>
+                ) : null}
               </Col>
               <Col className="xs-3 offset-xs-1 md-12 offset-md-0">
                 <SpeakerSocials speaker={workshop.teacher} />

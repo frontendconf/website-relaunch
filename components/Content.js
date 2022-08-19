@@ -162,7 +162,8 @@ const currentWorkshopQuery = gql`
         to
         teacher {
           name
-          description
+          role
+          company
           bio
           website
           twitter
