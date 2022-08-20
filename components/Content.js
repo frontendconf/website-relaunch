@@ -229,6 +229,7 @@ export default withRouter(props => {
     case "call-for-speakers-wip":
     case "speakers-form":
     case "speakers-form-workshop":
+    case "lightning-talks":
       template = "list";
       break;
     default:
