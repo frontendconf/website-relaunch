@@ -20,7 +20,7 @@
   &__tablist {
     background: #1e1732;
     display: flex;
-    margin: 0 -21px 30px;
+    margin: 0 -16px 30px;
 
     &-item {
       font-size: 19px;
@@ -178,8 +178,8 @@
 @include mq-up(sm) {
   .schedule {
     &__tablist {
-      margin-left: -37px;
-      margin-right: -37px;
+      margin-left: -32px;
+      margin-right: -32px;
     }
   }
 }
