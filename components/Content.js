@@ -321,6 +321,20 @@ export default withRouter(props => {
 
         if (loading) return <Hero template="loading" title="Loading..." />;
 
+        if (
+          !data ||
+          !data.collection ||
+          !data.collection.items ||
+          !data.collection.items.length
+        ) {
+          return (
+            <Hero
+              title="Error loading content."
+              lead="It looks like an Error occured when loading the content. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
+            />
+          );
+        }
+
         // Destructuring needs to be done outside the arguments to prevent mapping errors
         const {
           collection: {
