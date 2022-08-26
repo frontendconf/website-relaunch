@@ -623,7 +623,7 @@ export default withRouter(props => {
                         <SpeakersList
                           key={`speakerlist-${isLandingPage}`}
                           yearTag={isLiveStreaming ? "FRONT22" : "FRONT23"}
-                          limit={isLandingPage ? 6 : undefined}
+                          limit={isHome ? 6 : undefined}
                           withHeading={isLandingPage}
                         />
                       )}

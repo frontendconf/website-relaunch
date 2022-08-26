@@ -121,15 +121,16 @@ class SpeakersList extends Component {
         </Query>
 
         {this.props.limit !== SpeakersList.defaultProps.limit ? (
-          <FadeIn>
+          <></>
+        ) : (
+          /* <FadeIn>
             <Link
               href={{ pathname: "/", query: { slug: "speakers" } }}
               as={"/speakers"}
             >
               <a className="speakers-list__link">Discover more</a>
             </Link>
-          </FadeIn>
-        ) : (
+          </FadeIn> */
           <>
             <FadeIn>
               <h2 className="speakers-list__title speakers-list__title--hosts">
