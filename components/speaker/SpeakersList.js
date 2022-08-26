@@ -9,8 +9,8 @@ import FadeIn from "../FadeIn";
 import { Component } from "react";
 
 const speakersQuery = gql`
-  query speakers($limit: Int = 200) {
-    tags: tagCollection(limit: 1, where: { title: "FRONT23" }) {
+  query speakers($limit: Int = 200, $yearTag: String = "FRONT23") {
+    tags: tagCollection(limit: 1, where: { title: $yearTag }) {
       items {
         linkedFrom {
           speakers: speakerCollection(limit: $limit) {
@@ -34,8 +34,8 @@ const speakersQuery = gql`
 `;
 
 const hostsQuery = gql`
-  query hosts($limit: Int = 200) {
-    tags: tagCollection(limit: 1, where: { title: "FRONT23" }) {
+  query hosts($limit: Int = 200, $yearTag: String = "FRONT23") {
+    tags: tagCollection(limit: 1, where: { title: $yearTag }) {
       items {
         linkedFrom {
           hosts: hostCollection(limit: $limit) {
@@ -65,7 +65,10 @@ class SpeakersList extends Component {
             <h2 className="speakers-list__title">Industry Leading Speakers</h2>
           </FadeIn>
         )}
-        <Query query={speakersQuery} variables={{ limit: 200 }}>
+        <Query
+          query={speakersQuery}
+          variables={{ limit: 200, yearTag: this.props.yearTag }}
+        >
           {({ loading, error, data }) => {
             if (error) return <ErrorMessage message="Error loading speakers" />;
             if (loading) return <div>Loading</div>;
@@ -133,7 +136,10 @@ class SpeakersList extends Component {
                 Hosts
               </h2>
             </FadeIn>
-            <Query query={hostsQuery}>
+            <Query
+              query={hostsQuery}
+              variables={{ yearTag: this.props.yearTag }}
+            >
               {({ loading, error, data }) => {
                 if (error)
                   return <ErrorMessage message="Error loading hosts" />;
@@ -196,6 +202,7 @@ class SpeakersList extends Component {
 
 SpeakersList.propTypes = {
   limit: PropTypes.number,
+  yearTag: PropTypes.string,
   withHeading: PropTypes.bool,
   filterTags: PropTypes.array
 };
@@ -203,6 +210,7 @@ SpeakersList.propTypes = {
 SpeakersList.defaultProps = {
   limit: 0,
   withHeading: false,
+  yearTag: "FRONT23",
   filterTags: ["FRONT23"]
 };
 
