@@ -201,7 +201,8 @@ export default withRouter(props => {
   let wideContent = false;
   let darkContent = false;
   let isHome = slug === "/";
-  let isLandingPage = slug === "live-streaming" || isHome;
+  let isLiveStreaming = slug === "live-streaming";
+  let isLandingPage = isLiveStreaming || isHome;
   let isSpeakersOverview = slug === "speakers";
   let isVenue = slug === "venue";
 
@@ -635,7 +636,8 @@ export default withRouter(props => {
                       {(currentPage.showSpeakers || isLandingPage) && (
                         <SpeakersList
                           key={`speakerlist-${isLandingPage}`}
-                          limit={isLandingPage ? 6 : undefined}
+                          yearTag={isLiveStreaming ? "FRONT22" : "FRONT23"}
+                          limit={isHome ? 6 : undefined}
                           withHeading={isLandingPage}
                         />
                       )}
