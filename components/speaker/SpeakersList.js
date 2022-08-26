@@ -10,7 +10,7 @@ import { Component } from "react";
 
 const speakersQuery = gql`
   query speakers($limit: Int = 200) {
-    tags: tagCollection(limit: 1, where: { title: "FRONT22" }) {
+    tags: tagCollection(limit: 1, where: { title: "FRONT23" }) {
       items {
         linkedFrom {
           speakers: speakerCollection(limit: $limit) {
@@ -35,7 +35,7 @@ const speakersQuery = gql`
 
 const hostsQuery = gql`
   query hosts($limit: Int = 200) {
-    tags: tagCollection(limit: 1, where: { title: "FRONT22" }) {
+    tags: tagCollection(limit: 1, where: { title: "FRONT23" }) {
       items {
         linkedFrom {
           hosts: hostCollection(limit: $limit) {
@@ -203,7 +203,7 @@ SpeakersList.propTypes = {
 SpeakersList.defaultProps = {
   limit: 0,
   withHeading: false,
-  filterTags: ["FRONT22"]
+  filterTags: ["FRONT23"]
 };
 
 export default SpeakersList;
