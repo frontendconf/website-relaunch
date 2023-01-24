@@ -171,7 +171,7 @@ module.exports = async (req, res) => {
             name: "Date of Arrival",
             type: "date",
             description:
-              "We recommend to get to Zurich on Wednesday, August 24, latest.",
+              "We recommend to get to Zurich on Wednesday (30 August) latest.",
             required: true
           },
           {
@@ -219,7 +219,7 @@ module.exports = async (req, res) => {
       },
       {
         title: "Activities",
-        description: `We would love to have you at our speakers dinner on Wednesday evening (24 Aug). In the afternoon before the dinner, we are offering a <a href="https://www.zuerich.com/en/visit/tours-excursions/zurich-old-town-walking-tour#/">walking tour</a> of the Zurich old town.`,
+        description: `We would love to have you at our speakers dinner on Wednesday (30 August). In the afternoon before the dinner, we are offering a <a href="https://www.zuerich.com/en/visit/tours-excursions/zurich-old-town-walking-tour#/">walking tour</a> of the Zurich old town.`,
         fields: [
           {
             name: "Speakers Dinner",
