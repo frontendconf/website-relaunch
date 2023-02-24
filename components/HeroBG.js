@@ -121,6 +121,9 @@ class Hero extends Component {
                     ? this.props.backgroundImageDesktop.url
                     : "/static/images/bg_desktop.jpg"
                 }
+                style={{
+                  filter: `blur(${this.state.blur / 4}px)`
+                }}
               />
             )}
             {!this.props.isHome && (
@@ -129,7 +132,7 @@ class Hero extends Component {
                 src={
                   this.props.backgroundImageMobile
                     ? this.props.backgroundImageMobile.url
-                    : "/static/images/bg_mobile.jpg"
+                    : "/static/images/bg_desktop.jpg"
                 }
               />
             )}
