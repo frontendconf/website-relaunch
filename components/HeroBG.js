@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Parallax from "parallax-js";
+// import Parallax from "parallax-js";
 
 // TODO: Distance should probably be some sort of responsive
 const TRANSITION_DISTANCE = 600; // 600px
@@ -70,8 +70,8 @@ class Hero extends Component {
       });
     }
 
-    const scene = document.querySelector(".scene");
-    this.parallaxInstance = new Parallax(scene);
+    // const scene = document.querySelector(".scene");
+    // this.parallaxInstance = new Parallax(scene);
 
     // First trigger before scroll event happened
     this.scrollHandler();
@@ -79,7 +79,7 @@ class Hero extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.scrollHandler);
-    this.parallaxInstance.destroy();
+    // this.parallaxInstance.destroy();
   }
 
   render() {
