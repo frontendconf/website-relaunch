@@ -122,7 +122,7 @@ class Hero extends Component {
                     : "/static/images/bg_desktop.jpg"
                 }
                 style={{
-                  filter: `blur(${this.state.blur}px)`
+                  filter: `blur(${this.state.blur / 4}px)`
                 }}
               />
             )}
