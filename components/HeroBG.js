@@ -132,7 +132,7 @@ class Hero extends Component {
                 src={
                   this.props.backgroundImageMobile
                     ? this.props.backgroundImageMobile.url
-                    : "/static/images/bg_desktop.jpg"
+                    : "/static/images/bg_mobile.jpg"
                 }
               />
             )}
