@@ -50,6 +50,7 @@ const currentPageQuery = gql`
         showHotels
         showRestaurants
         showCallForSpeakers
+        showSpeakersBootCampForm
         showSpeakersForm
         showSpeakersFormWorkshop
         bodyClass
@@ -227,7 +228,8 @@ export default withRouter(props => {
     case "live":
     case "online-community":
     case "call-for-speakers":
-    case "call-for-speakers-wip":
+    case "call-for-speakers-form":
+    case "speakers-boot-camp":
     case "speakers-form":
     case "speakers-form-workshop":
     case "lightning-talks":
@@ -460,6 +462,22 @@ export default withRouter(props => {
                                 <AirtableForm
                                   title="Submit proposal"
                                   table="Call for Speakers"
+                                />
+                              </Col>
+                            </Row>
+                          )}
+                          {currentPage.showSpeakersBootCampForm && (
+                            <Row>
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
+                                <AirtableForm
+                                  title="Apply for our pilot Speakers Boot Camp"
+                                  table="Speakers Boot Camp"
                                 />
                               </Col>
                             </Row>
