@@ -50,7 +50,7 @@ const currentPageQuery = gql`
         showHotels
         showRestaurants
         showCallForSpeakers
-        showSpeakersBootCampForm
+        showSpeakersBootcampForm
         showSpeakersForm
         showSpeakersFormWorkshop
         bodyClass
@@ -229,7 +229,7 @@ export default withRouter(props => {
     case "online-community":
     case "call-for-speakers":
     case "call-for-speakers-form":
-    case "speakers-boot-camp":
+    case "speakers-bootcamp":
     case "speakers-form":
     case "speakers-form-workshop":
     case "lightning-talks":
@@ -466,7 +466,7 @@ export default withRouter(props => {
                               </Col>
                             </Row>
                           )}
-                          {currentPage.showSpeakersBootCampForm && (
+                          {currentPage.showSpeakersBootcampForm && (
                             <Row>
                               <Col
                                 className={`xs-12 ${

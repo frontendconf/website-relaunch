@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
     {
       title: "Speaking experience",
       description:
-        "Please link to any video of a prior talk you've given. If there is no video available we need another way of assessing your presentation skills, e.g. by an experienced speaker vouching for you. If you don't have any speaking experience we would love for you to apply for our <a href='/speaker-boot-camp'>Speakers Boot Camp</a>!",
+        "Please link to any video of a prior talk you've given. If there is no video available we need another way of assessing your presentation skills, e.g. by an experienced speaker vouching for you. If you don't have any speaking experience we would love for you to apply for our <a href='/speaker-bootcamp'>Speakers Bootcamp</a>!",
       fields: [
         {
           name: "Speaking experience",
