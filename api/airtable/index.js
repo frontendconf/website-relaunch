@@ -122,7 +122,7 @@ module.exports = async (req, res) => {
 
   const fieldGroups = {
     "Call for Speakers": cfsFields,
-    "Speakers Boot Camp": cfsFields
+    "Speakers Bootcamp": cfsFields
       .filter(group => !group.cfsOnly)
       .map(group => ({
         ...group,

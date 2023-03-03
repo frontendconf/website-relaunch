@@ -476,8 +476,8 @@ export default withRouter(props => {
                                 }`}
                               >
                                 <AirtableForm
-                                  title="Apply for our pilot Speakers Boot Camp"
-                                  table="Speakers Boot Camp"
+                                  title="Apply for our pilot Speakers Bootcamp"
+                                  table="Speakers Bootcamp"
                                 />
                               </Col>
                             </Row>
