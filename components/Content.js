@@ -366,7 +366,7 @@ export default withRouter(props => {
           <Head>
             <title>{metaTitle}</title>
             <meta name="description" content={metaDescription} />
-            <meta property="og:image" content="/static/sharing-2022.jpg" />
+            <meta property="og:image" content="/static/sharing-2023.jpg" />
             <meta name="twitter:card" content="summary_large_image" />
 
             {currentPage.config && currentPage.config.scripts
