@@ -10,6 +10,7 @@ export default function Sponsors({ details = false }) {
         </FadeIn>
       )}
 
+      <SponsorCategory category="PRESENTING SPONSOR" details={details} />
       <SponsorCategory category="DIAMOND" details={details} />
       <SponsorCategory category="PLATINUM" details={details} />
       <SponsorCategory category="GOLD" details={details} />

@@ -50,6 +50,7 @@ const currentPageQuery = gql`
         showHotels
         showRestaurants
         showCallForSpeakers
+        showSpeakersBootcampForm
         showSpeakersForm
         showSpeakersFormWorkshop
         bodyClass
@@ -201,7 +202,8 @@ export default withRouter(props => {
   let wideContent = false;
   let darkContent = false;
   let isHome = slug === "/";
-  let isLandingPage = slug === "live-streaming" || isHome;
+  let isLiveStreaming = slug === "live-streaming";
+  let isLandingPage = isLiveStreaming || isHome;
   let isSpeakersOverview = slug === "speakers";
   let isVenue = slug === "venue";
 
@@ -226,7 +228,8 @@ export default withRouter(props => {
     case "live":
     case "online-community":
     case "call-for-speakers":
-    case "call-for-speakers-wip":
+    case "call-for-speakers-form":
+    case "speakers-bootcamp":
     case "speakers-form":
     case "speakers-form-workshop":
     case "lightning-talks":
@@ -321,6 +324,20 @@ export default withRouter(props => {
 
         if (loading) return <Hero template="loading" title="Loading..." />;
 
+        if (
+          !data ||
+          !data.collection ||
+          !data.collection.items ||
+          !data.collection.items.length
+        ) {
+          return (
+            <Hero
+              title="Error loading content."
+              lead="It looks like an Error occured when loading the content. Please try again later. If you don't want to wait, feel free to contact us on info@frontconference.com"
+            />
+          );
+        }
+
         // Destructuring needs to be done outside the arguments to prevent mapping errors
         const {
           collection: {
@@ -349,7 +366,7 @@ export default withRouter(props => {
           <Head>
             <title>{metaTitle}</title>
             <meta name="description" content={metaDescription} />
-            <meta property="og:image" content="/static/sharing-2022.jpg" />
+            <meta property="og:image" content="/static/sharing-2023.jpg" />
             <meta name="twitter:card" content="summary_large_image" />
 
             {currentPage.config && currentPage.config.scripts
@@ -445,6 +462,22 @@ export default withRouter(props => {
                                 <AirtableForm
                                   title="Submit proposal"
                                   table="Call for Speakers"
+                                />
+                              </Col>
+                            </Row>
+                          )}
+                          {currentPage.showSpeakersBootcampForm && (
+                            <Row>
+                              <Col
+                                className={`xs-12 ${
+                                  !wideContent
+                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
+                                    : ""
+                                }`}
+                              >
+                                <AirtableForm
+                                  title="Apply for our pilot Speakers Bootcamp"
+                                  table="Speakers Bootcamp"
                                 />
                               </Col>
                             </Row>
@@ -621,7 +654,8 @@ export default withRouter(props => {
                       {(currentPage.showSpeakers || isLandingPage) && (
                         <SpeakersList
                           key={`speakerlist-${isLandingPage}`}
-                          limit={isLandingPage ? 6 : undefined}
+                          yearTag={isLiveStreaming ? "FRONT22" : "FRONT23"}
+                          limit={isHome ? 6 : undefined}
                           withHeading={isLandingPage}
                         />
                       )}

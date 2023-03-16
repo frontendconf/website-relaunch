@@ -86,7 +86,7 @@ Talks.propTypes = {
 };
 
 Talks.defaultProps = {
-  filterTag: "FRONT22",
+  filterTag: "FRONT23",
   speakerSlug: null
 };
 

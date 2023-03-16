@@ -79,6 +79,12 @@ export default function SponsorCategory({
         let columnClasses = "xs-12 rg-6 lg-4";
 
         switch (category) {
+          case "PRESENTING SPONSOR":
+            columnClasses = "xs-12 rg-6 lg-5";
+            break;
+          case "DIAMOND":
+            columnClasses = "xs-12 rg-6 lg-4";
+            break;
           case "PLATINUM":
             columnClasses = "xs-6 rg-4 lg-3";
             break;

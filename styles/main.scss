@@ -96,3 +96,21 @@
   height: 1px;
   overflow: hidden;
 }
+
+.cta {
+  @include buttonBig;
+
+  display: inline-block;
+
+  &,
+  &:hover,
+  .markdown-wrapper &,
+  .markdown-wrapper &:hover {
+    text-decoration: none;
+    color: #09001f;
+
+    .content__wrapper--white & {
+      color: #09001f;
+    }
+  }
+}
