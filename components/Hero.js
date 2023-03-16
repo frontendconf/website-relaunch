@@ -147,6 +147,19 @@ class Hero extends Component {
                     <p className="hero__lead">{this.props.lead}</p>
                   </FadeIn>
                 ) : null}
+                {this.props.logos ? (
+                  <div className="hero__logo-list">
+                    {this.props.logos.map(item => (
+                      <span
+                        className="hero__logo"
+                        key={`${item.url}-fadein`}
+                        style={{ display: "block" }}
+                      >
+                        <img src={item.url} />
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </Col>
           </Row>

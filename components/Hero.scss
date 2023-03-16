@@ -138,6 +138,20 @@
     line-height: 1.67;
   }
 
+  &__logo-list {
+    display: flex;
+    gap: 36px;
+  }
+
+  &__logo {
+    height: 40px;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   &__ctas-wrapper {
     padding-bottom: 30px;
   }
