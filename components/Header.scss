@@ -233,7 +233,7 @@ $logo-isze-md: 63px;
   }
 
   &::before {
-    background-color: map-get($colors, secondary);
+    background: linear-gradient(90deg, #ffc163 0%, #ff8856 100%);
     z-index: 2;
   }
 
@@ -318,7 +318,7 @@ $logo-isze-md: 63px;
 }
 
 .burger__icon span:nth-child(1) {
-  top: 0px;
+  top: 0;
 }
 
 .burger__icon span:nth-child(2),
@@ -334,7 +334,7 @@ $logo-isze-md: 63px;
 
 .burger__icon.open span:nth-child(1) {
   top: 7px;
-  width: 0%;
+  width: 0;
   left: 50%;
 }
 
@@ -356,7 +356,7 @@ $logo-isze-md: 63px;
 
 .burger__icon.open span:nth-child(4) {
   top: 8px;
-  width: 0%;
+  width: 0;
   left: 50%;
 }
 
