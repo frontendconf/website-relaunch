@@ -70,6 +70,11 @@ const currentPageQuery = gql`
             slug
           }
         }
+        leadLogosCollection(limit: 5) {
+          items {
+            url
+          }
+        }
         contentTeasersCollection(limit: 4) {
           items {
             body
@@ -353,6 +358,9 @@ export default withRouter(props => {
         const ctas = currentPage.leadCtasCollection
           ? currentPage.leadCtasCollection.items
           : null;
+        const logos = currentPage.leadLogosCollection
+          ? currentPage.leadLogosCollection.items
+          : null;
         const contentTeasers = currentPage.contentTeasersCollection
           ? currentPage.contentTeasersCollection.items
           : null;
@@ -631,6 +639,7 @@ export default withRouter(props => {
                   title={title}
                   subTitle={subTitle}
                   lead={currentPage.lead}
+                  logos={logos}
                   ctas={ctas}
                   isHome={isLandingPage}
                   isSpeakersOverview={isSpeakersOverview}

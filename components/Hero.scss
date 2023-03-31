@@ -138,6 +138,22 @@
     line-height: 1.67;
   }
 
+  &__logo-list {
+    display: flex;
+    gap: 14px 20px;
+    flex-wrap: wrap;
+  }
+
+  &__logo {
+    height: 30px;
+    opacity: 0.6;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
   &__ctas-wrapper {
     padding-bottom: 30px;
   }
@@ -205,6 +221,14 @@
     &__scroll--hidden {
       opacity: 0;
       pointer-events: none;
+    }
+
+    &__logo-list {
+      gap: 18px 36px;
+    }
+
+    &__logo {
+      height: 40px;
     }
   }
 
