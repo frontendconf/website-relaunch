@@ -1,6 +1,6 @@
 import React from "react";
 import TwitterIcon from "../../../static/socials/sc-twitter.svg";
-import FacebookIcon from "../../../static/socials/sc-facebook.svg";
+import InstagramIcon from "../../../static/socials/sc-instagram.svg";
 import FlickrIcon from "../../../static/socials/sc-flickr.svg";
 import VimeoIcon from "../../../static/socials/sc-vimeo.svg";
 import YouTubeIcon from "../../../static/socials/sc-youtube.svg";
@@ -19,8 +19,8 @@ export default function SocialMenu(props) {
             case "Twitter":
               Icon = TwitterIcon;
               break;
-            case "Facebook":
-              Icon = FacebookIcon;
+            case "Instagram":
+              Icon = InstagramIcon;
               break;
             case "Flickr":
               Icon = FlickrIcon;
@@ -34,6 +34,8 @@ export default function SocialMenu(props) {
             case "LinkedIn":
               Icon = LinkedInIcon;
               break;
+            default:
+              return null; // In case the Backend sends a Icon we don't know, don't render it
           }
 
           return (
