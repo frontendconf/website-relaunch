@@ -28,6 +28,7 @@ const workshopsQuery = gql`
             title
           }
         }
+        order
       }
     }
   }
@@ -51,6 +52,9 @@ const Workshops = ({ filterTag = Workshops.defaultProps.filterTag }) => (
             item.tagsCollection.items.find(tag => tag.title === filterTag)
           );
         }
+
+        // Order
+        workshops.sort((a, b) => a.order - b.order);
 
         return (
           <Row>
