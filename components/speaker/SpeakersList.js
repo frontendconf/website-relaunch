@@ -158,14 +158,8 @@ class SpeakersList extends Component {
                   }
                 } = data;
 
-                // Sort by name, since that's not possible in the query
-                hosts.sort((a, b) => {
-                  if (a.order > b.order) return -1;
-                  else if (a.order < b.order) return 1;
-                  if (a.name > b.name) return 1;
-                  else if (a.name < b.name) return -1;
-                  else return 0;
-                });
+                // Order
+                hosts.sort((a, b) => a.order - b.order);
 
                 // Limit number
                 if (this.props.limit) {
