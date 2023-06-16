@@ -663,7 +663,6 @@ export default withRouter(props => {
                       {(currentPage.showSpeakers || isLandingPage) && (
                         <SpeakersList
                           key={`speakerlist-${isLandingPage}`}
-                          yearTag={isLiveStreaming ? "FRONT22" : "FRONT23"}
                           limit={isHome ? 6 : undefined}
                           withHeading={isLandingPage}
                         />
