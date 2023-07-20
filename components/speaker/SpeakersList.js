@@ -120,7 +120,7 @@ class SpeakersList extends Component {
           }}
         </Query>
 
-        {this.props.limit !== 6 ? (
+        {this.props.limit !== 9 ? (
           <></>
         ) : (
           <>
@@ -132,6 +132,12 @@ class SpeakersList extends Component {
                 <a className="speakers-list__link">Discover more</a>
               </Link>
             </FadeIn>
+          </>
+        )}
+        {this.props.limit === 9 ? (
+          <></>
+        ) : (
+          <>
             <FadeIn>
               <h2 className="speakers-list__title speakers-list__title--hosts">
                 Hosts
