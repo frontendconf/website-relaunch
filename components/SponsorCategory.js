@@ -38,7 +38,7 @@ const sponsorsQuery = gql`
 export default function SponsorCategory({
   category = "CONTRIBUTING",
   title,
-  filterTag = "FRONT22",
+  filterTag = "FRONT24",
   details = false
 }) {
   return (
@@ -52,16 +52,25 @@ export default function SponsorCategory({
           sponsorCollection: { items: allSponsors }
         } = data;
 
+        console.log("spons0", allSponsors, category);
+
         let sponsors = allSponsors.filter(
           item => item.category.title === category
         );
 
+        console.log("spon1", sponsors);
+
         // Filter by tag
         if (filterTag) {
-          sponsors = sponsors.filter(item =>
-            item.tagCollection.items.find(tag => tag.title === filterTag)
-          );
+          sponsors = sponsors.filter(item => {
+            console.log("item", item);
+            return item.tagCollection.items.find(
+              tag => tag.title === filterTag
+            );
+          });
         }
+
+        console.log("spon2", sponsors);
 
         if (sponsors.length) {
           // Sort by `order` property
@@ -74,6 +83,8 @@ export default function SponsorCategory({
             title = sponsors.find(item => item.category.title).category.title;
           }
         }
+
+        console.log("spon3", sponsors);
 
         // Columns
         let columnClasses = "xs-12 rg-6 lg-4";

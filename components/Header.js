@@ -116,7 +116,7 @@ class Header extends Component {
                                 Front Conference
                               </span>
                               <span className="home-link__date">
-                                31 August – 1 September 2023
+                                29. - 30. August 2024
                                 <br />
                                 Alte Papierfabrik, Zurich
                               </span>

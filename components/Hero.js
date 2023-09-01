@@ -144,7 +144,10 @@ class Hero extends Component {
                     style={{ display: "block" }}
                     delay={this.props.subTitle ? 150 : 0}
                   >
-                    <p className="hero__lead">{this.props.lead}</p>
+                    <p
+                      className="hero__lead"
+                      dangerouslySetInnerHTML={{ __html: this.props.lead }}
+                    />
                   </FadeIn>
                 ) : null}
                 {this.props.logos ? (

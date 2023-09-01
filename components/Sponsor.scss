@@ -8,11 +8,13 @@
     width: 100%;
     border-top: 0;
     padding: 10%;
+    aspect-ratio: 1/1;
 
     .sponsor__svg {
       fill: $white;
       opacity: 0.8;
       transition: opacity $transition-time-simple $transition-easing-default;
+      margin: auto;
     }
 
     &:hover,
@@ -66,7 +68,7 @@
 
   svg {
     width: 100%;
-    height: auto;
+    height: 100%;
   }
 }
 
