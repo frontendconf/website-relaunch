@@ -99,11 +99,13 @@ export default function Sponsor({ details = false, item = {} }) {
       {item.logoSvg ? (
         <span
           className="sponsor__svg"
-          style={item.zoomFactor ? { width: item.zoomFactor } : {}}
           dangerouslySetInnerHTML={{
             __html: item.logoSvg
           }}
-          style={item.category.color ? { fill: item.category.color } : {}}
+          style={
+            (item.category.color ? { fill: item.category.color } : {},
+            item.zoomFactor ? { width: item.zoomFactor } : {})
+          }
         />
       ) : item.logo ? (
         <img className="sponsor__img" src={item.logo.url} alt={item.title} />
