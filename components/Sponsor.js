@@ -108,7 +108,12 @@ export default function Sponsor({ details = false, item = {} }) {
           }
         />
       ) : item.logo ? (
-        <img className="sponsor__img" src={item.logo.url} alt={item.title} />
+        <img
+          className="sponsor__img"
+          src={item.logo.url}
+          alt={item.title}
+          style={item.zoomFactor ? { width: item.zoomFactor } : {}}
+        />
       ) : (
         item.title
       )}
