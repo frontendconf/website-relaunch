@@ -120,7 +120,6 @@
 }
 
 %link-image {
-  filter: grayscale(100%);
   opacity: 0.9;
   transition: opacity $transition-time-simple $transition-easing-default,
     transform $transition-time-simple $transition-easing-default,
@@ -129,7 +128,6 @@
 
 %link-image-hover {
   transform: rotate(0);
-  filter: grayscale(0);
   opacity: 1;
 }
 
