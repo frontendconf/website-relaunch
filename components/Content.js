@@ -660,7 +660,7 @@ export default withRouter(props => {
                       ) : null}
 
                       {currentPage.showNews && <NewsSummary />}
-                      {(currentPage.showSpeakers || isLandingPage) && (
+                      {currentPage.showSpeakers && (
                         <SpeakersList
                           key={`speakerlist-${isLandingPage}`}
                           limit={isHome ? 9 : undefined}
