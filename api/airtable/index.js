@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
         },
         {
           name: "Talk Abstract",
-          type: "text",
+          type: "textarea",
           description: "How can the talk details be summarized.",
           required: true,
           maxLength: 250
