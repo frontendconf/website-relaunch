@@ -51,8 +51,6 @@ const currentPageQuery = gql`
         showRestaurants
         showCallForSpeakers
         showSpeakersBootcampForm
-        showSpeakersForm
-        showSpeakersFormWorkshop
         bodyClass
         menuClass
         ctaText
@@ -233,10 +231,8 @@ export default withRouter(props => {
     case "live":
     case "online-community":
     case "call-for-speakers":
-    case "call-for-speakers-form":
-    case "speakers-bootcamp":
-    case "speakers-form":
-    case "speakers-form-workshop":
+    case "call-for-speakers-submission":
+    case "call-for-speakers-bootcamp-application":
     case "lightning-talks":
       template = "list";
       break;
@@ -468,8 +464,8 @@ export default withRouter(props => {
                                 }`}
                               >
                                 <AirtableForm
-                                  title="Submit proposal"
-                                  table="Call for Speakers"
+                                  title="Submit Talk Proposal"
+                                  id="Call for Speakers"
                                 />
                               </Col>
                             </Row>
@@ -484,41 +480,9 @@ export default withRouter(props => {
                                 }`}
                               >
                                 <AirtableForm
-                                  title="Apply for our pilot Speakers Bootcamp"
-                                  table="Speakers Bootcamp"
+                                  title="Apply for our Speakers Bootcamp"
+                                  id="Speakers Bootcamp"
                                 />
-                              </Col>
-                            </Row>
-                          )}
-                          {currentPage.showSpeakersForm && (
-                            <Row>
-                              <Head>
-                                <meta name="robots" content="noindex" />
-                              </Head>
-                              <Col
-                                className={`xs-12 ${
-                                  !wideContent
-                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
-                                    : ""
-                                }`}
-                              >
-                                <AirtableForm table="Invited Speakers" />
-                              </Col>
-                            </Row>
-                          )}
-                          {currentPage.showSpeakersFormWorkshop && (
-                            <Row>
-                              <Head>
-                                <meta name="robots" content="noindex" />
-                              </Head>
-                              <Col
-                                className={`xs-12 ${
-                                  !wideContent
-                                    ? "rg-10 offset-rg-1 lg-8 offset-lg-2"
-                                    : ""
-                                }`}
-                              >
-                                <AirtableForm table="Workshops" />
                               </Col>
                             </Row>
                           )}

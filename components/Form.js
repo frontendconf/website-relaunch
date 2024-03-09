@@ -62,6 +62,15 @@ class Form extends Component {
             method={this.props.method}
             onSubmit={this.handleSubmit}
           >
+            {this.props.hiddenFields &&
+              this.props.hiddenFields.map(field => (
+                <input
+                  type="hidden"
+                  name={field.name}
+                  value={field.value}
+                  key={field.name}
+                />
+              ))}
             {this.props.fieldGroups.map((group, groupIndex) => (
               <fieldset key={groupIndex} disabled={this.state.isLoading}>
                 <legend>{group.title}</legend>
@@ -69,6 +78,13 @@ class Form extends Component {
                 <dl>
                   {group.fields.map((field, fieldIndex) => {
                     let element;
+                    const description = `${
+                      field.description ? `${field.description} ` : ""
+                    }${
+                      field.maxLength
+                        ? `Max. ${field.maxLength} characters.`
+                        : ""
+                    }`;
 
                     switch (field.type) {
                       case "select":
@@ -78,7 +94,7 @@ class Form extends Component {
                             id={field.name}
                             disabled={this.state.isLoading}
                             aria-describedby={
-                              field.description ? `${field.name}-desc` : null
+                              description ? `${field.name}-desc` : null
                             }
                             required={field.required}
                           >
@@ -95,9 +111,10 @@ class Form extends Component {
                             id={field.name}
                             disabled={this.state.isLoading}
                             aria-describedby={
-                              field.description ? `${field.name}-desc` : null
+                              description ? `${field.name}-desc` : null
                             }
                             required={field.required}
+                            maxLength={field.maxLength}
                           />
                         );
                         break;
@@ -110,10 +127,11 @@ class Form extends Component {
                             value={field.value}
                             disabled={this.state.isLoading}
                             aria-describedby={
-                              field.description ? `${field.name}-desc` : null
+                              description ? `${field.name}-desc` : null
                             }
                             checked={field.checked}
                             required={field.required}
+                            maxLength={field.maxLength}
                           />
                         );
                     }
@@ -129,12 +147,12 @@ class Form extends Component {
                         </dt>
                         <dd className={`form__field-element--${field.type}`}>
                           {element}
-                          {field.description && (
+                          {description && (
                             <div
                               id={`${field.name}-desc`}
                               className="form__field-description"
                             >
-                              {field.description}
+                              {description}
                             </div>
                           )}
                         </dd>

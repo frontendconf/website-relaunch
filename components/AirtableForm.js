@@ -21,22 +21,28 @@ class AirtableForm extends Component {
       isLoading: false,
       isSuccess: response.status < 400,
       message: data.message,
-      fieldGroups: data.fieldGroups
+      fieldGroups: data.fieldGroups,
+      hiddenFields: data.hiddenFields
     });
   }
 
   getUrl() {
-    return `${this.props.url}?table=${encodeURIComponent(this.props.table)}`;
+    return `${this.props.url}?id=${encodeURIComponent(this.props.id)}`;
   }
 
   render() {
     return (
       <div className="">
         <h2 id="form">{this.props.title}</h2>
+        <br />
         {this.state.isLoading ? (
           <strong>Loading form...</strong>
         ) : this.state.isSuccess ? (
-          <Form fieldGroups={this.state.fieldGroups} action={this.getUrl()} />
+          <Form
+            fieldGroups={this.state.fieldGroups}
+            hiddenFields={this.state.hiddenFields}
+            action={this.getUrl()}
+          />
         ) : (
           <strong>{this.state.message}</strong>
         )}
@@ -48,7 +54,7 @@ class AirtableForm extends Component {
 AirtableForm.defaultProps = {
   url: "/api/airtable",
   title: "",
-  table: "Call for Speakers"
+  id: ""
 };
 
 export default AirtableForm;
